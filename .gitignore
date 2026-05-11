@@ -1,0 +1,49 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node (caso instale dependências para microsite)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# Python (caso scripts precisem)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+
+# Build/dist do microsite (Fase 4)
+04-applications-microsite/site/dist/
+04-applications-microsite/site/.next/
+04-applications-microsite/site/build/
+
+# Claude Code local
+.claude/settings.local.json
+
+# Renders pesados (caso huashu-design produza vídeo)
+*.mp4
+*.mov
+*.avi
+*.webm
+# Exceto demos pequenos
+!demos/**/*.mp4
+
+# Fontes não comerciais grandes (incluir só as usadas)
+# (Bricolage e JetBrains Mono são OFL/Apache — incluídas no projeto)
+
+# Tokens compilados (gerados de tokens/*.tokens.json)
+tokens/dist/
+tokens/build/
+
+# Bootstrap state
+.bootstrap-cache/

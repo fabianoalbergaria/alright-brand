@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alright — Proposta Comercial 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bone:#faf9f5;--dark:#141413;--orange-clay:#d97757;--clay-deep:#8c4a32;
+  --stone:#3d3a35;--slate-warm:#5b5750;--stone-light:#b8b5af;--stone-muted:#8a867f;
+  --placeholder:#e8e4da;
+  --font-main:'Bricolage Grotesque',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.2,0.0,0.0,1.0);
+}
+html,body{height:100%;overflow:hidden;font-family:var(--font-main);-webkit-font-smoothing:antialiased}
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px 32px 64px;opacity:0;pointer-events:none;transition:opacity 400ms var(--ease);text-align:center}
+.slide.active{opacity:1;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){.slide{transition:none}}
+
+/* click zones */
+.click-zone{position:fixed;top:0;width:20%;height:100%;z-index:10;cursor:pointer}
+.click-zone--prev{left:0}
+.click-zone--next{right:0}
+
+/* dots */
+.dots{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--slate-warm);opacity:.35;transition:opacity 300ms var(--ease)}
+.dot.active{opacity:1}
+
+/* footer */
+.slide-footer{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--slate-warm);white-space:nowrap;letter-spacing:.02em}
+.slide--dark .slide-footer{color:var(--stone-muted)}
+
+/* backgrounds */
+.slide--bone{background:var(--bone);color:var(--dark)}
+.slide--dark{background:var(--dark);color:var(--bone)}
+
+/* ---- Slide 1 ---- */
+.logo-main{font-size:clamp(48px,8vw,80px);font-weight:400;letter-spacing:-.01em;color:var(--dark)}
+.logo-main .l-accent{font-weight:700}
+.sub-tagline{font-size:clamp(16px,2.2vw,20px);color:var(--stone);margin-top:16px}
+.sub-date{font-size:14px;color:var(--slate-warm);margin-top:8px}
+
+/* ---- Slide 2 ---- */
+.manifesto-title{font-size:clamp(32px,5vw,48px);font-weight:400}
+.manifesto-craft{font-size:clamp(22px,3.5vw,32px);font-weight:400;margin-top:32px}
+.manifesto-sub{font-size:clamp(16px,2vw,20px);color:var(--stone-light);margin-top:12px}
+
+/* ---- Slide 3 ---- */
+.slide h2{font-size:clamp(28px,4vw,40px);font-weight:400;margin-bottom:40px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:960px;width:100%;text-align:left}
+@media(max-width:680px){.grid-3{grid-template-columns:1fr}}
+.grid-3 .num{font-family:var(--font-mono);font-size:48px;color:var(--clay-deep);line-height:1}
+.grid-3 h3{font-size:24px;font-weight:400;color:var(--dark);margin:8px 0 4px}
+.grid-3 p{font-size:16px;color:var(--stone);line-height:1.45}
+
+/* ---- Slide 4 ---- */
+.process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1040px;width:100%;text-align:left;position:relative}
+@media(max-width:680px){.process-row{grid-template-columns:1fr}}
+.process-step .num{font-family:var(--font-mono);font-size:48px;color:var(--clay-deep);line-height:1}
+.process-step h3{font-size:20px;font-weight:400;color:var(--dark);margin:8px 0 4px}
+.process-step p{font-size:15px;color:var(--stone);line-height:1.45}
+.process-line{display:none}
+@media(min-width:681px){
+  .process-line{display:block;position:absolute;top:28px;left:12%;right:12%;height:2px;background:var(--slate-warm);opacity:.3;z-index:0}
+  .process-step{position:relative;z-index:1}
+}
+
+/* ---- Slide 5 ---- */
+.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:880px;width:100%;text-align:left}
+@media(max-width:680px){.cases-grid{grid-template-columns:1fr}}
+.case-card .thumb{width:100%;aspect-ratio:16/9;background:var(--placeholder);border-radius:4px;margin-bottom:12px}
+.case-card h3{font-size:24px;font-weight:400;color:var(--dark)}
+.case-card p{font-size:16px;color:var(--stone);margin-top:4px;line-height:1.4}
+
+/* ---- Slide 6 ---- */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:640px;width:100%}
+@media(max-width:680px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+.team-member{display:flex;flex-direction:column;align-items:center;gap:8px}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:var(--placeholder)}
+.team-name{font-size:18px;color:var(--dark)}
+.team-role{font-size:14px;color:var(--slate-warm)}
+
+/* ---- Slide 7 ---- */
+.cta-title{font-size:clamp(32px,5vw,48px);font-weight:400}
+.cta-link{font-size:20px;color:var(--orange-clay);margin-top:24px;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 300ms}
+.cta-link:hover{border-bottom-color:var(--orange-clay)}
+.cta-info{font-size:14px;color:var(--stone-muted);margin-top:12px}
+.cta-logo{position:absolute;bottom:48px;font-size:24px;font-weight:400;color:var(--bone)}
+.cta-logo .l-accent{font-weight:700}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- Slide 1 — Capa -->
+  <div class="slide slide--bone active" data-index="0">
+    <span class="logo-main">A<span class="l-accent">l</span>right</span>
+    <span class="sub-tagline">A.I. first Production Company.</span>
+    <span class="sub-date">Proposta Comercial · 2026</span>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+  <!-- Slide 2 — Manifesto -->
+  <div class="slide slide--dark" data-index="1">
+    <span class="manifesto-title">((We Are Alright))</span>
+    <span class="manifesto-craft">Craft. Craft. And. More. Craft.</span>
+    <span class="manifesto-sub">Cada filme é um filme.</span>
+    <span class="manifesto-sub">No camera or set. No high costs.</span>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+  <!-- Slide 3 — O que fazemos -->
+  <div class="slide slide--bone" data-index="2">
+    <h2>Produtora audiovisual AI-first</h2>
+    <div class="grid-3">
+      <div>
+        <span class="num">01</span>
+        <h3>Filme de marca</h3>
+        <p>Peças hero para campanhas tier-1. PUMA, HBO Max, Claro.</p>
+      </div>
+      <div>
+        <span class="num">02</span>
+        <h3>Always-on</h3>
+        <p>Volume sem perder craft. Templates derivados com rigor.</p>
+      </div>
+      <div>
+        <span class="num">03</span>
+        <h3>Animatic / Mood</h3>
+        <p>Pré-produção visual que já é entregável.</p>
+      </div>
+    </div>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+  <!-- Slide 4 — Processo -->
+  <div class="slide slide--bone" data-index="3">
+    <h2>Processo</h2>
+    <div class="process-row">
+      <div class="process-line"></div>
+      <div class="process-step">
+        <span class="num">01</span>
+        <h3>Briefing + Treatment</h3>
+        <p>Direção declarada, mood refs curadas, paleta cravada</p>
+      </div>
+      <div class="process-step">
+        <span class="num">02</span>
+        <h3>Prompt + Render</h3>
+        <p>Template Alright, ≥5 anchors, ≥3 versões por frame</p>
+      </div>
+      <div class="process-step">
+        <span class="num">03</span>
+        <h3>Finishing humano</h3>
+        <p>Color grade, retouching, texture, disclosure</p>
+      </div>
+      <div class="process-step">
+        <span class="num">04</span>
+        <h3>Entrega + Aprovação</h3>
+        <p>Frame a frame, assinado pelo diretor</p>
+      </div>
+    </div>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+  <!-- Slide 5 — Cases -->
+  <div class="slide slide--bone" data-index="4">
+    <h2>Cases</h2>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="thumb"></div>
+        <h3>PUMA International</h3>
+        <p>Key visual, 14 cidades, 6 semanas</p>
+      </div>
+      <div class="case-card">
+        <div class="thumb"></div>
+        <h3>HBO Max — Paulistão</h3>
+        <p>Heráldica AI, abertura de campanha</p>
+      </div>
+      <div class="case-card">
+        <div class="thumb"></div>
+        <h3>W3Haus / Getnet — Força G</h3>
+        <p>Documentário AI-first, consistência entre cenas</p>
+      </div>
+      <div class="case-card">
+        <div class="thumb"></div>
+        <h3>Instituto Caldeira</h3>
+        <p>Why CEO Should Surf, 100% IA</p>
+      </div>
+    </div>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+  <!-- Slide 6 — Equipe -->
+  <div class="slide slide--bone" data-index="5">
+    <h2>Equipe</h2>
+    <div class="team-grid">
+      <div class="team-member"><div class="team-avatar"></div><span class="team-name">—</span><span class="team-role">Direção Criativa</span></div>
+      <div class="team-member"><div class="team-avatar"></div><span class="team-name">—</span><span class="team-role">Produção Executiva</span></div>
+      <div class="team-member"><div class="team-avatar"></div><span class="team-name">—</span><span class="team-role">Direção de Arte</span></div>
+      <div class="team-member"><div class="team-avatar"></div><span class="team-name">—</span><span class="team-role">Color / Finishing</span></div>
+      <div class="team-member"><div class="team-avatar"></div><span class="team-name">—</span><span class="team-role">Sound Design</span></div>
+      <div class="team-member"><div class="team-avatar"></div><span class="team-name">—</span><span class="team-role">Gestão de Projeto</span></div>
+    </div>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+  <!-- Slide 7 — Contato / CTA -->
+  <div class="slide slide--dark" data-index="6">
+    <span class="cta-title">((Look again.))</span>
+    <a href="mailto:contato@alright.com.br" class="cta-link">Falar com a Alright</a>
+    <span class="cta-info">contato@alright.com.br · São Paulo</span>
+    <span class="cta-logo">A<span class="l-accent">l</span>right</span>
+    <span class="slide-footer">Alright · 2026 · Confidencial</span>
+  </div>
+
+</div>
+
+<!-- Click zones -->
+<div class="click-zone click-zone--prev" id="clickPrev"></div>
+<div class="click-zone click-zone--next" id="clickNext"></div>
+
+<!-- Dots -->
+<div class="dots" id="dots"></div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  const total = slides.length;
+  let current = 0;
+
+  // Build dots
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    d.addEventListener('click',()=>goTo(i));
+    dotsContainer.appendChild(d);
+  }
+  const dots = dotsContainer.querySelectorAll('.dot');
+
+  function goTo(n){
+    if(n<0||n>=total||n===current) return;
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') goTo(current+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp') goTo(current-1);
+  });
+
+  document.getElementById('clickPrev').addEventListener('click',()=>goTo(current-1));
+  document.getElementById('clickNext').addEventListener('click',()=>goTo(current+1));
+})();
+</script>
+</body>
+</html>

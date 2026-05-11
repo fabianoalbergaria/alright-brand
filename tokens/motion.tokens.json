@@ -1,0 +1,205 @@
+{
+  "$schema": "https://schemas.designtokens.org/8.0.0/draft.json",
+  "$description": "Alright motion tokens v0.1 — duration, easing, distance. Codifica o sistema de motion da marca, ancorado na Big idea ((Look again.)). Cravado em 2026-05-10. Owner: brand visual core. Documentação: /03-color-aihouse-motion/motion/01-motion-principles.md",
+  "motion": {
+    "duration": {
+      "instant": {
+        "$type": "duration",
+        "$value": "100ms",
+        "$description": "Microinteração de feedback (button press, focus ring appear). UI tier."
+      },
+      "fast": {
+        "$type": "duration",
+        "$value": "200ms",
+        "$description": "Hover state, color shift, tooltip, focus ring transition. UI tier."
+      },
+      "normal": {
+        "$type": "duration",
+        "$value": "400ms",
+        "$description": "Modal open, dropdown, panel slide, page fade default. UI tier."
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": "800ms",
+        "$description": "Section transitions, scroll-triggered card reveal. Bridge entre UI e editorial."
+      },
+      "cinematic": {
+        "$type": "duration",
+        "$value": "1400ms",
+        "$description": "Logo reveal, hero zoom, page transition editorial, scroll-into-view hero. Editorial tier."
+      },
+      "editorial": {
+        "$type": "duration",
+        "$value": "1800ms",
+        "$description": "Look again moments, brand canon reveals, manifest opening, image reveal close-to-wide. Editorial tier máximo."
+      }
+    },
+    "easing": {
+      "standard": {
+        "$type": "cubicBezier",
+        "$value": [0.4, 0.0, 0.2, 1.0],
+        "$description": "Default UI, transições neutras, color shift. Equivalente Material 3 Standard."
+      },
+      "decelerate": {
+        "$type": "cubicBezier",
+        "$value": [0.0, 0.0, 0.2, 1.0],
+        "$description": "Entradas (slide in, fade in), elementos chegando. Material 3 Decelerated."
+      },
+      "accelerate": {
+        "$type": "cubicBezier",
+        "$value": [0.4, 0.0, 1.0, 1.0],
+        "$description": "Saídas (slide out, fade out, modal close). Material 3 Accelerated."
+      },
+      "emphasized": {
+        "$type": "cubicBezier",
+        "$value": [0.2, 0.0, 0.0, 1.0],
+        "$description": "Reveals editoriais com peso, hero into view. Material 3 Emphasized Decelerate."
+      },
+      "cinematic": {
+        "$type": "cubicBezier",
+        "$value": [0.16, 1.0, 0.3, 1.0],
+        "$description": "Look again moments — equivalente easeOutExpo (Penner). 95% da distância nos primeiros 50% do tempo, slow-out final que respira. A curva mais usada em opening de feature filme contemporâneo. Sem overshoot."
+      }
+    },
+    "distance": {
+      "subtle": {
+        "$type": "dimension",
+        "$value": "4px",
+        "$description": "Hover lift de botão, focus ring nudge, translate Y de wordmark em entry."
+      },
+      "normal": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Slide in de dropdown, panel, tooltip, page transition default."
+      },
+      "dramatic": {
+        "$type": "dimension",
+        "$value": "64px",
+        "$description": "Slide in de modal, hero scroll reveal, page transition editorial. Limite máximo em UI."
+      }
+    },
+    "logo": {
+      "entryTotal": {
+        "$type": "duration",
+        "$value": "2600ms",
+        "$description": "Logo entry animation completa (peça canônica). Sequência wordmark → parênteses → accent opcional."
+      },
+      "dualStateTransition": {
+        "$type": "duration",
+        "$value": "600ms",
+        "$description": "Default C.2 → Expressivo C.1 transition. Reverse usa motion.duration.normal (400ms)."
+      },
+      "revealAIright": {
+        "$type": "duration",
+        "$value": "1400ms",
+        "$description": "Reveal Alright → ((A I r i g h t)) — ato editorial máximo, uso restrito 1× por documento."
+      },
+      "devicePulseCycle": {
+        "$type": "duration",
+        "$value": "2400ms",
+        "$description": "Brand device (( )) pulse animation cycle (loading states). Scale 100% → 102% → 100%."
+      },
+      "deviceOpening": {
+        "$type": "duration",
+        "$value": "600ms",
+        "$description": "Brand device (( )) opening animation — abre como brackets convergindo."
+      }
+    },
+    "video": {
+      "slateOpeningTotal": {
+        "$type": "duration",
+        "$value": "4400ms",
+        "$description": "Logo opening completo em vídeo (bone hold + (( )) opening + wordmark + hold + fade). Para opening de filme institucional."
+      },
+      "slateClosingTotal": {
+        "$type": "duration",
+        "$value": "4400ms",
+        "$description": "Logo closing completo em vídeo (fade-from-bone + ((Alright)) reveal + hold + fade out). End-frame canon."
+      },
+      "lowerThirdEntry": {
+        "$type": "duration",
+        "$value": "600ms",
+        "$description": "Lower-third slide in da esquerda + fade. Easing emphasized."
+      },
+      "lowerThirdHold": {
+        "$type": "duration",
+        "$value": "4000ms",
+        "$description": "Tempo on-screen mínimo de lower-third (rule of three — ler 3× rápido)."
+      },
+      "lowerThirdExit": {
+        "$type": "duration",
+        "$value": "400ms",
+        "$description": "Lower-third slide out + fade."
+      },
+      "slateCardEntry": {
+        "$type": "duration",
+        "$value": "800ms",
+        "$description": "Slate card entre cenas: fade in + scale 0.98 → 1.0, easing cinematic."
+      },
+      "slateCardHoldShort": {
+        "$type": "duration",
+        "$value": "2000ms",
+        "$description": "Slate card hold para 1 palavra."
+      },
+      "slateCardHoldMedium": {
+        "$type": "duration",
+        "$value": "2400ms",
+        "$description": "Slate card hold para frase curta."
+      },
+      "slateCardHoldLong": {
+        "$type": "duration",
+        "$value": "2800ms",
+        "$description": "Slate card hold para 2 linhas."
+      },
+      "slateCardExit": {
+        "$type": "duration",
+        "$value": "400ms",
+        "$description": "Slate card fade out, easing accelerate."
+      }
+    },
+    "reducedMotion": {
+      "fallbackDuration": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Duration usada para substituir reveals editoriais (cinematic/editorial) quando prefers-reduced-motion: reduce ativo."
+      },
+      "fallbackEasing": {
+        "$type": "cubicBezier",
+        "$value": [0.4, 0.0, 0.2, 1.0],
+        "$description": "Easing padrão usado em modo reduced motion — substitui cinematic/emphasized por standard conservador."
+      }
+    }
+  },
+  "$metadata": {
+    "version": "0.1",
+    "date": "2026-05-10",
+    "owner": "brand visual core",
+    "frameRates": {
+      "web": "60fps default; 30fps fallback aceitável para vídeo embedded",
+      "cinema": "24fps para filme final entregável",
+      "broadcast": "30fps padrão"
+    },
+    "antiPatterns": [
+      "Springs SaaS bouncy (Material You bouncy springs, Framer Motion type:spring defaults com damping<10)",
+      "Overshoot easings (cubic-bezier com y-coords >1.0 ou <0.0)",
+      "Parallax exagerado",
+      "Auto-play de áudio em qualquer contexto",
+      "Strobe / flashing >3Hz",
+      "Rotation contínua de full-screen elements",
+      "Cuts nervosos onde reveal é possível"
+    ],
+    "principles": [
+      "Look again moments — cada peça canônica tem ao menos 1 reveal lento (≥1.4s)",
+      "Reveal over cut — preferência declarada por reveals sobre cortes nervosos",
+      "Easing humano — curvas derivam de física natural (slow-out), zero overshoot",
+      "Tempo cinematográfico — duration medida em segundos para editorial, ms para UI",
+      "Reduced motion como default friendly — simplifica, não desliga"
+    ],
+    "references": {
+      "materialDesign3": "Standard, decelerate, accelerate, emphasized easings derivam de Material Design 3 motion specs",
+      "easeOutExpo": "motion.easing.cinematic equivale a easeOutExpo (Robert Penner, 2001) — curva canônica de opening cinematográfico",
+      "wcag22": "Sistema respeita WCAG 2.2 SC 2.3.3 (Animation from Interactions) e SC 2.2.2 (Pause, Stop, Hide)",
+      "prefersReducedMotion": "Implementação via CSS @media (prefers-reduced-motion: reduce) e Framer Motion <MotionConfig reducedMotion='user'>"
+    }
+  }
+}

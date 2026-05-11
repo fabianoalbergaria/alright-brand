@@ -1,0 +1,415 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$description": "Alright — Sistema cromático v1.0. Light mode warm como estado primário (anti-conformista vs dark-mode-first). Codifica paleta primária (Orange Clay + Bone + Dark), secundária (Clay Deep + Stone + Slate-warm), neutra warm 7-step, funcional (success/error/warning/info), dark mode aliases e gradiente editorial único permitido. Documentação completa em /Users/beralzir/Projetos/alright-brand/03-color-aihouse-motion/color/01-color-system.md.",
+
+  "color": {
+    "$type": "color",
+
+    "primary": {
+      "warm": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.851, 0.467, 0.341],
+          "alpha": 1,
+          "hex": "#d97757"
+        },
+        "$description": "Orange Clay — accent canônico da marca. Logo state Expressivo C.1, hover sobre dark, key visual, capa de deck premium. NUNCA texto sobre Bone (falha WCAG 2.96:1). Pantone PMS 7578 C. Aligned com Anthropic Claude Orange. Regra de proporção: 5–10% por peça."
+      },
+      "warm-deep": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.549, 0.290, 0.196],
+          "alpha": 1,
+          "hex": "#8c4a32"
+        },
+        "$description": "Clay Deep — variante text-safe do Orange Clay. Passa 6.35:1 sobre Bone (AA texto). Use para texto laranja sobre Bone, links inline, citações editoriais. Pantone PMS 7595 C."
+      }
+    },
+
+    "background": {
+      "bone": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.980, 0.976, 0.961],
+          "alpha": 1,
+          "hex": "#faf9f5"
+        },
+        "$description": "Bone — background default light mode. Off-white papel-craft warm. Substitui branco puro em toda a marca (branco puro proibido). Pantone PMS 9184 C. Regra de proporção: 60–70% por peça."
+      },
+      "bone-soft": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.929, 0.914, 0.863],
+          "alpha": 1,
+          "hex": "#ede9dc"
+        },
+        "$description": "Bone-soft — foreground claro do dark mode. Bone reduzido em luminância (L* 92 vs 98) para reduzir fadiga ocular sobre canvas escuro."
+      },
+      "dark": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.078, 0.078, 0.075],
+          "alpha": 1,
+          "hex": "#141413"
+        },
+        "$description": "Dark — texto default sobre Bone (passa AAA 17.5:1). Também é background do dark mode canônico. Substitui preto puro em toda a marca. Pantone PMS Black 6 C / Black 7 C (warm)."
+      },
+      "dark-soft": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.102, 0.094, 0.082],
+          "alpha": 1,
+          "hex": "#1a1815"
+        },
+        "$description": "Dark-soft — variante warmer do Dark para uso como background do dark mode. HSL 36° (mais quente que o Dark canônico). Reduz contraste agressivo de canvas escuro mantendo calor da paleta."
+      }
+    },
+
+    "neutral": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.925, 0.910, 0.863],
+          "alpha": 1,
+          "hex": "#ece8dc"
+        },
+        "$description": "Mist — surface secundária quase invisível, divider sutilíssimo. 1.16:1 sobre Bone (decorativo)."
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.847, 0.827, 0.769],
+          "alpha": 1,
+          "hex": "#d8d3c4"
+        },
+        "$description": "Veil — surface tertiary, lift sutil. 1.42:1 sobre Bone (decorativo)."
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.737, 0.714, 0.659],
+          "alpha": 1,
+          "hex": "#bcb6a8"
+        },
+        "$description": "Soft — borders sutis, ícone disabled. 1.92:1 sobre Bone (decorativo). Usado também como neutral-300 no dark mode."
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.604, 0.576, 0.533],
+          "alpha": 1,
+          "hex": "#9a9388"
+        },
+        "$description": "Mid-light — placeholder, label disabled. 2.89:1 sobre Bone (decorativo / não-texto)."
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.475, 0.455, 0.416],
+          "alpha": 1,
+          "hex": "#79746a"
+        },
+        "$description": "Mid — texto utilitário em large size, ícone funcional. 4.41:1 sobre Bone (AA large only)."
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.357, 0.341, 0.314],
+          "alpha": 1,
+          "hex": "#5b5750"
+        },
+        "$description": "Slate-warm — texto secundário, rules editoriais, URL footer. 6.82:1 sobre Bone (AA texto). Substitui o cinza-frio padrão por versão warm-aligned. Pantone Warm Gray 11 C."
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.239, 0.227, 0.208],
+          "alpha": 1,
+          "hex": "#3d3a35"
+        },
+        "$description": "Stone — texto sub-head, caption density alta. 10.75:1 sobre Bone (AAA folgado). Alternativa ao Dark para hierarquia em três níveis. Pantone PMS Black 3 C / 412 C."
+      }
+    },
+
+    "functional": {
+      "success": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.369, 0.420, 0.239],
+          "alpha": 1,
+          "hex": "#5e6b3d"
+        },
+        "$description": "Success Olive — derivado warm da família verde-amarelado (HSL 77°). 5.47:1 sobre Bone (AA). NÃO é verde tech puro. Sempre acompanhar de ícone + label de texto (mitigação CVD: convergência com Warning em deuteranopia)."
+      },
+      "success-light": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.639, 0.714, 0.478],
+          "alpha": 1,
+          "hex": "#a3b67a"
+        },
+        "$description": "Success Olive — variante alta-luminância para dark mode. 8.04:1 sobre Dark-soft (AAA)."
+      },
+      "error": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.690, 0.290, 0.212],
+          "alpha": 1,
+          "hex": "#b04a36"
+        },
+        "$description": "Error Brick — vermelho terra (HSL 9.8°), dentro da família warm. 5.14:1 sobre Bone (AA). NÃO é vermelho neon. Sempre acompanhar de ícone + label."
+      },
+      "error-light": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.910, 0.588, 0.522],
+          "alpha": 1,
+          "hex": "#e89685"
+        },
+        "$description": "Error Brick — variante alta-luminância para dark mode. 7.70:1 sobre Dark-soft (AAA)."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.580, 0.353, 0.055],
+          "alpha": 1,
+          "hex": "#945a0e"
+        },
+        "$description": "Warning Amber — derivado mais escuro e saturado do orange para passar AA sobre Bone (5.35:1). NÃO confundir com Orange Clay (que é signature visual, não mensagem). Sempre acompanhar de ícone + label."
+      },
+      "warning-light": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.910, 0.690, 0.416],
+          "alpha": 1,
+          "hex": "#e8b06a"
+        },
+        "$description": "Warning Amber — variante alta-luminância para dark mode. 9.15:1 sobre Dark-soft (AAA)."
+      },
+      "info": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.290, 0.392, 0.471],
+          "alpha": 1,
+          "hex": "#4a6478"
+        },
+        "$description": "Info Slate-warm — único acento azul do sistema, com saturação muito baixa (HSL S 23.7%) para não competir com a calidez. 5.89:1 sobre Bone (AA). Em superfícies editoriais onde quebrar a coerência warm é inaceitável, substituir por neutral.600 Slate-warm."
+      },
+      "info-light": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.580, 0.682, 0.741],
+          "alpha": 1,
+          "hex": "#94aebd"
+        },
+        "$description": "Info Slate-warm — variante alta-luminância para dark mode. 7.63:1 sobre Dark-soft (AAA)."
+      }
+    },
+
+    "gradient": {
+      "editorial-bone": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.969, 0.957, 0.925],
+          "alpha": 1,
+          "hex": "#f7f4ec"
+        },
+        "$description": "Single mid-stop do gradient.editorial-bone (linear 90deg Bone → este → Bone). É o ÚNICO gradiente permitido no sistema (papel sob luz lateral, sutil). Uso restrito a hero do microsite e capa de deck premium. CSS completo: linear-gradient(90deg, #faf9f5 0%, #f7f4ec 50%, #faf9f5 100%). Toda outra exceção precisa de aprovação do owner brand."
+      }
+    }
+  },
+
+  "alias": {
+    "$type": "color",
+    "$description": "Aliases semânticos para light mode (default) e dark mode (secundário). Use-os em código de produto/site, não os HEX brutos.",
+
+    "light": {
+      "background": {
+        "canvas": {
+          "$type": "color",
+          "$value": "{color.background.bone}",
+          "$description": "Canvas principal de toda peça em light mode. 60–70% da superfície."
+        },
+        "elevated": {
+          "$type": "color",
+          "$value": "{color.neutral.100}",
+          "$description": "Surface elevada quase invisível (cards muito sutis)."
+        }
+      },
+      "text": {
+        "primary": {
+          "$type": "color",
+          "$value": "{color.background.dark}",
+          "$description": "Texto primário sobre Bone. 17.5:1 (AAA)."
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "{color.neutral.700}",
+          "$description": "Sub-head, caption density alta. 10.75:1 (AAA)."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "{color.neutral.600}",
+          "$description": "Metadados, rules, URL footer. 6.82:1 (AA)."
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{color.primary.warm-deep}",
+          "$description": "Texto laranja sobre Bone. Usa Clay Deep, NÃO o Orange Clay canônico (que falha texto)."
+        }
+      },
+      "accent": {
+        "primary": {
+          "$type": "color",
+          "$value": "{color.primary.warm}",
+          "$description": "Orange Clay decorativo (logo accent, hover, key visual). NÃO usar para texto sobre Bone."
+        },
+        "primary-on-dark": {
+          "$type": "color",
+          "$value": "{color.primary.warm}",
+          "$description": "Orange Clay sobre Dark — passa AA texto (5.90:1). Use para links inline em peças com fundo escuro."
+        }
+      },
+      "border": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.neutral.300}",
+          "$description": "Border sutil entre seções."
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.neutral.600}",
+          "$description": "Border forte, separadores editoriais."
+        }
+      }
+    },
+
+    "dark": {
+      "background": {
+        "canvas": {
+          "$type": "color",
+          "$value": "{color.background.dark-soft}",
+          "$description": "Canvas principal do dark mode. Variante warmer (#1a1815) preserva calor."
+        },
+        "elevated": {
+          "$type": "color",
+          "$value": "{color.background.dark}",
+          "$description": "Surface elevada do dark mode (mais escura que o canvas)."
+        }
+      },
+      "text": {
+        "primary": {
+          "$type": "color",
+          "$value": "{color.background.bone-soft}",
+          "$description": "Texto primário sobre Dark-soft. 14.59:1 (AAA). Bone-soft reduz fadiga vs Bone canônico."
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "{color.neutral.300}",
+          "$description": "Sub-head no dark mode. 8.77:1 (AAA)."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "{color.neutral.400}",
+          "$description": "Metadados no dark mode. 5.82:1 (AA)."
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{color.primary.warm}",
+          "$description": "Orange Clay no dark mode — mantém HEX canônico (5.67:1, AA). Comportamento Anthropic-aligned: orange é constante entre modes."
+        }
+      },
+      "accent": {
+        "primary": {
+          "$type": "color",
+          "$value": "{color.primary.warm}",
+          "$description": "Orange Clay no dark mode (idem light)."
+        }
+      },
+      "border": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.neutral.700}",
+          "$description": "Border sutil no dark mode."
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.neutral.500}",
+          "$description": "Border forte no dark mode."
+        }
+      }
+    },
+
+    "logo": {
+      "wordmark-default": {
+        "$type": "color",
+        "$value": "{color.background.dark}",
+        "$description": "State Default C.2 (90% dos usos): wordmark Alright completo em Dark, l central em Bold 700 (override do banimento de Bold em copy editorial). Funciona idêntico em cor e mono."
+      },
+      "wordmark-expressive-base": {
+        "$type": "color",
+        "$value": "{color.background.dark}",
+        "$description": "State Expressivo C.1 (10% premium): demais letras em Dark."
+      },
+      "wordmark-expressive-accent": {
+        "$type": "color",
+        "$value": "{color.primary.warm}",
+        "$description": "State Expressivo C.1: glifo l central em Orange Clay. Logo é elemento gráfico — isento de WCAG texto."
+      }
+    },
+
+    "functional-on-light": {
+      "success": { "$type": "color", "$value": "{color.functional.success}" },
+      "error": { "$type": "color", "$value": "{color.functional.error}" },
+      "warning": { "$type": "color", "$value": "{color.functional.warning}" },
+      "info": { "$type": "color", "$value": "{color.functional.info}" }
+    },
+
+    "functional-on-dark": {
+      "success": { "$type": "color", "$value": "{color.functional.success-light}" },
+      "error": { "$type": "color", "$value": "{color.functional.error-light}" },
+      "warning": { "$type": "color", "$value": "{color.functional.warning-light}" },
+      "info": { "$type": "color", "$value": "{color.functional.info-light}" }
+    }
+  },
+
+  "$metadata": {
+    "version": "1.0",
+    "date": "2026-05-10",
+    "owner": "brand visual core",
+    "validated": {
+      "wcag": "2.2 AA — todos os pares de texto/UI calculados via fórmula oficial W3C SC 1.4.3 + 1.4.6 + 1.4.11",
+      "color-vision-deficiency": "Simulado via Machado/Oliveira/Fernandes 2009 (severidade 100%) para protan, deutan, tritan",
+      "format": "W3C DTCG 2025.10 stable spec — color $value como objeto colorSpace/components/alpha/hex",
+      "tool-references": "Pantone matches via cross-reference HEX-to-PMS Solid Coated; daltonismo via simulação matricial padrão indústria"
+    },
+    "notes": [
+      "Orange Clay #d97757 falha WCAG sobre Bone (2.96:1) — comportamento intencional alinhado a Anthropic. Use Clay Deep #8c4a32 para texto laranja.",
+      "Funcional (success/warning/error) sempre com ícone + label de texto — mitigação obrigatória de daltonismo.",
+      "Light mode é estado primário sempre. Dark mode é alias secundário; nunca abrir produto/peça em dark por default.",
+      "Gradientes proibidos por padrão; gradient.editorial-bone é a única exceção cravada (papel sob luz lateral, hero/capa premium)."
+    ]
+  }
+}
