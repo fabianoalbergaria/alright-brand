@@ -15,6 +15,7 @@ await fs.mkdir(OUT, { recursive: true });
 
 // Mapping from source filenames to clean slugs
 const slugMap = {
+  // already-integrated
   '01.png': 'amino-still-01',
   '03.png': 'amino-still-02',
   '05. RETROVISOR.mov': 'retrovisor-loop',
@@ -27,6 +28,30 @@ const slugMap = {
   'magnifics_upscale-precision-HqSyMsRXjwKyZD3dhAAQ-8.png': 'editorial-portrait-02',
   'snapinsta.com.br-6a0224af81ce7 (1).mp4': 'social-clip-01',
   'v3_PRODUTO_MONTAGEM_SEDA_SENSORIAL_1.mp4': 'seda-sensorial',
+
+  // new batch
+  'surrealism-meets-fun.mp4': 'surrealism-meets-fun',
+  'Alright.png': 'alright-still',
+  'BAILE DO BRIME.mp4': 'baile-do-brime',
+  'CHUPA CHUPS.jpeg': 'chupa-chups',
+  'Cash Pop.png': 'cash-pop',
+  'Clipe Brime.png': 'clipe-brime',
+  'DOVE - ECOM.png': 'dove-ecom',
+  'LINIKER - VISUAL NEGRA LI.jpeg': 'liniker-negra-li',
+  'Mizuno - Botafogo.mp4': 'mizuno-botafogo',
+  'Olympikus-Corre5.tif': 'olympikus-corre5',
+  'PERNAMBUCANAS.jpg': 'pernambucanas',
+  'Peanut.png': 'peanut',
+  'Puma - Portugal 2.jpeg': 'puma-portugal-still-02',
+  'Puma - Portugal.jpeg': 'puma-portugal-still-01',
+  'SEDA_SENSORIAL_1.mp4': 'seda-sensorial-alt',
+  'Seda.tif': 'seda-still',
+  'VISUAL NEGRA LI - LOLLAPALOOZA.jpeg': 'negra-li-lolla-01',
+  'VISUAL NEGRA LI - LOLLAPALOOZA2.png': 'negra-li-lolla-02',
+  'VISUAL NEGRA LI - LOLLAPALOOZA3.mp4': 'negra-li-lolla-clip',
+  'VISUAL NEGRA LI - LOLLAPALOOZA4.png': 'negra-li-lolla-04',
+  'Visual - Negra Li.mov': 'negra-li-visual',
+  'hf_20260415_161340_a4ca2a38-176c-4ecc-b89e-7930be5334c5.png': 'editorial-portrait-03',
 };
 
 function runFfmpeg(args) {
