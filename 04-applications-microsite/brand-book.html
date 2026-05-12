@@ -238,7 +238,7 @@ section{position:relative}
 .bigidea__copy p{color:#cfcbc1;font-size:clamp(17px,1.4vw,22px);line-height:1.55;margin:0 0 18px}
 .bigidea__copy p strong{color:var(--bone);font-weight:500}
 .bigidea__img{border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/5;background:#000}
-.bigidea__img img{width:100%;height:100%;object-fit:cover}
+.bigidea__img img,.bigidea__img video{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ---------- Manifestos (section 4) ---------- */
 .manifesto{
@@ -313,9 +313,10 @@ section{position:relative}
 
 /* ---------- Color palette (section 7) ---------- */
 .swatch{
-  min-height:80vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;
-  padding:clamp(40px,6vw,96px) clamp(20px,4vw,72px);gap:clamp(24px,4vw,72px);
+  min-height:80vh;display:flex;align-items:center;
+  padding:clamp(40px,6vw,96px) clamp(20px,4vw,72px);
 }
+.swatch__meta{max-width:760px}
 .swatch__chip{
   border-radius:var(--radius-card);aspect-ratio:1/1;width:min(420px,80vw);justify-self:end;
   box-shadow:0 1px 0 rgba(20,20,19,0.08) inset;
@@ -515,12 +516,12 @@ section{position:relative}
 
     <div class="card card--media col-5 reveal" style="min-height:220px">
       <video class="card__media" autoplay muted loop playsinline preload="metadata"
-        poster="../assets/work/web/seda-sensorial-poster.jpg" aria-label="Loop sensorial — projeto Seda">
-        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/seda-sensorial.mp4" type="video/mp4" />
+        poster="../assets/work/web/baile-do-brime-poster.jpg" aria-label="Loop Baile do Brime">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/baile-do-brime.mp4" type="video/mp4" />
       </video>
       <div class="card__media-overlay" aria-hidden="true"></div>
       <span class="sticker sticker--ghost-bone card__sticker tl rot-1">(( cinematic ))</span>
-      <span class="card__label">Seda · sensorial</span>
+      <span class="card__label">Baile do Brime</span>
     </div>
 
     <div class="card card--dark col-3 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:220px">
@@ -565,7 +566,11 @@ section{position:relative}
       </div>
     </div>
     <div class="bigidea__img reveal">
-      <img src="../assets/work/web/editorial-portrait-01.jpg" alt="DJ 3D surreal feito de panqueca — embodiment do conceito look again" />
+      <video autoplay muted loop playsinline preload="metadata"
+        poster="../assets/work/web/olympikus-corre5-video-poster.jpg"
+        aria-label="Olympikus · Lançamento Corre 5 — loop">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/olympikus-corre5-video.mp4" type="video/mp4" />
+      </video>
     </div>
   </div>
 </section>
@@ -597,7 +602,10 @@ section{position:relative}
       <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Repetição não é estilo — é princípio. Cada frame é uma decisão. Cada decisão é craft.</p>
     </div>
     <div class="manifesto__media">
-      <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1191599038?background=1&autoplay=1&loop=1&muted=1&dnt=1" allow="autoplay; fullscreen; picture-in-picture" frameborder="0" title="Loop de craft — Puma Portugal"></iframe>
+      <video autoplay muted loop playsinline preload="metadata"
+        poster="../assets/work/web/puma-portugal-poster.jpg" aria-label="Loop de craft — Puma Portugal">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4" type="video/mp4" />
+      </video>
       <span class="sticker sticker--ghost-bone manifesto__sticker rot-2">(( craft ))</span>
     </div>
   </article>
@@ -764,7 +772,6 @@ section{position:relative}
       <p class="body">Fundo default. Light mode permanente. Nada vibra sobre ela sem motivo.</p>
       <div class="swatch__tokens"><code>--bone</code><code>color/surface/default</code></div>
     </div>
-    <div class="swatch__chip" style="background:var(--bone);border:1px solid rgba(20,20,19,0.1)"></div>
   </article>
 
   <article class="swatch bg-mist reveal">
@@ -775,7 +782,6 @@ section{position:relative}
       <p class="body">Cinza quente sutil. Cards alternativos, divisores, headers de sessão.</p>
       <div class="swatch__tokens"><code>--mist</code><code>color/surface/alt</code></div>
     </div>
-    <div class="swatch__chip" style="background:var(--mist);border:1px solid rgba(20,20,19,0.08)"></div>
   </article>
 
   <article class="swatch bg-dark reveal">
@@ -786,7 +792,6 @@ section{position:relative}
       <p class="body body-on-dark">Texto. Wordmark. Background dark mode. Nunca puro #000.</p>
       <div class="swatch__tokens"><code>--dark</code><code>color/text/default</code></div>
     </div>
-    <div class="swatch__chip" style="background:var(--dark)"></div>
   </article>
 
   <article class="swatch bg-stone reveal">
@@ -797,7 +802,6 @@ section{position:relative}
       <p class="body body-on-dark">Body copy padrão. Contraste WCAG AA sobre Bone confirmado.</p>
       <div class="swatch__tokens"><code>--stone</code><code>color/text/body</code></div>
     </div>
-    <div class="swatch__chip" style="background:var(--stone)"></div>
   </article>
 
   <article class="swatch bg-slate reveal">
@@ -808,7 +812,6 @@ section{position:relative}
       <p class="body body-on-dark">Eyebrows, captions, labels secundários. Sempre sobre Bone ou Mist.</p>
       <div class="swatch__tokens"><code>--slate-warm</code><code>color/text/subtle</code></div>
     </div>
-    <div class="swatch__chip" style="background:var(--slate-warm)"></div>
   </article>
 
   <article class="swatch bg-orange reveal">
@@ -820,7 +823,6 @@ section{position:relative}
       <div class="swatch__tokens"><code>--orange-clay</code><code>color/accent</code></div>
       <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="sticker sticker--dark rot-2">(( accent only ))</span><span class="sticker sticker--bone rot2">(( nunca body sobre bone ))</span></div>
     </div>
-    <div class="swatch__chip" style="background:var(--orange-clay)"></div>
   </article>
 
   <article class="swatch bg-clay-deep reveal">
@@ -831,7 +833,6 @@ section{position:relative}
       <p class="body body-on-dark">Versão escurecida do accent. Usada quando precisa de Orange como texto sobre Bone.</p>
       <div class="swatch__tokens"><code>--clay-deep</code><code>color/accent/text-safe</code></div>
     </div>
-    <div class="swatch__chip" style="background:var(--clay-deep)"></div>
   </article>
 </section>
 

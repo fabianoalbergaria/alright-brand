@@ -52,6 +52,16 @@ const slugMap = {
   'VISUAL NEGRA LI - LOLLAPALOOZA4.png': 'negra-li-lolla-04',
   'Visual - Negra Li.mov': 'negra-li-visual',
   'hf_20260415_161340_a4ca2a38-176c-4ecc-b89e-7930be5334c5.png': 'editorial-portrait-03',
+
+  // batch 3
+  'chupa-chups-art-gallery.mp4': 'chupa-chups-art-gallery',
+  'olympikus-corre5.mp4': 'olympikus-corre5-video',
+  'seda-sensorial-v3.mp4': 'seda-sensorial-v3',
+  'chupa-chups-surreal-dream.mp4': 'chupa-chups-surreal-dream',
+  'chupa-chups-surreal-unboxing.mp4': 'chupa-chups-surreal-unboxing',
+  'chupa-chups-forever-fun.mp4': 'chupa-chups-forever-fun',
+  'negra-li-retrovisor.mov': 'negra-li-retrovisor',
+  'claro.mov': 'claro',
 };
 
 function runFfmpeg(args) {
