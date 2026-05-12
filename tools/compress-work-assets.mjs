@@ -62,6 +62,7 @@ const slugMap = {
   'chupa-chups-forever-fun.mp4': 'chupa-chups-forever-fun',
   'negra-li-retrovisor.mov': 'negra-li-retrovisor',
   'claro.mov': 'claro',
+  'OLYMPIKUS_ESTEIRA.mp4': 'olympikus-esteira',
 };
 
 function runFfmpeg(args) {
