@@ -1,2503 +1,1050 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alright — Brand Book 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Alright — Brand Book v1.0</title>
+<meta name="description" content="Brand book da Alright. Produtora audiovisual A.I. first. ((Look again.))" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
-/* ============================================
-   ALRIGHT BRAND BOOK — CSS
-   ============================================ */
-
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --orange-clay: #d97757;
-  --bone: #faf9f5;
-  --dark: #141413;
-  --clay-deep: #8c4a32;
-  --stone: #3d3a35;
-  --slate-warm: #5b5750;
-  --mist: #ece8dc;
-  --success: #5e6b3d;
-  --error: #b04a36;
-  --warning: #945a0e;
-  --info: #4a6478;
-  --ease-cine: cubic-bezier(0.16, 1.0, 0.3, 1.0);
-  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1.0);
-  --ease-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1.0);
-  --ease-accelerate: cubic-bezier(0.4, 0.0, 1.0, 1.0);
-  --ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1.0);
-  --bg: var(--bone);
-  --fg: var(--dark);
-  --fg-secondary: var(--stone);
-  --fg-tertiary: var(--slate-warm);
-  --border: var(--mist);
-  --sidebar-bg: var(--bone);
-  --card-bg: var(--bone);
-  --card-border: var(--mist);
-  --swatch-shadow: rgba(20,20,19,0.06);
-}
-
-[data-theme="dark"] {
-  --bg: var(--dark);
-  --fg: var(--bone);
-  --fg-secondary: #b0aa9e;
-  --fg-tertiary: #8a847a;
-  --border: #2a2926;
-  --sidebar-bg: #1a1918;
-  --card-bg: #1e1d1c;
-  --card-border: #2a2926;
-  --swatch-shadow: rgba(250,249,245,0.04);
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-body {
-  font-family: 'Bricolage Grotesque', Georgia, serif;
-  background: var(--bg);
-  color: var(--fg);
-  line-height: 1.6;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background 0.4s var(--ease-standard), color 0.4s var(--ease-standard);
-}
-
-/* ---- NAV SIDEBAR ---- */
-nav.sidebar {
-  position: fixed;
-  top: 0; left: 0;
-  width: 260px;
-  height: 100vh;
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--border);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  padding: 48px 32px 32px;
-  overflow-y: auto;
-  transition: transform 0.4s var(--ease-cine), background 0.4s var(--ease-standard);
-}
-
-nav.sidebar .nav-logo {
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin-bottom: 48px;
-  color: var(--fg);
-}
-
-nav.sidebar .nav-logo .nav-l { font-weight: 400; }
-
-nav.sidebar a {
-  display: block;
-  color: var(--fg-tertiary);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 0;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-  border-bottom: 1px solid transparent;
-}
-
-nav.sidebar a:hover,
-nav.sidebar a.active {
-  color: var(--fg);
-}
-
-nav.sidebar a.active {
-  border-bottom-color: var(--orange-clay);
-}
-
-.nav-section-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-top: 24px;
-  margin-bottom: 8px;
-  opacity: 0.6;
-}
-
-/* Theme toggle */
-.theme-toggle {
-  margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-
-.theme-toggle button {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--fg-tertiary);
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-  width: 100%;
-}
-
-.theme-toggle button:hover {
-  color: var(--fg);
-  border-color: var(--fg-tertiary);
-}
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  position: fixed;
-  top: 20px; left: 20px;
-  z-index: 200;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  width: 44px; height: 44px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.hamburger span {
-  display: block;
-  width: 20px;
-  height: 1.5px;
-  background: var(--fg);
-  transition: all 0.3s;
-}
-
-.nav-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(20,20,19,0.5);
-  z-index: 90;
-}
-
-@media (max-width: 900px) {
-  .hamburger { display: flex; }
-  nav.sidebar { transform: translateX(-100%); z-index: 150; }
-  nav.sidebar.open { transform: translateX(0); }
-  .nav-overlay.open { display: block; }
-  main { padding-left: 0 !important; }
-  section { padding-left: 24px !important; padding-right: 24px !important; }
-}
-
-/* ---- MAIN ---- */
-main {
-  padding-left: 260px;
-  min-height: 100vh;
-}
-
-section {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 140px 48px;
-}
-
-section + section {
-  border-top: 1px solid var(--border);
-}
-
-/* ---- TYPOGRAPHY UTILS ---- */
-.overline {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-bottom: 16px;
-}
-
-.section-title {
-  font-size: 48px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin-bottom: 24px;
-}
-
-.section-subtitle {
-  font-size: 20px;
-  font-weight: 400;
-  color: var(--fg-secondary);
-  line-height: 1.5;
-  max-width: 640px;
-  margin-bottom: 64px;
-}
-
-.body-text {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--fg-secondary);
-  max-width: 640px;
-}
-
-.body-text + .body-text { margin-top: 16px; }
-
-.accent-text {
-  color: var(--orange-clay);
-}
-
-.editorial-quote {
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  max-width: 700px;
-  margin: 64px 0;
-  padding-left: 24px;
-  border-left: 2px solid var(--orange-clay);
-}
-
-/* ---- CARDS / GRID ---- */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 48px; }
-.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; margin-top: 48px; }
-
-@media (max-width: 900px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .section-title { font-size: 32px; }
-  section { padding: 80px 24px; }
-}
-
-@media (max-width: 600px) {
-  .grid-2 { grid-template-columns: 1fr; }
-}
-
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  padding: 32px;
-  transition: border-color 0.2s;
-}
-
-.card:hover { border-color: var(--fg-tertiary); }
-
-.card-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-bottom: 12px;
-}
-
-.card-title {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-.card-body {
-  font-size: 15px;
-  color: var(--fg-secondary);
-  line-height: 1.6;
-}
-
-/* ---- TABLES ---- */
-.brand-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 32px;
-  font-size: 15px;
-}
-
-.brand-table th {
-  text-align: left;
-  font-weight: 500;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.brand-table td {
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  color: var(--fg-secondary);
-}
-
-.brand-table tr:last-child td { border-bottom: none; }
-
-/* ---- DO / DON'T ---- */
-.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
-@media (max-width: 600px) { .do-dont { grid-template-columns: 1fr; } }
-
-.do-col, .dont-col {
-  padding: 32px;
-  border-radius: 8px;
-  border: 1px solid var(--card-border);
-}
-
-.do-col { border-left: 3px solid var(--success); }
-.dont-col { border-left: 3px solid var(--error); }
-
-.do-col .do-label { color: var(--success); }
-.dont-col .do-label { color: var(--error); }
-
-.do-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-}
-
-.do-col ul, .dont-col ul {
-  list-style: none;
-  padding: 0;
-}
-
-.do-col li, .dont-col li {
-  font-size: 15px;
-  color: var(--fg-secondary);
-  padding: 6px 0;
-  line-height: 1.5;
-}
-
-/* ---- COLOR SWATCHES ---- */
-.swatch-large {
-  border-radius: 12px;
-  height: 180px;
-  display: flex;
-  align-items: flex-end;
-  padding: 20px;
-  box-shadow: 0 1px 3px var(--swatch-shadow);
-  position: relative;
-}
-
-.swatch-info {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-.swatch-name {
-  font-family: 'Bricolage Grotesque', serif;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-/* ---- CONTRAST TABLE ---- */
-.contrast-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  margin-top: 32px;
-}
-
-.contrast-pair {
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.contrast-sample {
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.contrast-meta {
-  padding: 12px;
-  font-size: 12px;
-  color: var(--fg-secondary);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.badge {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  padding: 2px 8px;
-  border-radius: 3px;
-  text-transform: uppercase;
-}
-
-.badge-pass { background: var(--success); color: var(--bone); }
-.badge-fail { background: var(--error); color: var(--bone); }
-
-/* ---- MOTION BARS ---- */
-.motion-bar-wrap {
-  margin: 12px 0;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.motion-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  color: var(--fg-tertiary);
-  min-width: 140px;
-}
-
-.motion-track {
-  flex: 1;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.motion-fill {
-  position: absolute;
-  left: 0; top: 0;
-  height: 100%;
-  width: 0;
-  background: var(--orange-clay);
-  border-radius: 2px;
-}
-
-.motion-track:hover .motion-fill,
-.motion-track.playing .motion-fill {
-  width: 100%;
-}
-
-/* ---- EASING CURVES ---- */
-.easing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; margin-top: 32px; }
-
-.easing-card {
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  padding: 24px;
-  text-align: center;
-}
-
-.easing-card svg { margin-bottom: 12px; }
-
-.easing-name {
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.easing-value {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--fg-tertiary);
-}
-
-/* ---- HERO SECTION ---- */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  background: linear-gradient(180deg, var(--bone) 0%, #f5f2eb 100%);
-  padding: 48px;
-}
-
-[data-theme="dark"] #hero {
-  background: linear-gradient(180deg, var(--dark) 0%, #1a1918 100%);
-}
-
-.hero-wordmark {
-  font-size: clamp(48px, 8vw, 120px);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  opacity: 0;
-  animation: heroFade 1.4s var(--ease-cine) 0.2s forwards;
-  cursor: default;
-  color: var(--fg);
-}
-
-.hero-wordmark .wm-paren {
-  color: var(--fg-tertiary);
-  font-weight: 300;
-}
-
-.hero-wordmark .wm-l {
-  font-weight: 600;
-  transition: color 0.6s var(--ease-standard);
-}
-
-.hero-wordmark:hover .wm-l {
-  color: var(--orange-clay);
-}
-
-.hero-subtitle {
-  font-size: clamp(14px, 2vw, 20px);
-  color: var(--fg-secondary);
-  margin-top: 20px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  opacity: 0;
-  animation: heroFade 1.4s var(--ease-cine) 0.6s forwards;
-}
-
-@keyframes heroFade {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ---- BIG IDEA SECTION ---- */
-#bigidea {
-  background: var(--dark);
-  color: var(--bone);
-  max-width: none;
-  padding: 140px 48px;
-}
-
-[data-theme="dark"] #bigidea {
-  background: #0a0a09;
-}
-
-#bigidea .bigidea-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-#bigidea .bigidea-headline {
-  font-size: clamp(48px, 7vw, 96px);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin-bottom: 64px;
-}
-
-#bigidea .bigidea-headline .paren {
-  color: var(--slate-warm);
-  font-weight: 300;
-}
-
-#bigidea .bigidea-body {
-  font-size: 18px;
-  line-height: 1.7;
-  color: #b0aa9e;
-  max-width: 640px;
-  margin-bottom: 48px;
-}
-
-#bigidea .layer-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  max-width: 700px;
-}
-
-@media (max-width: 600px) { #bigidea .layer-list { grid-template-columns: 1fr; } }
-
-#bigidea .layer-item {
-  padding: 20px 24px;
-  border: 1px solid #2a2926;
-  border-radius: 6px;
-}
-
-#bigidea .layer-name {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--orange-clay);
-  margin-bottom: 6px;
-}
-
-#bigidea .layer-desc {
-  font-size: 14px;
-  color: #8a847a;
-  line-height: 1.5;
-}
-
-/* ---- MANIFESTO ---- */
-.manifesto-block {
-  margin: 80px 0;
-  padding: 80px 0;
-  border-top: 1px solid var(--border);
-}
-
-.manifesto-block:first-of-type { border-top: none; padding-top: 0; margin-top: 48px; }
-
-.manifesto-text {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.8;
-  color: var(--fg-secondary);
-  max-width: 680px;
-}
-
-.manifesto-text p { margin-bottom: 24px; }
-
-.manifesto-text .m-headline {
-  font-size: 32px;
-  font-weight: 500;
-  color: var(--fg);
-  margin-bottom: 40px;
-  letter-spacing: -0.01em;
-}
-
-.manifesto-text .m-bold {
-  color: var(--fg);
-  font-weight: 500;
-}
-
-.manifesto-mini {
-  text-align: center;
-  padding: 80px 32px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-}
-
-.manifesto-mini .mini-text {
-  font-size: clamp(24px, 4vw, 40px);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-/* ---- LOGO DEMO ---- */
-.logo-demo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-  border-radius: 12px;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  transition: all 0.3s;
-  margin-bottom: 12px;
-}
-
-.logo-demo .logo-l-bold { font-weight: 600; }
-.logo-demo .logo-l-orange { color: var(--orange-clay); }
-
-.logo-on-bone {
-  background: var(--bone);
-  color: var(--dark);
-  border: 1px solid var(--mist);
-}
-
-.logo-on-dark {
-  background: var(--dark);
-  color: var(--bone);
-}
-
-.logo-caption {
-  font-size: 13px;
-  color: var(--fg-tertiary);
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.logo-hover-demo {
-  cursor: pointer;
-}
-
-.logo-hover-demo .logo-l-bold {
-  transition: color 0.6s var(--ease-standard);
-}
-
-.logo-hover-demo:hover .logo-l-bold {
-  color: var(--orange-clay);
-}
-
-/* ---- TYPE SPECIMEN ---- */
-.type-specimen {
-  margin: 24px 0;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.type-specimen:last-child { border-bottom: none; }
-
-.type-meta {
-  display: flex;
-  gap: 16px;
-  align-items: baseline;
-  margin-top: 8px;
-}
-
-.type-meta span {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--fg-tertiary);
-}
-
-/* ---- WEIGHT SPECIMEN ---- */
-.weight-row {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-}
-
-.weight-row:last-child { border-bottom: none; }
-
-.weight-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--fg-tertiary);
-  min-width: 80px;
-}
-
-.weight-sample {
-  font-size: 32px;
-  letter-spacing: -0.01em;
-}
-
-/* ---- PYRAMID ---- */
-.pyramid {
-  margin-top: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.pyramid-level {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  border-radius: 6px;
-  border: 1px solid var(--card-border);
-  font-size: 14px;
-  color: var(--fg-secondary);
-}
-
-.pyramid-level-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-bottom: 6px;
-}
-
-.pyramid-level-content {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--fg);
-}
-
-/* ---- DARK MODE DEMO ---- */
-.darkmode-demo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 48px;
-  border: 1px solid var(--card-border);
-}
-
-@media (max-width: 600px) { .darkmode-demo { grid-template-columns: 1fr; } }
-
-.darkmode-panel {
-  padding: 48px 32px;
-}
-
-.darkmode-panel-light {
-  background: #faf9f5;
-  color: #141413;
-}
-
-.darkmode-panel-dark {
-  background: #141413;
-  color: #faf9f5;
-}
-
-.darkmode-panel .dm-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.5;
-  margin-bottom: 24px;
-}
-
-.darkmode-panel .dm-swatch {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.dm-swatch-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.dm-swatch-label {
-  font-size: 13px;
-  opacity: 0.7;
-}
-
-/* ---- FOOTER ---- */
-footer {
-  text-align: center;
-  padding: 80px 48px;
-  border-top: 2px solid var(--orange-clay);
-}
-
-footer .footer-wordmark {
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
-}
-
-footer .footer-wordmark .paren { color: var(--fg-tertiary); font-weight: 300; }
-
-footer .footer-sub {
-  font-size: 14px;
-  color: var(--fg-tertiary);
-  margin-bottom: 4px;
-}
-
-/* ---- RESPONSIVE TYPE RAMP ---- */
-.type-ramp-item {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.type-ramp-item:last-child { border-bottom: none; }
-
-.type-ramp-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--fg-tertiary);
-  min-width: 180px;
-  flex-shrink: 0;
-}
-
-.type-ramp-sample {
-  flex: 1;
-  min-width: 200px;
-}
-
-/* ---- VOCAB TABLE ---- */
-.vocab-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 48px;
-}
-
-@media (max-width: 600px) { .vocab-grid { grid-template-columns: 1fr; } }
-
-.vocab-col h4 {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-
-.vocab-col.vocab-use h4 { color: var(--success); }
-.vocab-col.vocab-avoid h4 { color: var(--error); }
-
-.vocab-col li {
-  list-style: none;
-  font-size: 15px;
-  color: var(--fg-secondary);
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.vocab-col li:last-child { border-bottom: none; }
-
-/* ---- ANTI-PROMPT LIST ---- */
-.anti-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.anti-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  padding: 4px 12px;
-  border: 1px solid var(--error);
-  color: var(--error);
-  border-radius: 4px;
-}
-
-/* ---- SCALE RAMP ---- */
-.scale-ramp {
-  display: flex;
-  gap: 4px;
-  margin-top: 32px;
-  height: 80px;
-  align-items: flex-end;
-}
-
-.scale-bar {
-  flex: 1;
-  border-radius: 4px 4px 0 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  min-height: 100%;
-}
-
-.scale-bar-fill {
-  width: 100%;
-  border-radius: 4px 4px 0 0;
-  position: absolute;
-  bottom: 0;
-}
-
-.scale-bar-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--fg-tertiary);
-  writing-mode: vertical-lr;
-  position: absolute;
-  top: -20px;
-  transform: rotate(180deg);
-}
-
-/* ---- NEUTRAL SCALE ---- */
-.neutral-scale {
-  display: flex;
-  margin-top: 32px;
-  border-radius: 8px;
-  overflow: hidden;
-  height: 80px;
-}
-
-.neutral-step {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 8px 4px;
-}
-
-.neutral-step span {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-}
-
-/* ---- FUNCTIONAL COLORS ---- */
-.func-colors {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 32px;
-}
-
-@media (max-width: 600px) { .func-colors { grid-template-columns: 1fr 1fr; } }
-
-.func-swatch {
-  border-radius: 8px;
-  height: 80px;
-  display: flex;
-  align-items: flex-end;
-  padding: 12px;
-}
-
-.func-swatch span {
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* ---- HOUSE LOOK ---- */
-.houselook-block {
-  margin-bottom: 64px;
-}
-
-.houselook-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--orange-clay);
-  margin-bottom: 8px;
-}
-
-.houselook-title {
-  font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-.houselook-subtitle {
-  font-size: 16px;
-  color: var(--fg-secondary);
-  font-style: normal;
-  margin-bottom: 16px;
-  max-width: 580px;
-  line-height: 1.6;
-}
-
-.houselook-rules {
-  list-style: none;
-  padding: 0;
-}
-
-.houselook-rules li {
-  font-size: 14px;
-  color: var(--fg-secondary);
-  padding: 6px 0;
-  padding-left: 16px;
-  position: relative;
-}
-
-.houselook-rules li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 12px;
-  width: 6px;
-  height: 1px;
-  background: var(--orange-clay);
-}
-
-/* ---- DISCLOSURE ---- */
-.disclosure-box {
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  padding: 32px;
-  margin-top: 48px;
-}
-
-.disclosure-box .lang {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-bottom: 8px;
-}
-
-.disclosure-box .disc-text {
-  font-size: 15px;
-  color: var(--fg-secondary);
-  margin-bottom: 24px;
-}
-
-.disclosure-box .disc-text:last-child { margin-bottom: 0; }
-
-/* ---- MISC ---- */
-.spacer-64 { height: 64px; }
-.spacer-48 { height: 48px; }
-.spacer-32 { height: 32px; }
-.mt-48 { margin-top: 48px; }
-.mt-32 { margin-top: 32px; }
-.mt-64 { margin-top: 64px; }
-.mb-32 { margin-bottom: 32px; }
-
-.inline-code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85em;
-  background: var(--border);
-  padding: 2px 6px;
-  border-radius: 3px;
-}
-
-/* ---- GLYPH DEMO ---- */
-.glyph-demo {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  margin-top: 48px;
-  padding: 48px;
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  justify-content: center;
-}
-
-.glyph-char {
-  font-size: 96px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.glyph-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--fg-tertiary);
-  text-align: center;
-  margin-top: 8px;
+/* ---------- Tokens ---------- */
+:root{
+  --orange-clay:#d97757;
+  --clay-deep:#8c4a32;
+  --bone:#faf9f5;
+  --mist:#ece8dc;
+  --dark:#141413;
+  --stone:#3d3a35;
+  --slate-warm:#5b5750;
+
+  --ease-cine:cubic-bezier(0.16,1.0,0.3,1.0);
+
+  --font-sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-card:20px;
+  --radius-pill:999px;
+
+  --pad-section:clamp(48px,7vw,128px);
+  --gap-card:clamp(16px,1.4vw,28px);
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bone);
+  color:var(--dark);
+  font-weight:400;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- Skip link ---------- */
+.skip{
+  position:fixed;top:8px;left:8px;z-index:9999;
+  background:var(--dark);color:var(--bone);
+  padding:10px 16px;border-radius:var(--radius-pill);
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  transform:translateY(-200%);transition:transform .4s var(--ease-cine);
+}
+.skip:focus{transform:translateY(0)}
+
+/* ---------- Type scale ---------- */
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate-warm);
+}
+.h-mega{
+  font-size:clamp(80px,12vw,280px);
+  font-weight:300;line-height:.92;letter-spacing:-0.025em;
+  margin:0;
+}
+.h-xl{
+  font-size:clamp(48px,6vw,96px);
+  font-weight:400;line-height:1.0;letter-spacing:-0.02em;
+  margin:0;
+}
+.h-lg{
+  font-size:clamp(32px,4vw,64px);
+  font-weight:500;line-height:1.05;letter-spacing:-0.015em;
+  margin:0;
+}
+.h-md{
+  font-size:clamp(22px,2.2vw,32px);
+  font-weight:500;line-height:1.15;letter-spacing:-0.01em;
+  margin:0;
+}
+.body{
+  font-size:clamp(16px,1.2vw,19px);
+  line-height:1.55;color:var(--stone);font-weight:400;
+}
+.body-on-dark{color:#cfcbc1}
+.mono{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em}
+.mono-caps{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- Nav pill ---------- */
+.nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  z-index:1000;
+  display:flex;align-items:center;gap:6px;
+  padding:8px 8px 8px 14px;
+  background:rgba(250,249,245,0.72);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(20,20,19,0.08);
+  border-radius:var(--radius-pill);
+  transition:transform .6s var(--ease-cine), padding .4s var(--ease-cine), background .4s var(--ease-cine);
+  max-width:calc(100vw - 24px);
+}
+.nav.is-scrolled{padding:6px 6px 6px 12px;background:rgba(250,249,245,0.92)}
+.nav__brand{
+  font-family:var(--font-sans);font-weight:400;font-size:15px;letter-spacing:-0.01em;color:var(--dark);
+  margin-right:8px;
+}
+.nav__brand b{font-weight:700}
+.nav__links{display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.nav__links::-webkit-scrollbar{display:none}
+.nav a.nav__link{
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--stone);
+  padding:8px 12px;border-radius:var(--radius-pill);
+  white-space:nowrap;
+  transition:background .3s var(--ease-cine), color .3s var(--ease-cine);
+}
+.nav a.nav__link:hover{background:var(--dark);color:var(--bone)}
+
+/* ---------- Stickers ---------- */
+.sticker{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 12px;border-radius:var(--radius-pill);
+  background:var(--orange-clay);color:var(--dark);
+  white-space:nowrap;
+  box-shadow:0 1px 0 rgba(20,20,19,0.06);
+}
+.sticker--mist{background:var(--mist);color:var(--stone)}
+.sticker--dark{background:var(--dark);color:var(--bone)}
+.sticker--bone{background:var(--bone);color:var(--dark);border:1px solid rgba(20,20,19,0.12)}
+.sticker--clay-deep{background:var(--clay-deep);color:var(--bone)}
+.sticker--ghost-bone{background:transparent;border:1px solid rgba(250,249,245,0.4);color:var(--bone)}
+.rot-3{transform:rotate(-3deg)}
+.rot3{transform:rotate(3deg)}
+.rot-2{transform:rotate(-2deg)}
+.rot2{transform:rotate(2deg)}
+.rot-1{transform:rotate(-1.5deg)}
+.rot1{transform:rotate(1.5deg)}
+
+/* ---------- Sections ---------- */
+section{position:relative}
+.section-pad{padding:var(--pad-section) clamp(20px,4vw,72px)}
+.bg-bone{background:var(--bone);color:var(--dark)}
+.bg-mist{background:var(--mist);color:var(--dark)}
+.bg-dark{background:var(--dark);color:var(--bone)}
+.bg-stone{background:var(--stone);color:var(--bone)}
+.bg-slate{background:var(--slate-warm);color:var(--bone)}
+.bg-orange{background:var(--orange-clay);color:var(--dark)}
+.bg-clay-deep{background:var(--clay-deep);color:var(--bone)}
+
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  margin-bottom:clamp(32px,4vw,64px);flex-wrap:wrap;
+}
+.section-head__title{max-width:780px}
+.section-head__title .h-lg{margin-top:14px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100vh;min-height:640px;width:100%;overflow:hidden;background:var(--dark);color:var(--bone)}
+.hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) contrast(1.02)}
+.hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,20,19,0.55) 0%, rgba(20,20,19,0.25) 35%, rgba(20,20,19,0.65) 100%)}
+.hero__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(96px,10vw,120px) clamp(20px,4vw,72px) clamp(40px,5vw,72px)}
+.hero__center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
+.hero__title{font-size:clamp(72px,15vw,260px);font-weight:200;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
+.hero__title .paren{color:var(--orange-clay);font-weight:300}
+.hero__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.78)}
+.hero__cue{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.7)}
+.hero__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay);animation:pulse 2.4s var(--ease-cine) infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
+.hero__topbar{display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;flex-wrap:wrap}
+.hero__chips{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- Bento (section 2) ---------- */
+.bento{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(160px,auto);
+  gap:var(--gap-card);
+}
+.card{
+  position:relative;
+  background:var(--bone);
+  border-radius:var(--radius-card);
+  padding:clamp(24px,2.4vw,44px);
+  overflow:hidden;
+  transition:transform .6s var(--ease-cine), box-shadow .6s var(--ease-cine);
+  border:1px solid rgba(20,20,19,0.06);
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 40px -20px rgba(20,20,19,0.25)}
+.card--dark{background:var(--dark);color:var(--bone);border-color:rgba(250,249,245,0.08)}
+.card--mist{background:var(--mist);border-color:rgba(20,20,19,0.05)}
+.card--stone{background:var(--stone);color:var(--bone);border-color:rgba(250,249,245,0.05)}
+.card--orange{background:var(--orange-clay);color:var(--dark);border-color:transparent}
+.card--clay{background:var(--clay-deep);color:var(--bone);border-color:transparent}
+.card--media{padding:0}
+.card__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card__media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 40%, rgba(20,20,19,0.55) 100%)}
+.card__sticker{position:absolute}
+.card__sticker.tl{top:18px;left:18px}
+.card__sticker.tr{top:18px;right:18px}
+.card__sticker.bl{bottom:18px;left:18px}
+.card__sticker.br{bottom:18px;right:18px}
+.card__label{position:absolute;bottom:18px;left:22px;color:var(--bone);font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;z-index:2}
+.card__big{font-size:clamp(36px,5.5vw,84px);font-weight:300;line-height:.98;letter-spacing:-0.02em;margin:0}
+.card__small{font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--stone)}
+.card--dark .card__small,.card--stone .card__small,.card--clay .card__small{color:#cfcbc1}
+
+.col-3{grid-column:span 3}
+.col-4{grid-column:span 4}
+.col-5{grid-column:span 5}
+.col-6{grid-column:span 6}
+.col-7{grid-column:span 7}
+.col-8{grid-column:span 8}
+.col-9{grid-column:span 9}
+.col-12{grid-column:span 12}
+.row-2{grid-row:span 2}
+.row-3{grid-row:span 3}
+
+/* ---------- Big idea (section 3) ---------- */
+.bigidea{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center}
+.bigidea__title{
+  font-size:clamp(96px,20vw,440px);font-weight:200;line-height:.92;letter-spacing:-0.035em;
+  margin:0;color:var(--bone);
+}
+.bigidea__title .paren{color:var(--orange-clay);font-weight:300}
+.bigidea__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,80px);
+  margin-top:clamp(48px,6vw,96px);text-align:left;align-items:center;
+}
+.bigidea__copy p{color:#cfcbc1;font-size:clamp(17px,1.4vw,22px);line-height:1.55;margin:0 0 18px}
+.bigidea__copy p strong{color:var(--bone);font-weight:500}
+.bigidea__img{border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/5;background:#000}
+.bigidea__img img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Manifestos (section 4) ---------- */
+.manifesto{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:62vh;
+}
+.manifesto__text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,6vw,96px);position:relative;
+}
+.manifesto__text .h-mega{font-size:clamp(56px,9vw,160px)}
+.manifesto__media{position:relative;overflow:hidden;min-height:380px}
+.manifesto__media img,.manifesto__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.manifesto--flip .manifesto__text{order:2}
+.manifesto--flip .manifesto__media{order:1}
+.manifesto__caption{position:absolute;bottom:24px;left:24px}
+.manifesto__sticker{position:absolute;top:32px;right:32px}
+
+/* ---------- Logo system (section 5) ---------- */
+.logo-hero{display:flex;justify-content:center;padding:clamp(24px,4vw,72px) 0}
+.logo-hero img{max-width:min(620px,80vw);width:100%;height:auto}
+.logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap-card)}
+.logo-tile{
+  position:relative;aspect-ratio:1.15/1;border-radius:var(--radius-card);
+  display:flex;align-items:center;justify-content:center;padding:32px;
+  overflow:hidden;border:1px solid rgba(20,20,19,0.06);
+  transition:transform .6s var(--ease-cine);
+}
+.logo-tile:hover{transform:translateY(-4px)}
+.logo-tile img{max-width:78%;max-height:60%;width:auto;height:auto}
+.logo-tile__label{position:absolute;bottom:18px;left:22px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+.logo-tile--bone{background:var(--bone)} .logo-tile--bone .logo-tile__label{color:var(--stone)}
+.logo-tile--dark{background:var(--dark)} .logo-tile--dark .logo-tile__label{color:#cfcbc1}
+.logo-tile--mist{background:var(--mist)} .logo-tile--mist .logo-tile__label{color:var(--stone)}
+.logo-tile--orange{background:var(--orange-clay)} .logo-tile--orange .logo-tile__label{color:var(--dark)}
+
+.banner{padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px);text-align:center;position:relative}
+.banner img{max-width:min(720px,86vw);margin:0 auto;height:auto}
+.banner__caption{margin-top:18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.banner__sticker{position:absolute;top:32px;right:32px}
+
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-card);margin-top:clamp(40px,5vw,64px)}
+.dodont__col{padding:clamp(24px,2.4vw,40px);border-radius:var(--radius-card);background:var(--bone);border:1px solid rgba(20,20,19,0.06)}
+.dodont__col--do{border-left:4px solid #4f7a4a}
+.dodont__col--dont{border-left:4px solid #b04a3a}
+.dodont__head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.dodont__icon{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:600;font-size:13px;color:var(--bone)}
+.dodont__icon.ok{background:#4f7a4a}
+.dodont__icon.no{background:#b04a3a}
+.dodont__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.dodont__list li{padding:10px 0;border-top:1px dashed rgba(20,20,19,0.12);color:var(--stone);font-size:15.5px;line-height:1.5}
+.dodont__list li:first-child{border-top:0}
+
+/* ---------- Typography (section 6) ---------- */
+.type-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap-card)}
+.type-spec{font-size:clamp(48px,6vw,96px);font-weight:400;line-height:1;letter-spacing:-0.02em}
+.type-weights{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+.type-weights span{font-size:clamp(22px,2.4vw,32px);line-height:1.1}
+.type-weights .w200{font-weight:200}
+.type-weights .w300{font-weight:300}
+.type-weights .w400{font-weight:400}
+.type-weights .w500{font-weight:500}
+.type-weights .w-l{font-weight:400}
+.type-weights .w-l b{font-weight:700}
+.type-mono-demo{font-family:var(--font-mono);font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:var(--stone)}
+.type-mono-demo .c{color:var(--clay-deep)}
+.type-img{position:relative;border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/3}
+.type-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.type-img__overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:32px;background:linear-gradient(180deg,rgba(20,20,19,0) 50%, rgba(20,20,19,0.7) 100%);color:var(--bone)}
+.type-img__overlay span{font-size:clamp(28px,3vw,48px);font-weight:300;line-height:1;letter-spacing:-0.015em}
+
+/* ---------- Color palette (section 7) ---------- */
+.swatch{
+  min-height:80vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  padding:clamp(40px,6vw,96px) clamp(20px,4vw,72px);gap:clamp(24px,4vw,72px);
+}
+.swatch__chip{
+  border-radius:var(--radius-card);aspect-ratio:1/1;width:min(420px,80vw);justify-self:end;
+  box-shadow:0 1px 0 rgba(20,20,19,0.08) inset;
+}
+.swatch__meta .eyebrow{margin-bottom:14px}
+.swatch__meta .name{font-size:clamp(48px,6vw,88px);font-weight:300;letter-spacing:-0.02em;line-height:.95;margin:0 0 14px}
+.swatch__meta .hex{font-family:var(--font-mono);font-size:clamp(15px,1.2vw,18px);letter-spacing:.06em}
+.swatch__meta p{margin:14px 0 0;max-width:42ch}
+.swatch__tokens{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px}
+.swatch__tokens code{font-family:var(--font-mono);font-size:12px;padding:6px 10px;border-radius:8px;background:rgba(20,20,19,0.08)}
+.bg-dark .swatch__tokens code,.bg-stone .swatch__tokens code,.bg-slate .swatch__tokens code,.bg-clay-deep .swatch__tokens code{background:rgba(250,249,245,0.1);color:var(--bone)}
+
+/* ---------- House look (section 8) ---------- */
+.house{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;gap:var(--gap-card)}
+.house__tile{position:relative;border-radius:var(--radius-card);overflow:hidden;background:#000}
+.house__tile img,.house__tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.house__tile .sticker{position:absolute;left:18px;bottom:18px;z-index:2}
+.house__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 55%,rgba(20,20,19,0.55) 100%)}
+
+/* ---------- Motion (section 9) ---------- */
+.motion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap-card)}
+.motion-card{
+  position:relative;background:#1c1c1b;border:1px solid rgba(250,249,245,0.08);
+  border-radius:var(--radius-card);padding:32px;min-height:300px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.motion-card h3{font-family:var(--font-sans);font-weight:500;font-size:22px;margin:0 0 6px;letter-spacing:-0.01em;color:var(--bone)}
+.motion-card .mono{display:block;color:#a59f93;margin-bottom:20px}
+.motion-track{position:relative;height:6px;background:rgba(250,249,245,0.12);border-radius:999px;overflow:hidden;margin-top:auto}
+.motion-dot{position:absolute;top:50%;transform:translate(0,-50%);width:18px;height:18px;border-radius:50%;background:var(--orange-clay);left:0;animation-duration:2.6s;animation-iteration-count:infinite;animation-fill-mode:both}
+.motion-card[data-easing="cinematic"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.16,1.0,0.3,1.0)}
+.motion-card[data-easing="standard"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.4,0,0.2,1)}
+.motion-card[data-easing="decelerate"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0,0,0.2,1)}
+.motion-card[data-easing="accelerate"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.4,0,1,1)}
+@keyframes slide{0%{left:0}50%{left:calc(100% - 18px)}100%{left:0}}
+
+/* ---------- Applications (section 10) ---------- */
+.apps{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap-card)}
+.app-tile{
+  background:var(--bone);border:1px solid rgba(20,20,19,0.08);border-radius:var(--radius-card);
+  padding:24px;min-height:260px;position:relative;overflow:hidden;
+  transition:transform .6s var(--ease-cine);
+}
+.app-tile:hover{transform:translateY(-4px)}
+.app-tile__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-warm);margin-bottom:14px}
+.app-tile--card{display:flex;flex-direction:column;justify-content:space-between}
+.app-tile--card .name{font-size:28px;font-weight:400;letter-spacing:-0.01em}
+.app-tile--card .name b{font-weight:700}
+.app-tile--card .meta{font-family:var(--font-mono);font-size:12px;color:var(--slate-warm);line-height:1.6;margin-top:8px}
+.app-tile--social{background:var(--dark);color:var(--bone);padding:0;overflow:hidden}
+.app-tile--social .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.app-tile--social .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(180deg,rgba(20,20,19,0) 40%,rgba(20,20,19,0.78) 100%);color:var(--bone)}
+.app-tile--social .overlay .hd{font-size:28px;font-weight:400;letter-spacing:-0.01em;line-height:1;margin:0}
+.app-tile--deck{background:var(--mist);display:flex;flex-direction:column;justify-content:space-between}
+.app-tile--deck .num{font-family:var(--font-mono);font-size:12px;color:var(--slate-warm)}
+.app-tile--deck .title{font-size:32px;font-weight:300;letter-spacing:-0.015em;line-height:1.05;margin:0}
+.app-tile--email{background:var(--bone);font-family:var(--font-mono);font-size:13px;color:var(--stone);line-height:1.7;display:flex;flex-direction:column;justify-content:space-between}
+.app-tile--email .sig{margin-top:14px;font-family:var(--font-sans);font-size:15px;color:var(--dark)}
+.app-tile--email .sig b{font-weight:700}
+.app-tile--poster{padding:0;overflow:hidden}
+.app-tile--poster img,.app-tile--poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.app-tile--poster .badge{position:absolute;left:18px;bottom:18px;z-index:2}
+
+/* ---------- Footer / Governance ---------- */
+.footer{padding:clamp(80px,9vw,140px) clamp(20px,4vw,72px) 56px;text-align:center;background:var(--dark);color:var(--bone)}
+.footer__lockup{display:flex;justify-content:center}
+.footer__lockup img{max-width:min(720px,80vw);height:auto}
+.footer__meta{margin-top:clamp(40px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:18px}
+.footer__row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9d978a}
+.footer__row span{display:inline-flex;align-items:center;gap:8px}
+.footer__row span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--orange-clay);display:inline-block}
+.footer__brand{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer__brand img{width:120px;height:auto}
+.footer__year{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7a7468}
+
+/* ---------- Reveal animations ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease-cine), transform .8s var(--ease-cine)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .col-3,.col-4{grid-column:span 6}
+  .col-5,.col-6,.col-7,.col-8,.col-9{grid-column:span 12}
+  .logo-grid{grid-template-columns:repeat(2,1fr)}
+  .motion-grid{grid-template-columns:repeat(2,1fr)}
+  .bigidea__grid{grid-template-columns:1fr}
+  .swatch{grid-template-columns:1fr;text-align:left}
+  .swatch__chip{justify-self:start}
+  .manifesto{grid-template-columns:1fr}
+  .manifesto--flip .manifesto__text{order:1}
+  .manifesto--flip .manifesto__media{order:2}
+  .house{grid-auto-rows:160px}
+}
+@media (max-width:768px){
+  .col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-12{grid-column:span 12}
+  .logo-grid{grid-template-columns:1fr}
+  .motion-grid{grid-template-columns:1fr}
+  .dodont{grid-template-columns:1fr}
+  .nav__brand{display:none}
+  .hero__title{font-size:clamp(56px,16vw,120px)}
+  .bigidea__title{font-size:clamp(72px,22vw,180px)}
+  .apps{grid-template-columns:1fr}
+  .house{grid-auto-rows:140px}
+}
+@media (max-width:480px){
+  :root{--pad-section:48px}
+  .nav{top:10px;padding:6px 8px}
+  .nav a.nav__link{padding:6px 10px;font-size:10.5px}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+  video[autoplay]{display:none !important}
+  .hero__video{display:none}
+  .hero{background:var(--dark) url('../assets/work/web/retrovisor-loop-poster.jpg') center/cover no-repeat}
 }
-
-.glyph-eq {
-  font-size: 32px;
-  color: var(--fg-tertiary);
-}
-
-/* ---- RESPONSIVE LOGO SIZES ---- */
-.responsive-sizes {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 32px;
-  align-items: end;
-}
-
-@media (max-width: 600px) { .responsive-sizes { grid-template-columns: 1fr 1fr; } }
-
-.resp-size {
-  text-align: center;
-  padding: 24px 16px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-}
-
-.resp-size-label {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-top: 12px;
-}
-
-/* ---- NAMING BLOCK ---- */
-.naming-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  margin-top: 32px;
-}
-
-@media (max-width: 600px) { .naming-grid { grid-template-columns: 1fr; } }
-
-.naming-item {
-  padding: 24px;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  text-align: center;
-}
-
-.naming-item.naming-never {
-  border-color: var(--error);
-  opacity: 0.6;
-}
-
-.naming-word {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.naming-desc {
-  font-size: 13px;
-  color: var(--fg-tertiary);
-}
-
-/* ---- TONE CARD ---- */
-.tone-card {
-  margin-bottom: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--border);
-}
-
-.tone-card:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-
-.tone-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--orange-clay);
-  margin-bottom: 8px;
-}
-
-.tone-name {
-  font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 24px;
-}
-
-/* Arch cards */
-.arch-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 48px;
-}
-
-@media (max-width: 600px) { .arch-grid { grid-template-columns: 1fr; } }
-
-.arch-card {
-  padding: 40px;
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  text-align: center;
-}
-
-.arch-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-
-.arch-type {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-tertiary);
-  margin-bottom: 8px;
-}
-
-.arch-name {
-  font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-.arch-desc {
-  font-size: 15px;
-  color: var(--fg-secondary);
-  line-height: 1.5;
-}
-
-/* ---- MOTION SECTION ---- */
-.motion-principle {
-  margin-bottom: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--border);
-}
-
-.motion-principle:last-child { border-bottom: none; }
-
 </style>
 </head>
 <body>
 
-<!-- HAMBURGER -->
-<button class="hamburger" onclick="toggleNav()" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
-<div class="nav-overlay" onclick="toggleNav()"></div>
+<a class="skip" href="#main">Pular para o conteúdo</a>
 
-<!-- SIDEBAR NAV -->
-<nav class="sidebar" id="sidebar">
-  <div class="nav-logo">A<span class="nav-l">l</span>right</div>
-
-  <a href="#hero">Cover</a>
-  <a href="#bigidea">Big Idea</a>
-  <a href="#strategy">Estrategia</a>
-  <a href="#verbal">Verbal</a>
-  <a href="#manifestos">Manifestos</a>
-  <a href="#logo">Logo System</a>
-  <a href="#typography">Tipografia</a>
-  <a href="#colors">Cores</a>
-  <a href="#houselook">House Look</a>
-  <a href="#motion">Motion</a>
-
-  <div class="theme-toggle">
-    <button onclick="toggleTheme()" id="themeBtn">Dark mode</button>
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav" aria-label="Navegação principal">
+  <span class="nav__brand">A<b>l</b>right</span>
+  <div class="nav__links">
+    <a class="nav__link" href="#whatweare">What</a>
+    <a class="nav__link" href="#bigidea">Big idea</a>
+    <a class="nav__link" href="#manifestos">Manifestos</a>
+    <a class="nav__link" href="#logo">Logo</a>
+    <a class="nav__link" href="#type">Type</a>
+    <a class="nav__link" href="#color">Color</a>
+    <a class="nav__link" href="#motion">Motion</a>
   </div>
 </nav>
 
-<main>
+<main id="main">
 
-  <!-- ============================
-       SECTION 1 — HERO / COVER
-       ============================ -->
-  <section id="hero">
-    <div class="hero-wordmark">
-      <span class="wm-paren">((</span>We Are A<span class="wm-l">l</span>right<span class="wm-paren">))</span>
-    </div>
-    <div class="hero-subtitle">A.I. first Production Company.</div>
-  </section>
-
-  <!-- ============================
-       SECTION 2 — BIG IDEA
-       ============================ -->
-  <section id="bigidea">
-    <div class="bigidea-inner">
-      <p class="overline" style="color: var(--orange-clay);">Big Idea</p>
-      <h2 class="bigidea-headline">
-        <span class="paren">((</span>Look again.<span class="paren">))</span>
-      </h2>
-      <p class="bigidea-body">
-        A ideia matriz da Alright e um convite, nao uma explicacao. A marca nao diz "olha como somos espertos com tipografia"; mostra. Quem olha de novo encontra mais.
-      </p>
-
-      <div class="layer-list">
-        <div class="layer-item">
-          <div class="layer-name">Estrategia</div>
-          <div class="layer-desc">O posicionamento esconde uma segunda leitura: AI-first nao e atalho, e metodo.</div>
-        </div>
-        <div class="layer-item">
-          <div class="layer-name">Verbal</div>
-          <div class="layer-desc">Frases curtas que recompensam releitura. "We are alright" e understatement proposital.</div>
-        </div>
-        <div class="layer-item">
-          <div class="layer-name">Visual</div>
-          <div class="layer-desc">O trocadilho Alright / AIright so aparece a quem olha duas vezes.</div>
-        </div>
-        <div class="layer-item">
-          <div class="layer-name">Motion</div>
-          <div class="layer-desc">Reveals lentos (1.4s+) forcam o olhar a revisitar o frame.</div>
-        </div>
-        <div class="layer-item">
-          <div class="layer-name">House Look</div>
-          <div class="layer-desc">Cada frame tem mais informacao do que parece. Densidade editorial recompensa o close.</div>
-        </div>
-        <div class="layer-item">
-          <div class="layer-name">Produto</div>
-          <div class="layer-desc">O cliente recebe o filme. So depois percebe o metodo por tras.</div>
-        </div>
+<!-- ===================== 1. HERO ===================== -->
+<section class="hero" aria-label="Hero">
+  <video class="hero__video" autoplay muted loop playsinline preload="metadata"
+    poster="../assets/work/web/retrovisor-loop-poster.jpg"
+    aria-hidden="true">
+    <source src="../assets/work/web/retrovisor-loop.mp4" type="video/mp4" />
+  </video>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <div class="hero__topbar">
+      <span class="mono-caps" style="color:rgba(250,249,245,.8)">Alright · Brand Book v1.0</span>
+      <div class="hero__chips">
+        <span class="sticker sticker--ghost-bone rot-2">(( look again ))</span>
+        <span class="sticker sticker--ghost-bone rot1">(( a.i. first ))</span>
       </div>
     </div>
-  </section>
+    <div class="hero__center">
+      <span class="hero__sub">Big idea — cravada</span>
+      <h1 class="hero__title"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></h1>
+      <span class="hero__sub">Produtora audiovisual · A.I. first · São Paulo / Lisboa</span>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <span class="hero__cue"><span class="dot" aria-hidden="true"></span> scroll</span>
+    </div>
+  </div>
+</section>
 
-  <!-- ============================
-       SECTION 3 — ESTRATEGIA
-       ============================ -->
-  <section id="strategy">
-    <p class="overline">03</p>
-    <h2 class="section-title">Estrategia</h2>
-    <p class="section-subtitle">O posicionamento estrategico que sustenta cada decisao da marca.</p>
+<!-- ===================== 2. WHAT WE ARE ===================== -->
+<section id="whatweare" class="section-pad bg-bone" aria-labelledby="what-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">01 — Quem somos</span>
+      <h2 id="what-title" class="h-lg">Uma produtora. Sem câmera. Sem set. <br/>Com craft demais.</h2>
+    </div>
+    <span class="sticker sticker--mist rot-2">(( produtora ))</span>
+  </div>
 
-    <!-- Purpose / Vision / Mission -->
-    <div class="grid-3" style="margin-top: 32px;">
-      <div class="card">
-        <div class="card-label">Proposito</div>
-        <div class="card-title">Craft + IA</div>
-        <p class="card-body">Provar que IA nao dispensa craft — o exige mais.</p>
-      </div>
-      <div class="card">
-        <div class="card-label">Visao 2031</div>
-        <div class="card-title">Referencia mundial</div>
-        <p class="card-body">Ser referencia mundial de produtora audiovisual AI-first crafted, com sede em Sao Paulo.</p>
-      </div>
-      <div class="card">
-        <div class="card-label">Missao</div>
-        <div class="card-title">Rigor de tier-1</div>
-        <p class="card-body">Produzir filmes de marca AI-first com a logica e o rigor de uma produtora tradicional tier-1.</p>
-      </div>
+  <div class="bento">
+    <div class="card col-7 row-2 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:420px">
+      <span class="eyebrow">Posicionamento</span>
+      <p class="card__big">A.I. first Production Company.</p>
+      <p class="card__small" style="max-width:46ch">Boutique por dentro, escala por fora. Pensamos como diretores e entregamos como estúdio. <em>Não é sobre IA — é sobre cinema com IA.</em></p>
     </div>
 
-    <!-- Values -->
-    <div class="spacer-64"></div>
-    <p class="overline">Valores</p>
-    <div class="grid-4">
-      <div class="card">
-        <div class="card-title">Craft acima de tudo</div>
-        <p class="card-body">Cada decisao de cor, som, edicao e direcao e humana. O modelo gera; a Alright dirige.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Cada filme e um filme</div>
-        <p class="card-body">Sem look de casa. Metodo de casa. Cada projeto recebe estetica propria.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Tech sub-rosa</div>
-        <p class="card-body">A tecnologia e o meio, nunca o protagonista. O cliente paga pelo filme, nao pelo pipeline.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Humildade calculada</div>
-        <p class="card-body">Understatement proposital. Confianca sem soberba. O trabalho fala.</p>
-      </div>
+    <div class="card card--media col-5 row-2 reveal" style="min-height:420px">
+      <img class="card__media" src="../assets/work/web/puma-portugal-portrait.jpg" alt="Retrato editorial com pantera negra — campanha Puma Portugal" />
+      <span class="sticker card__sticker tl rot-2">(( editorial ))</span>
+      <span class="card__label">Puma Portugal · still</span>
     </div>
 
-    <!-- Archetypes -->
-    <div class="spacer-64"></div>
-    <p class="overline">Arquetipos</p>
-    <div class="arch-grid">
-      <div class="arch-card">
-        <div class="arch-icon">&mdash;</div>
-        <div class="arch-type">Primario</div>
-        <div class="arch-name">Creator</div>
-        <p class="arch-desc">Impulso de dar forma. Visao artistica aplicada a negocios. A qualidade e a moeda.</p>
-      </div>
-      <div class="arch-card">
-        <div class="arch-icon">&bull;</div>
-        <div class="arch-type">Secundario</div>
-        <div class="arch-name">Magician</div>
-        <p class="arch-desc">Transformar algo invisivel (IA) em algo tangivel (filme). O truque e a competencia, nao a ilusao.</p>
-      </div>
+    <div class="card card--orange col-4 reveal" style="display:flex;align-items:center;justify-content:center;text-align:center;min-height:220px">
+      <p class="h-md" style="font-weight:500">Cada filme é um filme.</p>
+      <span class="sticker sticker--dark card__sticker tr rot2">(( PT only ))</span>
     </div>
 
-    <!-- Brand Pyramid -->
-    <div class="spacer-64"></div>
-    <p class="overline">Brand Pyramid</p>
-    <div class="pyramid">
-      <div class="pyramid-level" style="width: 30%; background: var(--orange-clay); color: var(--bone);">
-        <div>
-          <div class="pyramid-level-label" style="color: rgba(250,249,245,0.6);">Essencia</div>
-          <div class="pyramid-level-content" style="color: var(--bone);">((Look again.))</div>
-        </div>
-      </div>
-      <div class="pyramid-level" style="width: 45%;">
-        <div>
-          <div class="pyramid-level-label">Personalidade</div>
-          <div class="pyramid-level-content">Confiante, editorial, warm, understated</div>
-        </div>
-      </div>
-      <div class="pyramid-level" style="width: 60%;">
-        <div>
-          <div class="pyramid-level-label">Beneficios emocionais</div>
-          <div class="pyramid-level-content">Orgulho de mostrar. "Parece cinema, mas custou 10%."</div>
-        </div>
-      </div>
-      <div class="pyramid-level" style="width: 75%;">
-        <div>
-          <div class="pyramid-level-label">Beneficios funcionais</div>
-          <div class="pyramid-level-content">Filme de marca tier-1 sem custo de set</div>
-        </div>
-      </div>
-      <div class="pyramid-level" style="width: 90%;">
-        <div>
-          <div class="pyramid-level-label">Atributos</div>
-          <div class="pyramid-level-content">AI-first &middot; Craft humano &middot; Pre-producao rigorosa &middot; Bilingue &middot; SP</div>
-        </div>
-      </div>
+    <div class="card card--media col-5 reveal" style="min-height:220px">
+      <video class="card__media" autoplay muted loop playsinline preload="metadata"
+        poster="../assets/work/web/seda-sensorial-poster.jpg" aria-label="Loop sensorial — projeto Seda">
+        <source src="../assets/work/web/seda-sensorial.mp4" type="video/mp4" />
+      </video>
+      <div class="card__media-overlay" aria-hidden="true"></div>
+      <span class="sticker sticker--ghost-bone card__sticker tl rot-1">(( cinematic ))</span>
+      <span class="card__label">Seda · sensorial</span>
     </div>
 
-    <!-- Promise -->
-    <div class="editorial-quote mt-64">
-      Voce leva o filme certo, com craft real, sem o custo da camera.
-    </div>
-  </section>
-
-  <!-- ============================
-       SECTION 4 — VERBAL
-       ============================ -->
-  <section id="verbal">
-    <p class="overline">04</p>
-    <h2 class="section-title">Verbal</h2>
-    <p class="section-subtitle">Tom de voz, regra bilingue e vocabulario controlado.</p>
-
-    <!-- Tone of voice -->
-    <p class="overline mt-48">Tom de voz</p>
-
-    <div class="tone-card">
-      <div class="tone-number">01</div>
-      <div class="tone-name">Confiante sem soberba</div>
-      <div class="do-dont">
-        <div class="do-col">
-          <div class="do-label">Usar</div>
-          <ul>
-            <li>"A gente faz o filme."</li>
-            <li>"O trabalho fala."</li>
-          </ul>
-        </div>
-        <div class="dont-col">
-          <div class="do-label">Evitar</div>
-          <ul>
-            <li>"Somos os melhores do mercado."</li>
-            <li>"Revolucionamos a industria."</li>
-          </ul>
-        </div>
-      </div>
+    <div class="card card--dark col-3 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:220px">
+      <span class="eyebrow" style="color:#a59f93">Tier</span>
+      <p class="h-md" style="font-weight:500">Boutique<br/>output máquina.</p>
+      <span class="sticker sticker--bone rot2" style="align-self:flex-start">(( tier 1 ))</span>
     </div>
 
-    <div class="tone-card">
-      <div class="tone-number">02</div>
-      <div class="tone-name">Direto</div>
-      <div class="do-dont">
-        <div class="do-col">
-          <div class="do-label">Usar</div>
-          <ul>
-            <li>"Sem camera. Sem set. Sem alto custo."</li>
-            <li>Frases curtas. Ponto final.</li>
-          </ul>
-        </div>
-        <div class="dont-col">
-          <div class="do-label">Evitar</div>
-          <ul>
-            <li>"Nossas solucoes integradas de producao audiovisual..."</li>
-            <li>Periodos longos com subordinadas encadeadas.</li>
-          </ul>
-        </div>
-      </div>
+    <div class="card col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
+      <span class="eyebrow">Como pensamos</span>
+      <p class="card__small">Pra quem ouve duas vezes. A gente faz, não explica. O bom não envelhece.</p>
     </div>
 
-    <div class="tone-card">
-      <div class="tone-number">03</div>
-      <div class="tone-name">Editorial</div>
-      <div class="do-dont">
-        <div class="do-col">
-          <div class="do-label">Usar</div>
-          <ul>
-            <li>Ritmo de revista — paragrafos curtos, espacamento generoso.</li>
-            <li>Pontuacao expressiva como recurso retorico.</li>
-          </ul>
-        </div>
-        <div class="dont-col">
-          <div class="do-label">Evitar</div>
-          <ul>
-            <li>Tom de press release corporativo.</li>
-            <li>Bullets genericos tipo "solucao end-to-end".</li>
-          </ul>
-        </div>
-      </div>
+    <div class="card card--mist col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
+      <span class="eyebrow">Pra quem é</span>
+      <p class="card__small">Marcas, agências e diretores que querem cinema sem o overhead — postura editorial, ciclo curto, custo enxuto.</p>
     </div>
 
-    <div class="tone-card">
-      <div class="tone-number">04</div>
-      <div class="tone-name">Bilingue como falante real</div>
-      <div class="do-dont">
-        <div class="do-col">
-          <div class="do-label">Usar</div>
-          <ul>
-            <li>PT como base para Brasil, EN para internacional.</li>
-            <li>Catchphrases canon no idioma original, sem traduzir.</li>
-          </ul>
-        </div>
-        <div class="dont-col">
-          <div class="do-label">Evitar</div>
-          <ul>
-            <li>Traduzir "We are alright" para "Estamos bem".</li>
-            <li>Misturar idiomas sem proposito.</li>
-          </ul>
-        </div>
+    <div class="card card--clay col-4 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:180px">
+      <span class="eyebrow" style="color:#f6dccd">Operação</span>
+      <p class="h-md" style="font-weight:500;color:var(--bone)">No camera or set. No high costs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. BIG IDEA ===================== -->
+<section id="bigidea" class="bg-dark bigidea" aria-labelledby="bigidea-title">
+  <span class="eyebrow reveal" style="color:#a59f93">02 — Big idea cravada</span>
+  <h2 id="bigidea-title" class="bigidea__title reveal" style="margin-top:18px">
+    <span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span>
+  </h2>
+
+  <div class="bigidea__grid">
+    <div class="bigidea__copy reveal">
+      <p><strong>Look again.</strong> A marca convida o público a descobrir, não explica. Cada peça pede um segundo olhar — porque o primeiro nunca conta tudo.</p>
+      <p>É um manifesto contra o óbvio. Contra o brief que se resolve sozinho. Contra o filme que cabe num bullet point.</p>
+      <p>A gente entrega imagens que sustentam um segundo olhar. <em>O resto é ruído.</em></p>
+      <div style="margin-top:28px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="sticker rot-2">(( look again ))</span>
+        <span class="sticker sticker--ghost-bone rot2">(( sub-rosa ))</span>
+        <span class="sticker sticker--clay-deep rot-1">(( descoberta &gt; explicação ))</span>
       </div>
     </div>
-
-    <div class="tone-card">
-      <div class="tone-number">05</div>
-      <div class="tone-name">Anti-AI-hype</div>
-      <div class="do-dont">
-        <div class="do-col">
-          <div class="do-label">Usar</div>
-          <ul>
-            <li>"A IA tirou o que era caro. Nao tirou o oficio."</li>
-            <li>Falar de IA como ferramenta, nao como magia.</li>
-          </ul>
-        </div>
-        <div class="dont-col">
-          <div class="do-label">Evitar</div>
-          <ul>
-            <li>"Inteligencia artificial revolucionaria"</li>
-            <li>"O futuro da producao", "next-gen", "disruptive"</li>
-          </ul>
-        </div>
-      </div>
+    <div class="bigidea__img reveal">
+      <img src="../assets/work/web/editorial-portrait-01.jpg" alt="DJ 3D surreal feito de panqueca — embodiment do conceito look again" />
     </div>
+  </div>
+</section>
 
-    <!-- Bilingual Rule -->
-    <div class="spacer-64"></div>
-    <p class="overline">Regra bilingue</p>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-label">Brasil</div>
-        <div class="card-title">PT = lingua-base</div>
-        <p class="card-body">Documentos, site BR, redes sociais Brasil. Catchphrases canon ("We are alright", "Craft. Craft. And. More. Craft.") permanecem em EN.</p>
-      </div>
-      <div class="card">
-        <div class="card-label">Internacional</div>
-        <div class="card-title">EN = lingua-base</div>
-        <p class="card-body">Site global, decks internacionais. "Cada filme e um filme" permanece em PT — e canon.</p>
-      </div>
+<!-- ===================== 4. MANIFESTOS ===================== -->
+<section id="manifestos" aria-labelledby="manifestos-title">
+  <header class="section-pad bg-mist" style="padding-bottom:32px">
+    <span class="eyebrow reveal">03 — Manifestos canon</span>
+    <h2 id="manifestos-title" class="h-lg reveal" style="margin-top:12px;max-width:780px">Quatro frases que a gente não negocia.</h2>
+  </header>
+
+  <article class="manifesto bg-bone reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow">01 / Manifesto fundador</span>
+      <p class="h-mega" style="margin-top:18px">We are alright.</p>
+      <p class="body" style="margin-top:24px;max-width:46ch">Assinatura. Atitude. O nome é declaração. Está tudo certo — e a gente não precisa gritar pra provar.</p>
+      <div style="margin-top:24px"><span class="sticker rot-2">(( sempre EN ))</span></div>
     </div>
-
-    <!-- Vocabulary -->
-    <div class="spacer-64"></div>
-    <p class="overline">Vocabulario controlado</p>
-    <div class="vocab-grid">
-      <div class="vocab-col vocab-use">
-        <h4>Usar</h4>
-        <ul>
-          <li>craft</li>
-          <li>filme de marca</li>
-          <li>pre-producao</li>
-          <li>AI-first</li>
-          <li>direcao</li>
-          <li>rigor</li>
-          <li>metodo</li>
-          <li>oficio</li>
-          <li>produtora</li>
-          <li>color grade</li>
-        </ul>
-      </div>
-      <div class="vocab-col vocab-avoid">
-        <h4>Evitar</h4>
-        <ul>
-          <li>revolucionario</li>
-          <li>disruptive</li>
-          <li>magic / magico</li>
-          <li>transforma sua marca</li>
-          <li>next-gen</li>
-          <li>solucao</li>
-          <li>pipeline (externo)</li>
-          <li>game-changer</li>
-          <li>cutting-edge</li>
-          <li>seamless</li>
-        </ul>
-      </div>
+    <div class="manifesto__media">
+      <img src="../assets/work/web/amino-hero.jpg" alt="Still hero do projeto AMINO" />
+      <span class="sticker manifesto__sticker rot2">(( hero ))</span>
     </div>
+  </article>
 
-    <!-- Naming -->
-    <div class="spacer-64"></div>
-    <p class="overline">Naming</p>
-    <div class="naming-grid">
-      <div class="naming-item">
-        <div class="naming-word">Alright</div>
-        <div class="naming-desc">Default. 90% dos usos.</div>
-      </div>
-      <div class="naming-item">
-        <div class="naming-word">((We Are Alright))</div>
-        <div class="naming-desc">Lockup expressivo. Manifestos, hero, assinatura.</div>
-      </div>
-      <div class="naming-item naming-never">
-        <div class="naming-word" style="text-decoration: line-through;">Alright Productions</div>
-        <div class="naming-desc">Nunca. Nunca "Alright Studios".</div>
-      </div>
+  <article class="manifesto manifesto--flip bg-dark reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow" style="color:#a59f93">02 / Métier</span>
+      <p class="h-mega" style="margin-top:18px;color:var(--bone)">Craft.<br/>Craft.<br/>And.<br/>More. Craft.</p>
+      <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Repetição não é estilo — é princípio. Cada frame é uma decisão. Cada decisão é craft.</p>
     </div>
-  </section>
-
-  <!-- ============================
-       SECTION 5 — MANIFESTOS
-       ============================ -->
-  <section id="manifestos">
-    <p class="overline">05</p>
-    <h2 class="section-title">Manifestos</h2>
-    <p class="section-subtitle">As palavras que definem quem somos. Canon. Intocaveis.</p>
-
-    <!-- Manifesto PT -->
-    <div class="manifesto-block">
-      <div class="manifesto-text">
-        <div class="m-headline">((We Are Alright))</div>
-
-        <p>Tem produtora que pergunta: quanto custa o set? Quanto custa o equipamento? Quanto custa a camera, o lente, o gerador, o catering, o seguro, a diaria do diretor de fotografia, o frete da Steadicam de Sao Paulo ate Florianopolis?</p>
-
-        <p><span class="m-bold">A gente nao pergunta. A gente faz o filme.</span></p>
-
-        <p>Sem camera. Sem set. Sem alto custo. <span class="m-bold">We are alright.</span></p>
-
-        <p>Mas calma. Isso nao significa atalho. Isso significa que o orcamento que sobrou virou tempo de pre-producao. Virou referencia estudada a exaustao. Virou color grading frame a frame. Virou tres versoes do mesmo plano ate a quarta ficar certa. Virou roteiro lido em voz alta por gente que sabe ler em voz alta.</p>
-
-        <p><span class="m-bold">A IA tirou da mesa o que era caro. Ela nao tirou o oficio.</span></p>
-
-        <p>Por isso a gente repete: <span class="m-bold">craft, craft, e mais craft.</span> Nao e manifesto retorico, e regra de producao. Toda peca que sai daqui passa por mao humana antes de sair. Toda decisao de cor, som, edicao e direcao e de quem assina, nao do modelo. O modelo gera; a Alright dirige.</p>
-
-        <p>E por isso tambem a gente repete: <span class="m-bold">cada filme e um filme.</span> A gente nao tem look de casa que se repete. A gente tem metodo de casa que se repete. Cada projeto recebe uma estetica nova porque cada projeto e uma marca diferente, um briefing diferente, uma audiencia diferente. O que une os nossos cases e o rigor da pre-producao, nao a aparencia da pos.</p>
-
-        <p>A industria toda ta em transicao. A gente nao ta esperando ela decidir o que fazer com IA. A gente ta fazendo. Em Sao Paulo. Bilingue. Com clientes que pagam pelo filme, nao pelo pipeline.</p>
-
-        <p><span class="m-bold">((We are alright.))</span></p>
-      </div>
+    <div class="manifesto__media">
+      <video autoplay muted loop playsinline preload="metadata"
+        poster="../assets/work/web/puma-portugal-poster.jpg" aria-label="Loop de craft — Puma Portugal">
+        <source src="../assets/work/web/puma-portugal.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--ghost-bone manifesto__sticker rot-2">(( craft ))</span>
     </div>
+  </article>
 
-    <!-- Manifesto EN -->
-    <div class="manifesto-block">
-      <p class="overline">English version</p>
-      <div class="manifesto-text">
-        <div class="m-headline">((We Are Alright))</div>
-
-        <p>Some production companies ask: how much does the set cost? How much does the gear cost? The camera, the lens, the generator, the catering, the insurance, the DP day-rate, the Steadicam ship from Sao Paulo to Florianopolis?</p>
-
-        <p><span class="m-bold">We don't ask. We make the film.</span></p>
-
-        <p>No camera. No set. No high costs. <span class="m-bold">We are alright.</span></p>
-
-        <p>But hold on. That doesn't mean shortcut. It means the budget that used to go to gear now goes to pre-production. It goes to references studied to exhaustion. To color grading frame by frame. To three versions of the same shot until the fourth one is right. To scripts read aloud by people who know how to read aloud.</p>
-
-        <p><span class="m-bold">AI removed what was expensive. It did not remove the craft.</span></p>
-
-        <p>That's why we repeat: <span class="m-bold">craft, craft, and more craft.</span> It's not rhetoric, it's a production rule. Every piece that ships from here passes through human hands before it ships. Every decision on color, sound, edit, and direction is made by the person who signs it — not by the model. The model generates; Alright directs.</p>
-
-        <p>And that's why we also repeat: <span class="m-bold">every film is a film (cada filme e um filme).</span> We don't have a house look that repeats. We have a house method that repeats. Each project gets a new aesthetic because each project is a different brand, a different brief, a different audience. What unites our work is the rigor of pre-production, not the surface of post.</p>
-
-        <p>The industry is in transition. We are not waiting for it to decide what to do with AI. We are doing it. From Sao Paulo. Bilingual. With clients who pay for the film, not for the pipeline.</p>
-
-        <p><span class="m-bold">((We are alright.))</span></p>
-      </div>
+  <article class="manifesto bg-orange reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow">03 / Identidade do trabalho</span>
+      <p class="h-mega" style="margin-top:18px">Cada filme<br/>é um filme.</p>
+      <p class="body" style="margin-top:24px;max-width:46ch;color:var(--dark)">Sem template. Sem fórmula. Cada projeto entra com seu próprio sistema visual — e sai com a própria assinatura.</p>
+      <div style="margin-top:24px"><span class="sticker sticker--dark rot2">(( PT only ))</span></div>
     </div>
+    <div class="manifesto__media">
+      <img src="../assets/work/web/editorial-portrait-02.jpg" alt="Retrato editorial — cada filme é um filme" />
+    </div>
+  </article>
 
-    <!-- Short manifestos -->
-    <p class="overline">Manifestos curtos — canon</p>
-    <div class="grid-2" style="margin-top: 24px;">
-      <div class="manifesto-mini">
-        <div class="mini-text">We are alright.</div>
-      </div>
-      <div class="manifesto-mini">
-        <div class="mini-text">Craft. Craft. And. More. Craft.</div>
-      </div>
-      <div class="manifesto-mini">
-        <div class="mini-text">Cada filme e um filme.</div>
-      </div>
-      <div class="manifesto-mini">
-        <div class="mini-text">No camera or set.<br>No high costs.</div>
-      </div>
+  <article class="manifesto manifesto--flip bg-stone reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow" style="color:#cfcbc1">04 / Operação</span>
+      <p class="h-mega" style="margin-top:18px;color:var(--bone)">No camera or set.<br/>No high costs.</p>
+      <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Pipeline AI-first. Estúdio compacto, ciclo curto, output editorial. <em>Postura de boutique, escala de máquina.</em></p>
     </div>
-  </section>
+    <div class="manifesto__media">
+      <img src="../assets/work/web/amino-still-01.jpg" alt="Still AMINO — operação enxuta" />
+      <span class="sticker sticker--ghost-bone manifesto__sticker rot-1">(( sub-rosa ))</span>
+    </div>
+  </article>
+</section>
 
-  <!-- ============================
-       SECTION 6 — LOGO SYSTEM
-       ============================ -->
-  <section id="logo">
-    <p class="overline">06</p>
-    <h2 class="section-title">Logo System</h2>
-    <p class="section-subtitle">Tres estados. Um sistema. O trocadilho visual Alright / AIright so aparece a quem olha duas vezes.</p>
+<!-- ===================== 5. LOGO SYSTEM ===================== -->
+<section id="logo" class="section-pad bg-bone" aria-labelledby="logo-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">04 — Sistema de logo</span>
+      <h2 id="logo-title" class="h-lg">O <em>l</em> carrega a marca.</h2>
+      <p class="body" style="margin-top:14px;max-width:54ch">Bricolage Grotesque. Regular 400 em todas as letras. Bold 700 só no <strong>l</strong> central. Reveal espaçado é ato editorial — não default.</p>
+    </div>
+    <span class="sticker sticker--mist rot2">(( Bone-first ))</span>
+  </div>
 
-    <!-- Dual state on Bone -->
-    <p class="overline mt-48">State C.2 — Default (90% dos usos)</p>
-    <div class="logo-demo logo-on-bone logo-hover-demo">
-      A<span class="logo-l-bold">l</span>right
-    </div>
-    <div class="logo-caption"><span class="inline-code">l</span> em Bold 600 &middot; Hover para ver C.1 (Orange Clay)</div>
+  <div class="logo-hero reveal">
+    <img src="../assets/logo/png/alright-default-dark@2x.png" alt="Logo Alright default sobre fundo Bone — l em Bold 700" />
+  </div>
 
-    <div class="logo-demo logo-on-dark logo-hover-demo" style="margin-top: 16px;">
-      A<span class="logo-l-bold">l</span>right
+  <div class="logo-grid">
+    <div class="logo-tile logo-tile--bone reveal">
+      <img src="../assets/logo/png/alright-default-dark@2x.png" alt="Logo default em Dark sobre Bone" />
+      <span class="logo-tile__label">Default C.2 · light</span>
+      <span class="sticker card__sticker tr rot-2">(( 90% dos casos ))</span>
     </div>
-    <div class="logo-caption">Sobre fundo Dark</div>
+    <div class="logo-tile logo-tile--dark reveal">
+      <img src="../assets/logo/png/alright-default-bone@2x.png" alt="Logo default em Bone sobre Dark" />
+      <span class="logo-tile__label">Default · reverse</span>
+    </div>
+    <div class="logo-tile logo-tile--mist reveal">
+      <img src="../assets/logo/png/alright-expressivo-dark@2x.png" alt="Logo expressivo com l Orange Clay sobre fundo claro" />
+      <span class="logo-tile__label">Expressivo C.1</span>
+      <span class="sticker card__sticker tr rot2">(( 10% premium ))</span>
+    </div>
+    <div class="logo-tile logo-tile--orange reveal">
+      <img src="../assets/logo/png/alright-expressivo-bone@2x.png" alt="Logo expressivo Bone sobre Orange Clay" />
+      <span class="logo-tile__label">Expressivo · sobre orange</span>
+    </div>
+  </div>
 
-    <!-- C.1 Expressivo -->
-    <div class="spacer-48"></div>
-    <p class="overline">State C.1 — Expressivo (10% usos premium)</p>
-    <div class="logo-demo logo-on-bone">
-      A<span class="logo-l-orange">l</span>right
-    </div>
-    <div class="logo-caption"><span class="inline-code">l</span> em Orange Clay <span class="inline-code">#d97757</span></div>
+  <div class="banner bg-bone reveal" style="margin-top:48px;border-radius:var(--radius-card);border:1px solid rgba(20,20,19,0.06)">
+    <img src="../assets/logo/png/lockup-we-are-alright-dark@2x.png" alt="Lockup ((We Are Alright)) — versão dark sobre Bone" />
+    <p class="banner__caption" style="color:var(--slate-warm)">Lockup oficial</p>
+    <span class="sticker banner__sticker rot-2">(( sempre EN ))</span>
+  </div>
 
-    <div class="logo-demo logo-on-dark" style="margin-top: 16px;">
-      A<span class="logo-l-orange">l</span>right
-    </div>
-    <div class="logo-caption">Sobre fundo Dark</div>
+  <div class="banner bg-dark reveal" style="margin-top:24px;border-radius:var(--radius-card)">
+    <img src="../assets/logo/png/alright-reveal-bone@2x.png" alt="Reveal ((A I r i g h t)) espaçado, versão bone sobre fundo dark" />
+    <p class="banner__caption" style="color:#cfcbc1;margin-top:24px">Ato editorial. Não default.</p>
+    <span class="sticker sticker--ghost-bone banner__sticker rot2">(( reveal ))</span>
+  </div>
 
-    <!-- Reveal -->
-    <div class="spacer-48"></div>
-    <p class="overline">State Reveal</p>
-    <div class="logo-demo logo-on-bone" style="letter-spacing: 0.3em; font-size: clamp(24px, 4vw, 48px);">
-      ((&nbsp;A&nbsp;I&nbsp;r&nbsp;i&nbsp;g&nbsp;h&nbsp;t&nbsp;))
-    </div>
-    <div class="logo-caption">Ato editorial deliberado — espacamento revela "AI" no nome</div>
-
-    <div class="logo-demo logo-on-dark" style="margin-top: 16px; letter-spacing: 0.3em; font-size: clamp(24px, 4vw, 48px);">
-      ((&nbsp;A&nbsp;I&nbsp;r&nbsp;i&nbsp;g&nbsp;h&nbsp;t&nbsp;))
-    </div>
-    <div class="logo-caption">Sobre fundo Dark</div>
-
-    <!-- Trocadilho -->
-    <div class="spacer-64"></div>
-    <p class="overline">Trocadilho visual</p>
-    <div class="glyph-demo">
-      <div>
-        <div class="glyph-char">Alright</div>
-        <div class="glyph-label">Leitura natural</div>
-      </div>
-      <div class="glyph-eq">=</div>
-      <div>
-        <div class="glyph-char"><span class="accent-text">AI</span>right</div>
-        <div class="glyph-label">Segunda leitura</div>
-      </div>
-    </div>
-
-    <!-- I = l demo -->
-    <div class="spacer-48"></div>
-    <p class="overline">Bricolage: I = l</p>
-    <div class="glyph-demo">
-      <div>
-        <div class="glyph-char">I</div>
-        <div class="glyph-label">Uppercase I</div>
-      </div>
-      <div class="glyph-eq">&asymp;</div>
-      <div>
-        <div class="glyph-char">l</div>
-        <div class="glyph-label">Lowercase L</div>
-      </div>
-    </div>
-    <p class="body-text mt-32" style="text-align: center; max-width: none; color: var(--fg-tertiary); font-size: 14px;">Em Bricolage Grotesque, os glifos <span class="inline-code">I</span> e <span class="inline-code">l</span> sao visualmente identicos — o trocadilho funciona sem forcacao.</p>
-
-    <!-- Brand device -->
-    <div class="spacer-64"></div>
-    <p class="overline">Brand device (( ))</p>
-    <div class="grid-3">
-      <div class="card" style="text-align: center;">
-        <div class="card-label">Standalone</div>
-        <div style="font-size: 48px; color: var(--fg-tertiary); font-weight: 300;">(( ))</div>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="card-label">Com lockup</div>
-        <div style="font-size: 24px; font-weight: 400;"><span style="color: var(--fg-tertiary); font-weight: 300;">((</span>We Are Alright<span style="color: var(--fg-tertiary); font-weight: 300;">))</span></div>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="card-label">Reveal</div>
-        <div style="font-size: 24px; font-weight: 400; letter-spacing: 0.15em;"><span style="color: var(--fg-tertiary); font-weight: 300;">((</span>Look again.<span style="color: var(--fg-tertiary); font-weight: 300;">))</span></div>
-      </div>
-    </div>
-
-    <!-- Responsive sizes -->
-    <div class="spacer-64"></div>
-    <p class="overline">Escala responsiva</p>
-    <div class="responsive-sizes">
-      <div class="resp-size">
-        <div style="font-size: 36px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
-        <div class="resp-size-label">Hero</div>
-      </div>
-      <div class="resp-size">
-        <div style="font-size: 20px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
-        <div class="resp-size-label">Header</div>
-      </div>
-      <div class="resp-size">
-        <div style="font-size: 14px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
-        <div class="resp-size-label">Footer</div>
-      </div>
-      <div class="resp-size">
-        <div style="font-size: 20px; color: var(--fg-tertiary); font-weight: 300;">(( ))</div>
-        <div class="resp-size-label">Favicon</div>
-      </div>
-    </div>
-
-    <!-- Do / Don't -->
-    <div class="spacer-64"></div>
-    <p class="overline">Usos e anti-usos</p>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Correto</div>
-        <ul>
-          <li>Sempre Bricolage Grotesque</li>
-          <li>Bold apenas no <span class="inline-code">l</span></li>
-          <li>Espaco entre (( e texto</li>
-          <li>Fundo Bone ou Dark — nunca cor solida</li>
-          <li>Area de protecao minima: altura do "A"</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Proibido</div>
-        <ul>
-          <li>Trocar tipografia</li>
-          <li>Aplicar Bold no wordmark inteiro</li>
-          <li>Remover parenteses do lockup</li>
-          <li>Rotacionar, distorcer ou aplicar sombra</li>
-          <li>Usar sobre imagem sem overlay</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================
-       SECTION 7 — TIPOGRAFIA
-       ============================ -->
-  <section id="typography">
-    <p class="overline">07</p>
-    <h2 class="section-title">Tipografia</h2>
-    <p class="section-subtitle">Bricolage Grotesque como tipografia primaria. JetBrains Mono como companion mono.</p>
-
-    <!-- Weight specimen -->
-    <p class="overline mt-48">Bricolage Grotesque — Pesos</p>
-    <div class="weight-row"><span class="weight-label">200</span><span class="weight-sample" style="font-weight: 200;">Alright — AI-first Production Company</span></div>
-    <div class="weight-row"><span class="weight-label">300</span><span class="weight-sample" style="font-weight: 300;">Alright — AI-first Production Company</span></div>
-    <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-weight: 400;">Alright — AI-first Production Company</span></div>
-    <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-weight: 500;">Alright — AI-first Production Company</span></div>
-    <div class="weight-row"><span class="weight-label">600</span><span class="weight-sample" style="font-weight: 600;">Alright — AI-first Production Company</span></div>
-    <div class="weight-row">
-      <span class="weight-label" style="color: var(--error);">700</span>
-      <span class="weight-sample" style="font-weight: 400; color: var(--fg-tertiary); text-decoration: line-through;">Banido em editorial</span>
-    </div>
-    <div class="weight-row"><span class="weight-label">800</span><span class="weight-sample" style="font-weight: 800;">Alright — AI-first Production Company</span></div>
-
-    <!-- Bold 700 callout -->
-    <div class="card mt-32" style="border-left: 3px solid var(--error);">
-      <div class="card-label" style="color: var(--error);">Regra: Bold 700 banido</div>
-      <p class="card-body">O peso 700 (Bold) e proibido em todo uso editorial. Excecao unica: o accent C.2 do logo, onde o <span class="inline-code">l</span> usa peso 600/700 para criar a diferenciacao sutil. Fora do logo, usar Medium 500 para enfase.</p>
-    </div>
-
-    <!-- Type ramp -->
-    <div class="spacer-64"></div>
-    <p class="overline">Type ramp</p>
-
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Display XL<br>96px / Medium 500</div>
-      <div class="type-ramp-sample" style="font-size: 96px; font-weight: 500; letter-spacing: -0.03em; line-height: 1;">Alright</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Display<br>72px / Medium 500</div>
-      <div class="type-ramp-sample" style="font-size: 72px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.05;">Alright</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">H1<br>64px / Medium 500</div>
-      <div class="type-ramp-sample" style="font-size: 64px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;">Alright</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">H2<br>48px / Medium 500</div>
-      <div class="type-ramp-sample" style="font-size: 48px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;">Alright</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">H3<br>32px / Medium 500</div>
-      <div class="type-ramp-sample" style="font-size: 32px; font-weight: 500; line-height: 1.2;">Alright</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">H4<br>24px / Medium 500</div>
-      <div class="type-ramp-sample" style="font-size: 24px; font-weight: 500; line-height: 1.3;">Alright</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Body LG<br>20px / Regular 400</div>
-      <div class="type-ramp-sample" style="font-size: 20px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Body<br>18px / Regular 400</div>
-      <div class="type-ramp-sample" style="font-size: 18px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Body SM<br>14px / Regular 400</div>
-      <div class="type-ramp-sample" style="font-size: 14px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Caption<br>12px / Regular 400</div>
-      <div class="type-ramp-sample" style="font-size: 12px; font-weight: 400; line-height: 1.5;">A gente nao pergunta. A gente faz o filme.</div>
-    </div>
-    <div class="type-ramp-item">
-      <div class="type-ramp-meta">Overline<br>11px / Medium 500<br>uppercase +0.08em</div>
-      <div class="type-ramp-sample" style="font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;">A gente nao pergunta. A gente faz o filme.</div>
-    </div>
-
-    <!-- JetBrains Mono -->
-    <div class="spacer-64"></div>
-    <p class="overline">JetBrains Mono — Companion</p>
-    <div style="font-family: 'JetBrains Mono', monospace; margin-top: 16px;">
-      <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 24px;">--orange-clay: #d97757;</span></div>
-      <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 24px;">--bone: #faf9f5;</span></div>
-    </div>
-    <p class="body-text mt-32" style="font-size: 14px; color: var(--fg-tertiary);">Uso restrito: tokens, codigo, metadados tecnicos, labels numericos. Nunca em titulos ou body copy.</p>
-  </section>
-
-  <!-- ============================
-       SECTION 8 — CORES
-       ============================ -->
-  <section id="colors">
-    <p class="overline">08</p>
-    <h2 class="section-title">Cores</h2>
-    <p class="section-subtitle">Paleta controlada. Sem gradientes. Sem branco puro. Sem preto puro.</p>
-
-    <!-- Primary -->
-    <p class="overline mt-48">Paleta primaria</p>
-    <div class="grid-3">
-      <div>
-        <div class="swatch-large" style="background: #d97757; color: #faf9f5;">
-          <div class="swatch-info">
-            <div class="swatch-name" style="color: #faf9f5;">Orange Clay</div>
-            #d97757<br>RGB 217, 119, 87<br>OKLCH 0.64 0.13 46
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="swatch-large" style="background: #faf9f5; color: #141413; border: 1px solid #ece8dc;">
-          <div class="swatch-info">
-            <div class="swatch-name">Bone</div>
-            #faf9f5<br>RGB 250, 249, 245<br>OKLCH 0.98 0.01 90
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="swatch-large" style="background: #141413; color: #faf9f5;">
-          <div class="swatch-info">
-            <div class="swatch-name" style="color: #faf9f5;">Dark</div>
-            #141413<br>RGB 20, 20, 19<br>OKLCH 0.15 0.00 0
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Secondary -->
-    <div class="spacer-48"></div>
-    <p class="overline">Paleta secundaria (text-safe)</p>
-    <div class="grid-3">
-      <div>
-        <div class="swatch-large" style="background: #8c4a32; color: #faf9f5;">
-          <div class="swatch-info">
-            <div class="swatch-name" style="color: #faf9f5;">Clay Deep</div>
-            #8c4a32<br>RGB 140, 74, 50
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="swatch-large" style="background: #3d3a35; color: #faf9f5;">
-          <div class="swatch-info">
-            <div class="swatch-name" style="color: #faf9f5;">Stone</div>
-            #3d3a35<br>RGB 61, 58, 53
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="swatch-large" style="background: #5b5750; color: #faf9f5;">
-          <div class="swatch-info">
-            <div class="swatch-name" style="color: #faf9f5;">Slate-warm</div>
-            #5b5750<br>RGB 91, 87, 80
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Neutral scale -->
-    <div class="spacer-48"></div>
-    <p class="overline">Escala neutra</p>
-    <div class="neutral-scale">
-      <div class="neutral-step" style="background: #faf9f5;"><span style="color: #141413;">#faf9f5</span></div>
-      <div class="neutral-step" style="background: #f3f0e8;"><span style="color: #141413;">#f3f0e8</span></div>
-      <div class="neutral-step" style="background: #ece8dc;"><span style="color: #141413;">#ece8dc</span></div>
-      <div class="neutral-step" style="background: #d4cfc3;"><span style="color: #141413;">#d4cfc3</span></div>
-      <div class="neutral-step" style="background: #b0aa9e;"><span style="color: #141413;">#b0aa9e</span></div>
-      <div class="neutral-step" style="background: #8a847a;"><span style="color: #faf9f5;">#8a847a</span></div>
-      <div class="neutral-step" style="background: #5b5750;"><span style="color: #faf9f5;">#5b5750</span></div>
-      <div class="neutral-step" style="background: #3d3a35;"><span style="color: #faf9f5;">#3d3a35</span></div>
-      <div class="neutral-step" style="background: #141413;"><span style="color: #faf9f5;">#141413</span></div>
-    </div>
-
-    <!-- Functional -->
-    <div class="spacer-48"></div>
-    <p class="overline">Paleta funcional</p>
-    <div class="func-colors">
-      <div class="func-swatch" style="background: #5e6b3d; color: #faf9f5;"><span>Success<br>#5e6b3d</span></div>
-      <div class="func-swatch" style="background: #b04a36; color: #faf9f5;"><span>Error<br>#b04a36</span></div>
-      <div class="func-swatch" style="background: #945a0e; color: #faf9f5;"><span>Warning<br>#945a0e</span></div>
-      <div class="func-swatch" style="background: #4a6478; color: #faf9f5;"><span>Info<br>#4a6478</span></div>
-    </div>
-
-    <!-- WCAG Contrast -->
-    <div class="spacer-64"></div>
-    <p class="overline">Tabela WCAG — Pares de contraste</p>
-    <div class="contrast-grid">
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #faf9f5; color: #141413;">Dark / Bone</div>
-        <div class="contrast-meta"><span>17.5 : 1</span><span class="badge badge-pass">AAA</span></div>
-      </div>
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #141413; color: #faf9f5;">Bone / Dark</div>
-        <div class="contrast-meta"><span>17.5 : 1</span><span class="badge badge-pass">AAA</span></div>
-      </div>
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #faf9f5; color: #3d3a35;">Stone / Bone</div>
-        <div class="contrast-meta"><span>8.6 : 1</span><span class="badge badge-pass">AAA</span></div>
-      </div>
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #faf9f5; color: #5b5750;">Slate / Bone</div>
-        <div class="contrast-meta"><span>5.5 : 1</span><span class="badge badge-pass">AA</span></div>
-      </div>
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #141413; color: #d97757;">Orange / Dark</div>
-        <div class="contrast-meta"><span>4.9 : 1</span><span class="badge badge-pass">AA</span></div>
-      </div>
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #faf9f5; color: #8c4a32;">Clay Deep / Bone</div>
-        <div class="contrast-meta"><span>5.7 : 1</span><span class="badge badge-pass">AA</span></div>
-      </div>
-      <div class="contrast-pair">
-        <div class="contrast-sample" style="background: #faf9f5; color: #d97757;">Orange / Bone</div>
-        <div class="contrast-meta"><span>2.9 : 1</span><span class="badge badge-fail">FAIL</span></div>
-      </div>
-    </div>
-
-    <!-- Rules -->
-    <div class="spacer-48"></div>
-    <p class="overline">Regras de cor</p>
-    <ul class="houselook-rules mt-32">
-      <li>Orange Clay = 5-10% da area por peca. Accent, nunca dominante.</li>
-      <li>Orange Clay nunca como texto sobre Bone — falha WCAG AA.</li>
-      <li>Branco puro <span class="inline-code">#ffffff</span> proibido. Usar Bone <span class="inline-code">#faf9f5</span>.</li>
-      <li>Preto puro <span class="inline-code">#000000</span> proibido. Usar Dark <span class="inline-code">#141413</span>.</li>
-      <li>Gradientes proibidos. Excecao unica: <span class="inline-code">gradient.editorial-bone</span> no hero.</li>
-    </ul>
-
-    <!-- Dark mode demo -->
-    <div class="spacer-64"></div>
-    <p class="overline">Dark mode — Mapeamento</p>
-    <div class="darkmode-demo">
-      <div class="darkmode-panel darkmode-panel-light">
-        <div class="dm-label">Light mode</div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #faf9f5; border: 1px solid #ece8dc;"></div><div class="dm-swatch-label">Background: Bone</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #141413;"></div><div class="dm-swatch-label">Foreground: Dark</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #3d3a35;"></div><div class="dm-swatch-label">Secondary: Stone</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #d97757;"></div><div class="dm-swatch-label">Accent: Orange Clay</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #ece8dc;"></div><div class="dm-swatch-label">Border: Mist</div></div>
-      </div>
-      <div class="darkmode-panel darkmode-panel-dark">
-        <div class="dm-label">Dark mode</div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #141413;"></div><div class="dm-swatch-label">Background: Dark</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #faf9f5;"></div><div class="dm-swatch-label">Foreground: Bone</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #b0aa9e;"></div><div class="dm-swatch-label">Secondary: Warm Gray</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #d97757;"></div><div class="dm-swatch-label">Accent: Orange Clay</div></div>
-        <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #2a2926;"></div><div class="dm-swatch-label">Border: Warm Black</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================
-       SECTION 9 — HOUSE LOOK
-       ============================ -->
-  <section id="houselook">
-    <p class="overline">09</p>
-    <h2 class="section-title">House Look</h2>
-    <p class="section-subtitle">Cinco principios visuais que governam cada frame. Nao e estetica — e metodo.</p>
-
-    <div class="spacer-48"></div>
-
-    <div class="houselook-block">
-      <div class="houselook-number">01</div>
-      <div class="houselook-title">Cinematic, not slop</div>
-      <div class="houselook-subtitle">Cada frame e digno de cinema 35mm — nao e output bruto de modelo.</div>
-      <ul class="houselook-rules">
-        <li>Resolucao minima 4K para entrega final</li>
-        <li>Color grade autoral — nunca LUT generica</li>
-        <li>Composicao intencional: regra dos tercos, linhas de fuga, peso visual</li>
-        <li>Anti-modelo: blur excessivo, mao com 6 dedos, textura plastica</li>
+  <div class="dodont">
+    <div class="dodont__col dodont__col--do reveal">
+      <div class="dodont__head"><span class="dodont__icon ok" aria-hidden="true">✓</span><span class="mono-caps" style="color:var(--stone)">Do</span></div>
+      <ul class="dodont__list">
+        <li>Use o default C.2 em 90% dos casos.</li>
+        <li>Mantenha o <strong>l</strong> em Bold 700 sempre.</li>
+        <li>Orange Clay no <strong>l</strong> só no expressivo C.1.</li>
+        <li>Use o reveal com intenção editorial.</li>
       </ul>
     </div>
-
-    <div class="houselook-block">
-      <div class="houselook-number">02</div>
-      <div class="houselook-title">Crafted human finishing</div>
-      <div class="houselook-subtitle">A mao humana e visivel em hero. Color grade autoral, retouching, texture overlay.</div>
-      <ul class="houselook-rules">
-        <li>Retouching manual frame a frame nas hero shots</li>
-        <li>Texture overlay sutil (grain, halation) para quebrar perfeicao digital</li>
-        <li>Toda peca passa por aprovacao humana antes de sair</li>
-        <li>O modelo gera; a Alright dirige</li>
+    <div class="dodont__col dodont__col--dont reveal">
+      <div class="dodont__head"><span class="dodont__icon no" aria-hidden="true">✕</span><span class="mono-caps" style="color:var(--stone)">Don’t</span></div>
+      <ul class="dodont__list">
+        <li>Não rotacione, distorça ou aplique sombra.</li>
+        <li>Não troque a fonte. Bricolage é trava.</li>
+        <li>Não use o reveal como default ou em UI.</li>
+        <li>Não coloque o logo sobre imagem ruidosa sem scrim.</li>
       </ul>
     </div>
+  </div>
+</section>
 
-    <div class="houselook-block">
-      <div class="houselook-number">03</div>
-      <div class="houselook-title">Grounded weight</div>
-      <div class="houselook-subtitle">Pessoas, objetos e luz tem peso humano. Nada flutua sem motivo.</div>
-      <ul class="houselook-rules">
-        <li>Gravidade realista em todos os elementos</li>
-        <li>Iluminacao com fonte identificavel</li>
-        <li>Sombras de contato presentes</li>
-        <li>Sem elementos flutuando sem justificativa narrativa</li>
-      </ul>
+<!-- ===================== 6. TYPOGRAPHY ===================== -->
+<section id="type" class="section-pad bg-bone" aria-labelledby="type-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">05 — Tipografia</span>
+      <h2 id="type-title" class="h-lg">Duas famílias. Uma trava.</h2>
     </div>
+    <span class="sticker sticker--mist rot-2">(( OFL · Apache 2.0 ))</span>
+  </div>
 
-    <div class="houselook-block">
-      <div class="houselook-number">04</div>
-      <div class="houselook-title">Editorial density</div>
-      <div class="houselook-subtitle">Cada frame tem mais informacao do que parece — recompensa o close.</div>
-      <ul class="houselook-rules">
-        <li>Detalhes de producao visiveis em zoom</li>
-        <li>Camadas de leitura: primeiro impacto, segundo detalhe</li>
-        <li>Textura e materialidade nos objetos</li>
-        <li>((Look again.)) aplicado ao frame</li>
-      </ul>
-    </div>
-
-    <div class="houselook-block">
-      <div class="houselook-number">05</div>
-      <div class="houselook-title">Warm sub-rosa</div>
-      <div class="houselook-subtitle">Cor quente e estado-base — sutil, nao dramatica.</div>
-      <ul class="houselook-rules">
-        <li>Temperatura de cor tendendo a warm em todo o reel</li>
-        <li>Sem cool tones dominantes (exceto por motivo narrativo)</li>
-        <li>Bone como tom-base, nao branco esteril</li>
-        <li>Orange Clay como sotaque, nunca como dominante</li>
-      </ul>
-    </div>
-
-    <!-- Do / Don't -->
-    <p class="overline">Diretrizes visuais</p>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Fazer</div>
-        <ul>
-          <li>Color grade autoral por projeto</li>
-          <li>Grain e textura organica</li>
-          <li>Composicao com peso e intencao</li>
-          <li>Iluminacao com fonte clara</li>
-          <li>Detalhes que recompensam zoom</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Nao fazer</div>
-        <ul>
-          <li>Output bruto de modelo sem finishing</li>
-          <li>Estetica AI-slop (maos quebradas, olhos errados)</li>
-          <li>Gradientes SaaS roxo-azul</li>
-          <li>Iconografia AI literal (neural net, particula)</li>
-          <li>Iconografia cinema literal (claquete, pelicula)</li>
-        </ul>
+  <div class="type-grid">
+    <div class="card col-8 reveal" style="min-height:380px">
+      <span class="eyebrow">Primária · variable</span>
+      <p class="type-spec" style="margin-top:14px">Bricolage Grotesque</p>
+      <div class="type-weights">
+        <span class="w200">Look — Thin 200</span>
+        <span class="w300">Look — Light 300</span>
+        <span class="w400">Look — Regular 400</span>
+        <span class="w500">Look — Medium 500</span>
+        <span class="w-l">A<b>l</b>right — Regular + <b>l</b> Bold 700</span>
       </div>
     </div>
 
-    <!-- Disclosure -->
-    <div class="spacer-64"></div>
-    <p class="overline">Disclosure obrigatorio de IA</p>
-    <div class="disclosure-box">
-      <div class="lang">Portugues</div>
-      <div class="disc-text">Imagens criadas com Inteligencia Artificial.</div>
-      <div class="lang">English</div>
-      <div class="disc-text">All images were created using Artificial Intelligence.</div>
-      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
-        <ul class="houselook-rules">
-          <li>Tipografia: Bricolage, sentence case</li>
-          <li>Tamanho minimo: 1.2% da altura do frame</li>
-          <li>Cores: Bone sobre Dark ou Dark sobre Bone — nunca Orange</li>
-          <li>Posicao: canto inferior, sem obstruir conteudo principal</li>
-        </ul>
+    <div class="card card--dark col-4 reveal" style="min-height:380px;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <span class="eyebrow" style="color:#a59f93">Companion · mono</span>
+        <p class="type-spec" style="margin-top:14px;color:var(--bone)">JetBrains Mono</p>
+      </div>
+      <div class="type-mono-demo" style="color:#cfcbc1">
+        <div><span class="c">--orange-clay:</span> #d97757;</div>
+        <div><span class="c">--bone:</span> #faf9f5;</div>
+        <div><span class="c">--ease-cine:</span> cubic-bezier(.16,1,.3,1);</div>
       </div>
     </div>
 
-    <!-- Anti-prompts -->
-    <div class="spacer-48"></div>
-    <p class="overline">Anti-prompts (palavras banidas em prompts)</p>
-    <div class="anti-list">
-      <span class="anti-tag">hyper-realistic</span>
-      <span class="anti-tag">ultra-detailed</span>
-      <span class="anti-tag">8k</span>
-      <span class="anti-tag">masterpiece</span>
-      <span class="anti-tag">best quality</span>
-      <span class="anti-tag">trending on artstation</span>
-      <span class="anti-tag">unreal engine</span>
-      <span class="anti-tag">octane render</span>
-      <span class="anti-tag">photorealistic</span>
-      <span class="anti-tag">beautiful</span>
-      <span class="anti-tag">stunning</span>
-      <span class="anti-tag">gorgeous</span>
-      <span class="anti-tag">perfect</span>
-      <span class="anti-tag">flawless</span>
-    </div>
-  </section>
-
-  <!-- ============================
-       SECTION 10 — MOTION
-       ============================ -->
-  <section id="motion">
-    <p class="overline">10</p>
-    <h2 class="section-title">Motion</h2>
-    <p class="section-subtitle">Movimento cinematografico. Reveals lentos. Easing humano. Sem springs.</p>
-
-    <!-- 5 Principles -->
-    <div class="spacer-32"></div>
-
-    <div class="motion-principle">
-      <div class="houselook-number">01</div>
-      <div class="houselook-title">Look again moments</div>
-      <p class="body-text">Reveals duram no minimo 1.4 segundos. O olho precisa de tempo para processar e revisitar. Transicoes rapidas so para micro-interacoes.</p>
+    <div class="card card--orange col-4 reveal" style="min-height:200px;display:flex;align-items:center;justify-content:center;text-align:center">
+      <p class="h-md" style="font-weight:500">Bold 700 banido em uso editorial.</p>
+      <span class="sticker sticker--dark card__sticker tr rot2">(( exceção: o <em>l</em> ))</span>
     </div>
 
-    <div class="motion-principle">
-      <div class="houselook-number">02</div>
-      <div class="houselook-title">Reveal over cut</div>
-      <p class="body-text">Preferir revelacao progressiva a corte seco. O conteudo aparece como se ja estivesse la, esperando ser visto.</p>
+    <div class="card col-4 reveal" style="min-height:200px">
+      <span class="eyebrow">Hierarquia</span>
+      <p class="card__small" style="margin-top:14px">H1 mega, 300 · H2 lg, 500 · Body 400 · Eyebrow mono caps. <em>Nada acima de Medium em corrido.</em></p>
     </div>
 
-    <div class="motion-principle">
-      <div class="houselook-number">03</div>
-      <div class="houselook-title">Easing humano</div>
-      <p class="body-text">Sem springs, sem bounces, sem overshoots. O movimento desacelera naturalmente, como objetos fisicos. Cubic-bezier apenas.</p>
+    <div class="type-img col-4 reveal">
+      <img src="../assets/work/web/amino-still-02.jpg" alt="Still AMINO — demonstração de legibilidade tipográfica" />
+      <div class="type-img__overlay"><span>((&nbsp;Cada&nbsp;filme&nbsp;))</span></div>
     </div>
+  </div>
+</section>
 
-    <div class="motion-principle">
-      <div class="houselook-number">04</div>
-      <div class="houselook-title">Tempo cinematografico</div>
-      <p class="body-text">Cada animacao respeita o ritmo do conteudo. Titulos entram devagar. Labels aparecem rapido. O tempo serve a hierarquia.</p>
-    </div>
+<!-- ===================== 7. COLOR PALETTE ===================== -->
+<section id="color" aria-labelledby="color-title">
+  <header class="section-pad bg-bone" style="padding-bottom:32px">
+    <span class="eyebrow reveal">06 — Paleta</span>
+    <h2 id="color-title" class="h-lg reveal" style="margin-top:12px;max-width:780px">Sete tons. Light e dark coexistem como linguagem.</h2>
+  </header>
 
-    <div class="motion-principle">
-      <div class="houselook-number">05</div>
-      <div class="houselook-title">Reduced motion friendly</div>
-      <p class="body-text">Todo movimento respeita <span class="inline-code">prefers-reduced-motion</span>. Conteudo permanece acessivel sem animacao.</p>
+  <article class="swatch bg-bone reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow">01 / Background default</span>
+      <h3 class="name">Bone</h3>
+      <p class="hex">#FAF9F5 · sRGB · L 97</p>
+      <p class="body">Fundo default. Light mode permanente. Nada vibra sobre ela sem motivo.</p>
+      <div class="swatch__tokens"><code>--bone</code><code>color/surface/default</code></div>
     </div>
+    <div class="swatch__chip" style="background:var(--bone);border:1px solid rgba(20,20,19,0.1)"></div>
+  </article>
 
-    <!-- Duration tokens -->
-    <p class="overline mt-64">Duration tokens</p>
-    <p class="body-text mb-32" style="font-size: 14px;">Clique na barra para ver a animacao na duracao correspondente.</p>
+  <article class="swatch bg-mist reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow">02 / Surface alt</span>
+      <h3 class="name">Mist</h3>
+      <p class="hex">#ECE8DC · warm gray</p>
+      <p class="body">Cinza quente sutil. Cards alternativos, divisores, headers de sessão.</p>
+      <div class="swatch__tokens"><code>--mist</code><code>color/surface/alt</code></div>
+    </div>
+    <div class="swatch__chip" style="background:var(--mist);border:1px solid rgba(20,20,19,0.08)"></div>
+  </article>
 
-    <div class="motion-bar-wrap">
-      <div class="motion-label">instant<br>100ms</div>
-      <div class="motion-track" onclick="playBar(this, 100)"><div class="motion-fill"></div></div>
+  <article class="swatch bg-dark reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#a59f93">03 / Texto + reverse</span>
+      <h3 class="name" style="color:var(--bone)">Dark</h3>
+      <p class="hex" style="color:#cfcbc1">#141413 · quase-preto</p>
+      <p class="body body-on-dark">Texto. Wordmark. Background dark mode. Nunca puro #000.</p>
+      <div class="swatch__tokens"><code>--dark</code><code>color/text/default</code></div>
     </div>
-    <div class="motion-bar-wrap">
-      <div class="motion-label">fast<br>200ms</div>
-      <div class="motion-track" onclick="playBar(this, 200)"><div class="motion-fill"></div></div>
-    </div>
-    <div class="motion-bar-wrap">
-      <div class="motion-label">normal<br>400ms</div>
-      <div class="motion-track" onclick="playBar(this, 400)"><div class="motion-fill"></div></div>
-    </div>
-    <div class="motion-bar-wrap">
-      <div class="motion-label">slow<br>800ms</div>
-      <div class="motion-track" onclick="playBar(this, 800)"><div class="motion-fill"></div></div>
-    </div>
-    <div class="motion-bar-wrap">
-      <div class="motion-label">cinematic<br>1400ms</div>
-      <div class="motion-track" onclick="playBar(this, 1400)"><div class="motion-fill"></div></div>
-    </div>
-    <div class="motion-bar-wrap">
-      <div class="motion-label">editorial<br>1800ms</div>
-      <div class="motion-track" onclick="playBar(this, 1800)"><div class="motion-fill"></div></div>
-    </div>
+    <div class="swatch__chip" style="background:var(--dark)"></div>
+  </article>
 
-    <!-- Easing curves -->
-    <div class="spacer-64"></div>
-    <p class="overline">Easing curves</p>
-    <div class="easing-grid">
-      <div class="easing-card">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <rect width="120" height="120" rx="4" fill="none" stroke="var(--border)" stroke-width="1"/>
-          <path d="M 10 110 C 58 110 34 10 110 10" stroke="var(--orange-clay)" stroke-width="2" fill="none"/>
-          <circle cx="10" cy="110" r="3" fill="var(--fg-tertiary)"/>
-          <circle cx="110" cy="10" r="3" fill="var(--fg-tertiary)"/>
-        </svg>
-        <div class="easing-name">Standard</div>
-        <div class="easing-value">(0.4, 0.0, 0.2, 1.0)</div>
+  <article class="swatch bg-stone reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#cfcbc1">04 / Body text-safe</span>
+      <h3 class="name" style="color:var(--bone)">Stone</h3>
+      <p class="hex" style="color:#cfcbc1">#3D3A35</p>
+      <p class="body body-on-dark">Body copy padrão. Contraste WCAG AA sobre Bone confirmado.</p>
+      <div class="swatch__tokens"><code>--stone</code><code>color/text/body</code></div>
+    </div>
+    <div class="swatch__chip" style="background:var(--stone)"></div>
+  </article>
+
+  <article class="swatch bg-slate reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#cfcbc1">05 / Subtle</span>
+      <h3 class="name" style="color:var(--bone)">Slate Warm</h3>
+      <p class="hex" style="color:#cfcbc1">#5B5750</p>
+      <p class="body body-on-dark">Eyebrows, captions, labels secundários. Sempre sobre Bone ou Mist.</p>
+      <div class="swatch__tokens"><code>--slate-warm</code><code>color/text/subtle</code></div>
+    </div>
+    <div class="swatch__chip" style="background:var(--slate-warm)"></div>
+  </article>
+
+  <article class="swatch bg-orange reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow">06 / Accent único</span>
+      <h3 class="name">Orange Clay</h3>
+      <p class="hex">#D97757</p>
+      <p class="body" style="color:var(--dark)">Accent. Wordmark expressivo. Stickers. <strong>Nunca como body text sobre Bone — falha WCAG AA.</strong></p>
+      <div class="swatch__tokens"><code>--orange-clay</code><code>color/accent</code></div>
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="sticker sticker--dark rot-2">(( accent only ))</span><span class="sticker sticker--bone rot2">(( nunca body sobre bone ))</span></div>
+    </div>
+    <div class="swatch__chip" style="background:var(--orange-clay)"></div>
+  </article>
+
+  <article class="swatch bg-clay-deep reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#f6dccd">07 / Orange text-safe</span>
+      <h3 class="name" style="color:var(--bone)">Clay Deep</h3>
+      <p class="hex" style="color:#f6dccd">#8C4A32</p>
+      <p class="body body-on-dark">Versão escurecida do accent. Usada quando precisa de Orange como texto sobre Bone.</p>
+      <div class="swatch__tokens"><code>--clay-deep</code><code>color/accent/text-safe</code></div>
+    </div>
+    <div class="swatch__chip" style="background:var(--clay-deep)"></div>
+  </article>
+</section>
+
+<!-- ===================== 8. HOUSE LOOK ===================== -->
+<section class="section-pad bg-bone" aria-labelledby="house-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">07 — House look</span>
+      <h2 id="house-title" class="h-lg">Tátil. Editorial. Estranho na medida.</h2>
+    </div>
+    <span class="sticker sticker--mist rot2">(( warm ))</span>
+  </div>
+
+  <div class="house">
+    <div class="house__tile col-7" style="grid-row:span 2">
+      <img src="../assets/work/web/puma-portugal-product.jpg" alt="Frame produto Puma Portugal" />
+      <span class="sticker rot-2">(( tactile ))</span>
+    </div>
+    <div class="house__tile col-5">
+      <img src="../assets/work/web/editorial-portrait-02.jpg" alt="Retrato editorial 02" />
+      <span class="sticker sticker--dark rot2">(( editorial ))</span>
+    </div>
+    <div class="house__tile col-5">
+      <img src="../assets/work/web/amino-still-01.jpg" alt="Still AMINO 01" />
+      <span class="sticker sticker--bone rot-1">(( cinematic ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <img src="../assets/work/web/amino-still-02.jpg" alt="Still AMINO 02" />
+      <span class="sticker sticker--clay-deep rot1">(( warm ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/botafogo-anuncio-poster.jpg" aria-label="Botafogo · anúncio loop">
+        <source src="../assets/work/web/botafogo-anuncio.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker rot-2">(( cinematic ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/social-clip-01-poster.jpg" aria-label="Social clip 01">
+        <source src="../assets/work/web/social-clip-01.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone rot2">(( surreal ))</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 9. MOTION ===================== -->
+<section id="motion" class="section-pad bg-dark" aria-labelledby="motion-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow" style="color:#a59f93">08 — Motion</span>
+      <h2 id="motion-title" class="h-lg" style="color:var(--bone)">Cinematic. Sem spring. Sem bounce.</h2>
+    </div>
+    <span class="sticker sticker--ghost-bone rot-2">(( 600–800ms ))</span>
+  </div>
+
+  <div class="motion-grid">
+    <div class="motion-card reveal" data-easing="cinematic">
+      <h3>Cinematic</h3>
+      <span class="mono">cubic-bezier(0.16, 1.0, 0.3, 1.0)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Default da marca. Desacelera com graça, nunca esmaga o final.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+    <div class="motion-card reveal" data-easing="standard">
+      <h3>Standard</h3>
+      <span class="mono">cubic-bezier(0.4, 0, 0.2, 1)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Para microinterações utilitárias. Foco e estados de input.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+    <div class="motion-card reveal" data-easing="decelerate">
+      <h3>Decelerate</h3>
+      <span class="mono">cubic-bezier(0, 0, 0.2, 1)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Entrada de conteúdo. Reveals. Stagger de listas.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+    <div class="motion-card reveal" data-easing="accelerate">
+      <h3>Accelerate</h3>
+      <span class="mono">cubic-bezier(0.4, 0, 1, 1)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Saída de conteúdo. Dismiss. Nunca para entrada.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+  </div>
+
+  <p class="reveal" style="margin-top:48px;max-width:54ch;font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:#cfcbc1">
+    <span style="color:var(--orange-clay)">▸</span> prefers-reduced-motion: animações viram instantâneas; vídeos param de auto-play.
+  </p>
+</section>
+
+<!-- ===================== 10. APPLICATIONS ===================== -->
+<section class="section-pad bg-bone" aria-labelledby="apps-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">09 — Aplicações</span>
+      <h2 id="apps-title" class="h-lg">Como ((Alright)) vive no mundo.</h2>
+    </div>
+    <span class="sticker sticker--mist rot-2">(( mockups ))</span>
+  </div>
+
+  <div class="apps">
+    <div class="app-tile app-tile--card col-4 reveal">
+      <span class="app-tile__label">Business card</span>
+      <div>
+        <div class="name">A<b>l</b>right</div>
+        <div class="meta">
+          Zuza · Founder<br/>
+          zuza@alright.studio<br/>
+          São Paulo · Lisboa
+        </div>
       </div>
-      <div class="easing-card">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <rect width="120" height="120" rx="4" fill="none" stroke="var(--border)" stroke-width="1"/>
-          <path d="M 10 110 C 10 110 34 10 110 10" stroke="var(--orange-clay)" stroke-width="2" fill="none"/>
-          <circle cx="10" cy="110" r="3" fill="var(--fg-tertiary)"/>
-          <circle cx="110" cy="10" r="3" fill="var(--fg-tertiary)"/>
-        </svg>
-        <div class="easing-name">Decelerate</div>
-        <div class="easing-value">(0.0, 0.0, 0.2, 1.0)</div>
-      </div>
-      <div class="easing-card">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <rect width="120" height="120" rx="4" fill="none" stroke="var(--border)" stroke-width="1"/>
-          <path d="M 10 110 C 58 110 110 10 110 10" stroke="var(--orange-clay)" stroke-width="2" fill="none"/>
-          <circle cx="10" cy="110" r="3" fill="var(--fg-tertiary)"/>
-          <circle cx="110" cy="10" r="3" fill="var(--fg-tertiary)"/>
-        </svg>
-        <div class="easing-name">Accelerate</div>
-        <div class="easing-value">(0.4, 0.0, 1.0, 1.0)</div>
-      </div>
-      <div class="easing-card">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <rect width="120" height="120" rx="4" fill="none" stroke="var(--border)" stroke-width="1"/>
-          <path d="M 10 110 C 34 110 10 10 110 10" stroke="var(--orange-clay)" stroke-width="2" fill="none"/>
-          <circle cx="10" cy="110" r="3" fill="var(--fg-tertiary)"/>
-          <circle cx="110" cy="10" r="3" fill="var(--fg-tertiary)"/>
-        </svg>
-        <div class="easing-name">Emphasized</div>
-        <div class="easing-value">(0.2, 0.0, 0.0, 1.0)</div>
-      </div>
-      <div class="easing-card">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <rect width="120" height="120" rx="4" fill="none" stroke="var(--border)" stroke-width="1"/>
-          <path d="M 10 110 C 29 10 46 10 110 10" stroke="var(--orange-clay)" stroke-width="2" fill="none"/>
-          <circle cx="10" cy="110" r="3" fill="var(--fg-tertiary)"/>
-          <circle cx="110" cy="10" r="3" fill="var(--fg-tertiary)"/>
-        </svg>
-        <div class="easing-name">Cinematic</div>
-        <div class="easing-value">(0.16, 1.0, 0.3, 1.0)</div>
+      <span class="sticker sticker--mist rot2" style="align-self:flex-start">(( 55×85 mm ))</span>
+    </div>
+
+    <div class="app-tile app-tile--social col-5 reveal" style="min-height:340px">
+      <img class="img" src="../assets/work/web/amino-hero.jpg" alt="Mockup post social — AMINO" />
+      <div class="overlay">
+        <span class="mono-caps" style="color:rgba(250,249,245,.7);margin-bottom:14px">@alright.studio</span>
+        <p class="hd">(( Look again. ))</p>
       </div>
     </div>
 
-    <!-- Logo animation -->
-    <div class="spacer-64"></div>
-    <p class="overline">Logo animation sequence</p>
-    <div class="card mt-32">
-      <div class="card-body">
-        <p style="margin-bottom: 16px;"><strong style="font-weight: 500;">Duracao total: 2.6 segundos</strong></p>
-        <table class="brand-table" style="margin-top: 0;">
-          <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 12px; min-width: 100px;">0.0 — 0.8s</td><td>Wordmark <span class="inline-code">Alright</span> fade-in com ease cinematic</td></tr>
-          <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">0.6 — 1.6s</td><td>Parenteses <span class="inline-code">(( ))</span> aparecem, deslizando de fora</td></tr>
-          <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">1.4 — 2.6s</td><td>Accent opcional: <span class="inline-code">l</span> muda para Orange Clay (fade de cor)</td></tr>
-        </table>
-      </div>
+    <div class="app-tile app-tile--deck col-3 reveal">
+      <span class="num">slide 01 / 24</span>
+      <p class="title">Cada filme<br/>é um filme.</p>
+      <span class="sticker rot-2" style="align-self:flex-start">(( deck ))</span>
     </div>
-  </section>
 
-  <!-- ============================
-       FOOTER
-       ============================ -->
-  <footer id="footer">
-    <div class="footer-wordmark"><span class="paren">((</span>We Are Alright<span class="paren">))</span></div>
-    <div class="footer-sub">A.I. first Production Company. Sao Paulo.</div>
-    <div class="footer-sub" style="margin-top: 16px;">Brand Guide 2026 &middot; Owner: Zuza</div>
-  </footer>
+    <div class="app-tile app-tile--poster col-4 reveal" style="min-height:300px">
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/seda-sensorial-poster.jpg" aria-label="Mockup poster — Seda">
+        <source src="../assets/work/web/seda-sensorial.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone badge rot2">(( poster ))</span>
+    </div>
+
+    <div class="app-tile app-tile--email col-5 reveal">
+      <div>
+        <div>—— assinatura padrão ——</div>
+        <div style="margin-top:18px">
+          <span style="color:var(--dark);font-size:15px;font-family:var(--font-sans)"><b>Zuza</b> · Founder, Alright</span><br/>
+          zuza@alright.studio &nbsp;·&nbsp; +55 11 9 ····<br/>
+          alright.studio &nbsp;·&nbsp; @alright.studio
+        </div>
+      </div>
+      <span class="sticker sticker--mist rot-1" style="align-self:flex-start">(( email signature ))</span>
+    </div>
+
+    <div class="app-tile app-tile--poster col-3 reveal" style="min-height:240px">
+      <img src="../assets/work/web/editorial-portrait-02.jpg" alt="Mockup poster editorial" />
+      <span class="sticker sticker--clay-deep badge rot-2">(( editorial ))</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11. GOVERNANCE FOOTER ===================== -->
+<footer class="footer" aria-labelledby="gov-title">
+  <span class="eyebrow reveal" style="color:#a59f93">Governance</span>
+  <span id="gov-title" style="position:absolute;left:-9999px">((We Are Alright))</span>
+  <div class="footer__lockup reveal" style="margin-top:24px">
+    <img src="../assets/logo/png/lockup-we-are-alright-bone@2x.png" alt="Lockup ((We Are Alright)) — versão Bone sobre Dark" />
+  </div>
+
+  <div class="footer__meta">
+    <div class="footer__row reveal">
+      <span>Owner: Zuza</span>
+      <span>Brand Book v1.0</span>
+      <span>Revisão semestral</span>
+      <span>governance/</span>
+    </div>
+    <div class="footer__row reveal" style="color:#7a7468">
+      <span>Bone-first</span>
+      <span>A.I. first</span>
+      <span>Cinema-grade</span>
+    </div>
+  </div>
+
+  <div class="footer__brand reveal">
+    <img src="../assets/logo/png/alright-default-bone@2x.png" alt="Alright wordmark Bone" />
+    <span class="footer__year">© 2026 · alright.studio</span>
+  </div>
+</footer>
 
 </main>
 
 <script>
-// Theme toggle
-function toggleTheme() {
-  const html = document.documentElement;
-  const btn = document.getElementById('themeBtn');
-  if (html.getAttribute('data-theme') === 'dark') {
-    html.removeAttribute('data-theme');
-    btn.textContent = 'Dark mode';
-  } else {
-    html.setAttribute('data-theme', 'dark');
-    btn.textContent = 'Light mode';
+(function(){
+  var nav = document.getElementById('nav');
+  var onScroll = function(){
+    if (window.scrollY > 24) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
   }
-}
-
-// Mobile nav
-function toggleNav() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.querySelector('.nav-overlay').classList.toggle('open');
-}
-
-// Close nav on link click (mobile)
-document.querySelectorAll('nav.sidebar a').forEach(a => {
-  a.addEventListener('click', () => {
-    if (window.innerWidth <= 900) toggleNav();
-  });
-});
-
-// Active nav link on scroll
-const sections = document.querySelectorAll('section, #bigidea');
-const navLinks = document.querySelectorAll('nav.sidebar a');
-
-function updateActiveNav() {
-  let current = '';
-  sections.forEach(s => {
-    const top = s.getBoundingClientRect().top;
-    if (top <= 200) current = s.id;
-  });
-  navLinks.forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-  });
-}
-
-window.addEventListener('scroll', updateActiveNav, { passive: true });
-updateActiveNav();
-
-// Motion bars
-function playBar(track, duration) {
-  const fill = track.querySelector('.motion-fill');
-  fill.style.transition = 'none';
-  fill.style.width = '0';
-  // Force reflow
-  fill.offsetWidth;
-  fill.style.transition = 'width ' + duration + 'ms cubic-bezier(0.16, 1.0, 0.3, 1.0)';
-  fill.style.width = '100%';
-  // Reset after animation
-  setTimeout(() => {
-    fill.style.transition = 'width 400ms ease';
-    fill.style.width = '0';
-  }, duration + 400);
-}
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var siblings = Array.prototype.slice.call(el.parentNode.children).filter(function(n){ return n.classList && n.classList.contains('reveal'); });
+        var idx = siblings.indexOf(el);
+        var delay = Math.min(Math.max(idx,0), 6) * 80;
+        setTimeout(function(){ el.classList.add('is-visible'); }, delay);
+        io.unobserve(el);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
 </script>
 
 </body>
