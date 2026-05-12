@@ -250,7 +250,8 @@ section{position:relative}
 }
 .manifesto__text .h-mega{font-size:clamp(56px,9vw,160px)}
 .manifesto__media{position:relative;overflow:hidden;min-height:380px}
-.manifesto__media img,.manifesto__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.manifesto__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.manifesto__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 .manifesto--flip .manifesto__text{order:2}
 .manifesto--flip .manifesto__media{order:1}
 .manifesto__caption{position:absolute;bottom:24px;left:24px}
@@ -329,7 +330,8 @@ section{position:relative}
 /* ---------- House look (section 8) ---------- */
 .house{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;gap:var(--gap-card)}
 .house__tile{position:relative;border-radius:var(--radius-card);overflow:hidden;background:#000}
-.house__tile img,.house__tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.house__tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.house__tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 .house__tile .sticker{position:absolute;left:18px;bottom:18px;z-index:2}
 .house__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 55%,rgba(20,20,19,0.55) 100%)}
 
@@ -374,7 +376,8 @@ section{position:relative}
 .app-tile--email .sig{margin-top:14px;font-family:var(--font-sans);font-size:15px;color:var(--dark)}
 .app-tile--email .sig b{font-weight:700}
 .app-tile--poster{padding:0;overflow:hidden}
-.app-tile--poster img,.app-tile--poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.app-tile--poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.app-tile--poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 .app-tile--poster .badge{position:absolute;left:18px;bottom:18px;z-index:2}
 
 /* ---------- Footer / Governance ---------- */
@@ -473,7 +476,7 @@ section{position:relative}
     <div class="hero__center">
       <span class="hero__sub">Big idea — cravada</span>
       <h1 class="hero__title"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></h1>
-      <span class="hero__sub">Produtora audiovisual · A.I. first · São Paulo / Lisboa</span>
+      <span class="hero__sub">Produtora audiovisual · A.I. first · São Paulo / BR</span>
     </div>
     <div style="display:flex;justify-content:center">
       <span class="hero__cue"><span class="dot" aria-hidden="true"></span> scroll</span>
@@ -527,7 +530,7 @@ section{position:relative}
 
     <div class="card col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
       <span class="eyebrow">Como pensamos</span>
-      <p class="card__small">Pra quem ouve duas vezes. A gente faz, não explica. O bom não envelhece.</p>
+      <p class="card__small">Editorial-craft com tech sub-rosa. PT por dentro, EN por fora. Bone-first, sempre.</p>
     </div>
 
     <div class="card card--mist col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
@@ -839,7 +842,7 @@ section{position:relative}
   <div class="section-head reveal">
     <div class="section-head__title">
       <span class="eyebrow">07 — House look</span>
-      <h2 id="house-title" class="h-lg">Tátil. Editorial. Estranho na medida.</h2>
+      <h2 id="house-title" class="h-lg">Tátil. Editorial.</h2>
     </div>
     <span class="sticker sticker--mist rot2">(( warm ))</span>
   </div>
@@ -934,9 +937,9 @@ section{position:relative}
       <div>
         <div class="name">A<b>l</b>right</div>
         <div class="meta">
-          Zuza · Founder<br/>
-          zuza@alright.studio<br/>
-          São Paulo · Lisboa
+          Fabiano Albergaria · Founder<br/>
+          albergaria@wearealright.cc<br/>
+          São Paulo
         </div>
       </div>
       <span class="sticker sticker--mist rot2" style="align-self:flex-start">(( 55×85 mm ))</span>
@@ -945,7 +948,7 @@ section{position:relative}
     <div class="app-tile app-tile--social col-5 reveal" style="min-height:340px">
       <img class="img" src="../assets/work/web/amino-hero.jpg" alt="Mockup post social — AMINO" />
       <div class="overlay">
-        <span class="mono-caps" style="color:rgba(250,249,245,.7);margin-bottom:14px">@alright.studio</span>
+        <span class="mono-caps" style="color:rgba(250,249,245,.7);margin-bottom:14px">@wearealright.cc</span>
         <p class="hd">(( Look again. ))</p>
       </div>
     </div>
@@ -967,9 +970,8 @@ section{position:relative}
       <div>
         <div>—— assinatura padrão ——</div>
         <div style="margin-top:18px">
-          <span style="color:var(--dark);font-size:15px;font-family:var(--font-sans)"><b>Zuza</b> · Founder, Alright</span><br/>
-          zuza@alright.studio &nbsp;·&nbsp; +55 11 9 ····<br/>
-          alright.studio &nbsp;·&nbsp; @alright.studio
+          <span style="color:var(--dark);font-size:15px;font-family:var(--font-sans)"><b>Fabiano Albergaria</b> · Founder, Alright</span><br/>
+          albergaria@wearealright.cc &nbsp;·&nbsp; +55 11 9 ····
         </div>
       </div>
       <span class="sticker sticker--mist rot-1" style="align-self:flex-start">(( email signature ))</span>
@@ -1006,7 +1008,7 @@ section{position:relative}
 
   <div class="footer__brand reveal">
     <img src="../assets/logo/png/alright-default-bone@2x.png" alt="Alright wordmark Bone" />
-    <span class="footer__year">© 2026 · alright.studio</span>
+    <span class="footer__year">© 2026 · wearealright.cc</span>
   </div>
 </footer>
 
@@ -1044,6 +1046,33 @@ section{position:relative}
     });
   }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Force-play videos: some browsers refuse autoplay until JS calls .play()
+  var videos = document.querySelectorAll('video[autoplay]');
+  videos.forEach(function(v){
+    v.muted = true;
+    v.setAttribute('muted','');
+    v.playsInline = true;
+    // Try immediate play
+    var p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(function(){ /* autoplay blocked; will retry on intersection */ });
+  });
+
+  // Pause off-screen, resume when visible — saves bandwidth + bypasses some autoplay blockers
+  if ('IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          var p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(function(){});
+        } else {
+          v.pause();
+        }
+      });
+    }, {threshold:0.1});
+    videos.forEach(function(v){ vio.observe(v); });
+  }
 })();
 </script>
 
