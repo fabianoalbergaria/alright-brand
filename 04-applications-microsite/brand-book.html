@@ -405,28 +405,63 @@ section{position:relative}
   .logo-grid{grid-template-columns:repeat(2,1fr)}
   .motion-grid{grid-template-columns:repeat(2,1fr)}
   .bigidea__grid{grid-template-columns:1fr}
-  .swatch{grid-template-columns:1fr;text-align:left}
-  .swatch__chip{justify-self:start}
-  .manifesto{grid-template-columns:1fr}
+  .swatch{text-align:left}
+  .manifesto{grid-template-columns:1fr;min-height:auto}
   .manifesto--flip .manifesto__text{order:1}
   .manifesto--flip .manifesto__media{order:2}
-  .house{grid-auto-rows:160px}
+  .manifesto__media{min-height:320px}
+  .house{grid-auto-rows:180px;grid-template-columns:repeat(6,1fr)}
+  .house__tile{grid-column:span 3 !important;grid-row:auto !important}
+  .house__tile.col-7,.house__tile.col-8,.house__tile.col-12{grid-column:span 6 !important}
+  .type-grid{grid-template-columns:repeat(2,1fr)}
+  .apps{grid-template-columns:repeat(6,1fr)}
 }
 @media (max-width:768px){
+  :root{--pad-section:88px}
   .col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-12{grid-column:span 12}
   .logo-grid{grid-template-columns:1fr}
   .motion-grid{grid-template-columns:1fr}
   .dodont{grid-template-columns:1fr}
   .nav__brand{display:none}
+  .nav{padding:6px 8px;max-width:calc(100vw - 16px)}
+  .hero{padding:96px 20px 80px}
   .hero__title{font-size:clamp(56px,16vw,120px)}
+  .hero__sub{font-size:11px}
   .bigidea__title{font-size:clamp(72px,22vw,180px)}
   .apps{grid-template-columns:1fr}
-  .house{grid-auto-rows:140px}
+  .house{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .house__tile{grid-column:span 1 !important;grid-row:auto !important}
+  .house__tile.col-7,.house__tile.col-8,.house__tile.col-12{grid-column:span 2 !important}
+  .type-grid{grid-template-columns:1fr}
+  .section-pad{padding-left:20px;padding-right:20px}
+  .swatch{padding:64px 20px;min-height:auto}
+  .swatch__meta .name{font-size:clamp(40px,12vw,72px)}
+  .h-lg{font-size:clamp(36px,9vw,72px)}
+  .h-md{font-size:clamp(24px,7vw,40px)}
+  .h-mega{font-size:clamp(48px,14vw,96px) !important}
+  .body{font-size:16px;line-height:1.55}
+  .card{padding:24px}
+  .manifesto__text{padding:32px 20px}
+  .manifesto__media{min-height:260px}
+  .footer{padding:64px 20px}
+  .footer__lockup img{max-width:90vw}
+  .dodont__col{padding:24px}
+  .logo-hero img{max-width:84vw}
 }
 @media (max-width:480px){
-  :root{--pad-section:48px}
-  .nav{top:10px;padding:6px 8px}
-  .nav a.nav__link{padding:6px 10px;font-size:10.5px}
+  :root{--pad-section:72px;--gap-card:14px}
+  .nav{top:8px;padding:5px 6px;gap:0}
+  .nav a.nav__link{padding:6px 9px;font-size:10px;letter-spacing:.08em}
+  .house{grid-template-columns:1fr;grid-auto-rows:200px}
+  .house__tile,.house__tile.col-7,.house__tile.col-8,.house__tile.col-12{grid-column:span 1 !important}
+  .sticker{font-size:10px;padding:5px 9px}
+  .hero__title{font-size:clamp(48px,15vw,96px)}
+  .bigidea__title{font-size:clamp(56px,20vw,120px)}
+  .h-lg{font-size:clamp(32px,9vw,56px)}
+  .h-mega{font-size:clamp(40px,13vw,80px) !important}
+  .swatch__meta .name{font-size:clamp(36px,11vw,56px)}
+  .app-tile--card .name{font-size:24px}
+  .footer__row{flex-wrap:wrap;gap:8px;font-size:12px}
 }
 
 /* ---------- Reduced motion ---------- */
