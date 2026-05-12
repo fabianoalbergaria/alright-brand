@@ -47,3 +47,15 @@ tokens/build/
 
 # Bootstrap state
 .bootstrap-cache/
+
+# Originais pesados — manter local, versão web vai em assets/work/web/
+assets/work/real/
+assets/work/mood/
+assets/work/ai/
+!assets/work/web/
+!assets/work/README.md
+
+# Tools (Node deps, fonts auxiliares, scripts geradores)
+tools/node_modules/
+tools/fonts/
+
