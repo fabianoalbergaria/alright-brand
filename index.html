@@ -253,6 +253,60 @@ section{position:relative}
 article{margin:0;padding:0;display:block}
 .case>*{min-width:0}
 .case__media{position:relative;overflow:hidden;min-height:380px;background:#000;width:100%;height:100%}
+
+/* ---------- Clickable video (lightbox trigger) ---------- */
+[data-vimeo-id]{cursor:pointer;position:relative}
+[data-vimeo-id]::after{
+  content:'';
+  position:absolute;inset:0;z-index:3;
+  background:rgba(20,20,19,0);
+  transition:background .35s var(--ease-cine);
+  pointer-events:none;
+}
+[data-vimeo-id]::before{
+  content:'';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.7);
+  width:88px;height:88px;border-radius:50%;
+  background:var(--orange-clay);
+  z-index:4;
+  opacity:0;
+  transition:opacity .35s var(--ease-cine), transform .6s var(--ease-cine);
+  pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23141413'><path d='M11 8l14 8-14 8z'/></svg>");
+  background-repeat:no-repeat;background-position:center;background-size:36px 36px;
+}
+[data-vimeo-id]:hover::after{background:rgba(20,20,19,0.32)}
+[data-vimeo-id]:hover::before{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* ---------- Vimeo modal ---------- */
+.vimeo-modal{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(20,20,19,0.96);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:clamp(20px,5vw,80px);
+  opacity:0;
+  transition:opacity .35s var(--ease-cine);
+}
+.vimeo-modal[aria-hidden="false"]{display:flex;opacity:1}
+.vimeo-modal__inner{
+  position:relative;width:100%;max-width:1400px;
+  aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,0.5);
+}
+.vimeo-modal__frame{position:absolute;inset:0;background:#000}
+.vimeo-modal__frame iframe{width:100%;height:100%;border:0;display:block}
+.vimeo-modal__close{
+  position:fixed;top:24px;right:24px;
+  width:48px;height:48px;border-radius:999px;
+  background:var(--bone);color:var(--dark);
+  border:0;cursor:pointer;
+  font-family:var(--font-mono);font-size:24px;font-weight:300;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s var(--ease-cine), transform .3s var(--ease-cine);
+  z-index:10000;
+}
+.vimeo-modal__close:hover{background:var(--orange-clay);transform:rotate(90deg)}
 .case__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .case__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .case[aria-labelledby="case-olympikus"] .case__media video{object-fit:cover}
@@ -472,28 +526,28 @@ article{margin:0;padding:0;display:block}
   </div>
   <div class="case__media">
     <div class="series-grid" aria-label="Chupa Chups · série">
-      <div>
+      <div data-vimeo-id="1191600944" data-vimeo-title="Chupa Chups · Art Gallery" role="button" tabindex="0">
         <video autoplay muted loop playsinline preload="metadata"
           poster="assets/work/web/chupa-chups-art-gallery-poster.jpg"
           aria-label="Chupa Chups · Art Gallery">
           <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-art-gallery.mp4" type="video/mp4" />
         </video>
       </div>
-      <div>
+      <div data-vimeo-id="1191600943" data-vimeo-title="Chupa Chups · Surreal Dream" role="button" tabindex="0">
         <video autoplay muted loop playsinline preload="metadata"
           poster="assets/work/web/chupa-chups-surreal-dream-poster.jpg"
           aria-label="Chupa Chups · Surreal Dream">
           <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" />
         </video>
       </div>
-      <div>
+      <div data-vimeo-id="1191600942" data-vimeo-title="Chupa Chups · Surreal Unboxing" role="button" tabindex="0">
         <video autoplay muted loop playsinline preload="metadata"
           poster="assets/work/web/chupa-chups-surreal-unboxing-poster.jpg"
           aria-label="Chupa Chups · Surreal Unboxing">
           <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-unboxing.mp4" type="video/mp4" />
         </video>
       </div>
-      <div>
+      <div data-vimeo-id="1191599456" data-vimeo-title="Chupa Chups · Forever Fun" role="button" tabindex="0">
         <video autoplay muted loop playsinline preload="metadata"
           poster="assets/work/web/chupa-chups-forever-fun-poster.jpg"
           aria-label="Chupa Chups · Forever Fun">
@@ -510,7 +564,7 @@ article{margin:0;padding:0;display:block}
     <h3 id="case-olympikus" class="case__title">Olympikus.<br/>Corre 5.</h3>
     <p class="case__copy">Lançamento do novo modelo Corre 5.</p>
   </div>
-  <div class="case__media">
+  <div class="case__media" data-vimeo-id="1191598803" data-vimeo-title="Olympikus · Corre 5" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
       poster="assets/work/web/olympikus-corre5-full-poster.jpg"
       aria-label="Olympikus Corre 5">
@@ -525,7 +579,7 @@ article{margin:0;padding:0;display:block}
     <h3 id="case-puma" class="case__title">PUMA<br/>Portugal.</h3>
     <p class="case__copy">Lançamento da nova camisa da seleção de Portugal.</p>
   </div>
-  <div class="case__media">
+  <div class="case__media" data-vimeo-id="1191599038" data-vimeo-title="PUMA Portugal" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
       poster="assets/work/web/puma-portugal-poster.jpg"
       aria-label="PUMA Portugal">
@@ -540,7 +594,7 @@ article{margin:0;padding:0;display:block}
     <h3 id="case-mizuno" class="case__title">Mizuno x<br/>Botafogo.</h3>
     <p class="case__copy">Lançamento da Collab com o Botafogo F.R.</p>
   </div>
-  <div class="case__media">
+  <div class="case__media" data-vimeo-id="1191597286" data-vimeo-title="Mizuno x Botafogo" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
       poster="assets/work/web/mizuno-botafogo-poster.jpg"
       aria-label="Mizuno x Botafogo">
@@ -555,7 +609,7 @@ article{margin:0;padding:0;display:block}
     <h3 id="case-negra-li" class="case__title">Negra Li<br/>Lollapalooza.</h3>
     <p class="case__copy">Série de visuais para comemoração de 20 anos de carreira no Lollapalooza 2026.</p>
   </div>
-  <div class="case__media">
+  <div class="case__media" data-vimeo-id="1192041713" data-vimeo-title="Negra Li · Lollapalooza" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
       poster="assets/work/web/negra-li-visual-poster.jpg"
       aria-label="Negra Li">
@@ -606,6 +660,14 @@ article{margin:0;padding:0;display:block}
 </footer>
 
 </main>
+
+<!-- ===================== VIMEO LIGHTBOX ===================== -->
+<div id="vimeoModal" class="vimeo-modal" aria-hidden="true" role="dialog" aria-label="Player de vídeo Vimeo">
+  <button class="vimeo-modal__close" type="button" aria-label="Fechar player">×</button>
+  <div class="vimeo-modal__inner">
+    <div class="vimeo-modal__frame" id="vimeoFrame"></div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -665,6 +727,55 @@ article{margin:0;padding:0;display:block}
     }, {threshold:0.1});
     videos.forEach(function(v){ vio.observe(v); });
   }
+})();
+
+// Vimeo lightbox
+(function(){
+  var modal = document.getElementById('vimeoModal');
+  if (!modal) return;
+  var frame = document.getElementById('vimeoFrame');
+  var closeBtn = modal.querySelector('.vimeo-modal__close');
+  var lastFocus = null;
+
+  function open(id, title){
+    if (!id) return;
+    lastFocus = document.activeElement;
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.title = title || 'Vimeo player';
+    frame.innerHTML = '';
+    frame.appendChild(iframe);
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close(){
+    modal.setAttribute('aria-hidden', 'true');
+    frame.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') close();
+  });
+
+  // Wire all clickable videos
+  document.querySelectorAll('[data-vimeo-id]').forEach(function(el){
+    el.addEventListener('click', function(){
+      open(el.getAttribute('data-vimeo-id'), el.getAttribute('data-vimeo-title'));
+    });
+    el.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(el.getAttribute('data-vimeo-id'), el.getAttribute('data-vimeo-title'));
+      }
+    });
+  });
 })();
 </script>
 
