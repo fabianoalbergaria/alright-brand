@@ -350,6 +350,8 @@ section{position:relative}
 /* ---------- Reveal animations ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease-cine), transform .8s var(--ease-cine)}
 .reveal.is-visible{opacity:1;transform:none}
+/* Full-bleed sections must not translate — would create gaps between sections */
+.case.reveal,.manifesto.reveal{transform:none}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
