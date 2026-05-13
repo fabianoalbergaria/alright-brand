@@ -255,15 +255,15 @@ article{margin:0;padding:0;display:block}
 .case__media{position:relative;overflow:hidden;min-height:380px;background:#000;width:100%;height:100%}
 
 /* ---------- Clickable video (lightbox trigger) ---------- */
-[data-vimeo-id]{cursor:pointer;position:relative}
-[data-vimeo-id]::after{
+[data-vimeo-id],[data-video-src]{cursor:pointer;position:relative}
+[data-vimeo-id]::after,[data-video-src]::after{
   content:'';
   position:absolute;inset:0;z-index:3;
   background:rgba(20,20,19,0);
   transition:background .35s var(--ease-cine);
   pointer-events:none;
 }
-[data-vimeo-id]::before{
+[data-vimeo-id]::before,[data-video-src]::before{
   content:'';
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.7);
   width:88px;height:88px;border-radius:50%;
@@ -275,8 +275,8 @@ article{margin:0;padding:0;display:block}
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23141413'><path d='M11 8l14 8-14 8z'/></svg>");
   background-repeat:no-repeat;background-position:center;background-size:36px 36px;
 }
-[data-vimeo-id]:hover::after{background:rgba(20,20,19,0.32)}
-[data-vimeo-id]:hover::before{opacity:1;transform:translate(-50%,-50%) scale(1)}
+[data-vimeo-id]:hover::after,[data-video-src]:hover::after{background:rgba(20,20,19,0.32)}
+[data-vimeo-id]:hover::before,[data-video-src]:hover::before{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ---------- Vimeo modal ---------- */
 .vimeo-modal{
@@ -617,6 +617,21 @@ article{margin:0;padding:0;display:block}
   </div>
 </article>
 
+<!-- ===================== CASE 06 · BRIME ===================== -->
+<article class="case case--flip bg-bone reveal" aria-labelledby="case-brime">
+  <div class="case__text">
+    <h3 id="case-brime" class="case__title">Brime.<br/>Tem uma sexta<br/>na minha quarta.</h3>
+    <p class="case__copy">Clipe com Febem, Fllezus e Cesrv.</p>
+  </div>
+  <div class="case__media" data-video-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/brime-sexta-na-quarta-full.mp4" data-video-title="Brime · Tem uma sexta na minha quarta" role="button" tabindex="0">
+    <video autoplay muted loop playsinline preload="metadata"
+      poster="assets/work/web/brime-sexta-na-quarta-poster.jpg"
+      aria-label="Brime · Tem uma sexta na minha quarta">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/brime-sexta-na-quarta.mp4" type="video/mp4" />
+    </video>
+  </div>
+</article>
+
 <!-- ===================== CONTATO ===================== -->
 <section id="contato" class="contact" aria-labelledby="contato-title">
   <span class="eyebrow reveal" style="display:block;margin-bottom:18px">05 — Falar com a gente</span>
@@ -736,16 +751,35 @@ article{margin:0;padding:0;display:block}
   var closeBtn = modal.querySelector('.vimeo-modal__close');
   var lastFocus = null;
 
-  function open(id, title){
-    if (!id) return;
-    lastFocus = document.activeElement;
+  function openVimeo(id, title){
     var iframe = document.createElement('iframe');
     iframe.src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
     iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
     iframe.setAttribute('allowfullscreen', '');
     iframe.title = title || 'Vimeo player';
+    return iframe;
+  }
+  function openVideo(src, title){
+    var v = document.createElement('video');
+    v.src = src;
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    v.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000';
+    v.title = title || '';
+    return v;
+  }
+  function open(el){
+    lastFocus = document.activeElement;
+    var id = el.getAttribute('data-vimeo-id');
+    var src = el.getAttribute('data-video-src');
+    var title = el.getAttribute('data-vimeo-title') || el.getAttribute('data-video-title') || '';
+    var node;
+    if (id) node = openVimeo(id, title);
+    else if (src) node = openVideo(src, title);
+    else return;
     frame.innerHTML = '';
-    frame.appendChild(iframe);
+    frame.appendChild(node);
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
@@ -763,16 +797,11 @@ article{margin:0;padding:0;display:block}
     if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') close();
   });
 
-  // Wire all clickable videos
-  document.querySelectorAll('[data-vimeo-id]').forEach(function(el){
-    el.addEventListener('click', function(){
-      open(el.getAttribute('data-vimeo-id'), el.getAttribute('data-vimeo-title'));
-    });
+  // Wire all clickable videos (Vimeo ID or direct video src)
+  document.querySelectorAll('[data-vimeo-id],[data-video-src]').forEach(function(el){
+    el.addEventListener('click', function(){ open(el); });
     el.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        open(el.getAttribute('data-vimeo-id'), el.getAttribute('data-vimeo-title'));
-      }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el); }
     });
   });
 })();
