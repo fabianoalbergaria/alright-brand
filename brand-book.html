@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Alright — Brand Book v1.0</title>
+<meta name="description" content="Brand book da Alright. Produtora audiovisual A.I. first. ((Look again.))" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  --orange-clay:#d97757;
+  --clay-deep:#8c4a32;
+  --bone:#faf9f5;
+  --mist:#ece8dc;
+  --dark:#141413;
+  --stone:#3d3a35;
+  --slate-warm:#5b5750;
+
+  --ease-cine:cubic-bezier(0.16,1.0,0.3,1.0);
+
+  --font-sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-card:20px;
+  --radius-pill:999px;
+
+  --pad-section:clamp(48px,7vw,128px);
+  --gap-card:clamp(16px,1.4vw,28px);
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bone);
+  color:var(--dark);
+  font-weight:400;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- Skip link ---------- */
+.skip{
+  position:fixed;top:8px;left:8px;z-index:9999;
+  background:var(--dark);color:var(--bone);
+  padding:10px 16px;border-radius:var(--radius-pill);
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  transform:translateY(-200%);transition:transform .4s var(--ease-cine);
+}
+.skip:focus{transform:translateY(0)}
+
+/* ---------- Type scale ---------- */
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate-warm);
+}
+.h-mega{
+  font-size:clamp(80px,12vw,280px);
+  font-weight:300;line-height:.92;letter-spacing:-0.025em;
+  margin:0;
+}
+.h-xl{
+  font-size:clamp(48px,6vw,96px);
+  font-weight:400;line-height:1.0;letter-spacing:-0.02em;
+  margin:0;
+}
+.h-lg{
+  font-size:clamp(32px,4vw,64px);
+  font-weight:500;line-height:1.05;letter-spacing:-0.015em;
+  margin:0;
+}
+.h-md{
+  font-size:clamp(22px,2.2vw,32px);
+  font-weight:500;line-height:1.15;letter-spacing:-0.01em;
+  margin:0;
+}
+.body{
+  font-size:clamp(16px,1.2vw,19px);
+  line-height:1.55;color:var(--stone);font-weight:400;
+}
+.body-on-dark{color:#cfcbc1}
+.mono{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em}
+.mono-caps{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- Nav pill ---------- */
+.nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  z-index:1000;
+  display:flex;align-items:center;gap:6px;
+  padding:8px 8px 8px 14px;
+  background:rgba(250,249,245,0.72);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(20,20,19,0.08);
+  border-radius:var(--radius-pill);
+  transition:transform .6s var(--ease-cine), padding .4s var(--ease-cine), background .4s var(--ease-cine);
+  max-width:calc(100vw - 24px);
+}
+.nav.is-scrolled{padding:6px 6px 6px 12px;background:rgba(250,249,245,0.92)}
+.nav__brand{
+  font-family:var(--font-sans);font-weight:400;font-size:15px;letter-spacing:-0.01em;color:var(--dark);
+  margin-right:8px;
+}
+.nav__brand b{font-weight:700}
+.nav__links{display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.nav__links::-webkit-scrollbar{display:none}
+.nav a.nav__link{
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--stone);
+  padding:8px 12px;border-radius:var(--radius-pill);
+  white-space:nowrap;
+  transition:background .3s var(--ease-cine), color .3s var(--ease-cine);
+}
+.nav a.nav__link:hover{background:var(--dark);color:var(--bone)}
+
+/* ---------- Stickers ---------- */
+.sticker{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 12px;border-radius:var(--radius-pill);
+  background:var(--orange-clay);color:var(--dark);
+  white-space:nowrap;
+  box-shadow:0 1px 0 rgba(20,20,19,0.06);
+}
+.sticker--mist{background:var(--mist);color:var(--stone)}
+.sticker--dark{background:var(--dark);color:var(--bone)}
+.sticker--bone{background:var(--bone);color:var(--dark);border:1px solid rgba(20,20,19,0.12)}
+.sticker--clay-deep{background:var(--clay-deep);color:var(--bone)}
+.sticker--ghost-bone{background:transparent;border:1px solid rgba(250,249,245,0.4);color:var(--bone)}
+.rot-3{transform:rotate(-3deg)}
+.rot3{transform:rotate(3deg)}
+.rot-2{transform:rotate(-2deg)}
+.rot2{transform:rotate(2deg)}
+.rot-1{transform:rotate(-1.5deg)}
+.rot1{transform:rotate(1.5deg)}
+
+/* ---------- Sections ---------- */
+section{position:relative}
+.section-pad{padding:var(--pad-section) clamp(20px,4vw,72px)}
+.bg-bone{background:var(--bone);color:var(--dark)}
+.bg-mist{background:var(--mist);color:var(--dark)}
+.bg-dark{background:var(--dark);color:var(--bone)}
+.bg-stone{background:var(--stone);color:var(--bone)}
+.bg-slate{background:var(--slate-warm);color:var(--bone)}
+.bg-orange{background:var(--orange-clay);color:var(--dark)}
+.bg-clay-deep{background:var(--clay-deep);color:var(--bone)}
+
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  margin-bottom:clamp(32px,4vw,64px);flex-wrap:wrap;
+}
+.section-head__title{max-width:780px}
+.section-head__title .h-lg{margin-top:14px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100vh;min-height:640px;width:100%;overflow:hidden;background:var(--dark);color:var(--bone)}
+.hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) contrast(1.02)}
+.hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,20,19,0.55) 0%, rgba(20,20,19,0.25) 35%, rgba(20,20,19,0.65) 100%)}
+.hero__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(96px,10vw,120px) clamp(20px,4vw,72px) clamp(40px,5vw,72px)}
+.hero__center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
+.hero__title{font-size:clamp(72px,15vw,260px);font-weight:200;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
+.hero__title .paren{color:var(--orange-clay);font-weight:300}
+.hero__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.78)}
+.hero__cue{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.7)}
+.hero__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay);animation:pulse 2.4s var(--ease-cine) infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
+.hero__topbar{display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;flex-wrap:wrap}
+.hero__chips{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- Bento (section 2) ---------- */
+.bento{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(160px,auto);
+  gap:var(--gap-card);
+}
+.card{
+  position:relative;
+  background:var(--bone);
+  border-radius:var(--radius-card);
+  padding:clamp(24px,2.4vw,44px);
+  overflow:hidden;
+  transition:transform .6s var(--ease-cine), box-shadow .6s var(--ease-cine);
+  border:1px solid rgba(20,20,19,0.06);
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 40px -20px rgba(20,20,19,0.25)}
+.card--dark{background:var(--dark);color:var(--bone);border-color:rgba(250,249,245,0.08)}
+.card--mist{background:var(--mist);border-color:rgba(20,20,19,0.05)}
+.card--stone{background:var(--stone);color:var(--bone);border-color:rgba(250,249,245,0.05)}
+.card--orange{background:var(--orange-clay);color:var(--dark);border-color:transparent}
+.card--clay{background:var(--clay-deep);color:var(--bone);border-color:transparent}
+.card--media{padding:0}
+.card__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card__media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 40%, rgba(20,20,19,0.55) 100%)}
+.card__sticker{position:absolute}
+.card__sticker.tl{top:18px;left:18px}
+.card__sticker.tr{top:18px;right:18px}
+.card__sticker.bl{bottom:18px;left:18px}
+.card__sticker.br{bottom:18px;right:18px}
+.card__label{position:absolute;bottom:18px;left:22px;color:var(--bone);font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;z-index:2}
+.card__big{font-size:clamp(36px,5.5vw,84px);font-weight:300;line-height:.98;letter-spacing:-0.02em;margin:0}
+.card__small{font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--stone)}
+.card--dark .card__small,.card--stone .card__small,.card--clay .card__small{color:#cfcbc1}
+
+.col-3{grid-column:span 3}
+.col-4{grid-column:span 4}
+.col-5{grid-column:span 5}
+.col-6{grid-column:span 6}
+.col-7{grid-column:span 7}
+.col-8{grid-column:span 8}
+.col-9{grid-column:span 9}
+.col-12{grid-column:span 12}
+.row-2{grid-row:span 2}
+.row-3{grid-row:span 3}
+
+/* ---------- Big idea (section 3) ---------- */
+.bigidea{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center}
+.bigidea__title{
+  font-size:clamp(96px,20vw,440px);font-weight:200;line-height:.92;letter-spacing:-0.035em;
+  margin:0;color:var(--bone);
+}
+.bigidea__title .paren{color:var(--orange-clay);font-weight:300}
+.bigidea__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,80px);
+  margin-top:clamp(48px,6vw,96px);text-align:left;align-items:center;
+}
+.bigidea__copy p{color:#cfcbc1;font-size:clamp(17px,1.4vw,22px);line-height:1.55;margin:0 0 18px}
+.bigidea__copy p strong{color:var(--bone);font-weight:500}
+.bigidea__img{border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/5;background:#000}
+.bigidea__img img,.bigidea__img video{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- Manifestos (section 4) ---------- */
+.manifesto{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:62vh;
+}
+.manifesto__text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,6vw,96px);position:relative;
+}
+.manifesto__text .h-mega{font-size:clamp(56px,9vw,160px)}
+.manifesto__media{position:relative;overflow:hidden;min-height:380px}
+.manifesto__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.manifesto__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.manifesto__media .vimeo-bg{position:absolute;top:50%;left:50%;width:100%;height:100%;min-width:177.78%;min-height:100%;border:0;transform:translate(-50%,-50%);pointer-events:none;background:#000}
+.manifesto--flip .manifesto__text{order:2}
+.manifesto--flip .manifesto__media{order:1}
+.manifesto__caption{position:absolute;bottom:24px;left:24px}
+.manifesto__sticker{position:absolute;top:32px;right:32px}
+
+/* ---------- Logo system (section 5) ---------- */
+.logo-hero{display:flex;justify-content:center;padding:clamp(24px,4vw,72px) 0}
+.logo-hero img{max-width:min(620px,80vw);width:100%;height:auto}
+.logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap-card)}
+.logo-tile{
+  position:relative;aspect-ratio:1.15/1;border-radius:var(--radius-card);
+  display:flex;align-items:center;justify-content:center;padding:32px;
+  overflow:hidden;border:1px solid rgba(20,20,19,0.06);
+  transition:transform .6s var(--ease-cine);
+}
+.logo-tile:hover{transform:translateY(-4px)}
+.logo-tile img{max-width:78%;max-height:60%;width:auto;height:auto}
+.logo-tile__label{position:absolute;bottom:18px;left:22px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+.logo-tile--bone{background:var(--bone)} .logo-tile--bone .logo-tile__label{color:var(--stone)}
+.logo-tile--dark{background:var(--dark)} .logo-tile--dark .logo-tile__label{color:#cfcbc1}
+.logo-tile--mist{background:var(--mist)} .logo-tile--mist .logo-tile__label{color:var(--stone)}
+.logo-tile--orange{background:var(--orange-clay)} .logo-tile--orange .logo-tile__label{color:var(--dark)}
+
+.banner{padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px);text-align:center;position:relative}
+.banner img{max-width:min(720px,86vw);margin:0 auto;height:auto}
+.banner__caption{margin-top:18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.banner__sticker{position:absolute;top:32px;right:32px}
+
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-card);margin-top:clamp(40px,5vw,64px)}
+.dodont__col{padding:clamp(24px,2.4vw,40px);border-radius:var(--radius-card);background:var(--bone);border:1px solid rgba(20,20,19,0.06)}
+.dodont__col--do{border-left:4px solid #4f7a4a}
+.dodont__col--dont{border-left:4px solid #b04a3a}
+.dodont__head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.dodont__icon{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:600;font-size:13px;color:var(--bone)}
+.dodont__icon.ok{background:#4f7a4a}
+.dodont__icon.no{background:#b04a3a}
+.dodont__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.dodont__list li{padding:10px 0;border-top:1px dashed rgba(20,20,19,0.12);color:var(--stone);font-size:15.5px;line-height:1.5}
+.dodont__list li:first-child{border-top:0}
+
+/* ---------- Typography (section 6) ---------- */
+.type-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap-card)}
+.type-spec{font-size:clamp(48px,6vw,96px);font-weight:400;line-height:1;letter-spacing:-0.02em}
+.type-weights{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+.type-weights span{font-size:clamp(22px,2.4vw,32px);line-height:1.1}
+.type-weights .w200{font-weight:200}
+.type-weights .w300{font-weight:300}
+.type-weights .w400{font-weight:400}
+.type-weights .w500{font-weight:500}
+.type-weights .w-l{font-weight:400}
+.type-weights .w-l b{font-weight:700}
+.type-mono-demo{font-family:var(--font-mono);font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:var(--stone)}
+.type-mono-demo .c{color:var(--clay-deep)}
+.type-img{position:relative;border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/3}
+.type-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.type-img__overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:32px;background:linear-gradient(180deg,rgba(20,20,19,0) 50%, rgba(20,20,19,0.7) 100%);color:var(--bone)}
+.type-img__overlay span{font-size:clamp(28px,3vw,48px);font-weight:300;line-height:1;letter-spacing:-0.015em}
+
+/* ---------- Color palette (section 7) ---------- */
+.swatch{
+  min-height:80vh;display:flex;align-items:center;
+  padding:clamp(40px,6vw,96px) clamp(20px,4vw,72px);
+}
+.swatch__meta{max-width:760px}
+.swatch__chip{
+  border-radius:var(--radius-card);aspect-ratio:1/1;width:min(420px,80vw);justify-self:end;
+  box-shadow:0 1px 0 rgba(20,20,19,0.08) inset;
+}
+.swatch__meta .eyebrow{margin-bottom:14px}
+.swatch__meta .name{font-size:clamp(48px,6vw,88px);font-weight:300;letter-spacing:-0.02em;line-height:.95;margin:0 0 14px}
+.swatch__meta .hex{font-family:var(--font-mono);font-size:clamp(15px,1.2vw,18px);letter-spacing:.06em}
+.swatch__meta p{margin:14px 0 0;max-width:42ch}
+.swatch__tokens{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px}
+.swatch__tokens code{font-family:var(--font-mono);font-size:12px;padding:6px 10px;border-radius:8px;background:rgba(20,20,19,0.08)}
+.bg-dark .swatch__tokens code,.bg-stone .swatch__tokens code,.bg-slate .swatch__tokens code,.bg-clay-deep .swatch__tokens code{background:rgba(250,249,245,0.1);color:var(--bone)}
+
+/* ---------- House look (section 8) ---------- */
+.house{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;grid-auto-flow:dense;gap:var(--gap-card)}
+.house__tile{position:relative;border-radius:var(--radius-card);overflow:hidden;background:#000}
+.house__tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.house__tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.house__tile .sticker{position:absolute;left:18px;bottom:18px;z-index:2}
+.house__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 55%,rgba(20,20,19,0.55) 100%)}
+
+/* ---------- Motion (section 9) ---------- */
+.motion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap-card)}
+.motion-card{
+  position:relative;background:#1c1c1b;border:1px solid rgba(250,249,245,0.08);
+  border-radius:var(--radius-card);padding:32px;min-height:300px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.motion-card h3{font-family:var(--font-sans);font-weight:500;font-size:22px;margin:0 0 6px;letter-spacing:-0.01em;color:var(--bone)}
+.motion-card .mono{display:block;color:#a59f93;margin-bottom:20px}
+.motion-track{position:relative;height:6px;background:rgba(250,249,245,0.12);border-radius:999px;overflow:hidden;margin-top:auto}
+.motion-dot{position:absolute;top:50%;transform:translate(0,-50%);width:18px;height:18px;border-radius:50%;background:var(--orange-clay);left:0;animation-duration:2.6s;animation-iteration-count:infinite;animation-fill-mode:both}
+.motion-card[data-easing="cinematic"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.16,1.0,0.3,1.0)}
+.motion-card[data-easing="standard"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.4,0,0.2,1)}
+.motion-card[data-easing="decelerate"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0,0,0.2,1)}
+.motion-card[data-easing="accelerate"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.4,0,1,1)}
+@keyframes slide{0%{left:0}50%{left:calc(100% - 18px)}100%{left:0}}
+
+/* ---------- Applications (section 10) ---------- */
+.apps{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap-card)}
+.app-tile{
+  background:var(--bone);border:1px solid rgba(20,20,19,0.08);border-radius:var(--radius-card);
+  padding:24px;min-height:260px;position:relative;overflow:hidden;
+  transition:transform .6s var(--ease-cine);
+}
+.app-tile:hover{transform:translateY(-4px)}
+.app-tile__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-warm);margin-bottom:14px}
+.app-tile--card{display:flex;flex-direction:column;justify-content:space-between}
+.app-tile--card .name{font-size:28px;font-weight:400;letter-spacing:-0.01em}
+.app-tile--card .name b{font-weight:700}
+.app-tile--card .meta{font-family:var(--font-mono);font-size:12px;color:var(--slate-warm);line-height:1.6;margin-top:8px}
+.app-tile--social{background:var(--dark);color:var(--bone);padding:0;overflow:hidden}
+.app-tile--social .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.app-tile--social .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(180deg,rgba(20,20,19,0) 40%,rgba(20,20,19,0.78) 100%);color:var(--bone)}
+.app-tile--social .overlay .hd{font-size:28px;font-weight:400;letter-spacing:-0.01em;line-height:1;margin:0}
+.app-tile--deck{background:var(--mist);display:flex;flex-direction:column;justify-content:space-between}
+.app-tile--deck .num{font-family:var(--font-mono);font-size:12px;color:var(--slate-warm)}
+.app-tile--deck .title{font-size:32px;font-weight:300;letter-spacing:-0.015em;line-height:1.05;margin:0}
+.app-tile--email{background:var(--bone);font-family:var(--font-mono);font-size:13px;color:var(--stone);line-height:1.7;display:flex;flex-direction:column;justify-content:space-between}
+.app-tile--email .sig{margin-top:14px;font-family:var(--font-sans);font-size:15px;color:var(--dark)}
+.app-tile--email .sig b{font-weight:700}
+.app-tile--poster{padding:0;overflow:hidden}
+.app-tile--poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.app-tile--poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.app-tile--poster .badge{position:absolute;left:18px;bottom:18px;z-index:2}
+
+/* ---------- Footer / Governance ---------- */
+.footer{padding:clamp(80px,9vw,140px) clamp(20px,4vw,72px) 56px;text-align:center;background:var(--dark);color:var(--bone)}
+.footer__lockup{display:flex;justify-content:center}
+.footer__lockup img{max-width:min(720px,80vw);height:auto}
+.footer__meta{margin-top:clamp(40px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:18px}
+.footer__row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9d978a}
+.footer__row span{display:inline-flex;align-items:center;gap:8px}
+.footer__row span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--orange-clay);display:inline-block}
+.footer__brand{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer__brand img{width:120px;height:auto}
+.footer__year{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7a7468}
+
+/* ---------- Reveal animations ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease-cine), transform .8s var(--ease-cine)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .col-3,.col-4{grid-column:span 6}
+  .col-5,.col-6,.col-7,.col-8,.col-9{grid-column:span 12}
+  .logo-grid{grid-template-columns:repeat(2,1fr)}
+  .motion-grid{grid-template-columns:repeat(2,1fr)}
+  .bigidea__grid{grid-template-columns:1fr}
+  .swatch{text-align:left}
+  .manifesto{grid-template-columns:1fr;min-height:auto}
+  .manifesto--flip .manifesto__text{order:1}
+  .manifesto--flip .manifesto__media{order:2}
+  .manifesto__media{min-height:320px}
+  .house{grid-auto-rows:180px;grid-template-columns:repeat(6,1fr)}
+  .house__tile{grid-column:span 3 !important;grid-row:auto !important}
+  .house__tile.col-7,.house__tile.col-8,.house__tile.col-12{grid-column:span 6 !important}
+  .type-grid{grid-template-columns:repeat(2,1fr)}
+  .apps{grid-template-columns:repeat(6,1fr)}
+}
+@media (max-width:768px){
+  :root{--pad-section:88px}
+  .col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-12{grid-column:span 12}
+  .logo-grid{grid-template-columns:1fr}
+  .motion-grid{grid-template-columns:1fr}
+  .dodont{grid-template-columns:1fr}
+  .nav__brand{display:none}
+  .nav{padding:6px 8px;max-width:calc(100vw - 16px)}
+  .hero{padding:96px 20px 80px}
+  .hero__title{font-size:clamp(56px,16vw,120px)}
+  .hero__sub{font-size:11px}
+  .bigidea__title{font-size:clamp(72px,22vw,180px)}
+  .apps{grid-template-columns:1fr}
+  .house{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .house__tile{grid-column:span 1 !important;grid-row:auto !important}
+  .house__tile.col-7,.house__tile.col-8,.house__tile.col-12{grid-column:span 2 !important}
+  .type-grid{grid-template-columns:1fr}
+  .section-pad{padding-left:20px;padding-right:20px}
+  .swatch{padding:64px 20px;min-height:auto}
+  .swatch__meta .name{font-size:clamp(40px,12vw,72px)}
+  .h-lg{font-size:clamp(36px,9vw,72px)}
+  .h-md{font-size:clamp(24px,7vw,40px)}
+  .h-mega{font-size:clamp(48px,14vw,96px) !important}
+  .body{font-size:16px;line-height:1.55}
+  .card{padding:24px}
+  .manifesto__text{padding:32px 20px}
+  .manifesto__media{min-height:260px}
+  .footer{padding:64px 20px}
+  .footer__lockup img{max-width:90vw}
+  .dodont__col{padding:24px}
+  .logo-hero img{max-width:84vw}
+}
+@media (max-width:480px){
+  :root{--pad-section:72px;--gap-card:14px}
+  .nav{top:8px;padding:5px 6px;gap:0}
+  .nav a.nav__link{padding:6px 9px;font-size:10px;letter-spacing:.08em}
+  .house{grid-template-columns:1fr;grid-auto-rows:200px}
+  .house__tile,.house__tile.col-7,.house__tile.col-8,.house__tile.col-12{grid-column:span 1 !important}
+  .sticker{font-size:10px;padding:5px 9px}
+  .hero__title{font-size:clamp(48px,15vw,96px)}
+  .bigidea__title{font-size:clamp(56px,20vw,120px)}
+  .h-lg{font-size:clamp(32px,9vw,56px)}
+  .h-mega{font-size:clamp(40px,13vw,80px) !important}
+  .swatch__meta .name{font-size:clamp(36px,11vw,56px)}
+  .app-tile--card .name{font-size:24px}
+  .footer__row{flex-wrap:wrap;gap:8px;font-size:12px}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+  video[autoplay]{display:none !important}
+  .hero__video{display:none}
+  .hero{background:var(--dark) url('assets/work/web/retrovisor-loop-poster.jpg') center/cover no-repeat}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav" aria-label="Navegação principal">
+  <span class="nav__brand">A<b>l</b>right</span>
+  <div class="nav__links">
+    <a class="nav__link" href="#whatweare">What</a>
+    <a class="nav__link" href="#bigidea">Big idea</a>
+    <a class="nav__link" href="#manifestos">Manifestos</a>
+    <a class="nav__link" href="#logo">Logo</a>
+    <a class="nav__link" href="#type">Type</a>
+    <a class="nav__link" href="#color">Color</a>
+    <a class="nav__link" href="#motion">Motion</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ===================== 1. HERO ===================== -->
+<section class="hero" aria-label="Hero">
+  <video class="hero__video" autoplay muted loop playsinline preload="metadata"
+    poster="assets/work/web/retrovisor-loop-poster.jpg"
+    aria-hidden="true">
+    <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/retrovisor-loop.mp4" type="video/mp4" />
+  </video>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <div class="hero__topbar">
+      <span class="mono-caps" style="color:rgba(250,249,245,.8)">Alright · Brand Book v1.0</span>
+      <div class="hero__chips">
+        <span class="sticker sticker--ghost-bone rot-2">(( look again ))</span>
+        <span class="sticker sticker--ghost-bone rot1">(( a.i. first ))</span>
+      </div>
+    </div>
+    <div class="hero__center">
+      <span class="hero__sub">Big idea</span>
+      <h1 class="hero__title"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></h1>
+      <span class="hero__sub">Produtora audiovisual · A.I. first · São Paulo / BR</span>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <span class="hero__cue"><span class="dot" aria-hidden="true"></span> scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. WHAT WE ARE ===================== -->
+<section id="whatweare" class="section-pad bg-bone" aria-labelledby="what-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">01 — Quem somos</span>
+      <h2 id="what-title" class="h-lg">Uma produtora. Sem câmera. Sem set. <br/>Puro Craft.</h2>
+    </div>
+    <span class="sticker sticker--mist rot-2">(( produtora ))</span>
+  </div>
+
+  <div class="bento">
+    <div class="card col-7 row-2 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:420px">
+      <span class="eyebrow">Posicionamento</span>
+      <p class="card__big">A.I. first Production Company.</p>
+      <p class="card__small" style="max-width:46ch">Boutique por dentro, escala por fora. Pensamos como diretores e entregamos como estúdio. <em>Não é sobre IA — é sobre cinema com IA.</em></p>
+    </div>
+
+    <div class="card card--media col-5 row-2 reveal" style="min-height:420px">
+      <img class="card__media" src="assets/work/web/puma-portugal-portrait.jpg" alt="Retrato editorial com pantera negra — campanha Puma Portugal" />
+      <span class="sticker card__sticker tl rot-2">(( editorial ))</span>
+      <span class="card__label">Puma Portugal · still</span>
+    </div>
+
+    <div class="card card--orange col-4 reveal" style="display:flex;align-items:center;justify-content:center;text-align:center;min-height:220px">
+      <p class="h-md" style="font-weight:500">Cada filme é um filme.</p>
+      <span class="sticker sticker--dark card__sticker tr rot2">(( PT only ))</span>
+    </div>
+
+    <div class="card card--media col-5 reveal" style="min-height:220px">
+      <video class="card__media" autoplay muted loop playsinline preload="metadata"
+        poster="assets/work/web/baile-do-brime-poster.jpg" aria-label="Loop Baile do Brime">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/baile-do-brime.mp4" type="video/mp4" />
+      </video>
+      <div class="card__media-overlay" aria-hidden="true"></div>
+      <span class="sticker sticker--ghost-bone card__sticker tl rot-1">(( cinematic ))</span>
+      <span class="card__label">Baile do Brime</span>
+    </div>
+
+    <div class="card card--dark col-3 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:220px">
+      <span class="eyebrow" style="color:#a59f93">Tier</span>
+      <p class="h-md" style="font-weight:500">Boutique<br/>output máquina.</p>
+      <span class="sticker sticker--bone rot2" style="align-self:flex-start">(( tier 1 ))</span>
+    </div>
+
+    <div class="card col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
+      <span class="eyebrow">Como pensamos</span>
+      <p class="card__small">Editorial-craft com quiet tech. Bone-first, sempre.</p>
+    </div>
+
+    <div class="card card--mist col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
+      <span class="eyebrow">Pra quem é</span>
+      <p class="card__small">Marcas, agências e diretores que querem cinema sem o overhead — postura editorial, ciclo curto, custo enxuto.</p>
+    </div>
+
+    <div class="card card--clay col-4 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:180px">
+      <span class="eyebrow" style="color:#f6dccd">Operação</span>
+      <p class="h-md" style="font-weight:500;color:var(--bone)">No camera or set. No high costs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. BIG IDEA ===================== -->
+<section id="bigidea" class="bg-dark bigidea" aria-labelledby="bigidea-title">
+  <span class="eyebrow reveal" style="color:#a59f93">02 — Big idea cravada</span>
+  <h2 id="bigidea-title" class="bigidea__title reveal" style="margin-top:18px">
+    <span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span>
+  </h2>
+
+  <div class="bigidea__grid">
+    <div class="bigidea__copy reveal">
+      <p><strong>Look again.</strong> A marca convida o público a descobrir, não explica. Cada peça pede um segundo olhar — porque o primeiro nunca conta tudo.</p>
+      <p>É um manifesto contra o óbvio. Contra o brief que se resolve sozinho. Contra o filme que cabe num bullet point.</p>
+      <p>A gente entrega imagens que sustentam um segundo olhar. <em>O resto é ruído.</em></p>
+      <div style="margin-top:28px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="sticker rot-2">(( look again ))</span>
+        <span class="sticker sticker--ghost-bone rot2">(( quiet tech ))</span>
+        <span class="sticker sticker--clay-deep rot-1">(( descoberta &gt; explicação ))</span>
+      </div>
+    </div>
+    <div class="bigidea__img reveal">
+      <video autoplay muted loop playsinline preload="metadata"
+        poster="assets/work/web/chupa-chups-forever-fun-poster.jpg"
+        aria-label="Chupa Chups · Forever Fun — loop">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-forever-fun.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. MANIFESTOS ===================== -->
+<section id="manifestos" aria-labelledby="manifestos-title">
+  <header class="section-pad bg-mist" style="padding-bottom:32px">
+    <span class="eyebrow reveal">03 — Manifestos canon</span>
+    <h2 id="manifestos-title" class="h-lg reveal" style="margin-top:12px;max-width:780px">Quatro frases que a gente não negocia.</h2>
+  </header>
+
+  <article class="manifesto bg-bone reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow">01 / Manifesto fundador</span>
+      <p class="h-mega" style="margin-top:18px">We are alright.</p>
+      <p class="body" style="margin-top:24px;max-width:46ch">Assinatura. Atitude. O nome é declaração. Está tudo certo — e a gente não precisa gritar pra provar.</p>
+      <div style="margin-top:24px"><span class="sticker rot-2">(( sempre EN ))</span></div>
+    </div>
+    <div class="manifesto__media">
+      <img src="assets/work/web/amino-hero.jpg" alt="Still hero do projeto AMINO" />
+      <span class="sticker manifesto__sticker rot2">(( hero ))</span>
+    </div>
+  </article>
+
+  <article class="manifesto manifesto--flip bg-dark reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow" style="color:#a59f93">02 / Métier</span>
+      <p class="h-mega" style="margin-top:18px;color:var(--bone)">Craft.<br/>Craft.<br/>And.<br/>More. Craft.</p>
+      <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Repetição não é estilo — é princípio. Cada frame é uma decisão. Cada decisão é craft.</p>
+    </div>
+    <div class="manifesto__media">
+      <video autoplay muted loop playsinline preload="metadata"
+        poster="assets/work/web/puma-portugal-poster.jpg" aria-label="Loop de craft — Puma Portugal">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--ghost-bone manifesto__sticker rot-2">(( craft ))</span>
+    </div>
+  </article>
+
+  <article class="manifesto bg-orange reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow">03 / Identidade do trabalho</span>
+      <p class="h-mega" style="margin-top:18px">Cada filme<br/>é um filme.</p>
+      <p class="body" style="margin-top:24px;max-width:46ch;color:var(--dark)">Sem template. Sem fórmula. Cada projeto entra com seu próprio sistema visual — e sai com a própria assinatura.</p>
+      <div style="margin-top:24px"><span class="sticker sticker--dark rot2">(( PT only ))</span></div>
+    </div>
+    <div class="manifesto__media">
+      <img src="assets/work/web/editorial-portrait-02.jpg" alt="Retrato editorial — cada filme é um filme" />
+    </div>
+  </article>
+
+  <article class="manifesto manifesto--flip bg-stone reveal">
+    <div class="manifesto__text">
+      <span class="eyebrow" style="color:#cfcbc1">04 / Operação</span>
+      <p class="h-mega" style="margin-top:18px;color:var(--bone)">No camera or set.<br/>No high costs.</p>
+      <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Pipeline AI-first. Estúdio compacto, ciclo curto, output editorial. <em>Postura de boutique, escala de máquina.</em></p>
+    </div>
+    <div class="manifesto__media">
+      <img src="assets/work/web/amino-still-01.jpg" alt="Still AMINO — operação enxuta" />
+      <span class="sticker sticker--ghost-bone manifesto__sticker rot-1">(( quiet tech ))</span>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== 5. LOGO SYSTEM ===================== -->
+<section id="logo" class="section-pad bg-bone" aria-labelledby="logo-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">04 — Sistema de logo</span>
+      <h2 id="logo-title" class="h-lg">O <em>l</em> carrega a marca.</h2>
+      <p class="body" style="margin-top:14px;max-width:54ch">Bricolage Grotesque. Regular 400 em todas as letras. Bold 700 só no <strong>l</strong> central. Reveal espaçado é ato editorial — não default.</p>
+    </div>
+    <span class="sticker sticker--mist rot2">(( Bone-first ))</span>
+  </div>
+
+  <div class="logo-hero reveal">
+    <img src="assets/logo/png/alright-default-dark@2x.png" alt="Logo Alright default sobre fundo Bone — l em Bold 700" />
+  </div>
+
+  <div class="logo-grid">
+    <div class="logo-tile logo-tile--bone reveal">
+      <img src="assets/logo/png/alright-default-dark@2x.png" alt="Logo default em Dark sobre Bone" />
+      <span class="logo-tile__label">Default C.2 · light</span>
+      <span class="sticker card__sticker tr rot-2">(( 90% dos casos ))</span>
+    </div>
+    <div class="logo-tile logo-tile--dark reveal">
+      <img src="assets/logo/png/alright-default-bone@2x.png" alt="Logo default em Bone sobre Dark" />
+      <span class="logo-tile__label">Default · reverse</span>
+    </div>
+    <div class="logo-tile logo-tile--mist reveal">
+      <img src="assets/logo/png/alright-expressivo-dark@2x.png" alt="Logo expressivo com l Orange Clay sobre fundo claro" />
+      <span class="logo-tile__label">Expressivo C.1</span>
+      <span class="sticker card__sticker tr rot2">(( 10% premium ))</span>
+    </div>
+    <div class="logo-tile logo-tile--orange reveal">
+      <img src="assets/logo/png/alright-expressivo-bone@2x.png" alt="Logo expressivo Bone sobre Orange Clay" />
+      <span class="logo-tile__label">Expressivo · sobre orange</span>
+    </div>
+  </div>
+
+  <div class="banner bg-bone reveal" style="margin-top:48px;border-radius:var(--radius-card);border:1px solid rgba(20,20,19,0.06)">
+    <img src="assets/logo/png/lockup-we-are-alright-dark@2x.png" alt="Lockup ((We Are Alright)) — versão dark sobre Bone" />
+    <p class="banner__caption" style="color:var(--slate-warm)">Lockup oficial</p>
+    <span class="sticker banner__sticker rot-2">(( sempre EN ))</span>
+  </div>
+
+  <div class="banner bg-dark reveal" style="margin-top:24px;border-radius:var(--radius-card)">
+    <img src="assets/logo/png/alright-reveal-bone@2x.png" alt="Reveal ((A I r i g h t)) espaçado, versão bone sobre fundo dark" />
+    <p class="banner__caption" style="color:#cfcbc1;margin-top:24px">Ato editorial. Não default.</p>
+    <span class="sticker sticker--ghost-bone banner__sticker rot2">(( reveal ))</span>
+  </div>
+
+  <div class="dodont">
+    <div class="dodont__col dodont__col--do reveal">
+      <div class="dodont__head"><span class="dodont__icon ok" aria-hidden="true">✓</span><span class="mono-caps" style="color:var(--stone)">Do</span></div>
+      <ul class="dodont__list">
+        <li>Use o default C.2 em 90% dos casos.</li>
+        <li>Mantenha o <strong>l</strong> em Bold 700 sempre.</li>
+        <li>Orange Clay no <strong>l</strong> só no expressivo C.1.</li>
+        <li>Use o reveal com intenção editorial.</li>
+      </ul>
+    </div>
+    <div class="dodont__col dodont__col--dont reveal">
+      <div class="dodont__head"><span class="dodont__icon no" aria-hidden="true">✕</span><span class="mono-caps" style="color:var(--stone)">Don’t</span></div>
+      <ul class="dodont__list">
+        <li>Não rotacione, distorça ou aplique sombra.</li>
+        <li>Não troque a fonte. Bricolage é trava.</li>
+        <li>Não use o reveal como default ou em UI.</li>
+        <li>Não coloque o logo sobre imagem ruidosa sem scrim.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. TYPOGRAPHY ===================== -->
+<section id="type" class="section-pad bg-bone" aria-labelledby="type-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">05 — Tipografia</span>
+      <h2 id="type-title" class="h-lg">Duas famílias. Uma trava.</h2>
+    </div>
+    <span class="sticker sticker--mist rot-2">(( OFL · Apache 2.0 ))</span>
+  </div>
+
+  <div class="type-grid">
+    <div class="card col-8 reveal" style="min-height:380px">
+      <span class="eyebrow">Primária · variable</span>
+      <p class="type-spec" style="margin-top:14px">Bricolage Grotesque</p>
+      <div class="type-weights">
+        <span class="w200">Look — Thin 200</span>
+        <span class="w300">Look — Light 300</span>
+        <span class="w400">Look — Regular 400</span>
+        <span class="w500">Look — Medium 500</span>
+        <span class="w-l">A<b>l</b>right — Regular + <b>l</b> Bold 700</span>
+      </div>
+    </div>
+
+    <div class="card card--dark col-4 reveal" style="min-height:380px;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <span class="eyebrow" style="color:#a59f93">Companion · mono</span>
+        <p class="type-spec" style="margin-top:14px;color:var(--bone)">JetBrains Mono</p>
+      </div>
+      <div class="type-mono-demo" style="color:#cfcbc1">
+        <div><span class="c">--orange-clay:</span> #d97757;</div>
+        <div><span class="c">--bone:</span> #faf9f5;</div>
+        <div><span class="c">--ease-cine:</span> cubic-bezier(.16,1,.3,1);</div>
+      </div>
+    </div>
+
+    <div class="card card--orange col-4 reveal" style="min-height:200px;display:flex;align-items:center;justify-content:center;text-align:center">
+      <p class="h-md" style="font-weight:500">Bold 700 banido em uso editorial.</p>
+      <span class="sticker sticker--dark card__sticker tr rot2">(( exceção: o <em>l</em> ))</span>
+    </div>
+
+    <div class="card col-4 reveal" style="min-height:200px">
+      <span class="eyebrow">Hierarquia</span>
+      <p class="card__small" style="margin-top:14px">H1 mega, 300 · H2 lg, 500 · Body 400 · Eyebrow mono caps. <em>Nada acima de Medium em corrido.</em></p>
+    </div>
+
+    <div class="type-img col-4 reveal">
+      <img src="assets/work/web/amino-still-02.jpg" alt="Still AMINO — demonstração de legibilidade tipográfica" />
+      <div class="type-img__overlay"><span>((&nbsp;Cada&nbsp;filme&nbsp;))</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 7. COLOR PALETTE ===================== -->
+<section id="color" aria-labelledby="color-title">
+  <header class="section-pad bg-bone" style="padding-bottom:32px">
+    <span class="eyebrow reveal">06 — Paleta</span>
+    <h2 id="color-title" class="h-lg reveal" style="margin-top:12px;max-width:780px">Sete tons. Light e dark coexistem como linguagem.</h2>
+  </header>
+
+  <article class="swatch bg-bone reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow">01 / Background default</span>
+      <h3 class="name">Bone</h3>
+      <p class="hex">#FAF9F5 · sRGB · L 97</p>
+      <p class="body">Fundo default. Light mode permanente. Nada vibra sobre ela sem motivo.</p>
+      <div class="swatch__tokens"><code>--bone</code><code>color/surface/default</code></div>
+    </div>
+  </article>
+
+  <article class="swatch bg-mist reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow">02 / Surface alt</span>
+      <h3 class="name">Mist</h3>
+      <p class="hex">#ECE8DC · warm gray</p>
+      <p class="body">Cinza quente sutil. Cards alternativos, divisores, headers de sessão.</p>
+      <div class="swatch__tokens"><code>--mist</code><code>color/surface/alt</code></div>
+    </div>
+  </article>
+
+  <article class="swatch bg-dark reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#a59f93">03 / Texto + reverse</span>
+      <h3 class="name" style="color:var(--bone)">Dark</h3>
+      <p class="hex" style="color:#cfcbc1">#141413 · quase-preto</p>
+      <p class="body body-on-dark">Texto. Wordmark. Background dark mode. Nunca puro #000.</p>
+      <div class="swatch__tokens"><code>--dark</code><code>color/text/default</code></div>
+    </div>
+  </article>
+
+  <article class="swatch bg-stone reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#cfcbc1">04 / Body text-safe</span>
+      <h3 class="name" style="color:var(--bone)">Stone</h3>
+      <p class="hex" style="color:#cfcbc1">#3D3A35</p>
+      <p class="body body-on-dark">Body copy padrão. Contraste WCAG AA sobre Bone confirmado.</p>
+      <div class="swatch__tokens"><code>--stone</code><code>color/text/body</code></div>
+    </div>
+  </article>
+
+  <article class="swatch bg-slate reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#cfcbc1">05 / Subtle</span>
+      <h3 class="name" style="color:var(--bone)">Slate Warm</h3>
+      <p class="hex" style="color:#cfcbc1">#5B5750</p>
+      <p class="body body-on-dark">Eyebrows, captions, labels secundários. Sempre sobre Bone ou Mist.</p>
+      <div class="swatch__tokens"><code>--slate-warm</code><code>color/text/subtle</code></div>
+    </div>
+  </article>
+
+  <article class="swatch bg-orange reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow">06 / Accent único</span>
+      <h3 class="name">Orange Clay</h3>
+      <p class="hex">#D97757</p>
+      <p class="body" style="color:var(--dark)">Accent. Wordmark expressivo. Stickers. <strong>Nunca como body text sobre Bone — falha WCAG AA.</strong></p>
+      <div class="swatch__tokens"><code>--orange-clay</code><code>color/accent</code></div>
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="sticker sticker--dark rot-2">(( accent only ))</span><span class="sticker sticker--bone rot2">(( nunca body sobre bone ))</span></div>
+    </div>
+  </article>
+
+  <article class="swatch bg-clay-deep reveal">
+    <div class="swatch__meta">
+      <span class="eyebrow" style="color:#f6dccd">07 / Orange text-safe</span>
+      <h3 class="name" style="color:var(--bone)">Clay Deep</h3>
+      <p class="hex" style="color:#f6dccd">#8C4A32</p>
+      <p class="body body-on-dark">Versão escurecida do accent. Usada quando precisa de Orange como texto sobre Bone.</p>
+      <div class="swatch__tokens"><code>--clay-deep</code><code>color/accent/text-safe</code></div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== 8. HOUSE LOOK ===================== -->
+<section class="section-pad bg-bone" aria-labelledby="house-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">07 — House look</span>
+      <h2 id="house-title" class="h-lg">Tátil. Editorial.</h2>
+    </div>
+    <span class="sticker sticker--mist rot2">(( warm ))</span>
+  </div>
+
+  <div class="house">
+    <!-- Row 1 — Big anchor + 2 supports -->
+    <div class="house__tile col-7" style="grid-row:span 2">
+      <img src="assets/work/web/puma-portugal-still-01.jpg" alt="Frame Puma Portugal 01" />
+      <span class="sticker rot-2">(( cinematic ))</span>
+    </div>
+    <div class="house__tile col-5">
+      <img src="assets/work/web/liniker-negra-li.jpg" alt="Liniker · Visual Negra Li" />
+      <span class="sticker sticker--dark rot2">(( music ))</span>
+    </div>
+    <div class="house__tile col-5">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/mizuno-botafogo-poster.jpg" aria-label="Mizuno · Botafogo">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mizuno-botafogo.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone rot-1">(( sport ))</span>
+    </div>
+
+    <!-- Row 2 — Trio -->
+    <div class="house__tile col-4">
+      <img src="assets/work/web/editorial-portrait-02.jpg" alt="Retrato editorial 02" />
+      <span class="sticker sticker--clay-deep rot1">(( editorial ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <img src="assets/work/web/chupa-chups.jpg" alt="Frame Chupa Chups" />
+      <span class="sticker sticker--bone rot-2">(( commercial ))</span>
+    </div>
+    <!-- Row 3 — Wide editorial + portrait -->
+    <div class="house__tile col-8">
+      <img src="assets/work/web/negra-li-lolla-01.jpg" alt="Negra Li · Lollapalooza" />
+      <span class="sticker sticker--dark rot-1">(( live ))</span>
+    </div>
+    <div class="house__tile col-4" style="grid-row:span 3">
+      <img src="assets/work/web/editorial-portrait-03.jpg" alt="Retrato editorial 03" />
+      <span class="sticker sticker--bone rot2">(( portrait ))</span>
+    </div>
+
+    <!-- Row 4 — Retail trio -->
+    <div class="house__tile col-4">
+      <img src="assets/work/web/dove-ecom.jpg" alt="Dove · e-commerce" style="object-position:center 25%" />
+      <span class="sticker rot1">(( retail ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <img src="assets/work/web/pernambucanas.jpg" alt="Pernambucanas" style="object-position:center 25%" />
+      <span class="sticker sticker--mist rot-2">(( commercial ))</span>
+    </div>
+
+    <!-- Row 5 — Video duo + still -->
+    <div class="house__tile col-5">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/baile-do-brime-poster.jpg" aria-label="Baile do Brime">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/baile-do-brime.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--clay-deep rot2">(( moving ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <img src="assets/work/web/cash-pop.jpg" alt="Cash Pop" />
+      <span class="sticker sticker--dark rot-1">(( brand ))</span>
+    </div>
+    <div class="house__tile col-3">
+      <img src="assets/work/web/clipe-brime.jpg" alt="Clipe Brime" />
+      <span class="sticker sticker--bone rot1">(( clip ))</span>
+    </div>
+
+    <!-- Row 6 — Mix -->
+    <div class="house__tile col-4">
+      <img src="assets/work/web/peanut.jpg" alt="Peanut" />
+      <span class="sticker sticker--mist rot-2">(( playful ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/negra-li-lolla-clip-poster.jpg" aria-label="Negra Li · Lolla clip">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-lolla-clip.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone rot1">(( live ))</span>
+    </div>
+    <div class="house__tile col-4">
+      <img src="assets/work/web/seda-still.jpg" alt="Seda · still" />
+      <span class="sticker sticker--clay-deep rot-1">(( tactile ))</span>
+    </div>
+
+    <!-- Row 7 — Wide closer -->
+    <div class="house__tile col-6">
+      <img src="assets/work/web/olympikus-corre5.jpg" alt="Olympikus Corre 5" />
+      <span class="sticker rot2">(( sport ))</span>
+    </div>
+    <div class="house__tile col-6">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/negra-li-visual-poster.jpg" aria-label="Visual Negra Li">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-visual.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone rot-2">(( music video ))</span>
+    </div>
+
+    <!-- Row 8 — Chupa Chups series -->
+    <div class="house__tile col-3">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/chupa-chups-art-gallery-poster.jpg" aria-label="Chupa Chups · Art Gallery">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-art-gallery.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone rot1">(( art gallery ))</span>
+    </div>
+    <div class="house__tile col-3">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/chupa-chups-surreal-dream-poster.jpg" aria-label="Chupa Chups · Surreal Dream">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--clay-deep rot-2">(( surreal dream ))</span>
+    </div>
+    <div class="house__tile col-3">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/chupa-chups-surreal-unboxing-poster.jpg" aria-label="Chupa Chups · Surreal Unboxing">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-unboxing.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--mist rot2">(( unboxing ))</span>
+    </div>
+    <div class="house__tile col-3">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/chupa-chups-forever-fun-poster.jpg" aria-label="Chupa Chups · Forever Fun">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-forever-fun.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--dark rot-1">(( forever fun ))</span>
+    </div>
+
+    <!-- Row 9 — Wide closer -->
+    <div class="house__tile col-12">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/claro-poster.jpg" aria-label="Claro">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/claro.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker rot2">(( broadcast ))</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 9. MOTION ===================== -->
+<section id="motion" class="section-pad bg-dark" aria-labelledby="motion-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow" style="color:#a59f93">08 — Motion</span>
+      <h2 id="motion-title" class="h-lg" style="color:var(--bone)">Cinematic. Sem spring. Sem bounce.</h2>
+    </div>
+    <span class="sticker sticker--ghost-bone rot-2">(( 600–800ms ))</span>
+  </div>
+
+  <div class="motion-grid">
+    <div class="motion-card reveal" data-easing="cinematic">
+      <h3>Cinematic</h3>
+      <span class="mono">cubic-bezier(0.16, 1.0, 0.3, 1.0)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Default da marca. Desacelera com graça, nunca esmaga o final.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+    <div class="motion-card reveal" data-easing="standard">
+      <h3>Standard</h3>
+      <span class="mono">cubic-bezier(0.4, 0, 0.2, 1)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Para microinterações utilitárias. Foco e estados de input.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+    <div class="motion-card reveal" data-easing="decelerate">
+      <h3>Decelerate</h3>
+      <span class="mono">cubic-bezier(0, 0, 0.2, 1)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Entrada de conteúdo. Reveals. Stagger de listas.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+    <div class="motion-card reveal" data-easing="accelerate">
+      <h3>Accelerate</h3>
+      <span class="mono">cubic-bezier(0.4, 0, 1, 1)</span>
+      <p class="body body-on-dark" style="font-size:15px;margin:0 0 18px">Saída de conteúdo. Dismiss. Nunca para entrada.</p>
+      <div class="motion-track"><span class="motion-dot" aria-hidden="true"></span></div>
+    </div>
+  </div>
+
+  <p class="reveal" style="margin-top:48px;max-width:54ch;font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:#cfcbc1">
+    <span style="color:var(--orange-clay)">▸</span> prefers-reduced-motion: animações viram instantâneas; vídeos param de auto-play.
+  </p>
+</section>
+
+<!-- ===================== 10. APPLICATIONS ===================== -->
+<section class="section-pad bg-bone" aria-labelledby="apps-title">
+  <div class="section-head reveal">
+    <div class="section-head__title">
+      <span class="eyebrow">09 — Aplicações</span>
+      <h2 id="apps-title" class="h-lg">Como ((Alright)) vive no mundo.</h2>
+    </div>
+    <span class="sticker sticker--mist rot-2">(( mockups ))</span>
+  </div>
+
+  <div class="apps">
+    <div class="app-tile app-tile--card col-4 reveal">
+      <span class="app-tile__label">Business card</span>
+      <div>
+        <div class="name">A<b>l</b>right</div>
+        <div class="meta">
+          Fabiano Albergaria · Founder<br/>
+          albergaria@wearealright.cc<br/>
+          www.wearealright.cc · @wearealright.cc<br/>
+          São Paulo
+        </div>
+      </div>
+      <span class="sticker sticker--mist rot2" style="align-self:flex-start">(( 55×85 mm ))</span>
+    </div>
+
+    <div class="app-tile app-tile--social col-5 reveal" style="min-height:340px">
+      <img class="img" src="assets/work/web/amino-hero.jpg" alt="Mockup post social — AMINO" />
+      <div class="overlay">
+        <span class="mono-caps" style="color:rgba(250,249,245,.7);margin-bottom:14px">@wearealright.cc</span>
+        <p class="hd">(( Look again. ))</p>
+      </div>
+    </div>
+
+    <div class="app-tile app-tile--deck col-3 reveal">
+      <span class="num">slide 01 / 24</span>
+      <p class="title">Cada filme<br/>é um filme.</p>
+      <span class="sticker rot-2" style="align-self:flex-start">(( deck ))</span>
+    </div>
+
+    <div class="app-tile app-tile--poster col-4 reveal" style="min-height:300px">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/seda-sensorial-poster.jpg" aria-label="Mockup poster — Seda">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/seda-sensorial.mp4" type="video/mp4" />
+      </video>
+      <span class="sticker sticker--bone badge rot2">(( poster ))</span>
+    </div>
+
+    <div class="app-tile app-tile--email col-5 reveal">
+      <div>
+        <div>—— assinatura padrão ——</div>
+        <div style="margin-top:18px">
+          <span style="color:var(--dark);font-size:15px;font-family:var(--font-sans)"><b>Fabiano Albergaria</b> · Founder, Alright</span><br/>
+          albergaria@wearealright.cc &nbsp;·&nbsp; +55 11 92353-8110 (Clique WhatsApp)<br/>
+          www.wearealright.cc &nbsp;·&nbsp; @wearealright.cc
+        </div>
+      </div>
+      <span class="sticker sticker--mist rot-1" style="align-self:flex-start">(( email signature ))</span>
+    </div>
+
+    <div class="app-tile app-tile--poster col-3 reveal" style="min-height:240px">
+      <img src="assets/work/web/editorial-portrait-02.jpg" alt="Mockup poster editorial" />
+      <span class="sticker sticker--clay-deep badge rot-2">(( editorial ))</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11. GOVERNANCE FOOTER ===================== -->
+<footer class="footer" aria-labelledby="gov-title">
+  <span class="eyebrow reveal" style="color:#a59f93">Governance</span>
+  <span id="gov-title" style="position:absolute;left:-9999px">((We Are Alright))</span>
+  <div class="footer__lockup reveal" style="margin-top:24px">
+    <img src="assets/logo/png/lockup-we-are-alright-bone@2x.png" alt="Lockup ((We Are Alright)) — versão Bone sobre Dark" />
+  </div>
+
+  <div class="footer__meta">
+    <div class="footer__row reveal">
+      <span>Owner: Alright</span>
+      <span>Brand Book v1.0</span>
+      <span>Revisão semestral</span>
+      <span>governance/</span>
+    </div>
+    <div class="footer__row reveal" style="color:#7a7468">
+      <span>Bone-first</span>
+      <span>A.I. first</span>
+      <span>Cinema-grade</span>
+    </div>
+  </div>
+
+  <div class="footer__brand reveal">
+    <img src="assets/logo/png/alright-default-bone@2x.png" alt="Alright wordmark Bone" />
+    <span class="footer__year">© 2026 · wearealright.cc</span>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var onScroll = function(){
+    if (window.scrollY > 24) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var siblings = Array.prototype.slice.call(el.parentNode.children).filter(function(n){ return n.classList && n.classList.contains('reveal'); });
+        var idx = siblings.indexOf(el);
+        var delay = Math.min(Math.max(idx,0), 6) * 80;
+        setTimeout(function(){ el.classList.add('is-visible'); }, delay);
+        io.unobserve(el);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Force-play videos: some browsers refuse autoplay until JS calls .play()
+  var videos = document.querySelectorAll('video[autoplay]');
+  videos.forEach(function(v){
+    v.muted = true;
+    v.setAttribute('muted','');
+    v.playsInline = true;
+    // Try immediate play
+    var p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(function(){ /* autoplay blocked; will retry on intersection */ });
+  });
+
+  // Pause off-screen, resume when visible — saves bandwidth + bypasses some autoplay blockers
+  if ('IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          var p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(function(){});
+        } else {
+          v.pause();
+        }
+      });
+    }, {threshold:0.1});
+    videos.forEach(function(v){ vio.observe(v); });
+  }
+})();
+</script>
+
+</body>
+</html>
