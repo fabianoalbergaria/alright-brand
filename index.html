@@ -250,7 +250,9 @@ section{position:relative}
 .case__title{font-size:clamp(56px,9vw,160px);font-weight:300;line-height:.94;letter-spacing:-0.025em;margin:0}
 .case__copy{font-size:clamp(16px,1.25vw,19.5px);line-height:1.55;margin:0;max-width:46ch;color:var(--stone)}
 .case__stickers{display:flex;gap:8px;flex-wrap:wrap}
-.case__media{position:relative;overflow:hidden;min-height:380px;background:#000}
+article{margin:0;padding:0;display:block}
+.case>*{min-width:0}
+.case__media{position:relative;overflow:hidden;min-height:380px;background:#000;width:100%;height:100%}
 .case__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .case__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .case[aria-labelledby="case-olympikus"] .case__media video{object-fit:cover}
