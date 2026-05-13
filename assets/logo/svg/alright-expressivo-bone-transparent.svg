@@ -6,5 +6,5 @@
     ]]></style>
   </defs>
   
-  <text x="80" y="583" font-size="538" font-weight="400" letter-spacing="-0.01em" fill="#faf9f5">A<tspan font-weight="700" fill="#d97757">l</tspan>right</text>
+  <text x="1000" y="583" text-anchor="middle" font-size="538" font-weight="400" letter-spacing="-0.01em" fill="#faf9f5">A<tspan font-weight="700" fill="#d97757">l</tspan>right</text>
 </svg>
