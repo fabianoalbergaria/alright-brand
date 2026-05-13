@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 200" width="1400" height="200">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=swap');
+      text { font-family:'Bricolage Grotesque', 'Inter', sans-serif; }
+    ]]></style>
+  </defs>
+  <text x="700" y="158" text-anchor="middle" font-size="152" font-weight="400" letter-spacing="-0.01em" fill="#faf9f5">((We Are Alright))</text>
+</svg>
