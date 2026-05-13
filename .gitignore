@@ -62,3 +62,6 @@ tools/fonts/
 # Wrangler / Cloudflare cache
 .wrangler/
 
+# Cloudflare Pages deploy artifact
+.deploy-dist/
+
