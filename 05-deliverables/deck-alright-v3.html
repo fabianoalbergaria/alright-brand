@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Alright — Company Deck · ((Look again.))</title>
+<meta name="description" content="Alright — A.I. first Production Company. Cinema sem câmera. Sem set. Puro craft. ((Look again.))" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   Alright — Company Deck v3
+   Same DNA as brand-book.html & portfolio/index.html
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root{
+  --orange-clay:#d97757;
+  --clay-deep:#8c4a32;
+  --bone:#faf9f5;
+  --mist:#ece8dc;
+  --dark:#141413;
+  --stone:#3d3a35;
+  --slate-warm:#5b5750;
+  --ease-cine:cubic-bezier(0.16,1.0,0.3,1.0);
+  --font-sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius-card:20px;
+  --radius-pill:999px;
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bone);color:var(--dark);font-family:var(--font-sans);font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- Type scale ---------- */
+.eyebrow{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-warm)}
+.eyebrow--bone{color:rgba(250,249,245,0.6)}
+.mono{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em}
+.mono-caps{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+.h-mega{font-size:clamp(80px,12vw,280px);font-weight:300;line-height:.92;letter-spacing:-0.025em;margin:0}
+.h-xl{font-size:clamp(48px,6vw,96px);font-weight:400;line-height:1.0;letter-spacing:-0.02em;margin:0}
+.h-lg{font-size:clamp(32px,4vw,64px);font-weight:500;line-height:1.05;letter-spacing:-0.015em;margin:0}
+.h-md{font-size:clamp(22px,2.2vw,32px);font-weight:500;line-height:1.15;letter-spacing:-0.01em;margin:0}
+.body{font-size:clamp(16px,1.2vw,19px);line-height:1.55;color:var(--stone);font-weight:400}
+.body-on-dark{color:#cfcbc1}
+
+/* ---------- Stickers ---------- */
+.sticker{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:var(--radius-pill);background:var(--orange-clay);color:var(--dark);white-space:nowrap;box-shadow:0 1px 0 rgba(20,20,19,0.06)}
+.sticker--mist{background:var(--mist);color:var(--stone)}
+.sticker--dark{background:var(--dark);color:var(--bone)}
+.sticker--bone{background:var(--bone);color:var(--dark);border:1px solid rgba(20,20,19,0.12)}
+.sticker--clay-deep{background:var(--clay-deep);color:var(--bone)}
+.sticker--ghost-bone{background:transparent;border:1px solid rgba(250,249,245,0.4);color:var(--bone)}
+.rot-3{transform:rotate(-3deg)}
+.rot3{transform:rotate(3deg)}
+.rot-2{transform:rotate(-2deg)}
+.rot2{transform:rotate(2deg)}
+.rot-1{transform:rotate(-1.5deg)}
+.rot1{transform:rotate(1.5deg)}
+
+/* ---------- Deck shell ---------- */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--dark)}
+.slide{position:absolute;inset:0;width:100vw;height:100vh;opacity:0;pointer-events:none;transition:opacity 400ms var(--ease-cine);overflow:hidden}
+.slide.is-active{opacity:1;pointer-events:auto;z-index:2}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+.slide--bone{background:var(--bone);color:var(--dark)}
+.slide--dark{background:var(--dark);color:var(--bone)}
+.slide--mist{background:var(--mist);color:var(--dark)}
+.slide--orange{background:var(--orange-clay);color:var(--dark)}
+.slide--clay{background:var(--clay-deep);color:var(--bone)}
+
+/* ---------- Persistent HUD ---------- */
+.hud{position:fixed;inset:0;pointer-events:none;z-index:50}
+.hud > *{pointer-events:auto}
+
+.hud__brand{position:absolute;top:clamp(16px,2vw,28px);left:clamp(16px,2vw,28px);display:flex;align-items:center;gap:10px;mix-blend-mode:normal}
+.hud__brand img{height:clamp(20px,2vw,28px);width:auto;display:block}
+
+.hud__counter{position:absolute;top:clamp(16px,2vw,28px);right:clamp(16px,2vw,28px);font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm);background:rgba(250,249,245,0.55);backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);border:1px solid rgba(20,20,19,0.08);border-radius:var(--radius-pill);padding:7px 12px}
+.deck.is-dark .hud__counter{color:rgba(250,249,245,0.78);background:rgba(20,20,19,0.42);border-color:rgba(250,249,245,0.12)}
+
+.hud__hint{position:absolute;bottom:clamp(14px,1.8vw,22px);left:clamp(16px,2vw,28px);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm);opacity:.85;transition:opacity 1.2s var(--ease-cine)}
+.deck.is-dark .hud__hint{color:rgba(250,249,245,0.55)}
+.hud__hint.is-faded{opacity:0;pointer-events:none}
+
+.hud__dots{position:absolute;bottom:clamp(16px,1.8vw,22px);left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.hud__dot{width:6px;height:6px;border-radius:50%;background:var(--slate-warm);opacity:.32;cursor:pointer;transition:opacity .3s var(--ease-cine), transform .3s var(--ease-cine);border:0;padding:0}
+.hud__dot:hover{opacity:.7}
+.hud__dot.is-active{opacity:1;transform:scale(1.4);background:var(--orange-clay)}
+.deck.is-dark .hud__dot{background:rgba(250,249,245,0.6)}
+.deck.is-dark .hud__dot.is-active{background:var(--orange-clay)}
+
+.click-zone{position:fixed;top:0;width:18%;height:100vh;z-index:30;cursor:pointer;background:transparent}
+.click-zone--prev{left:0}
+.click-zone--next{right:0}
+
+/* ---------- Common slide layout ---------- */
+.slide__inner{position:relative;width:100%;height:100%;padding:clamp(64px,7vw,96px) clamp(32px,4vw,80px) clamp(72px,7vw,96px);display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,1.6vw,28px)}
+.slide__eyebrow{position:absolute;top:clamp(64px,7vw,96px);left:clamp(32px,4vw,80px)}
+.slide__footnote{position:absolute;bottom:clamp(48px,5vw,72px);right:clamp(32px,4vw,80px);max-width:42ch;text-align:right}
+
+/* ---------- 01 · COVER ---------- */
+.s-cover__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) contrast(1.02);z-index:0}
+.s-cover__scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,20,19,0.5) 0%, rgba(20,20,19,0.18) 38%, rgba(20,20,19,0.62) 100%);z-index:1}
+.s-cover__inner{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(80px,8vw,120px) clamp(32px,4vw,80px) clamp(64px,6vw,96px);color:var(--bone)}
+.s-cover__top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.s-cover__chip{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.85);padding:8px 14px;border:1px solid rgba(250,249,245,0.28);border-radius:var(--radius-pill);background:rgba(20,20,19,0.18);backdrop-filter:blur(8px)}
+.s-cover__chip .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay)}
+.s-cover__center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;padding:0 clamp(32px,4vw,80px)}
+.s-cover__title{font-size:clamp(72px,14vw,260px);font-weight:200;line-height:.92;letter-spacing:-0.035em;color:var(--bone);margin:0}
+.s-cover__title .paren{color:var(--orange-clay);font-weight:300}
+.s-cover__bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.78)}
+.s-cover__cue{display:inline-flex;align-items:center;gap:10px}
+.s-cover__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay);animation:pulse 2.4s var(--ease-cine) infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
+
+/* ---------- 02 · BIG IDEA ---------- */
+.s-bigidea{position:relative}
+.s-bigidea__inner{position:relative;width:100%;height:100%;padding:clamp(64px,6vw,96px) clamp(32px,4vw,80px);display:grid;grid-template-rows:auto 1fr auto;gap:clamp(24px,3vw,48px)}
+.s-bigidea__title{font-size:clamp(80px,16vw,320px);font-weight:200;line-height:.9;letter-spacing:-0.035em;margin:0;text-align:center;color:var(--bone)}
+.s-bigidea__title .paren{color:var(--orange-clay);font-weight:300}
+.s-bigidea__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,72px);align-items:center}
+.s-bigidea__copy{display:flex;flex-direction:column;gap:18px;max-width:46ch}
+.s-bigidea__copy p{color:#cfcbc1;font-size:clamp(17px,1.4vw,22px);line-height:1.55;margin:0}
+.s-bigidea__copy p strong{color:var(--bone);font-weight:500}
+.s-bigidea__media{border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/5;background:#000;position:relative}
+.s-bigidea__media img{width:100%;height:100%;object-fit:cover;display:block}
+.s-bigidea__stickers{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- 03 · QUEM SOMOS (bento) ---------- */
+.s-who__inner{position:relative;width:100%;height:100%;padding:clamp(72px,7vw,96px) clamp(32px,4vw,80px);display:grid;grid-template-rows:auto 1fr;gap:clamp(24px,2.6vw,40px)}
+.s-who__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.s-who__head .h-lg{font-size:clamp(36px,5vw,80px);max-width:18ch;font-weight:400;letter-spacing:-0.02em}
+.s-who__bento{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(14px,1.4vw,24px);min-height:0}
+.who-card{position:relative;border-radius:var(--radius-card);overflow:hidden;background:var(--bone);border:1px solid rgba(20,20,19,0.06);padding:clamp(20px,2vw,32px);display:flex;flex-direction:column;justify-content:flex-end}
+.who-card--media{padding:0}
+.who-card--media video,.who-card--media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.who-card--media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 55%, rgba(20,20,19,0.55) 100%)}
+.who-card--orange{background:var(--orange-clay);color:var(--dark);border-color:transparent}
+.who-card--span2{grid-row:span 2}
+.who-card .card-big{font-size:clamp(28px,3vw,46px);font-weight:300;line-height:1;letter-spacing:-0.02em;margin:0}
+.who-card .card-sticker{position:absolute;top:18px;left:18px;z-index:3}
+.who-card .card-label{position:relative;z-index:2;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone)}
+
+/* ---------- 04 · MANIFESTOS ---------- */
+.s-mani{display:grid;grid-template-columns:1fr 1fr;width:100vw;height:100vh}
+.s-mani__text{background:var(--dark);color:var(--bone);padding:clamp(64px,6vw,96px) clamp(32px,4vw,80px);display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,1.6vw,22px);position:relative;overflow:hidden}
+.s-mani__line{font-size:clamp(28px,4vw,68px);font-weight:300;line-height:1.02;letter-spacing:-0.02em;margin:0;color:var(--bone)}
+.s-mani__line .accent{color:var(--orange-clay)}
+.s-mani__media{position:relative;background:#000;overflow:hidden}
+.s-mani__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-mani__media::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(20,20,19,0) 55%, rgba(20,20,19,0.4) 100%)}
+.s-mani__sticker{position:absolute;top:24px;right:24px;z-index:2}
+
+/* ---------- 05 · O QUE FAZEMOS ---------- */
+.s-what__inner{position:relative;width:100%;height:100%;padding:clamp(72px,7vw,96px) clamp(32px,4vw,80px);display:flex;flex-direction:column;gap:clamp(24px,3vw,48px);justify-content:center}
+.s-what__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.s-what__head .h-lg{font-size:clamp(36px,5vw,80px);font-weight:400;letter-spacing:-0.02em;max-width:18ch}
+.s-what__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.6vw,28px)}
+.what-card{position:relative;border-radius:var(--radius-card);overflow:hidden;background:var(--bone);border:1px solid rgba(20,20,19,0.07);padding:clamp(22px,2.2vw,36px);display:flex;flex-direction:column;gap:18px;min-height:clamp(280px,32vh,420px)}
+.what-card__num{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay-deep)}
+.what-card__title{font-size:clamp(24px,2.4vw,36px);font-weight:400;letter-spacing:-0.015em;line-height:1.05;margin:0}
+.what-card__body{font-size:clamp(15px,1.05vw,17px);line-height:1.55;color:var(--stone);margin:0}
+.what-card__stickers{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.what-card--mist{background:var(--mist);border-color:transparent}
+.what-card--dark{background:var(--dark);color:var(--bone);border-color:transparent}
+.what-card--dark .what-card__num{color:rgba(250,249,245,0.5)}
+.what-card--dark .what-card__body{color:#cfcbc1}
+
+/* ---------- 06–09 · CASE SLIDES (50/50 split) ---------- */
+.s-case{display:grid;grid-template-columns:1fr 1.2fr;width:100vw;height:100vh}
+.s-case__text{padding:clamp(72px,7vw,96px) clamp(32px,4vw,72px);display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2vw,32px);background:var(--dark);color:var(--bone);position:relative}
+.s-case--bone .s-case__text{background:var(--bone);color:var(--dark)}
+.s-case--orange .s-case__text{background:var(--orange-clay);color:var(--dark)}
+.s-case__eyebrow{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.6)}
+.s-case--bone .s-case__eyebrow{color:var(--slate-warm)}
+.s-case--orange .s-case__eyebrow{color:var(--clay-deep)}
+.s-case__title{font-size:clamp(40px,5.5vw,96px);font-weight:300;line-height:.95;letter-spacing:-0.025em;margin:0}
+.s-case__copy{font-size:clamp(16px,1.2vw,20px);line-height:1.55;max-width:38ch;color:#cfcbc1;margin:0}
+.s-case--bone .s-case__copy{color:var(--stone)}
+.s-case--orange .s-case__copy{color:var(--clay-deep)}
+.s-case__stickers{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.s-case__media{position:relative;overflow:hidden;background:#000}
+.s-case__media video,.s-case__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-case__media--contain video{object-fit:contain}
+.s-case__badge{position:absolute;top:24px;right:24px;z-index:2}
+
+/* Slide 08 — Chupa Chups grid 2x2 */
+.s-case__grid4{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;background:#000}
+.s-case__grid4 > div{position:relative;overflow:hidden}
+.s-case__grid4 video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- 10 · HOUSE LOOK (bento gallery) ---------- */
+.s-house__inner{position:relative;width:100%;height:100%;padding:clamp(72px,7vw,96px) clamp(32px,4vw,72px);display:grid;grid-template-rows:auto 1fr;gap:clamp(20px,2vw,32px)}
+.s-house__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.s-house__head .h-lg{font-size:clamp(36px,5vw,80px);font-weight:400;letter-spacing:-0.02em}
+.s-house__grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(6,1fr);gap:clamp(10px,1vw,18px);min-height:0}
+.house-tile{position:relative;overflow:hidden;border-radius:14px;background:#000}
+.house-tile img,.house-tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.house-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 60%, rgba(20,20,19,0.5) 100%)}
+.house-tile .sticker{position:absolute;left:14px;bottom:14px;z-index:2}
+.house-tile.t1{grid-column:span 5;grid-row:span 4}
+.house-tile.t2{grid-column:span 3;grid-row:span 3}
+.house-tile.t3{grid-column:span 4;grid-row:span 3}
+.house-tile.t4{grid-column:span 3;grid-row:span 3}
+.house-tile.t5{grid-column:span 4;grid-row:span 2}
+.house-tile.t6{grid-column:span 5;grid-row:span 2}
+.house-tile.t7{grid-column:span 4;grid-row:span 3}
+.house-tile.t8{grid-column:span 3;grid-row:span 2}
+.house-tile.dove img{object-position:center 25%}
+
+/* ---------- 11 · PROCESSO ---------- */
+.s-proc__inner{position:relative;width:100%;height:100%;padding:clamp(72px,7vw,96px) clamp(32px,4vw,72px);display:flex;flex-direction:column;gap:clamp(24px,3vw,56px);justify-content:center}
+.s-proc__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.s-proc__head .h-lg{font-size:clamp(36px,5vw,80px);font-weight:400;letter-spacing:-0.02em;max-width:14ch}
+.s-proc__floating{position:absolute;top:clamp(28px,3vw,40px);right:clamp(28px,3vw,40px)}
+.s-proc__row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,28px);position:relative}
+.s-proc__row::before{content:"";position:absolute;top:24px;left:5%;right:5%;height:1px;background:rgba(20,20,19,0.18);z-index:0}
+.s-proc__row::after{content:"";position:absolute;top:21px;left:5%;width:7px;height:7px;border-radius:50%;background:var(--orange-clay);z-index:1}
+.proc-step{position:relative;display:flex;flex-direction:column;gap:14px;padding-top:48px;z-index:2}
+.proc-step::before{content:"";position:absolute;top:21px;left:0;width:7px;height:7px;border-radius:50%;background:var(--clay-deep);z-index:1}
+.proc-step__num{font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm)}
+.proc-step__title{font-size:clamp(18px,1.8vw,26px);font-weight:500;letter-spacing:-0.01em;line-height:1.15;margin:0}
+.proc-step__body{font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--stone);margin:0}
+
+/* ---------- 12 · CONTATO / CTA ---------- */
+.s-cta__inner{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(72px,8vw,120px) clamp(32px,4vw,80px);gap:clamp(20px,2.4vw,40px);text-align:center}
+.s-cta__lockup{max-width:min(620px,72vw);width:100%;height:auto;display:block}
+.s-cta__title{font-size:clamp(56px,9vw,160px);font-weight:200;line-height:.95;letter-spacing:-0.035em;margin:0;color:var(--bone)}
+.s-cta__title .paren{color:var(--orange-clay);font-weight:300}
+.s-cta__btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-sans);font-weight:500;font-size:clamp(16px,1.3vw,20px);letter-spacing:-0.01em;background:var(--orange-clay);color:var(--dark);padding:18px 28px;border-radius:var(--radius-pill);transition:transform .4s var(--ease-cine), background .4s var(--ease-cine);box-shadow:0 1px 0 rgba(20,20,19,0.08)}
+.s-cta__btn:hover{transform:translateY(-2px);background:#e58a6c}
+.s-cta__btn::after{content:"→";font-family:var(--font-mono);font-weight:500}
+.s-cta__rows{display:flex;flex-direction:column;gap:8px;font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:rgba(250,249,245,0.78);margin-top:8px}
+.s-cta__rows a:hover{color:var(--orange-clay)}
+.s-cta__row-sep{display:inline-block;margin:0 10px;color:var(--orange-clay)}
+.s-cta__foot{position:absolute;bottom:clamp(40px,4vw,64px);left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.4);white-space:nowrap}
+
+/* ---------- Generic eyebrow on slides ---------- */
+.eyebrow-pos{position:absolute;top:clamp(64px,5vw,80px);left:clamp(32px,4vw,80px);z-index:5}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .s-bigidea__grid{grid-template-columns:1fr;gap:24px}
+  .s-bigidea__title{font-size:clamp(64px,14vw,140px)}
+  .s-bigidea__media{aspect-ratio:16/9;max-height:34vh}
+  .s-who__bento{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr}
+  .s-who__bento .who-card--span2{grid-row:span 1}
+  .s-mani{grid-template-columns:1fr;grid-template-rows:1.2fr 1fr}
+  .s-mani__line{font-size:clamp(24px,7vw,52px)}
+  .s-what__grid{grid-template-columns:1fr}
+  .what-card{min-height:auto}
+  .s-case{grid-template-columns:1fr;grid-template-rows:1fr 1.2fr}
+  .s-case__text{padding:clamp(40px,5vw,72px) clamp(24px,4vw,48px)}
+  .s-house__grid{grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(8,1fr)}
+  .house-tile.t1{grid-column:span 6;grid-row:span 2}
+  .house-tile.t2,.house-tile.t3,.house-tile.t4{grid-column:span 3;grid-row:span 2}
+  .house-tile.t5,.house-tile.t6,.house-tile.t7,.house-tile.t8{grid-column:span 3;grid-row:span 1}
+  .s-proc__row{grid-template-columns:1fr 1fr;gap:32px}
+  .s-proc__row::before,.s-proc__row::after{display:none}
+}
+@media (max-width:768px){
+  .slide__inner,.s-who__inner,.s-what__inner,.s-proc__inner,.s-house__inner,.s-bigidea__inner{padding:80px 20px 80px}
+  .s-cover__inner{padding:88px 20px 72px}
+  .s-cover__title{font-size:clamp(48px,16vw,96px)}
+  .s-bigidea__title{font-size:clamp(56px,16vw,120px)}
+  .s-who__head .h-lg,.s-what__head .h-lg,.s-house__head .h-lg,.s-proc__head .h-lg{font-size:clamp(28px,8vw,56px)}
+  .s-who__bento{grid-template-columns:1fr;grid-template-rows:repeat(4,1fr)}
+  .s-who__bento .who-card{min-height:140px}
+  .s-mani__line{font-size:clamp(22px,8vw,40px)}
+  .s-case__title{font-size:clamp(32px,9vw,64px)}
+  .s-cta__title{font-size:clamp(48px,14vw,96px)}
+  .s-proc__row{grid-template-columns:1fr;gap:24px}
+  .proc-step{padding-top:14px}
+  .proc-step::before{display:none}
+  .hud__hint{font-size:9px;letter-spacing:.14em}
+  .hud__counter{font-size:10px;padding:5px 10px}
+}
+@media (max-width:480px){
+  .hud__brand img{height:18px}
+  .s-cta__rows{font-size:11px}
+  .click-zone{width:30%}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  .slide{transition:none}
+  video[autoplay]{display:none !important}
+  .s-cover__video{display:none}
+  .s-cover{background:var(--dark) url('../assets/work/web/negra-li-retrovisor-poster.jpg') center/cover no-repeat}
+}
+
+/* ---------- Print stylesheet ---------- */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body,.deck{height:auto;overflow:visible;background:var(--bone)}
+  .hud,.click-zone{display:none !important}
+  .slide{position:relative;width:100vw;height:100vh;page-break-after:always;break-after:page;opacity:1 !important;pointer-events:auto;display:block !important}
+  .slide:last-child{page-break-after:auto}
+  video{display:none !important}
+  .s-cover{background:var(--dark) url('../assets/work/web/negra-li-retrovisor-poster.jpg') center/cover no-repeat}
+  .s-cover__video{display:none}
+  .s-bigidea__media video{display:none}
+  /* poster fallbacks via the existing <img> within media containers — videos hidden, poster img inferred */
+  .s-case__media video::before{content:""}
+  .who-card--media video{display:none}
+  .s-mani__media video{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ============================================================
+       01 · COVER
+       ============================================================ -->
+  <section class="slide slide--dark is-active s-cover" data-index="0" data-tone="dark" aria-label="Cover">
+    <video class="s-cover__video" autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/negra-li-retrovisor-poster.jpg">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/retrovisor-loop.mp4" type="video/mp4" />
+    </video>
+    <div class="s-cover__scrim"></div>
+    <div class="s-cover__inner">
+      <div class="s-cover__top">
+        <span></span>
+        <span class="s-cover__chip"><span class="dot"></span>A.I. first Production Company · 2026</span>
+      </div>
+      <div class="s-cover__center">
+        <h1 class="s-cover__title"><span class="paren">((</span>Look again.<span class="paren">))</span></h1>
+      </div>
+      <div class="s-cover__bottom">
+        <span class="s-cover__cue"><span class="dot"></span>Use ← → para navegar</span>
+        <span>São Paulo / BR</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       02 · BIG IDEA
+       ============================================================ -->
+  <section class="slide slide--dark s-bigidea" data-index="1" data-tone="dark" aria-label="Big idea">
+    <div class="s-bigidea__inner">
+      <span class="eyebrow eyebrow--bone">01 · Big idea</span>
+      <div>
+        <h2 class="s-bigidea__title"><span class="paren">((</span>Look again.<span class="paren">))</span></h2>
+      </div>
+      <div class="s-bigidea__grid">
+        <div class="s-bigidea__copy">
+          <p><strong>Cinema feito de descobertas.</strong> Cada peça pede um segundo olhar — porque o primeiro nunca conta tudo.</p>
+          <p>A.I. first não é gimmick. É método. Quiet tech a serviço do craft.</p>
+          <div class="s-bigidea__stickers">
+            <span class="sticker sticker--ghost-bone rot-2">(( quiet tech ))</span>
+            <span class="sticker sticker--bone rot1">(( craft ))</span>
+          </div>
+        </div>
+        <div class="s-bigidea__media">
+          <img src="../assets/work/web/editorial-portrait-01.jpg" alt="Retrato editorial — DJ surreal" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       03 · QUEM SOMOS (bento)
+       ============================================================ -->
+  <section class="slide slide--bone s-who" data-index="2" data-tone="bone" aria-label="Quem somos">
+    <div class="s-who__inner">
+      <div class="s-who__head">
+        <div>
+          <span class="eyebrow">01 · Quem somos</span>
+          <h2 class="h-lg" style="margin-top:14px">Uma produtora.<br/>Sem câmera. Sem set.<br/>Puro <em style="font-style:normal;color:var(--clay-deep)">craft</em>.</h2>
+        </div>
+        <span class="sticker rot-2">(( produtora ))</span>
+      </div>
+      <div class="s-who__bento">
+        <div class="who-card who-card--media who-card--span2">
+          <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/seda-still.jpg">
+            <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/seda-sensorial.mp4" type="video/mp4" />
+          </video>
+          <span class="sticker sticker--ghost-bone card-sticker rot1">(( sensorial ))</span>
+          <span class="card-label">Seda · Sensorial loop</span>
+        </div>
+        <div class="who-card who-card--orange">
+          <span class="eyebrow" style="color:var(--clay-deep)">canon</span>
+          <p class="card-big" style="margin-top:12px">Cada filme é um filme.</p>
+        </div>
+        <div class="who-card who-card--media">
+          <img src="../assets/work/web/puma-portugal-portrait.jpg" alt="PUMA Portugal — Eusébio + pantera" loading="lazy" />
+          <span class="card-label">PUMA Portugal</span>
+        </div>
+        <div class="who-card" style="background:var(--mist)">
+          <span class="eyebrow">o que somos</span>
+          <p style="font-size:clamp(18px,1.6vw,24px);font-weight:400;line-height:1.25;letter-spacing:-0.01em;margin-top:10px;color:var(--dark)">A.I. first.<br/>Tier-1. <span style="color:var(--clay-deep)">São Paulo / BR</span>.</p>
+        </div>
+        <div class="who-card" style="background:var(--dark);color:var(--bone);border-color:transparent">
+          <span class="eyebrow eyebrow--bone">stack</span>
+          <p style="font-size:clamp(16px,1.3vw,20px);font-weight:400;line-height:1.35;margin-top:10px">Modelos generativos +<br/>direção +<br/>finishing humano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       04 · MANIFESTOS (split)
+       ============================================================ -->
+  <section class="slide s-mani-wrap" data-index="3" data-tone="dark" aria-label="Manifestos canon">
+    <div class="s-mani">
+      <div class="s-mani__text">
+        <span class="eyebrow eyebrow--bone" style="margin-bottom:18px">02 · Manifestos canon</span>
+        <p class="s-mani__line">We are <span class="accent">alright</span>.</p>
+        <p class="s-mani__line">Craft. Craft. And. More. Craft.</p>
+        <p class="s-mani__line">Cada filme é um filme.</p>
+        <p class="s-mani__line">No camera or set.<br/>No high costs.</p>
+      </div>
+      <div class="s-mani__media">
+        <img src="../assets/work/web/amino-hero.jpg" alt="Amino — still editorial" loading="lazy" />
+        <span class="sticker sticker--ghost-bone s-mani__sticker rot-2">(( canon ))</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       05 · O QUE FAZEMOS
+       ============================================================ -->
+  <section class="slide slide--bone s-what" data-index="4" data-tone="bone" aria-label="O que fazemos">
+    <div class="s-what__inner">
+      <div class="s-what__head">
+        <div>
+          <span class="eyebrow">03 · O que fazemos</span>
+          <h2 class="h-lg" style="margin-top:14px">Cinema de marca,<br/>sem fricção.</h2>
+        </div>
+        <span class="sticker sticker--dark rot1">(( three modes ))</span>
+      </div>
+      <div class="s-what__grid">
+        <article class="what-card">
+          <span class="what-card__num">01</span>
+          <h3 class="what-card__title">Filme de marca</h3>
+          <p class="what-card__body">Peças hero, lançamentos e campanhas tier-1. Direção declarada, mood cravado, paleta assinada — frame a frame.</p>
+          <div class="what-card__stickers">
+            <span class="sticker sticker--bone rot-1">(( tier 1 ))</span>
+            <span class="sticker sticker--mist rot1">(( editorial ))</span>
+          </div>
+        </article>
+        <article class="what-card what-card--mist">
+          <span class="what-card__num">02</span>
+          <h3 class="what-card__title">Always-on</h3>
+          <p class="what-card__body">Volume sem perder craft. Templates derivados com rigor, consistência entre cenas, ciclo curto sem perder cinematografia.</p>
+          <div class="what-card__stickers">
+            <span class="sticker rot1">(( volume ))</span>
+            <span class="sticker sticker--bone rot-2">(( consistency ))</span>
+          </div>
+        </article>
+        <article class="what-card what-card--dark">
+          <span class="what-card__num">03</span>
+          <h3 class="what-card__title">Pré-produção viva</h3>
+          <p class="what-card__body">Animatic e mood já são entregáveis. Decisões antecipadas, time de criação alinhado, set virtual antes do set virtual.</p>
+          <div class="what-card__stickers">
+            <span class="sticker sticker--ghost-bone rot-1">(( fast ))</span>
+            <span class="sticker rot2">(( pre-pro ))</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       06 · CASE — PUMA PORTUGAL
+       ============================================================ -->
+  <section class="slide slide--dark s-case" data-index="5" data-tone="dark" aria-label="PUMA Portugal">
+    <div class="s-case__text">
+      <span class="s-case__eyebrow">04 · PUMA Portugal</span>
+      <h2 class="s-case__title">PUMA Portugal.</h2>
+      <p class="s-case__copy">Eusébio veste a nova camisa. Uma pantera negra observa. Presença sem heroísmo — cinema esportivo na chave editorial.</p>
+      <div class="s-case__stickers">
+        <span class="sticker sticker--ghost-bone rot-1">(( editorial ))</span>
+        <span class="sticker rot1">(( sport ))</span>
+        <span class="sticker sticker--bone rot-2">(( cinematic ))</span>
+      </div>
+    </div>
+    <div class="s-case__media">
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/puma-portugal-poster.jpg">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       07 · CASE — NEGRA LI / LOLLAPALOOZA
+       ============================================================ -->
+  <section class="slide slide--dark s-case" data-index="6" data-tone="dark" aria-label="Negra Li Lollapalooza">
+    <div class="s-case__text">
+      <span class="s-case__eyebrow">05 · Negra Li · Lollapalooza</span>
+      <h2 class="s-case__title">Negra Li.<br/>Lollapalooza.</h2>
+      <p class="s-case__copy">Show, retrato, retrovisor. Três janelas pra uma artista que reescreve presença a cada palco.</p>
+      <div class="s-case__stickers">
+        <span class="sticker rot-1">(( music ))</span>
+        <span class="sticker sticker--ghost-bone rot1">(( live ))</span>
+      </div>
+    </div>
+    <div class="s-case__media">
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/negra-li-visual-poster.jpg">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-visual.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       08 · CASE — CHUPA CHUPS FOREVER FUN
+       ============================================================ -->
+  <section class="slide slide--orange s-case s-case--orange" data-index="7" data-tone="orange" aria-label="Chupa Chups Forever Fun">
+    <div class="s-case__text">
+      <span class="s-case__eyebrow">06 · Chupa Chups · Forever Fun</span>
+      <h2 class="s-case__title">Chupa Chups.<br/>Forever Fun.</h2>
+      <p class="s-case__copy">Quatro mundos. Mesma fruta. Galeria de arte, sonho, unboxing, eternidade — uma série surreal feita inteira em pipeline A.I. first.</p>
+      <div class="s-case__stickers">
+        <span class="sticker sticker--clay-deep rot-1">(( surreal ))</span>
+        <span class="sticker sticker--dark rot1">(( series ))</span>
+        <span class="sticker sticker--bone rot-2">(( commercial ))</span>
+      </div>
+    </div>
+    <div class="s-case__media">
+      <div class="s-case__grid4">
+        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-forever-fun-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-forever-fun.mp4" type="video/mp4" /></video></div>
+        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-art-gallery-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-art-gallery.mp4" type="video/mp4" /></video></div>
+        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-surreal-unboxing-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-unboxing.mp4" type="video/mp4" /></video></div>
+        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-surreal-dream-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" /></video></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       09 · CASE — OLYMPIKUS CORRE 5
+       ============================================================ -->
+  <section class="slide slide--bone s-case s-case--bone" data-index="8" data-tone="bone" aria-label="Olympikus Corre 5">
+    <div class="s-case__text">
+      <span class="s-case__eyebrow">07 · Olympikus · Corre 5</span>
+      <h2 class="s-case__title">Olympikus.<br/>Corre 5.</h2>
+      <p class="s-case__copy">Tênis em movimento. Tempo congelado. Foco no que importa: a passada. Produto editorial em pipeline AI-first.</p>
+      <div class="s-case__stickers">
+        <span class="sticker rot-1">(( product ))</span>
+        <span class="sticker sticker--mist rot1">(( motion ))</span>
+        <span class="sticker sticker--bone rot-2">(( sport ))</span>
+      </div>
+    </div>
+    <div class="s-case__media">
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/olympikus-esteira-poster.jpg">
+        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/olympikus-esteira.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10 · HOUSE LOOK (bento)
+       ============================================================ -->
+  <section class="slide slide--bone s-house" data-index="9" data-tone="bone" aria-label="House look">
+    <div class="s-house__inner">
+      <div class="s-house__head">
+        <div>
+          <span class="eyebrow">08 · House look</span>
+          <h2 class="h-lg" style="margin-top:14px">Tátil. <em style="font-style:normal;color:var(--clay-deep)">Editorial.</em></h2>
+        </div>
+        <span class="sticker rot-1">(( cinematic ))</span>
+      </div>
+      <div class="s-house__grid">
+        <div class="house-tile t1"><img src="../assets/work/web/puma-portugal-portrait.jpg" alt="PUMA Portugal portrait" loading="lazy" /><span class="sticker sticker--ghost-bone rot-1">(( editorial ))</span></div>
+        <div class="house-tile t2"><img src="../assets/work/web/liniker-negra-li.jpg" alt="Liniker x Negra Li" loading="lazy" /><span class="sticker sticker--ghost-bone">(( music ))</span></div>
+        <div class="house-tile t3"><img src="../assets/work/web/chupa-chups.jpg" alt="Chupa Chups still" loading="lazy" /><span class="sticker sticker--bone rot1">(( surreal ))</span></div>
+        <div class="house-tile t4 dove"><img src="../assets/work/web/dove-ecom.jpg" alt="Dove still" loading="lazy" /><span class="sticker sticker--ghost-bone">(( beauty ))</span></div>
+        <div class="house-tile t5"><img src="../assets/work/web/seda-still.jpg" alt="Seda still" loading="lazy" /><span class="sticker sticker--ghost-bone rot1">(( sensorial ))</span></div>
+        <div class="house-tile t6"><img src="../assets/work/web/cash-pop.jpg" alt="Cash Pop" loading="lazy" /><span class="sticker sticker--ghost-bone rot-2">(( warm ))</span></div>
+        <div class="house-tile t7"><img src="../assets/work/web/clipe-brime.jpg" alt="Clipe Brime" loading="lazy" /><span class="sticker sticker--ghost-bone">(( event ))</span></div>
+        <div class="house-tile t8"><img src="../assets/work/web/peanut.jpg" alt="Peanut" loading="lazy" /><span class="sticker sticker--ghost-bone rot2">(( still ))</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       11 · PROCESSO
+       ============================================================ -->
+  <section class="slide slide--bone s-proc" data-index="10" data-tone="bone" aria-label="Processo">
+    <div class="s-proc__inner">
+      <div class="s-proc__head">
+        <div>
+          <span class="eyebrow">09 · Como trabalhamos</span>
+          <h2 class="h-lg" style="margin-top:14px">Cinema-grade.<br/>Sem o overhead.</h2>
+        </div>
+        <span class="sticker s-proc__floating rot-2">(( quiet tech ))</span>
+      </div>
+      <div class="s-proc__row">
+        <div class="proc-step">
+          <span class="proc-step__num">01 · Brief + Treatment</span>
+          <h3 class="proc-step__title">Direção declarada</h3>
+          <p class="proc-step__body">Mood, paleta e refs curadas. Antes do prompt, a direção.</p>
+        </div>
+        <div class="proc-step">
+          <span class="proc-step__num">02 · Prompt + Render</span>
+          <h3 class="proc-step__title">Quiet tech</h3>
+          <p class="proc-step__body">Template Alright, ≥5 anchors, ≥3 versões por frame. Consistência cravada.</p>
+        </div>
+        <div class="proc-step">
+          <span class="proc-step__num">03 · Finishing humano</span>
+          <h3 class="proc-step__title">Mão na película</h3>
+          <p class="proc-step__body">Color grade, retouching, texture, sound design. Onde a IA não pisa.</p>
+        </div>
+        <div class="proc-step">
+          <span class="proc-step__num">04 · Entrega</span>
+          <h3 class="proc-step__title">Frame a frame</h3>
+          <p class="proc-step__body">Aprovação assinada pelo diretor. Disclosure de IA por padrão.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       12 · CONTATO / CTA
+       ============================================================ -->
+  <section class="slide slide--dark s-cta" data-index="11" data-tone="dark" aria-label="Contato">
+    <div class="s-cta__inner">
+      <img class="s-cta__lockup" src="../assets/logo/png/lockup-we-are-alright-bone@2x.png" alt="((We Are Alright))" />
+      <h2 class="s-cta__title"><span class="paren">((</span>Look again.<span class="paren">))</span></h2>
+      <a class="s-cta__btn" href="mailto:albergaria@wearealright.cc">Falar com a Alright</a>
+      <div class="s-cta__rows">
+        <span><a href="mailto:albergaria@wearealright.cc">albergaria@wearealright.cc</a></span>
+        <span><a href="https://www.wearealright.cc" target="_blank" rel="noopener">www.wearealright.cc</a><span class="s-cta__row-sep">·</span><a href="https://instagram.com/wearealright.cc" target="_blank" rel="noopener">@wearealright.cc</a></span>
+        <span>São Paulo / BR</span>
+      </div>
+    </div>
+    <span class="s-cta__foot">© 2026 · Alright · Imagens criadas com Inteligência Artificial.</span>
+  </section>
+
+</div>
+
+<!-- ===== Persistent HUD ===== -->
+<div class="hud" aria-hidden="false">
+  <a class="hud__brand" href="#" id="hudBrand" aria-label="Voltar à capa">
+    <img id="hudLogo" src="../assets/logo/png/alright-default-bone@2x.png" alt="Alright" />
+  </a>
+  <span class="hud__counter" id="hudCounter">01 / 12</span>
+  <span class="hud__hint" id="hudHint">← → · page · esc</span>
+  <div class="hud__dots" id="hudDots" role="tablist" aria-label="Slides"></div>
+</div>
+
+<!-- ===== Click zones ===== -->
+<div class="click-zone click-zone--prev" id="clickPrev" aria-hidden="true"></div>
+<div class="click-zone click-zone--next" id="clickNext" aria-hidden="true"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  const deck = document.getElementById('deck');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const dotsContainer = document.getElementById('hudDots');
+  const counter = document.getElementById('hudCounter');
+  const hint = document.getElementById('hudHint');
+  const brand = document.getElementById('hudBrand');
+  const logo = document.getElementById('hudLogo');
+
+  let current = 0;
+
+  // Logo swap per tone
+  const LOGO_BONE = '../assets/logo/png/alright-default-bone@2x.png';
+  const LOGO_DARK = '../assets/logo/png/alright-default-dark@2x.png';
+
+  // Build dot indicators
+  for(let i=0;i<total;i++){
+    const b = document.createElement('button');
+    b.className = 'hud__dot' + (i===0 ? ' is-active' : '');
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label', 'Ir para slide ' + (i+1));
+    b.addEventListener('click', function(){ goTo(i); });
+    dotsContainer.appendChild(b);
+  }
+  const dots = Array.from(dotsContainer.querySelectorAll('.hud__dot'));
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function setHudTone(){
+    const tone = slides[current].dataset.tone || 'bone';
+    const dark = (tone === 'dark' || tone === 'clay');
+    deck.classList.toggle('is-dark', dark);
+    logo.src = dark ? LOGO_BONE : LOGO_DARK;
+  }
+
+  function setMediaState(){
+    // Pause videos on inactive slides to save bandwidth
+    slides.forEach(function(s, i){
+      const videos = s.querySelectorAll('video');
+      videos.forEach(function(v){
+        if(i === current){
+          // play with safe-catch
+          const p = v.play();
+          if(p && typeof p.catch === 'function'){ p.catch(function(){}); }
+        } else {
+          try { v.pause(); } catch(e){}
+        }
+      });
+    });
+  }
+
+  function updateCounter(){
+    counter.textContent = pad(current + 1) + ' / ' + pad(total);
+  }
+
+  function updateHash(){
+    if(history.replaceState){
+      history.replaceState(null, '', '#' + (current + 1));
+    }
+  }
+
+  function goTo(n){
+    if(n < 0 || n >= total || n === current) return;
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = n;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+    updateCounter();
+    setHudTone();
+    setMediaState();
+    updateHash();
+  }
+
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+  function first(){ goTo(0); }
+  function last(){ goTo(total - 1); }
+
+  // Keyboard
+  document.addEventListener('keydown', function(e){
+    switch(e.key){
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case 'PageDown':
+      case ' ':
+      case 'Spacebar':
+        e.preventDefault(); next(); break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+      case 'PageUp':
+        e.preventDefault(); prev(); break;
+      case 'Home':
+        e.preventDefault(); first(); break;
+      case 'End':
+        e.preventDefault(); last(); break;
+      case 'Escape':
+        e.preventDefault(); first(); break;
+    }
+  });
+
+  // Click zones
+  document.getElementById('clickPrev').addEventListener('click', prev);
+  document.getElementById('clickNext').addEventListener('click', next);
+
+  // Brand → cover
+  brand.addEventListener('click', function(e){ e.preventDefault(); first(); });
+
+  // Initial hash
+  if(window.location.hash){
+    const n = parseInt(window.location.hash.replace('#',''), 10);
+    if(!isNaN(n) && n >= 1 && n <= total){
+      current = n - 1;
+      slides.forEach(function(s,i){ s.classList.toggle('is-active', i === current); });
+      dots.forEach(function(d,i){ d.classList.toggle('is-active', i === current); });
+    }
+  }
+  updateCounter();
+  setHudTone();
+  setMediaState();
+
+  // Fade out hint after 4s
+  setTimeout(function(){ hint.classList.add('is-faded'); }, 4200);
+
+  // Touch / swipe (basic)
+  let touchStartX = null;
+  document.addEventListener('touchstart', function(e){
+    if(e.touches && e.touches.length === 1){ touchStartX = e.touches[0].clientX; }
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(touchStartX === null) return;
+    const touchEndX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : touchStartX;
+    const dx = touchEndX - touchStartX;
+    if(Math.abs(dx) > 60){ if(dx < 0) next(); else prev(); }
+    touchStartX = null;
+  }, {passive:true});
+
+})();
+</script>
+</body>
+</html>
