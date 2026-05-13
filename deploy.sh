@@ -28,6 +28,7 @@ rsync -a \
   --exclude='assets/work/real' \
   --exclude='assets/work/ai' \
   --exclude='assets/work/mood' \
+  --exclude='assets/work/web/*.mp4' \
   --exclude='tools/node_modules' \
   --exclude='tools/fonts' \
   --exclude='.wrangler' \
