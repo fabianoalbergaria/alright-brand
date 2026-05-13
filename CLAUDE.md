@@ -93,10 +93,8 @@ Avance com decisões secundárias usando recomendações dos subagentes. Comuniq
 - AI-slop (mãos quebradas, olhos errados, atmosfera sem motivo).
 - Termos contra-canon: `revolucionário`, `disruptive`, `magic`, `transforma sua marca`, `next-gen`.
 
-### Disclosure obrigatório de IA
-- PT: `Imagens criadas com Inteligência Artificial.`
-- EN: `All images were created using Artificial Intelligence.`
-- Tipografia: Bricolage sentence case, mín 1.2% da altura do frame, bone sobre dark / dark sobre bone, **nunca orange**.
+### Disclosure de IA — REVOGADA (2026-05-13)
+A regra de disclosure obrigatório ("Imagens criadas com Inteligência Artificial.") foi **revogada por Zuza em 2026-05-13**. Não usar mais como rodapé padrão em peças. Pode ser aplicada caso-a-caso quando legalmente exigido (regulamentação local, plataforma específica), mas não é norma da marca.
 
 ---
 

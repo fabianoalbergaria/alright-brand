@@ -239,32 +239,22 @@ Frames/imagens usados como **image guide** em Kontext Pro, Veo, Sora image-to-vi
 
 **Metadata obrigatório por ref**: filme + ano + diretor + DP + lente/stock + 1 frase do que se rouba. Vira parte do prompt quando alimentada em modelo.
 
-### 5.5 Disclosure obrigatório
+### 5.5 Disclosure de IA — REVOGADA (2026-05-13)
 
-**Cravado** (não-negociável em material externo).
+A regra de disclosure obrigatório foi **revogada por Zuza em 2026-05-13**. Não usar mais como rodapé padrão em peças, decks, microsites ou portfólio.
 
-**Texto exato PT**:
+**Pode ser aplicada caso-a-caso** quando legalmente exigido (regulamentação local específica, plataforma que demande, contrato com cliente que peça). Mas não é regra cravada da marca.
 
-> **Imagens criadas com Inteligência Artificial.**
+**Conteúdo histórico abaixo preservado pra referência** (~~tachado pra deixar claro que não vale mais~~):
 
-**Texto exato EN**:
+~~**Cravado** (não-negociável em material externo).~~
 
-> **All images were created using Artificial Intelligence.**
+~~**Texto exato PT**: *Imagens criadas com Inteligência Artificial.*~~
+~~**Texto exato EN**: *All images were created using Artificial Intelligence.*~~
 
-**Onde aparece**:
-- **Vídeo**: legenda no terço inferior, último frame antes de credits, **mínimo 3 segundos** de exibição.
-- **Imagem estática (key visual, social, OOH digital)**: linha de assinatura no canto inferior, mínimo legível em mobile.
-- **Deck/proposta/apresentação**: linha de rodapé na primeira página de qualquer seção que mostre asset gerado.
+~~Aparecia em: vídeo (terço inferior, ≥3s); imagem estática (canto inferior); deck (rodapé). Tipografia Bricolage Regular, mínimo 1.2% altura do frame, bone sobre dark / dark sobre bone, nunca orange.~~
 
-**Tipografia**:
-- **Bricolage Grotesque** (sistema da marca) Regular, **all caps** ou Sentence case (definir na seção 8 — templates).
-- **Tamanho mínimo no frame**: **1.2% da altura do frame** (ex: em 1080p = 13px; em 4K = 26px). Em vídeo cinema 2.39:1 = calcular pela altura.
-- **Cor**: bone `#faf9f5` sobre fundo dark, dark `#141413` sobre fundo bone. **Nunca orange** — orange é a marca, disclosure é serviço de transparência.
-- **Tracking**: +20 (ligeiro openness para legibilidade em vídeo).
-
-**Quando aparece**: **sempre** que conteúdo gerado por IA é mostrado para audiência externa. Inclui: campanha de marca para cliente, social orgânico Alright, deck de credenciais, microsite, proposta comercial. **Não aparece em**: comunicação interna, mood board de pré-produção, frame intermediário de iteração.
-
-**Compliance**: alinhado com EU AI Act (artigo de transparência), TikTok/Meta/YouTube content labels, e FTC guidelines US. ([Lensgo — AI Disclosure](https://lensgo.ai/blog/ai-content-ethics-disclosure-guide)) ([Dynamis — AI Disclosure Compliance](https://www.dynamisllp.com/knowledge/ai-disclosure-laws-are-coming-what-brands-need-to-know-now))
+~~Compliance: alinhado com EU AI Act, TikTok/Meta/YouTube content labels, FTC US.~~
 
 ### 5.6 Aprovação de hero AI-generated — workflow obrigatório
 
