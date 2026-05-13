@@ -179,6 +179,9 @@ section{position:relative}
 .hero__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(96px,10vw,128px) clamp(20px,4vw,72px) clamp(40px,5vw,72px)}
 .hero__center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
 .hero__title{font-size:clamp(80px,15vw,260px);font-weight:200;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
+.hero__title--logo{display:flex;justify-content:center;line-height:1}
+.hero__title--logo img{width:min(720px,80vw);height:auto;display:block}
+.nav__brand img{height:18px;width:auto;display:block}
 .hero__title .paren{color:var(--orange-clay);font-weight:300}
 .hero__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.82)}
 .hero__cue{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.7)}
@@ -415,13 +418,11 @@ section{position:relative}
 <!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav" aria-label="Navegação principal">
   <span class="nav__brand">
-    <img src="../../assets/logo/png/alright-default-dark@2x.png" alt="Alright" />
+    <img src="../../assets/logo/svg/alright-default-dark-transparent.svg" alt="Alright" />
   </span>
   <div class="nav__links">
     <a class="nav__link" href="#cases">Cases</a>
-    <a class="nav__link" href="#sobre">Sobre</a>
     <a class="nav__link" href="#contato">Contato</a>
-    <a class="nav__link nav__link--accent" href="../brand-book.html">Brand Book</a>
   </div>
 </nav>
 
@@ -444,9 +445,10 @@ section{position:relative}
       <span class="hero__eyebrow">A.I. first<br/>Production Company<br/>São Paulo / BR</span>
     </div>
     <div class="hero__center">
-      <span class="hero__sub">Big idea</span>
-      <h1 class="hero__title"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></h1>
-      <span class="hero__sub">Produtora audiovisual · Cinema sem câmera</span>
+      <h1 class="hero__title hero__title--logo" aria-label="Alright">
+        <img src="../../assets/logo/svg/alright-default-bone-transparent.svg" alt="Alright" />
+      </h1>
+      <span class="hero__sub">A.I. First Production Company.</span>
     </div>
     <div style="display:flex;justify-content:center">
       <span class="hero__cue"><span class="dot" aria-hidden="true"></span> scroll · cases</span>
@@ -454,77 +456,7 @@ section{position:relative}
   </div>
 </section>
 
-<!-- ===================== 2. INTRO / WHAT WE ARE ===================== -->
-<section id="sobre" class="section-pad bg-bone" aria-labelledby="intro-title">
-  <div class="section-head reveal">
-    <div class="section-head__title">
-      <span class="eyebrow">01 — A produtora</span>
-      <h2 id="intro-title" class="h-lg">Uma produtora. Sem câmera. Sem set.<br/>Puro Craft.</h2>
-    </div>
-    <span class="sticker sticker--mist rot-2">(( produtora ))</span>
-  </div>
-
-  <div class="bento">
-    <div class="card col-7 row-2 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:440px">
-      <span class="eyebrow">Posicionamento</span>
-      <p class="card__big">A.I. first<br/>Production Company.</p>
-      <p class="card__small" style="max-width:48ch">Boutique por dentro, escala por fora. A gente pensa como diretores e entrega como estúdio. <em>Não é sobre IA — é sobre cinema com IA.</em></p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <span class="sticker sticker--mist rot-1">(( quiet tech ))</span>
-        <span class="sticker sticker--ghost-dark rot2">(( são paulo ))</span>
-      </div>
-    </div>
-
-    <div class="card card--media col-5 row-2 reveal" style="min-height:440px">
-      <img class="card__media" src="../../assets/work/web/editorial-portrait-01.jpg" alt="Retrato editorial surreal — DJ panqueca, postura editorial" />
-      <div class="card__media-overlay" aria-hidden="true"></div>
-      <span class="sticker card__sticker tl rot-2">(( editorial ))</span>
-      <span class="card__label">Editorial · still</span>
-    </div>
-
-    <div class="card card--orange col-4 reveal" style="display:flex;align-items:center;justify-content:center;text-align:center;min-height:220px">
-      <p class="h-md" style="font-weight:500">Cada filme é um filme.</p>
-      <span class="sticker sticker--dark card__sticker tr rot2">(( PT only ))</span>
-    </div>
-
-    <div class="card card--media col-5 reveal" style="min-height:220px">
-      <video class="card__media" autoplay muted loop playsinline preload="metadata"
-        poster="../../assets/work/web/seda-sensorial-poster.jpg" aria-label="Loop Seda Sensorial">
-        <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/seda-sensorial.mp4" type="video/mp4" />
-      </video>
-      <div class="card__media-overlay" aria-hidden="true"></div>
-      <span class="sticker sticker--ghost-bone card__sticker tl rot-1">(( tactile ))</span>
-      <span class="card__label">Seda · loop</span>
-    </div>
-
-    <div class="card card--dark col-3 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:220px">
-      <span class="eyebrow" style="color:#a59f93">Tier</span>
-      <p class="h-md" style="font-weight:500">Boutique<br/>output máquina.</p>
-      <span class="sticker sticker--bone rot2" style="align-self:flex-start">(( tier 1 ))</span>
-    </div>
-
-    <div class="card col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
-      <span class="eyebrow">Como pensamos</span>
-      <p class="card__small">Editorial-craft com quiet tech. Bone-first, sempre. Cada peça pede um segundo olhar — porque o primeiro nunca conta tudo.</p>
-    </div>
-
-    <div class="card card--mist col-4 reveal" style="display:flex;flex-direction:column;gap:12px;min-height:180px">
-      <span class="eyebrow">Pra quem</span>
-      <p class="card__small">Marcas, agências e diretores que querem cinema sem o overhead — postura editorial, ciclo curto, custo enxuto.</p>
-    </div>
-
-    <div class="card card--clay col-4 reveal" style="display:flex;flex-direction:column;justify-content:space-between;min-height:180px">
-      <span class="eyebrow" style="color:#f6dccd">Operação</span>
-      <p class="h-md" style="font-weight:500;color:var(--bone)">No camera or set. No high costs.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== CASES BANNER ===================== -->
-<header id="cases" class="cases-banner bg-mist">
-  <span class="eyebrow reveal">02 — Cases</span>
-  <h2 class="h-lg reveal" style="margin-top:12px;max-width:820px">Seis janelas. Mesma postura.<br/>Cada filme é um filme.</h2>
-</header>
+<a id="cases"></a>
 
 <!-- ===================== CASE 01 · PUMA · PORTUGAL ===================== -->
 <article class="case bg-bone reveal" aria-labelledby="case-puma">
@@ -651,9 +583,9 @@ section{position:relative}
   </div>
   <div class="case__media">
     <video autoplay muted loop playsinline preload="metadata"
-      poster="../../assets/work/web/olympikus-esteira-poster.jpg"
-      aria-label="Olympikus — esteira, produto em movimento congelado">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/olympikus-esteira.mp4" type="video/mp4" />
+      poster="../../assets/work/web/olympikus-corre5-full-poster.jpg"
+      aria-label="Olympikus Corre 5 — campanha completa">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/olympikus-corre5-full.mp4" type="video/mp4" />
     </video>
     <span class="sticker sticker--ghost-bone case__sticker rot-2">(( product motion ))</span>
     <span class="case__corner mono-caps" style="color:rgba(250,249,245,.85)">Olympikus · Corre 5 · 2026</span>
@@ -679,68 +611,6 @@ section{position:relative}
     </video>
     <span class="sticker sticker--ghost-bone case__sticker rot-2">(( prime time ))</span>
     <span class="case__corner mono-caps" style="color:rgba(250,249,245,.85)">Claro · 2026</span>
-  </div>
-</article>
-
-<!-- ===================== MANIFESTO BANNER ===================== -->
-<header id="manifesto" class="cases-banner bg-bone">
-  <span class="eyebrow reveal">03 — No que a gente acredita</span>
-  <h2 class="h-lg reveal" style="margin-top:12px;max-width:820px">Quatro frases que a gente não negocia.</h2>
-</header>
-
-<!-- ===================== MANIFESTO 01 · WE ARE ALRIGHT ===================== -->
-<article class="manifesto bg-bone reveal">
-  <div class="manifesto__text">
-    <span class="eyebrow">01 / Manifesto fundador</span>
-    <p class="h-mega" style="margin-top:18px">We are alright.</p>
-    <p class="body" style="margin-top:24px;max-width:46ch">Assinatura. Atitude. O nome é declaração. Está tudo certo — e a gente não precisa gritar pra provar.</p>
-    <div style="margin-top:24px"><span class="sticker rot-2">(( sempre EN ))</span></div>
-  </div>
-  <div class="manifesto__media">
-    <img src="../../assets/work/web/amino-hero.jpg" alt="Still hero AMINO — manifesto fundador" />
-    <span class="sticker manifesto__sticker rot2">(( hero ))</span>
-  </div>
-</article>
-
-<!-- ===================== MANIFESTO 02 · CRAFT ===================== -->
-<article class="manifesto manifesto--flip bg-dark reveal">
-  <div class="manifesto__text">
-    <span class="eyebrow" style="color:#a59f93">02 / Métier</span>
-    <p class="h-mega" style="margin-top:18px;color:var(--bone)">Craft.<br/>Craft.<br/>And.<br/>More. Craft.</p>
-    <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Repetição não é estilo — é princípio. Cada frame é uma decisão. Cada decisão é craft.</p>
-  </div>
-  <div class="manifesto__media">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="../../assets/work/web/puma-portugal-poster.jpg" aria-label="Loop de craft — Puma Portugal">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4" type="video/mp4" />
-    </video>
-    <span class="sticker sticker--ghost-bone manifesto__sticker rot-2">(( craft ))</span>
-  </div>
-</article>
-
-<!-- ===================== MANIFESTO 03 · CADA FILME ===================== -->
-<article class="manifesto bg-orange reveal">
-  <div class="manifesto__text">
-    <span class="eyebrow">03 / Identidade do trabalho</span>
-    <p class="h-mega" style="margin-top:18px">Cada filme<br/>é um filme.</p>
-    <p class="body" style="margin-top:24px;max-width:46ch;color:var(--dark)">Sem template. Sem fórmula. Cada projeto entra com seu próprio sistema visual — e sai com a própria assinatura.</p>
-    <div style="margin-top:24px"><span class="sticker sticker--dark rot2">(( PT only ))</span></div>
-  </div>
-  <div class="manifesto__media">
-    <img src="../../assets/work/web/editorial-portrait-02.jpg" alt="Retrato editorial — cada filme é um filme" />
-  </div>
-</article>
-
-<!-- ===================== MANIFESTO 04 · NO CAMERA ===================== -->
-<article class="manifesto manifesto--flip bg-stone reveal">
-  <div class="manifesto__text">
-    <span class="eyebrow" style="color:#cfcbc1">04 / Operação</span>
-    <p class="h-mega" style="margin-top:18px;color:var(--bone)">No camera or set.<br/>No high costs.</p>
-    <p class="body body-on-dark" style="margin-top:24px;max-width:46ch">Pipeline A.I.-first. Estúdio compacto, ciclo curto, output editorial. <em>Postura de boutique, escala de máquina.</em></p>
-  </div>
-  <div class="manifesto__media">
-    <img src="../../assets/work/web/amino-still-01.jpg" alt="Still AMINO — operação enxuta, sem câmera nem set" />
-    <span class="sticker sticker--ghost-bone manifesto__sticker rot-1">(( quiet tech ))</span>
   </div>
 </article>
 
