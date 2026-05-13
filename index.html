@@ -252,7 +252,8 @@ section{position:relative}
 .case__stickers{display:flex;gap:8px;flex-wrap:wrap}
 .case__media{position:relative;overflow:hidden;min-height:380px;background:#000}
 .case__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.case__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.case__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.case[aria-labelledby="case-olympikus"] .case__media video{object-fit:cover}
 .case__media .case__sticker{position:absolute;top:32px;right:32px;z-index:2}
 .case__media .case__corner{position:absolute;bottom:24px;left:24px;z-index:2}
 .case--flip .case__text{order:2}
@@ -539,7 +540,7 @@ section{position:relative}
     <video autoplay muted loop playsinline preload="metadata"
       poster="assets/work/web/mizuno-botafogo-poster.jpg"
       aria-label="Mizuno x Botafogo">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mizuno-botafogo.mp4?v=padded" type="video/mp4" />
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mizuno-botafogo.mp4?v=landscape" type="video/mp4" />
     </video>
   </div>
 </article>
