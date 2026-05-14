@@ -1,7 +1,7 @@
 # Alright Brand Guide — Status do projeto
 
 > **Status atual**: ✅ **CONCLUÍDO** — 5/5 fases entregues.
-> **Concluído em**: 2026-05-11. **Owner**: Zuza.
+> **Concluído em**: 2026-05-11. **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
 
 ---
 
@@ -119,4 +119,4 @@ alright-brand/
 
 ---
 
-*Última atualização: 2026-05-10. Owner: Zuza. Orquestrador: Claude Code.*
+*Última atualização: 2026-05-14. Owner: Alright. Orquestrador: Claude Code.*

@@ -6,26 +6,27 @@
 
 ## Sobre o projeto
 
-Este é o brand guide da **Alright** — produtora audiovisual AI-first brasileira. **3 de 5 fases concluídas**. Detalhes em `STATUS.md` e `PLAN.md`. Para retomar: leia `MIGRATION.md` §9.
+Este é o brand guide da **Alright** — produtora audiovisual AI-first brasileira. **5 de 5 fases concluídas** (em manutenção pós-conclusão desde 2026-05-11). Detalhes em `STATUS.md`, `RESUME.md` e `PLAN.md`. Para retomar: leia `RESUME.md` + `STATUS.md`.
 
 ---
 
-## Sobre Zuza (cliente / owner do projeto)
+## Sobre Alright (owner do projeto)
 
-- Zuza é o owner atual do projeto (substituiu Zuza a partir de 2026-05-10).
-- Conduz o projeto como owner — você é o orquestrador.
+- **Owner atual**: **Alright** (a marca / Fabiano como founder), desde 2026-05-14. Conduz o projeto e crava decisões — você é o orquestrador.
+- **Histórico de ownership**: Bera (Fases 0-3) → Zuza (2026-05-10, Fases 4-5) → Alright (2026-05-14, manutenção pós-conclusão).
+- Owner pode rotacionar de novo. Se mudar, atualize esta seção, o rodapé de `STATUS.md`, as linhas "Owner:" em `RESUME.md`, e a memória `project_owner_change.md`.
 
 ---
 
 ## Skill `huashu-design` — somente manual
 
 - **NUNCA auto-invocar** a skill `huashu-design`, mesmo quando o pedido pareça encaixar (protótipos HTML, animações, slides, App mockups, exploração de variantes, revisão de design hi-fi).
-- Acionar **exclusivamente** quando Zuza pedir de forma nominal e explícita — exemplos válidos:
+- Acionar **exclusivamente** quando **o owner** pedir de forma nominal e explícita — exemplos válidos:
   - `/huashu-design`
   - "use a skill huashu-design"
   - "chame o huashu-design"
   - "aciona o huashu" / "manda o huashu fazer"
-- Se você acha que a skill seria útil mas Zuza não pediu, **sugira em texto e espere OK** — não invoque por iniciativa própria.
+- Se você acha que a skill seria útil mas o owner não pediu, **sugira em texto e espere OK** — não invoque por iniciativa própria.
 
 ---
 
@@ -35,18 +36,18 @@ Este é o brand guide da **Alright** — produtora audiovisual AI-first brasilei
 - Toda tarefa pesada (pesquisa de referências, geração de opções, drafting de documentos longos) é delegada a subagentes via `Agent` tool.
 - **Briefings self-contained** — cada subagente recebe TODO o contexto necessário inline (sem dependência da memória do orquestrador).
 - Subagentes salvam seus entregáveis em paths cravados dentro do projeto + retornam sumário curto (até 500 palavras) para o orquestrador.
-- A sessão principal mantém apenas: orquestração, decisões com Zuza, leituras dirigidas.
+- A sessão principal mantém apenas: orquestração, decisões com o owner, leituras dirigidas.
 
 ### Perguntas em etapas únicas
-- Use `AskUserQuestion` com até 4 opções clicáveis quando precisar de decisão de Zuza.
+- Use `AskUserQuestion` com até 4 opções clicáveis quando precisar de decisão do owner.
 - **Uma pergunta por vez** — nunca empilhe múltiplas decisões na mesma rodada.
 - Sempre marque a opção recomendada com "(Recomendado)" e a coloque primeiro.
 
 ### Chain of thought aplicado
-Cada fase segue: **Diagnóstico → Opções exploradas → Recomendação justificada → Aprovação Zuza → Codificação no entregável**.
+Cada fase segue: **Diagnóstico → Opções exploradas → Recomendação justificada → Aprovação do owner → Codificação no entregável**.
 
 ### Auto mode — quando ativado
-Avance com decisões secundárias usando recomendações dos subagentes. Comunique sempre o que cravou e dê espaço para correção. Decisões de alto impacto (Big idea, direção do logo, paleta primária) sempre vão para Zuza.
+Avance com decisões secundárias usando recomendações dos subagentes. Comunique sempre o que cravou e dê espaço para correção. Decisões de alto impacto (Big idea, direção do logo, paleta primária) sempre vão para o owner.
 
 ---
 
