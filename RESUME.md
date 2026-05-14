@@ -71,12 +71,35 @@ alright-brand/
 
 ## Domínio
 
-- **Registrar**: GoDaddy (Zuza/Fabiano não consegue acessar atualmente)
-- **DNS**: domaincontrol.com (nameservers GoDaddy)
-- **Quando recuperar acesso**:
-  1. Adicionar custom domain `wearealright.cc` no projeto Cloudflare Pages `wearealright`
-  2. Adicionar registro CNAME no GoDaddy: `wearealright.cc` → `wearealright.pages.dev` (ou `@` apex via ALIAS/A record que o Cloudflare instrui)
-  3. SSL automático
+- **Registrar**: GoDaddy (acesso recuperado em 2026-05-14)
+- **DNS atual**: ainda em `domaincontrol.com` (GoDaddy)
+- **Email ativo (NÃO PODE QUEBRAR)**: Google Workspace via 5 MX records `aspmx.l.google.com` + alts. TXT SPF `v=spf1 include:dc-aa8e722993._spfm.wearealright.cc ~all` + `google-site-verification=mHJsxF912JuJ-...` — também preservar.
+- **Apex aponta hoje** (parking): A `15.197.148.33` + A `3.33.130.190` (a remover quando migrar).
+
+### Estado da configuração (2026-05-14)
+
+**Cloudflare Pages — 4 custom domains registrados** (todos status `pending`, SSL provider: Google):
+
+| Domain | ID |
+|---|---|
+| `wearealright.cc` (apex) | `e08198dc-070c-4e60-9d99-b8d6414aa66a` |
+| `www.wearealright.cc` | `85955d23-32ae-40e1-a7ed-a326a6d11d74` |
+| `book.wearealright.cc` (vai redirect → `/brand-book.html`) | `ad53a2ae-2563-44c8-92f0-7d6340713351` |
+| `deck.wearealright.cc` (vai redirect → `/deck/`) | `c5b1a14f-7572-44b8-93e0-8053224e8dbb` |
+
+### Passos restantes (faltam ações manuais)
+
+1. **Adicionar wearealright.cc como zona no Cloudflare DNS** (dash.cloudflare.com → "Add a site" → Free plan). Cloudflare faz scan do GoDaddy e mostra registros pra importar. **Conferir** que importou os 5 MX + 2 TXT (SPF + google-verification). Os 2 A de parking podem ser deletados/ignorados.
+2. **Trocar nameservers no GoDaddy** dos `ns61/ns62.domaincontrol.com` pros 2 que o Cloudflare entregar. Propagação geralmente <1h, máximo 48h.
+3. **Configurar CNAMEs no Cloudflare DNS** (proxied 🟠) depois da migração:
+   - `@` → `wearealright.pages.dev` (apex via flattening do CF)
+   - `www` → `wearealright.pages.dev`
+   - `book` → `wearealright.pages.dev`
+   - `deck` → `wearealright.pages.dev`
+4. **Configurar 2 Redirect Rules** (Cloudflare → Rules → Redirect Rules):
+   - `hostname eq "book.wearealright.cc"` → 301 → `https://wearealright.cc/brand-book.html`
+   - `hostname eq "deck.wearealright.cc"` → 301 → `https://wearealright.cc/deck/`
+5. **SSL provisiona automático** ~15min depois que DNS verificar.
 
 ## Vídeos no portfolio (com Vimeo lightbox)
 
@@ -95,7 +118,7 @@ alright-brand/
 
 ## Pendente
 
-1. **Domínio custom** `wearealright.cc` — bloqueado pelo acesso GoDaddy (ver seção *Domínio* acima).
+1. **Domínio custom** `wearealright.cc` — Cloudflare side já pronto (4 custom domains registrados: apex, www, book, deck). Falta ação manual no dashboard Cloudflare (criar zona + import DNS) e GoDaddy (trocar nameservers). Passo a passo cravado na seção *Domínio* acima.
 
 ## Deck — composição final
 
@@ -119,6 +142,8 @@ alright-brand/
 - **Nomenclatura stale removida + redeploy** (2026-05-14): refs residuais a "C.1"/"C.2"/"expressivo" como labels de variante em `brand-book.html` (do/don't list) e `brand-book-print.html` (TOC + comment) atualizadas para a nova hierarquia (default · mono · reveal · lockup). Publicado em https://wearealright.pages.dev/ (deploy 3b9149ad).
 - **Meta-docs alinhados ao owner Alright** (2026-05-14): `CLAUDE.md` (typo "Zuza substituiu Zuza" reescrito + refs operacionais → "o owner") + `STATUS.md` (rodapé e cabeçalho) + memória `project_owner_change.md` agora refletem o histórico Bera → Zuza (2026-05-10) → Alright (2026-05-14). Regras operacionais ficam estáveis a futuras rotações de owner.
 - **Microsite legado deletado** (2026-05-14): `04-applications-microsite/site/` removido (era versão antiga não-deployada, superseded pelo brand book web v2 `brand-book.html` live). Refs stale atualizadas em `STATUS.md`, `governance/README.md` (também alinhada ao novo owner) e `02-microsite-specs.md` (marcado como deprecated).
+- **Shake to reveal** (2026-05-14): no mobile, balançar o telefone agora dispara uma sequência cinematográfica em ~7.9s — overlay fade to Dark → wordmark Alright (l Orange Clay) sobe de baixo, escala, volta → `(( Look again. ))` (brackets em Orange Clay) sobe de baixo, hold no climax, lift off → site volta. iOS 13+ gated via tap-to-enable. Deploy `b0130276`. Implementação em `index.html` (CSS `.reveal-overlay*` + JS `playReveal()`).
+- **Domínio em andamento** (2026-05-14): 4 custom domains registrados no Cloudflare Pages via API (apex + www + book + deck). Faltam ações manuais: criar zona DNS no Cloudflare (importa MX/SPF do GoDaddy), trocar nameservers no GoDaddy, configurar 2 Redirect Rules (book/deck). Email Google Workspace preservado durante a migração. Passo a passo em seção *Domínio*.
 - **Brand book print v2** entregue (25 páginas A4, `05-deliverables/brand-book-print.html`, online em `/brand-book/print/`)
 - **Deck v3 finalizado** com 11 slides (House Look removido), lightbox Vimeo em todos os cases, Animatic Claro como slide 04
 - **Portfolio v3**: case Brime adicionado, todas as descrições nos cases, Mizuno/Olympikus com vídeos full sem corte, Negra Li com novo trecho (CORTE_NEGRA_LI)
