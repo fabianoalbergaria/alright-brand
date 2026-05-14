@@ -44,6 +44,12 @@ rsync -a \
 mkdir -p "$DIST/deck"
 cp "$ROOT/05-deliverables/deck-alright-v3.html" "$DIST/deck/index.html"
 
+# Brand book print: serve at /brand-book/print/ (open + Cmd+P)
+mkdir -p "$DIST/brand-book/print"
+# Fix relative paths (../ → ../../) since target depth is 2 levels deep
+sed 's|"\.\./assets/|"../../assets/|g; s|url(\(['\''"]*\)\.\./assets/|url(\1../../assets/|g' \
+  "$ROOT/05-deliverables/brand-book-print.html" > "$DIST/brand-book/print/index.html"
+
 echo "→ Deploy Cloudflare Pages…"
 wrangler pages deploy "$DIST" --project-name=wearealright --branch=main --commit-dirty=true --commit-message="alright deploy"
 
