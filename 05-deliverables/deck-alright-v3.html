@@ -277,6 +277,44 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .s-board__arrow{transform:rotate(90deg)}
 }
 
+/* ---------- 04 · ANIMATIC ---------- */
+.s-anim__inner{position:relative;width:100%;height:100%;padding:clamp(72px,6vw,112px) clamp(40px,5vw,96px) clamp(64px,5vw,96px);display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(40px,5vw,80px);align-items:center}
+.s-anim__head{display:flex;flex-direction:column;gap:18px}
+.s-anim__title{font-size:clamp(48px,6vw,96px);font-weight:300;line-height:.96;letter-spacing:-0.02em;margin:0;color:var(--dark)}
+.s-anim__media{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 6px 32px rgba(20,20,19,0.18)}
+.s-anim__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.s-anim__sticker{position:absolute;top:18px;left:18px;z-index:3}
+.s-anim__cap{position:absolute;bottom:18px;left:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,.85);z-index:3}
+
+/* ---------- Lightbox trigger (clickable preview) ---------- */
+[data-vimeo-id],[data-video-src]{cursor:pointer;position:relative}
+[data-vimeo-id]::after,[data-video-src]::after{
+  content:'';position:absolute;inset:0;z-index:5;
+  background:rgba(20,20,19,0);transition:background .35s var(--ease-cine);pointer-events:none;
+}
+[data-vimeo-id]::before,[data-video-src]::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.7);
+  width:88px;height:88px;border-radius:50%;background:var(--orange-clay);z-index:6;opacity:0;
+  transition:opacity .35s var(--ease-cine), transform .6s var(--ease-cine);pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23141413'><path d='M11 8l14 8-14 8z'/></svg>");
+  background-repeat:no-repeat;background-position:center;background-size:36px 36px;
+}
+[data-vimeo-id]:hover::after,[data-video-src]:hover::after{background:rgba(20,20,19,0.32)}
+[data-vimeo-id]:hover::before,[data-video-src]:hover::before{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* ---------- Vimeo / video lightbox modal ---------- */
+.vimeo-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,20,19,0.96);display:none;align-items:center;justify-content:center;padding:clamp(20px,5vw,80px);opacity:0;transition:opacity .35s var(--ease-cine)}
+.vimeo-modal[aria-hidden="false"]{display:flex;opacity:1}
+.vimeo-modal__inner{position:relative;width:100%;max-width:1400px;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5)}
+.vimeo-modal__frame{position:absolute;inset:0;background:#000}
+.vimeo-modal__frame iframe{width:100%;height:100%;border:0;display:block}
+.vimeo-modal__close{position:fixed;top:24px;right:24px;width:48px;height:48px;border-radius:999px;background:var(--bone);color:var(--dark);border:0;cursor:pointer;font-family:var(--font-mono);font-size:24px;font-weight:300;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .3s var(--ease-cine),transform .3s var(--ease-cine);z-index:10000}
+.vimeo-modal__close:hover{background:var(--orange-clay);transform:rotate(90deg)}
+
+@media (max-width:900px){
+  .s-anim__inner{grid-template-columns:1fr;gap:32px}
+}
+
 /* ---------- Generic eyebrow on slides ---------- */
 .eyebrow-pos{position:absolute;top:clamp(64px,5vw,80px);left:clamp(32px,4vw,80px);z-index:5}
 
@@ -435,20 +473,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </section>
 
   <!-- ============================================================
-       04 · MANIFESTOS (split)
+       04 · ANIMATIC ENTREGÁVEL
        ============================================================ -->
-  <section class="slide s-mani-wrap" data-index="3" data-tone="dark" aria-label="Manifestos canon">
-    <div class="s-mani">
-      <div class="s-mani__text">
-        <span class="eyebrow eyebrow--bone" style="margin-bottom:18px">02 · Manifestos canon</span>
-        <p class="s-mani__line">We are <span class="accent">alright</span>.</p>
-        <p class="s-mani__line">Craft. Craft. And. More. Craft.</p>
-        <p class="s-mani__line">Cada filme é um filme.</p>
-        <p class="s-mani__line">No camera or set.<br/>No high costs.</p>
+  <section class="slide slide--bone s-anim" data-index="3" data-tone="bone" aria-label="Animatic entregável">
+    <div class="s-anim__inner">
+      <div class="s-anim__head">
+        <span class="eyebrow">03 · Animatic entregável</span>
+        <h2 class="s-anim__title">Do frame<br/>ao movimento.</h2>
       </div>
-      <div class="s-mani__media">
-        <img src="../assets/work/web/amino-hero.jpg" alt="Amino — still editorial" loading="lazy" />
-        <span class="sticker sticker--ghost-bone s-mani__sticker rot-2">(( canon ))</span>
+      <div class="s-anim__media" data-video-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/claro-full.mp4" data-video-title="Claro · Animatic" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/claro-poster.jpg">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/claro.mp4" type="video/mp4" />
+        </video>
+        <span class="sticker sticker--ghost-bone s-anim__sticker rot-2">(( animatic ))</span>
+        <span class="s-anim__cap">Claro · 2026</span>
       </div>
     </div>
   </section>
@@ -511,7 +549,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <span class="sticker sticker--bone rot-2">(( cinematic ))</span>
       </div>
     </div>
-    <div class="s-case__media">
+    <div class="s-case__media" data-vimeo-id="1191599038" data-vimeo-title="PUMA Portugal" role="button" tabindex="0">
       <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/puma-portugal-poster.jpg">
         <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4" type="video/mp4" />
       </video>
@@ -531,7 +569,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <span class="sticker sticker--ghost-bone rot1">(( live ))</span>
       </div>
     </div>
-    <div class="s-case__media">
+    <div class="s-case__media" data-vimeo-id="1192041713" data-vimeo-title="Negra Li · Lollapalooza" role="button" tabindex="0">
       <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/negra-li-visual-poster.jpg">
         <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-visual.mp4" type="video/mp4" />
       </video>
@@ -554,10 +592,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
     <div class="s-case__media">
       <div class="s-case__grid4">
-        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-forever-fun-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-forever-fun.mp4" type="video/mp4" /></video></div>
-        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-art-gallery-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-art-gallery.mp4" type="video/mp4" /></video></div>
-        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-surreal-unboxing-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-unboxing.mp4" type="video/mp4" /></video></div>
-        <div><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-surreal-dream-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" /></video></div>
+        <div data-vimeo-id="1191599456" data-vimeo-title="Chupa Chups · Forever Fun" role="button" tabindex="0"><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-forever-fun-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-forever-fun.mp4" type="video/mp4" /></video></div>
+        <div data-vimeo-id="1191600944" data-vimeo-title="Chupa Chups · Art Gallery" role="button" tabindex="0"><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-art-gallery-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-art-gallery.mp4" type="video/mp4" /></video></div>
+        <div data-vimeo-id="1191600942" data-vimeo-title="Chupa Chups · Surreal Unboxing" role="button" tabindex="0"><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-surreal-unboxing-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-unboxing.mp4" type="video/mp4" /></video></div>
+        <div data-vimeo-id="1191600943" data-vimeo-title="Chupa Chups · Surreal Dream" role="button" tabindex="0"><video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/chupa-chups-surreal-dream-poster.jpg"><source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" /></video></div>
       </div>
     </div>
   </section>
@@ -576,7 +614,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <span class="sticker sticker--bone rot-2">(( sport ))</span>
       </div>
     </div>
-    <div class="s-case__media">
+    <div class="s-case__media" data-vimeo-id="1191598803" data-vimeo-title="Olympikus · Corre 5" role="button" tabindex="0">
       <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/olympikus-corre5-full-poster.jpg">
         <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/olympikus-corre5-full.mp4" type="video/mp4" />
       </video>
@@ -822,6 +860,76 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   }, {passive:true});
 
 })();
+
+// Lightbox modal
+(function(){
+  const modal = document.getElementById('vimeoModal');
+  if (!modal) return;
+  const frame = document.getElementById('vimeoFrame');
+  const closeBtn = modal.querySelector('.vimeo-modal__close');
+  let lastFocus = null;
+
+  function openVimeo(id, title){
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.title = title || 'Vimeo player';
+    return iframe;
+  }
+  function openVideo(src, title){
+    const v = document.createElement('video');
+    v.src = src;
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    v.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000';
+    v.title = title || '';
+    return v;
+  }
+  function open(el){
+    lastFocus = document.activeElement;
+    const id = el.getAttribute('data-vimeo-id');
+    const src = el.getAttribute('data-video-src');
+    const title = el.getAttribute('data-vimeo-title') || el.getAttribute('data-video-title') || '';
+    let node;
+    if (id) node = openVimeo(id, title);
+    else if (src) node = openVideo(src, title);
+    else return;
+    frame.innerHTML = '';
+    frame.appendChild(node);
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close(){
+    modal.setAttribute('aria-hidden', 'true');
+    frame.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') { e.stopPropagation(); close(); }
+  }, true);
+
+  document.querySelectorAll('[data-vimeo-id],[data-video-src]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.stopPropagation(); open(el); });
+    el.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); open(el); }
+    });
+  });
+})();
 </script>
+
+<!-- Vimeo / video lightbox -->
+<div id="vimeoModal" class="vimeo-modal" aria-hidden="true" role="dialog" aria-label="Player de vídeo">
+  <button class="vimeo-modal__close" type="button" aria-label="Fechar player">×</button>
+  <div class="vimeo-modal__inner">
+    <div class="vimeo-modal__frame" id="vimeoFrame"></div>
+  </div>
+</div>
 </body>
 </html>
