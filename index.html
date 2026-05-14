@@ -52,6 +52,42 @@
   --gap-card:clamp(16px,1.4vw,28px);
 }
 
+/* ---------- Theme: shake to flip (mobile) ---------- */
+[data-theme="dark"]{
+  --bone:#141413;
+  --dark:#faf9f5;
+  --mist:#3d3a35;
+  --stone:#ece8dc;
+  --slate-warm:#cfcbc1;
+}
+body, .nav, .nav__link, .footer, .card, .sticker, .hero__cue, .hero__sub, .hero__eyebrow, .case, .case__meta, .pill{
+  transition: background-color .7s var(--ease-cine), color .7s var(--ease-cine), border-color .7s var(--ease-cine);
+}
+@media (prefers-reduced-motion: reduce){
+  body, .nav, .nav__link, .footer, .card, .sticker, .hero__cue, .hero__sub, .hero__eyebrow, .case, .case__meta, .pill{
+    transition: none;
+  }
+}
+.shake-hint{
+  position:fixed;bottom:18px;left:50%;
+  transform:translateX(-50%) translateY(8px);
+  background:var(--dark);color:var(--bone);
+  padding:9px 16px;border-radius:var(--radius-pill);
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:lowercase;
+  z-index:90;opacity:0;pointer-events:none;display:none;
+  transition: opacity .6s var(--ease-cine), transform .6s var(--ease-cine);
+  cursor:pointer;border:1px solid rgba(250,249,245,0.12);
+  box-shadow:0 10px 30px rgba(20,20,19,0.18);
+}
+.shake-hint--show{
+  opacity:1;pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+@media (max-width:768px), (pointer:coarse){
+  .shake-hint{ display:block; }
+}
+
 /* ---------- Reset ---------- */
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -820,6 +856,140 @@ article{margin:0;padding:0;display:block}
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el); }
     });
   });
+})();
+</script>
+
+<!-- ============================================================
+     SHAKE TO FLIP — mobile-only theme toggle
+     Detects device shake via DeviceMotion API, flips light↔dark.
+     iOS 13+ gates the permission behind a tap on the hint pill.
+     ============================================================ -->
+<div class="shake-hint" id="shakeHint" role="button" tabindex="0" aria-label="Ativar shake to flip">
+  <span class="shake-hint__text">(( shake to flip ))</span>
+</div>
+<script>
+(function(){
+  'use strict';
+
+  // Gate: mobile-ish viewports + DeviceMotion support only
+  var isMobileish = window.matchMedia('(max-width: 768px)').matches
+                 || window.matchMedia('(pointer: coarse)').matches;
+  if (!isMobileish || !('DeviceMotionEvent' in window)) return;
+
+  var hint = document.getElementById('shakeHint');
+  var hintText = hint && hint.querySelector('.shake-hint__text');
+  var navLogo = document.querySelector('.nav__brand img');
+
+  var LOGO_DARK = 'assets/logo/svg/alright-expressivo-dark-transparent.svg';
+  var LOGO_BONE = 'assets/logo/svg/alright-expressivo-bone-transparent.svg';
+
+  var SEEN_KEY = 'alright.shakeSeen';
+  var seen = false;
+  try { seen = localStorage.getItem(SEEN_KEY) === '1'; } catch(_){}
+
+  function setHintText(t){ if (hintText && t) hintText.textContent = t; }
+
+  function showHint(t, autoHideMs){
+    if (!hint) return;
+    setHintText(t);
+    hint.classList.add('shake-hint--show');
+    if (autoHideMs) {
+      setTimeout(function(){ hint.classList.remove('shake-hint--show'); }, autoHideMs);
+    }
+  }
+  function hideHint(){ if (hint) hint.classList.remove('shake-hint--show'); }
+
+  function markSeen(){
+    seen = true;
+    try { localStorage.setItem(SEEN_KEY, '1'); } catch(_){}
+  }
+
+  function toggleTheme(){
+    var html = document.documentElement;
+    var goingDark = html.getAttribute('data-theme') !== 'dark';
+    if (goingDark) html.setAttribute('data-theme', 'dark');
+    else html.removeAttribute('data-theme');
+    if (navLogo) navLogo.src = goingDark ? LOGO_BONE : LOGO_DARK;
+
+    if (!seen) {
+      markSeen();
+      showHint('(( look again ))', 2800);
+    } else {
+      // brief acknowledgement
+      showHint('(( look again ))', 1600);
+    }
+  }
+
+  // Shake detection — sum of axis deltas, with cooldown
+  var lastShake = 0;
+  var lastX = null, lastY = null, lastZ = null;
+  var THRESHOLD = 28;   // m/s² accumulated delta
+  var COOLDOWN = 1500;  // ms between flips
+
+  function onMotion(e){
+    var acc = e.accelerationIncludingGravity || e.acceleration;
+    if (!acc || acc.x == null) return;
+
+    var x = acc.x || 0, y = acc.y || 0, z = acc.z || 0;
+    if (lastX !== null) {
+      var delta = Math.abs(x - lastX) + Math.abs(y - lastY) + Math.abs(z - lastZ);
+      var now = Date.now();
+      if (delta > THRESHOLD && (now - lastShake) > COOLDOWN) {
+        lastShake = now;
+        toggleTheme();
+      }
+    }
+    lastX = x; lastY = y; lastZ = z;
+  }
+
+  function attachShake(){
+    window.addEventListener('devicemotion', onMotion, { passive: true });
+    // Hide attach + remove listeners when tab is hidden (battery)
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) window.removeEventListener('devicemotion', onMotion);
+      else window.addEventListener('devicemotion', onMotion, { passive: true });
+    });
+  }
+
+  var needsPermission = typeof DeviceMotionEvent.requestPermission === 'function';
+
+  function requestAndAttach(){
+    if (!needsPermission) { attachShake(); return; }
+    DeviceMotionEvent.requestPermission().then(function(result){
+      if (result === 'granted') {
+        attachShake();
+        showHint('(( shake the phone ))', 4500);
+      } else {
+        setHintText('(( permission denied ))');
+        setTimeout(hideHint, 2500);
+      }
+    }).catch(function(){
+      setHintText('(( shake unavailable ))');
+      setTimeout(hideHint, 2500);
+    });
+  }
+
+  if (needsPermission) {
+    // iOS 13+: must request from a user gesture. Pill = the gesture.
+    setTimeout(function(){
+      setHintText('(( tap to shake ))');
+      hint.classList.add('shake-hint--show');
+    }, 2200);
+    hint.addEventListener('click', requestAndAttach);
+    hint.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); requestAndAttach(); }
+    });
+  } else {
+    // Android / others: attach silently, show discoverable hint once
+    attachShake();
+    if (!seen) {
+      setTimeout(function(){
+        setHintText('(( shake the phone ))');
+        hint.classList.add('shake-hint--show');
+        setTimeout(function(){ hint.classList.remove('shake-hint--show'); }, 5000);
+      }, 2500);
+    }
+  }
 })();
 </script>
 
