@@ -249,6 +249,36 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .s-cta__row-sep{display:inline-block;margin:0 10px;color:var(--orange-clay)}
 .s-cta__foot{position:absolute;bottom:clamp(40px,4vw,64px);left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.4);white-space:nowrap}
 
+/* ---------- 02 · THE PROCESS ---------- */
+.s-process{position:relative}
+.s-process__inner{position:relative;width:100%;height:100%;padding:clamp(80px,7vw,128px) clamp(40px,5vw,96px);display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,3vw,56px)}
+.s-process__title{font-size:clamp(56px,9vw,160px);font-weight:300;line-height:.95;letter-spacing:-0.025em;margin:0;color:var(--dark)}
+.s-process__steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(8px,1.2vw,18px);max-width:100%}
+.s-process__steps li{display:flex;align-items:flex-end;gap:8px;flex-shrink:0}
+.s-process__num{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm);align-self:flex-start;padding-top:6px}
+.s-process__step{font-size:clamp(20px,2.4vw,38px);font-weight:400;letter-spacing:-0.01em;color:var(--dark);line-height:1.1}
+.s-process__arrow{font-size:clamp(20px,2.4vw,38px);font-weight:300;color:var(--orange-clay);margin:0 4px;line-height:1.1}
+
+/* ---------- 03 · STORYBOARD → IMAGEBOARD ---------- */
+.s-board{position:relative}
+.s-board__inner{position:relative;width:100%;height:100%;padding:clamp(72px,6vw,112px) clamp(40px,5vw,96px) clamp(64px,5vw,96px);display:flex;flex-direction:column;gap:clamp(28px,3vw,48px)}
+.s-board__head{display:flex;flex-direction:column;gap:14px}
+.s-board__title{font-size:clamp(48px,7vw,120px);font-weight:300;line-height:.95;letter-spacing:-0.025em;margin:0;color:var(--dark)}
+.s-board__pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,72px);flex:1;align-items:center;min-height:0}
+.s-board__col{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(16px,1.8vw,32px);align-items:center;margin:0}
+.s-board__media{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--mist);box-shadow:0 1px 0 rgba(20,20,19,0.06)}
+.s-board__media img{width:100%;height:100%;object-fit:cover;display:block}
+.s-board__media--story{background:var(--bone);border:1px solid rgba(20,20,19,0.08)}
+.s-board__arrow{font-size:clamp(28px,3vw,48px);font-weight:300;color:var(--orange-clay);line-height:1}
+.s-board__cap{grid-column:1 / -1;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm);margin-top:10px}
+
+@media (max-width:900px){
+  .s-process__step,.s-process__arrow{font-size:clamp(18px,4vw,28px)}
+  .s-board__pair{grid-template-columns:1fr;gap:32px}
+  .s-board__col{grid-template-columns:1fr;justify-items:center}
+  .s-board__arrow{transform:rotate(90deg)}
+}
+
 /* ---------- Generic eyebrow on slides ---------- */
 .eyebrow-pos{position:absolute;top:clamp(64px,5vw,80px);left:clamp(32px,4vw,80px);z-index:5}
 
@@ -356,66 +386,52 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </section>
 
   <!-- ============================================================
-       02 · BIG IDEA
+       02 · THE PROCESS
        ============================================================ -->
-  <section class="slide slide--dark s-bigidea" data-index="1" data-tone="dark" aria-label="Big idea">
-    <div class="s-bigidea__inner">
-      <span class="eyebrow eyebrow--bone">01 · Big idea</span>
-      <div>
-        <h2 class="s-bigidea__title"><span class="paren">((</span>Look again.<span class="paren">))</span></h2>
-      </div>
-      <div class="s-bigidea__grid">
-        <div class="s-bigidea__copy">
-          <p><strong>Cinema feito de descobertas.</strong> Cada peça pede um segundo olhar — porque o primeiro nunca conta tudo.</p>
-          <p>A.I. first não é gimmick. É método. Quiet tech a serviço do craft.</p>
-          <div class="s-bigidea__stickers">
-            <span class="sticker sticker--ghost-bone rot-2">(( quiet tech ))</span>
-            <span class="sticker sticker--bone rot1">(( craft ))</span>
-          </div>
-        </div>
-        <div class="s-bigidea__media">
-          <img src="../assets/work/web/editorial-portrait-01.jpg" alt="Retrato editorial — DJ surreal" loading="lazy" />
-        </div>
-      </div>
+  <section class="slide slide--bone s-process" data-index="1" data-tone="bone" aria-label="The Process">
+    <div class="s-process__inner">
+      <span class="eyebrow">01 · Workflow</span>
+      <h2 class="s-process__title">The Process.</h2>
+      <ol class="s-process__steps" aria-label="Etapas do processo">
+        <li><span class="s-process__num">01</span><span class="s-process__step">Input</span></li>
+        <li><span class="s-process__arrow" aria-hidden="true">→</span></li>
+        <li><span class="s-process__num">02</span><span class="s-process__step">Direction</span></li>
+        <li><span class="s-process__arrow" aria-hidden="true">→</span></li>
+        <li><span class="s-process__num">03</span><span class="s-process__step">Storyboard</span></li>
+        <li><span class="s-process__arrow" aria-hidden="true">→</span></li>
+        <li><span class="s-process__num">04</span><span class="s-process__step">Stills</span></li>
+        <li><span class="s-process__arrow" aria-hidden="true">→</span></li>
+        <li><span class="s-process__num">05</span><span class="s-process__step">Offline</span></li>
+        <li><span class="s-process__arrow" aria-hidden="true">→</span></li>
+        <li><span class="s-process__num">06</span><span class="s-process__step">Finalization</span></li>
+        <li><span class="s-process__arrow" aria-hidden="true">→</span></li>
+        <li><span class="s-process__num">07</span><span class="s-process__step">Delivery</span></li>
+      </ol>
     </div>
   </section>
 
   <!-- ============================================================
-       03 · QUEM SOMOS (bento)
+       03 · STORYBOARD → IMAGEBOARD
        ============================================================ -->
-  <section class="slide slide--bone s-who" data-index="2" data-tone="bone" aria-label="Quem somos">
-    <div class="s-who__inner">
-      <div class="s-who__head">
-        <div>
-          <span class="eyebrow">01 · Quem somos</span>
-          <h2 class="h-lg" style="margin-top:14px">Uma produtora.<br/>Sem câmera. Sem set.<br/>Puro <em style="font-style:normal;color:var(--clay-deep)">craft</em>.</h2>
-        </div>
-        <span class="sticker rot-2">(( produtora ))</span>
+  <section class="slide slide--bone s-board" data-index="2" data-tone="bone" aria-label="Storyboard vira imageboard">
+    <div class="s-board__inner">
+      <div class="s-board__head">
+        <span class="eyebrow">02 · Storyboard → Imageboard</span>
+        <h2 class="s-board__title">Do traço<br/>à imagem.</h2>
       </div>
-      <div class="s-who__bento">
-        <div class="who-card who-card--media who-card--span2">
-          <video autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/seda-still.jpg">
-            <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/seda-sensorial.mp4" type="video/mp4" />
-          </video>
-          <span class="sticker sticker--ghost-bone card-sticker rot1">(( sensorial ))</span>
-          <span class="card-label">Seda · Sensorial loop</span>
-        </div>
-        <div class="who-card who-card--orange">
-          <span class="eyebrow" style="color:var(--clay-deep)">canon</span>
-          <p class="card-big" style="margin-top:12px">Cada filme é um filme.</p>
-        </div>
-        <div class="who-card who-card--media">
-          <img src="../assets/work/web/puma-portugal-portrait.jpg" alt="PUMA Portugal — Eusébio + pantera" loading="lazy" />
-          <span class="card-label">PUMA Portugal</span>
-        </div>
-        <div class="who-card" style="background:var(--mist)">
-          <span class="eyebrow">o que somos</span>
-          <p style="font-size:clamp(18px,1.6vw,24px);font-weight:400;line-height:1.25;letter-spacing:-0.01em;margin-top:10px;color:var(--dark)">A.I. first.<br/>Tier-1. <span style="color:var(--clay-deep)">São Paulo / BR</span>.</p>
-        </div>
-        <div class="who-card" style="background:var(--dark);color:var(--bone);border-color:transparent">
-          <span class="eyebrow eyebrow--bone">stack</span>
-          <p style="font-size:clamp(16px,1.3vw,20px);font-weight:400;line-height:1.35;margin-top:10px">Modelos generativos +<br/>direção +<br/>finishing humano.</p>
-        </div>
+      <div class="s-board__pair">
+        <figure class="s-board__col">
+          <div class="s-board__media s-board__media--story"><img src="../assets/work/web/storyboard-1.jpg" alt="Storyboard 1 — traço bruto" loading="lazy" /></div>
+          <div class="s-board__arrow" aria-hidden="true">→</div>
+          <div class="s-board__media s-board__media--image"><img src="../assets/work/web/imageboard-1.jpg" alt="Imageboard 1 — imagem final" loading="lazy" /></div>
+          <figcaption class="s-board__cap">Frame 01</figcaption>
+        </figure>
+        <figure class="s-board__col">
+          <div class="s-board__media s-board__media--story"><img src="../assets/work/web/storyboard-2.jpg" alt="Storyboard 2 — traço bruto" loading="lazy" /></div>
+          <div class="s-board__arrow" aria-hidden="true">→</div>
+          <div class="s-board__media s-board__media--image"><img src="../assets/work/web/imageboard-2.jpg" alt="Imageboard 2 — imagem final" loading="lazy" /></div>
+          <figcaption class="s-board__cap">Frame 02</figcaption>
+        </figure>
       </div>
     </div>
   </section>
