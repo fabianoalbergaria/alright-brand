@@ -40,6 +40,10 @@ rsync -a \
   "$ROOT/assets" \
   "$DIST/"
 
+# Deck: serve at /deck/ (clean URL)
+mkdir -p "$DIST/deck"
+cp "$ROOT/05-deliverables/deck-alright-v3.html" "$DIST/deck/index.html"
+
 echo "→ Deploy Cloudflare Pages…"
 wrangler pages deploy "$DIST" --project-name=wearealright --branch=main --commit-dirty=true
 
