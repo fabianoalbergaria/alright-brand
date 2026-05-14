@@ -1,2217 +1,2169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Alright — Brand Guide 2026 (Print)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<title>Alright — Brand Book 2026 · Print v2.0</title>
+<meta name="description" content="Alright Brand Book 2026 — versão print A4. ((Look again.))" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-/* ============================================
-   ALRIGHT BRAND BOOK — PRINT-READY
-   ============================================ */
+/* ============================================================
+   ALRIGHT · BRAND BOOK 2026 · PRINT EDITION v2.0
+   A4 portrait — designed for Cmd+P → Save as PDF
+   ============================================================ */
 
+/* ---------- Tokens ---------- */
+:root{
+  --orange-clay:#d97757;
+  --clay-deep:#8c4a32;
+  --bone:#faf9f5;
+  --mist:#ece8dc;
+  --dark:#141413;
+  --stone:#3d3a35;
+  --slate-warm:#5b5750;
+
+  --font-sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* ---------- Page setup ---------- */
 @page {
-  size: A4;
-  margin: 20mm 25mm;
-  @bottom-left {
-    content: "Alright — Brand Guide 2026";
-    font-family: 'Bricolage Grotesque', Georgia, serif;
-    font-size: 9pt;
-    color: #5b5750;
-  }
-  @bottom-right {
-    content: counter(page);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9pt;
-    color: #5b5750;
-  }
+  size: A4 portrait;
+  margin: 0;
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --orange-clay: #d97757;
-  --bone: #faf9f5;
-  --dark: #141413;
-  --clay-deep: #8c4a32;
-  --stone: #3d3a35;
-  --slate-warm: #5b5750;
-  --mist: #ece8dc;
-  --border: #e8e4da;
-  --success: #5e6b3d;
-  --error: #b04a36;
-  --warning: #945a0e;
-  --info: #4a6478;
-}
-
-html { font-size: 11pt; }
+* , *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
 
 body {
-  font-family: 'Bricolage Grotesque', Georgia, serif;
-  background: var(--bone);
+  font-family: var(--font-sans);
+  background: #d4d2cc;
   color: var(--dark);
-  line-height: 1.6;
   font-weight: 400;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 24px;
+  text-rendering: optimizeLegibility;
 }
 
-@media print {
-  body { background: white; padding: 0; }
-  .page-break { page-break-before: always; }
-  .no-break { page-break-inside: avoid; }
-}
+img { max-width: 100%; display: block; }
 
-@media screen {
-  .page-break { border-top: 2px dashed var(--mist); margin-top: 48px; padding-top: 48px; }
-  body { padding-bottom: 80px; }
-}
-
-/* ---- PAGE FOOTER (screen fallback) ---- */
-.print-footer {
-  display: none;
-}
-@media print {
-  .print-footer {
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 25mm 10mm;
-    font-size: 9pt;
-    color: var(--slate-warm);
-  }
-  .print-footer .pf-right {
-    font-family: 'JetBrains Mono', monospace;
-  }
-}
-
-/* ---- TYPOGRAPHY ---- */
-.overline {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--slate-warm);
-  margin-bottom: 12px;
-}
-
-.section-header {
-  margin-bottom: 32px;
-}
-
-.section-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 14pt;
-  font-weight: 500;
-  color: var(--clay-deep);
-  display: inline;
-  margin-right: 12px;
-}
-
-.section-name {
-  font-size: 32px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: var(--dark);
-  display: inline;
-}
-
-.section-subtitle {
-  font-size: 13pt;
-  font-weight: 400;
-  color: var(--stone);
-  line-height: 1.5;
-  margin-top: 12px;
-  max-width: 600px;
-}
-
-h3 {
-  font-size: 18pt;
-  font-weight: 500;
-  margin-bottom: 12px;
-  margin-top: 28px;
-  color: var(--dark);
-}
-
-h4 {
-  font-size: 13pt;
-  font-weight: 500;
-  margin-bottom: 8px;
-  margin-top: 20px;
-  color: var(--dark);
-}
-
-p, li { font-size: 11pt; line-height: 1.6; }
-
-.body-text {
-  font-size: 11pt;
-  line-height: 1.7;
-  color: var(--stone);
-  max-width: 600px;
-}
-
-.body-text + .body-text { margin-top: 10px; }
-
-.accent { color: var(--orange-clay); }
-
-.inline-code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85em;
-  background: var(--mist);
-  padding: 1px 4px;
-  border-radius: 2px;
-}
-
-/* ---- COVER ---- */
-.cover {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 90vh;
-  text-align: center;
-}
-
-@media print {
-  .cover { min-height: 0; height: 100vh; page-break-after: always; }
-}
-
-.cover-wordmark {
-  font-size: 72px;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  color: var(--dark);
-}
-
-.cover-wordmark .paren {
-  color: var(--slate-warm);
-  font-weight: 300;
-}
-
-.cover-subtitle {
-  font-size: 16pt;
-  color: var(--stone);
-  margin-top: 16px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-.cover-year {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12pt;
-  color: var(--slate-warm);
-  margin-top: 48px;
-  letter-spacing: 0.06em;
-}
-
-/* ---- TOC ---- */
-.toc { margin-top: 24px; }
-
-.toc-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 12pt;
-}
-
-.toc-item .toc-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10pt;
-  color: var(--clay-deep);
-  min-width: 32px;
-}
-
-.toc-item .toc-label {
-  flex: 1;
-  font-weight: 500;
-}
-
-.toc-item .toc-page {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10pt;
-  color: var(--slate-warm);
-}
-
-/* ---- CARDS ---- */
-.card {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 12px;
-  page-break-inside: avoid;
-}
-
-.card-label {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--slate-warm);
-  margin-bottom: 8px;
-}
-
-.card-title {
-  font-size: 14pt;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.card-body {
-  font-size: 11pt;
-  color: var(--stone);
-  line-height: 1.5;
-}
-
-/* ---- GRIDS ---- */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px; }
-.grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-
-/* ---- DO / DON'T ---- */
-.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
-
-.do-col, .dont-col {
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  page-break-inside: avoid;
-}
-
-.do-col { border-left: 3px solid var(--success); }
-.dont-col { border-left: 3px solid var(--error); }
-
-.do-label {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-}
-
-.do-col .do-label { color: var(--success); }
-.dont-col .do-label { color: var(--error); }
-
-.do-col ul, .dont-col ul { list-style: none; padding: 0; }
-
-.do-col li, .dont-col li {
-  font-size: 10pt;
-  color: var(--stone);
-  padding: 4px 0;
-  line-height: 1.4;
-}
-
-/* ---- TABLES ---- */
-.brand-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-  font-size: 10pt;
-}
-
-.brand-table th {
-  text-align: left;
-  font-weight: 500;
-  font-size: 9pt;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--slate-warm);
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.brand-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  color: var(--stone);
-}
-
-.brand-table tr:last-child td { border-bottom: none; }
-
-/* ---- SWATCHES ---- */
-.swatch-large {
-  border-radius: 8px;
-  height: 100px;
-  display: flex;
-  align-items: flex-end;
-  padding: 12px;
+/* ---------- Page container ---------- */
+.page {
+  width: 210mm;
+  height: 297mm;
   position: relative;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.swatch-info {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 8pt;
-  line-height: 1.6;
-}
-
-.swatch-name {
-  font-family: 'Bricolage Grotesque', serif;
-  font-size: 10pt;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-/* ---- CONTRAST TABLE ---- */
-.contrast-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.contrast-pair {
-  border: 1px solid var(--border);
-  border-radius: 6px;
   overflow: hidden;
+  page-break-after: always;
   page-break-inside: avoid;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+  background: var(--bone);
+  margin: 0 auto 8mm;
+  box-shadow: 0 2mm 6mm rgba(0,0,0,0.08);
+}
+.page:last-child { page-break-after: auto; }
+
+/* ---------- Print color exactness ---------- */
+@media print {
+  body { background: var(--bone); -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
+  .page { box-shadow: none; margin: 0; }
 }
 
-.contrast-sample {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10pt;
-  font-weight: 500;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.contrast-meta {
-  padding: 8px;
-  font-size: 9pt;
-  color: var(--stone);
+/* ---------- Page chrome (header + footer) ---------- */
+.page__header,
+.page__footer {
+  position: absolute;
+  left: 18mm;
+  right: 18mm;
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.badge {
-  font-size: 8pt;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  padding: 1px 6px;
-  border-radius: 2px;
-  text-transform: uppercase;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.badge-pass { background: var(--success); color: #faf9f5; }
-.badge-fail { background: var(--error); color: #faf9f5; }
-
-/* ---- LOGO DEMO ---- */
-.logo-demo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 120px;
-  border-radius: 8px;
-  font-size: 48px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.logo-demo .logo-l-bold { font-weight: 600; }
-.logo-demo .logo-l-orange { color: var(--orange-clay); }
-
-.logo-on-bone {
-  background: #faf9f5;
-  color: #141413;
-  border: 1px solid var(--mist);
-}
-
-.logo-on-dark {
-  background: #141413;
-  color: #faf9f5;
-}
-
-.logo-caption {
-  font-size: 9pt;
   color: var(--slate-warm);
-  text-align: center;
-  margin-bottom: 16px;
+  z-index: 10;
 }
+.page__header { top: 10mm; }
+.page__footer { bottom: 10mm; }
 
-/* ---- TYPE SPECIMEN ---- */
-.weight-row {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
+.page__footer::before,
+.page__header::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 0.25pt;
+  background: rgba(20,20,19,0.18);
 }
+.page__header::after { bottom: -4mm; }
+.page__footer::before { top: -4mm; }
 
-.weight-row:last-child { border-bottom: none; }
+.page--dark .page__header,
+.page--dark .page__footer { color: rgba(250,249,245,0.55); }
+.page--dark .page__header::after,
+.page--dark .page__footer::before { background: rgba(250,249,245,0.18); }
 
-.weight-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9pt;
-  color: var(--slate-warm);
-  min-width: 48px;
-}
+.page--orange .page__header,
+.page--orange .page__footer { color: rgba(20,20,19,0.55); }
+.page--orange .page__header::after,
+.page--orange .page__footer::before { background: rgba(20,20,19,0.22); }
 
-.weight-sample {
-  font-size: 20pt;
-  letter-spacing: -0.01em;
-}
+.page--stone .page__header,
+.page--stone .page__footer { color: rgba(250,249,245,0.55); }
+.page--stone .page__header::after,
+.page--stone .page__footer::before { background: rgba(250,249,245,0.18); }
 
-.type-ramp-item {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-}
+.page--bleed .page__header,
+.page--bleed .page__footer { display: none; }
 
-.type-ramp-item:last-child { border-bottom: none; }
+/* ---------- Page surfaces ---------- */
+.page--bone   { background: var(--bone);        color: var(--dark); }
+.page--mist   { background: var(--mist);        color: var(--dark); }
+.page--dark   { background: var(--dark);        color: var(--bone); }
+.page--stone  { background: var(--stone);       color: var(--bone); }
+.page--slate  { background: var(--slate-warm);  color: var(--bone); }
+.page--orange { background: var(--orange-clay); color: var(--dark); }
+.page--clay   { background: var(--clay-deep);   color: var(--bone); }
 
-.type-ramp-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 8pt;
-  color: var(--slate-warm);
-  min-width: 120px;
-  flex-shrink: 0;
-}
-
-/* ---- PYRAMID ---- */
-.pyramid {
-  margin-top: 24px;
+/* ---------- Content frame ---------- */
+.content {
+  position: absolute;
+  top: 22mm;
+  left: 18mm;
+  right: 18mm;
+  bottom: 22mm;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3px;
 }
 
-.pyramid-level {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 14px;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  font-size: 10pt;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+.content--bleed {
+  top: 0; left: 0; right: 0; bottom: 0;
 }
 
-.pyramid-level-label {
+/* ---------- Type ---------- */
+.eyebrow {
+  font-family: var(--font-mono);
   font-size: 8pt;
   font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: var(--slate-warm);
-  margin-bottom: 4px;
+  margin: 0;
 }
+.page--dark .eyebrow,
+.page--stone .eyebrow,
+.page--slate .eyebrow,
+.page--clay .eyebrow { color: rgba(250,249,245,0.65); }
+.page--orange .eyebrow { color: rgba(20,20,19,0.7); }
 
-.pyramid-level-content {
+.h-mega   { font-size: 96pt; font-weight: 200; line-height: 0.92; letter-spacing: -0.03em; margin: 0; }
+.h-display{ font-size: 64pt; font-weight: 300; line-height: 0.95; letter-spacing: -0.025em; margin: 0; }
+.h-xl     { font-size: 48pt; font-weight: 400; line-height: 1.0;  letter-spacing: -0.02em; margin: 0; }
+.h-lg     { font-size: 36pt; font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; margin: 0; }
+.h-md     { font-size: 22pt; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
+.h-sm     { font-size: 14pt; font-weight: 500; line-height: 1.25; letter-spacing: -0.005em; margin: 0; }
+
+.body {
   font-size: 11pt;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--stone);
+  margin: 0;
+}
+.body--on-dark { color: rgba(250,249,245,0.82); }
+.body--on-orange { color: var(--dark); }
+.body--lead { font-size: 13pt; line-height: 1.5; }
+.body em { font-style: italic; color: var(--orange-clay); }
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+.page--dark .caption,
+.page--stone .caption,
+.page--clay .caption { color: rgba(250,249,245,0.65); }
+
+.paren { color: var(--orange-clay); font-weight: 300; }
+em { font-style: italic; }
+
+/* ---------- Stickers (static badges) ---------- */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
   font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--orange-clay);
   color: var(--dark);
+  white-space: nowrap;
 }
+.sticker--mist   { background: var(--mist);  color: var(--stone); }
+.sticker--dark   { background: var(--dark);  color: var(--bone); }
+.sticker--bone   { background: var(--bone);  color: var(--dark);  border: 0.5pt solid rgba(20,20,19,0.12); }
+.sticker--clay   { background: var(--clay-deep); color: var(--bone); }
+.sticker--ghost  { background: transparent;  color: var(--bone); border: 0.5pt solid rgba(250,249,245,0.4); }
 
-/* ---- NEUTRAL SCALE ---- */
-.neutral-scale {
+.rot-1 { transform: rotate(-1.2deg); }
+.rot1  { transform: rotate(1.2deg); }
+.rot-2 { transform: rotate(-2.4deg); }
+.rot2  { transform: rotate(2.4deg); }
+
+/* ---------- Cover page ---------- */
+.cover {
+  position: absolute;
+  inset: 0;
   display: flex;
-  margin-top: 16px;
-  border-radius: 6px;
-  overflow: hidden;
-  height: 56px;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18mm;
+  background: var(--dark);
+  color: var(--bone);
 }
-
-.neutral-step {
+.cover__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,249,245,0.62);
+}
+.cover__top-mark {
+  font-family: var(--font-sans);
+  font-size: 12pt;
+  font-weight: 400;
+  color: var(--bone);
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.cover__top-mark b { font-weight: 700; }
+.cover__center {
   flex: 1;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   justify-content: center;
-  padding: 6px 2px;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.neutral-step span {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 7pt;
-}
-
-/* ---- FUNCTIONAL COLORS ---- */
-.func-colors {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.func-swatch {
-  border-radius: 6px;
-  height: 56px;
-  display: flex;
-  align-items: flex-end;
-  padding: 8px;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.func-swatch span {
-  font-size: 9pt;
-  font-weight: 500;
-}
-
-/* ---- DARK MODE DEMO ---- */
-.darkmode-demo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 16px;
-  border: 1px solid var(--border);
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.darkmode-panel { padding: 24px 20px; }
-
-.darkmode-panel-light {
-  background: #faf9f5;
-  color: #141413;
-}
-
-.darkmode-panel-dark {
-  background: #141413;
-  color: #faf9f5;
-}
-
-.dm-label {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.5;
-  margin-bottom: 16px;
-}
-
-.dm-swatch {
-  display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  text-align: center;
+  gap: 14mm;
+}
+.cover__lockup {
+  width: 130mm;
+  height: auto;
+}
+.cover__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,249,245,0.62);
 }
 
-.dm-swatch-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+/* ---------- TOC ---------- */
+.toc__title {
+  margin-bottom: 14mm;
 }
-
-.dm-swatch-label {
+.toc__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.toc__item {
+  display: grid;
+  grid-template-columns: 12mm 1fr auto;
+  align-items: baseline;
+  gap: 6mm;
+  padding: 4.5mm 0;
+  border-top: 0.5pt solid rgba(20,20,19,0.12);
+  font-size: 12pt;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+.toc__item:last-child { border-bottom: 0.5pt solid rgba(20,20,19,0.12); }
+.toc__num {
+  font-family: var(--font-mono);
   font-size: 9pt;
+  letter-spacing: 0.14em;
+  color: var(--slate-warm);
+}
+.toc__label em { color: var(--slate-warm); font-size: 9pt; font-style: italic; margin-left: 6mm; }
+.toc__page {
+  font-family: var(--font-mono);
+  font-size: 10pt;
+  letter-spacing: 0.08em;
+  color: var(--dark);
+}
+.toc__brand {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+  border-top: 0.5pt solid rgba(20,20,19,0.12);
+  padding-top: 6mm;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------- Section divider page ---------- */
+.divider {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18mm;
+}
+.divider__num {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.divider__title {
+  font-size: 72pt;
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.divider__sub {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  max-width: 110mm;
+  line-height: 1.7;
+}
+.divider__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+/* ---------- Manifesto pages ---------- */
+.manifesto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.manifesto__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8mm;
+}
+.manifesto__big {
+  font-size: 92pt;
+  font-weight: 200;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 8mm 0 0;
+}
+.manifesto__big--small {
+  font-size: 72pt;
+}
+.manifesto__big--tiny {
+  font-size: 60pt;
+}
+.manifesto__copy {
+  max-width: 110mm;
+  font-size: 12pt;
+  line-height: 1.55;
+  margin-top: 6mm;
+}
+.manifesto__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8mm;
+}
+.manifesto__index {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   opacity: 0.7;
 }
 
-/* ---- HOUSE LOOK ---- */
-.houselook-block {
-  margin-bottom: 28px;
-  page-break-inside: avoid;
-}
-
-.houselook-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9pt;
-  color: var(--orange-clay);
-  margin-bottom: 4px;
-}
-
-.houselook-title {
-  font-size: 16pt;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.houselook-subtitle {
-  font-size: 11pt;
-  color: var(--stone);
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
-
-.houselook-rules {
-  list-style: none;
-  padding: 0;
-}
-
-.houselook-rules li {
-  font-size: 10pt;
-  color: var(--stone);
-  padding: 3px 0 3px 14px;
-  position: relative;
-  line-height: 1.5;
-}
-
-.houselook-rules li::before {
-  content: '';
+/* ---------- Big idea page on dark ---------- */
+.bigidea-page {
   position: absolute;
-  left: 0;
-  top: 10px;
-  width: 5px;
-  height: 1px;
-  background: var(--orange-clay);
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-/* ---- DISCLOSURE ---- */
-.disclosure-box {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.disclosure-box .lang {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--slate-warm);
-  margin-bottom: 6px;
-}
-
-.disclosure-box .disc-text {
-  font-size: 11pt;
-  color: var(--stone);
-  margin-bottom: 16px;
-}
-
-.disclosure-box .disc-text:last-of-type { margin-bottom: 0; }
-
-/* ---- ANTI-PROMPTS ---- */
-.anti-list {
+  inset: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 12px;
+  flex-direction: column;
+  padding: 22mm 18mm;
 }
-
-.anti-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9pt;
-  padding: 2px 8px;
-  border: 1px solid var(--error);
-  color: var(--error);
-  border-radius: 3px;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+.bigidea-page__top {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,249,245,0.6);
 }
-
-/* ---- MOTION ---- */
-.motion-principle {
-  margin-bottom: 24px;
-  page-break-inside: avoid;
-}
-
-.easing-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.easing-card {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 12px;
+.bigidea-page__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  page-break-inside: avoid;
+}
+.bigidea-page__title {
+  font-size: 110pt;
+  font-weight: 200;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: var(--bone);
+}
+.bigidea-page__title .paren { color: var(--orange-clay); font-weight: 300; }
+.bigidea-page__copy {
+  margin-top: 14mm;
+  max-width: 130mm;
+  font-size: 12pt;
+  line-height: 1.55;
+  color: rgba(250,249,245,0.8);
+}
+.bigidea-page__copy em { color: var(--orange-clay); }
+.bigidea-page__bottom {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,249,245,0.6);
 }
 
-.easing-card svg { margin-bottom: 8px; }
-
-.easing-name {
-  font-size: 10pt;
-  font-weight: 500;
-  margin-bottom: 2px;
+/* ---------- Logo pages ---------- */
+.logo-stage__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8mm;
 }
-
-.easing-value {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 7pt;
-  color: var(--slate-warm);
-}
-
-/* ---- GLYPH DEMO ---- */
-.glyph-demo {
+.logo-showcase {
   display: flex;
   align-items: center;
-  gap: 32px;
-  margin-top: 20px;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
   justify-content: center;
-}
-
-.glyph-char { font-size: 48px; font-weight: 400; line-height: 1; }
-.glyph-label { font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: var(--slate-warm); text-align: center; margin-top: 4px; }
-.glyph-eq { font-size: 24px; color: var(--slate-warm); }
-
-/* ---- MANIFESTO ---- */
-.manifesto-text {
-  font-size: 12pt;
-  font-weight: 400;
-  line-height: 1.8;
-  color: var(--stone);
-  max-width: 640px;
-}
-
-.manifesto-text p { margin-bottom: 16px; }
-
-.manifesto-text .m-headline {
-  font-size: 24pt;
-  font-weight: 500;
-  color: var(--dark);
-  margin-bottom: 24px;
-  letter-spacing: -0.01em;
-}
-
-.manifesto-text .m-bold {
-  color: var(--dark);
-  font-weight: 500;
-}
-
-.manifesto-mini {
-  text-align: center;
-  padding: 32px 20px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-}
-
-.manifesto-mini .mini-text {
-  font-size: 18pt;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-/* ---- EDITORIAL QUOTE ---- */
-.editorial-quote {
-  font-size: 18pt;
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  max-width: 600px;
-  margin: 32px 0;
-  padding-left: 20px;
-  border-left: 2px solid var(--orange-clay);
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-/* ---- TONE CARD ---- */
-.tone-card {
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-  page-break-inside: avoid;
-}
-
-.tone-card:last-child { border-bottom: none; }
-
-.tone-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9pt;
-  color: var(--orange-clay);
-  margin-bottom: 4px;
-}
-
-.tone-name {
-  font-size: 14pt;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-/* ---- VOCAB ---- */
-.vocab-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 16px;
-}
-
-.vocab-col h4 {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
-
-.vocab-col.vocab-use h4 { color: var(--success); }
-.vocab-col.vocab-avoid h4 { color: var(--error); }
-
-.vocab-col ul { list-style: none; padding: 0; }
-
-.vocab-col li {
-  font-size: 10pt;
-  color: var(--stone);
-  padding: 4px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.vocab-col li:last-child { border-bottom: none; }
-
-/* ---- NAMING ---- */
-.naming-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.naming-item {
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  text-align: center;
-  page-break-inside: avoid;
-}
-
-.naming-item.naming-never { border-color: var(--error); opacity: 0.6; }
-.naming-word { font-size: 14pt; font-weight: 500; margin-bottom: 4px; }
-.naming-desc { font-size: 9pt; color: var(--slate-warm); }
-
-/* ---- ARCHETYPE ---- */
-.arch-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.arch-card {
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-align: center;
-  page-break-inside: avoid;
-}
-
-.arch-type {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--slate-warm);
-  margin-bottom: 4px;
-}
-
-.arch-name { font-size: 18pt; font-weight: 500; margin-bottom: 8px; }
-.arch-desc { font-size: 10pt; color: var(--stone); line-height: 1.5; }
-
-/* ---- RESPONSIVE SIZES ---- */
-.responsive-sizes {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 16px;
-  align-items: end;
-}
-
-.resp-size {
-  text-align: center;
-  padding: 16px 8px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-}
-
-.resp-size-label {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--slate-warm);
-  margin-top: 8px;
-}
-
-/* ---- DURATION TABLE ---- */
-.duration-table td {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10pt;
-}
-
-/* ---- SPACERS ---- */
-.sp-8 { height: 8px; }
-.sp-16 { height: 16px; }
-.sp-24 { height: 24px; }
-.sp-32 { height: 32px; }
-
-/* ---- COLOR RULES LIST ---- */
-.color-rules { list-style: none; padding: 0; margin-top: 12px; }
-.color-rules li {
-  font-size: 10pt;
-  color: var(--stone);
-  padding: 4px 0 4px 14px;
+  padding: 8mm;
+  background: var(--bone);
+  border: 0.5pt solid rgba(20,20,19,0.1);
+  border-radius: 3mm;
   position: relative;
+}
+.logo-showcase--dark { background: var(--dark); border-color: rgba(250,249,245,0.1); }
+.logo-showcase--mist { background: var(--mist); border-color: rgba(20,20,19,0.06); }
+.logo-showcase img {
+  max-width: 75%;
+  max-height: 50mm;
+  width: auto;
+  height: auto;
+}
+.logo-showcase__caption {
+  position: absolute;
+  bottom: 6mm;
+  left: 8mm;
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+.logo-showcase--dark .logo-showcase__caption { color: rgba(250,249,245,0.62); }
+
+.logo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6mm;
+}
+.logo-pair .logo-showcase {
+  aspect-ratio: 1.25/1;
+}
+
+.logo-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8mm;
+  font-size: 10pt;
   line-height: 1.5;
 }
-.color-rules li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 10px;
-  width: 5px; height: 1px;
-  background: var(--orange-clay);
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+.logo-info dt {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+  margin-bottom: 2mm;
+}
+.logo-info dd {
+  margin: 0 0 4mm;
+  color: var(--stone);
 }
 
-/* Big Idea section */
-.bigidea-section {
-  background: #141413;
-  color: #faf9f5;
-  padding: 48px 40px;
-  border-radius: 8px;
-  margin-top: 16px;
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-}
-
-.bigidea-headline {
-  font-size: 48px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin-bottom: 32px;
-}
-
-.bigidea-headline .paren {
-  color: #5b5750;
-  font-weight: 300;
-}
-
-.bigidea-body {
-  font-size: 12pt;
-  line-height: 1.7;
-  color: #b0aa9e;
-  max-width: 580px;
-  margin-bottom: 28px;
-}
-
-.layer-list {
+/* ---------- DO/DON'T grid ---------- */
+.dodont {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 6mm;
+  margin-top: 4mm;
 }
-
-.layer-item {
-  padding: 14px 16px;
-  border: 1px solid #2a2926;
-  border-radius: 4px;
+.dodont__col {
+  padding: 6mm;
+  border-radius: 3mm;
+  background: var(--bone);
+  border: 0.5pt solid rgba(20,20,19,0.08);
+  border-left-width: 1.2mm;
 }
-
-.layer-name {
-  font-size: 9pt;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #d97757;
-  margin-bottom: 4px;
+.dodont__col--do   { border-left-color: #4f7a4a; }
+.dodont__col--dont { border-left-color: #b04a3a; }
+.dodont__head {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+  margin-bottom: 4mm;
 }
-
-.layer-desc {
+.dodont__icon {
+  width: 6mm;
+  height: 6mm;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 10pt;
-  color: #8a847a;
+  color: var(--bone);
+}
+.dodont__icon.ok { background: #4f7a4a; }
+.dodont__icon.no { background: #b04a3a; }
+.dodont__label {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.dodont__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dodont__list li {
+  padding: 2.5mm 0;
+  border-top: 0.5pt dashed rgba(20,20,19,0.18);
+  color: var(--stone);
+  font-size: 10pt;
   line-height: 1.4;
 }
+.dodont__list li:first-child { border-top: 0; }
+.dodont__list strong { font-weight: 600; color: var(--dark); }
+
+/* ---------- Clear space diagram ---------- */
+.clearspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8mm;
+}
+.clearspace__diagram {
+  position: relative;
+  padding: 12mm 8mm;
+  background: var(--mist);
+  border-radius: 3mm;
+  aspect-ratio: 1.2/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clearspace__inner {
+  width: 80%;
+  height: 70%;
+  border: 0.5pt dashed rgba(20,20,19,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.clearspace__inner img {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+}
+.clearspace__mark {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+.clearspace__mark.tl { top: -5mm; left: -2mm; }
+.clearspace__mark.tr { top: -5mm; right: -2mm; }
+.clearspace__mark.bl { bottom: -5mm; left: -2mm; }
+.clearspace__mark.br { bottom: -5mm; right: -2mm; }
+
+.minsize {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+}
+.minsize__row {
+  display: flex;
+  align-items: center;
+  gap: 6mm;
+  padding: 4mm;
+  background: var(--bone);
+  border: 0.5pt solid rgba(20,20,19,0.08);
+  border-radius: 3mm;
+}
+.minsize__sample {
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--dark);
+}
+.minsize__sample b { font-weight: 700; }
+.minsize__sample.s24 { font-size: 24pt; }
+.minsize__sample.s14 { font-size: 14pt; }
+.minsize__sample.s8  { font-size: 8pt; }
+.minsize__meta {
+  margin-left: auto;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+  line-height: 1.6;
+}
+.minsize__meta strong { color: var(--dark); font-family: var(--font-mono); font-weight: 500; }
+
+/* ---------- Type specimens ---------- */
+.specimen__name {
+  font-size: 52pt;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 6mm;
+}
+.specimen__weights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5mm;
+}
+.specimen__weights span {
+  font-size: 20pt;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+}
+.specimen__weights .w200 { font-weight: 200; }
+.specimen__weights .w300 { font-weight: 300; }
+.specimen__weights .w400 { font-weight: 400; }
+.specimen__weights .w500 { font-weight: 500; }
+.specimen__weights .w600 { font-weight: 600; }
+.specimen__weights .w700 { font-weight: 700; }
+.specimen__weights .w800 { font-weight: 800; }
+.specimen__weights .w-l { font-weight: 400; }
+.specimen__weights .w-l b { font-weight: 700; }
+.specimen__weights .meta {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+  margin-right: 6mm;
+  min-width: 16mm;
+}
+
+.mono-specimen {
+  font-family: var(--font-mono);
+  font-size: 12pt;
+  line-height: 1.7;
+  background: var(--dark);
+  color: var(--bone);
+  padding: 8mm;
+  border-radius: 3mm;
+}
+.mono-specimen .c { color: var(--orange-clay); }
+.mono-specimen .v { color: rgba(250,249,245,0.72); }
+.mono-specimen-label {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+  margin-bottom: 3mm;
+  display: block;
+}
+
+.usage-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 9.5pt;
+  margin-top: 4mm;
+}
+.usage-table th, .usage-table td {
+  text-align: left;
+  padding: 3mm 4mm;
+  border-bottom: 0.5pt solid rgba(20,20,19,0.12);
+  vertical-align: middle;
+}
+.usage-table th {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+.usage-table td.mono {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+}
+.usage-table .role {
+  font-weight: 500;
+  color: var(--dark);
+}
+.usage-table .sample {
+  letter-spacing: -0.01em;
+}
+.usage-table .sample.s32 { font-size: 22pt; font-weight: 300; line-height: 1; }
+.usage-table .sample.s18 { font-size: 16pt; font-weight: 500; line-height: 1; }
+.usage-table .sample.s11 { font-size: 10pt; font-weight: 400; line-height: 1.45; color: var(--stone); }
+
+/* ---------- Color swatch pages (split layout) ---------- */
+.split {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.split--cols {
+  grid-template-rows: none;
+  grid-template-columns: 1fr 1fr;
+}
+.swatch {
+  position: relative;
+  padding: 18mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.swatch--bone   { background: var(--bone);        color: var(--dark); }
+.swatch--mist   { background: var(--mist);        color: var(--dark); }
+.swatch--dark   { background: var(--dark);        color: var(--bone); }
+.swatch--stone  { background: var(--stone);       color: var(--bone); }
+.swatch--slate  { background: var(--slate-warm);  color: var(--bone); }
+.swatch--orange { background: var(--orange-clay); color: var(--dark); }
+.swatch--clay   { background: var(--clay-deep);   color: var(--bone); }
+
+.swatch__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.swatch__name {
+  font-size: 56pt;
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 4mm 0 3mm;
+}
+.swatch--bone .swatch__name,
+.swatch--mist .swatch__name,
+.swatch--orange .swatch__name { color: var(--dark); }
+.swatch--dark .swatch__name,
+.swatch--stone .swatch__name,
+.swatch--slate .swatch__name,
+.swatch--clay .swatch__name  { color: var(--bone); }
+
+.swatch__hex {
+  font-family: var(--font-mono);
+  font-size: 12pt;
+  letter-spacing: 0.05em;
+  margin: 0 0 4mm;
+  opacity: 0.85;
+}
+.swatch__desc {
+  font-size: 10pt;
+  line-height: 1.5;
+  max-width: 75mm;
+  margin: 0 0 4mm;
+  opacity: 0.85;
+}
+.swatch__tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2mm;
+}
+.swatch__tokens code {
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.06em;
+  padding: 1.2mm 3mm;
+  border-radius: 1.5mm;
+  background: rgba(20,20,19,0.1);
+}
+.swatch--dark .swatch__tokens code,
+.swatch--stone .swatch__tokens code,
+.swatch--slate .swatch__tokens code,
+.swatch--clay .swatch__tokens code  { background: rgba(250,249,245,0.12); color: var(--bone); }
+
+.swatch__warning {
+  margin-top: 4mm;
+  padding: 3mm 4mm;
+  background: rgba(20,20,19,0.1);
+  border-left: 0.8mm solid var(--dark);
+  border-radius: 1mm;
+  font-size: 9pt;
+  font-weight: 500;
+  line-height: 1.45;
+  max-width: 80mm;
+}
+.swatch--dark .swatch__warning,
+.swatch--clay .swatch__warning { background: rgba(250,249,245,0.1); border-left-color: var(--bone); }
+
+.swatch__pagemark {
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* ---------- Gallery (house look) ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 42mm;
+  gap: 3mm;
+  flex: 1;
+}
+.gallery__tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2mm;
+  background: var(--dark);
+  background-size: cover;
+  background-position: center;
+}
+.gallery__tile--top25 { background-position: center 25%; }
+.gallery__tile.c2 { grid-column: span 2; }
+.gallery__tile.c3 { grid-column: span 3; }
+.gallery__tile.c4 { grid-column: span 4; }
+.gallery__tile.c6 { grid-column: span 6; }
+.gallery__tile.r2 { grid-row: span 2; }
+.gallery__tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,20,19,0) 55%, rgba(20,20,19,0.6) 100%);
+}
+.gallery__caption {
+  position: absolute;
+  left: 3mm;
+  bottom: 3mm;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone);
+  padding: 1mm 2.5mm;
+  background: rgba(20,20,19,0.55);
+  border-radius: 999px;
+}
+
+/* ---------- Applications page ---------- */
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6mm;
+  flex: 1;
+}
+.app-card {
+  background: var(--bone);
+  border: 0.5pt solid rgba(20,20,19,0.08);
+  border-radius: 3mm;
+  padding: 7mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4mm;
+  position: relative;
+  overflow: hidden;
+}
+.app-card--dark { background: var(--dark); color: var(--bone); border-color: rgba(250,249,245,0.08); }
+.app-card--mist { background: var(--mist); }
+.app-card__label {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+.app-card--dark .app-card__label { color: rgba(250,249,245,0.62); }
+.app-card__wordmark {
+  font-size: 30pt;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.app-card__wordmark b { font-weight: 700; }
+.app-card__meta {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  line-height: 1.7;
+  color: var(--stone);
+}
+.app-card__sig-name {
+  font-family: var(--font-sans);
+  font-size: 12pt;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 2mm;
+}
+.app-card__sig-name b { font-weight: 700; }
+.app-card__sig-body {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  line-height: 1.7;
+  color: var(--stone);
+}
+.app-card--note {
+  background: var(--mist);
+  border-left: 1mm solid var(--orange-clay);
+}
+.app-card--note p {
+  font-size: 10pt;
+  line-height: 1.55;
+  margin: 0 0 3mm;
+  color: var(--stone);
+}
+.app-card--note strong { color: var(--dark); font-weight: 500; }
+.app-card--note .revoked {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange-clay);
+  padding: 1.5mm 3mm;
+  border: 0.5pt solid var(--orange-clay);
+  border-radius: 999px;
+  margin-bottom: 4mm;
+}
+
+/* ---------- Governance / colophon ---------- */
+.colophon {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 4mm 0;
+}
+.colophon__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3mm;
+}
+.colophon__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 3mm;
+  font-family: var(--font-mono);
+  font-size: 8.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+.colophon__row {
+  display: flex;
+  gap: 6mm;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.colophon__row strong {
+  color: var(--dark);
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+.colophon__divider {
+  width: 30mm;
+  height: 0.5pt;
+  background: rgba(20,20,19,0.18);
+  margin: 2mm auto;
+}
+.colophon__quote {
+  font-size: 16pt;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--orange-clay);
+  margin: 4mm 0;
+}
+.colophon__year {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate-warm);
+}
+
+/* ---------- Section head (reusable inside content) ---------- */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8mm;
+  margin-bottom: 8mm;
+}
+.section-head__title-block { max-width: 130mm; }
+.section-head__title-block .h-lg { margin-top: 3mm; }
+.section-head__title-block .body { margin-top: 3mm; max-width: 130mm; }
+
+/* ---------- Utility ---------- */
+.row { display: flex; gap: 4mm; align-items: center; }
+.row--between { justify-content: space-between; }
+.stack-tight { display: flex; flex-direction: column; gap: 2mm; }
+.stack { display: flex; flex-direction: column; gap: 4mm; }
+.mt-auto { margin-top: auto; }
+.center { text-align: center; }
 
 </style>
 </head>
 <body>
 
-<!-- ============================
-     PAGE 1 — COVER
-     ============================ -->
-<div class="cover">
-  <div class="cover-wordmark">
-    <span class="paren">((</span>We Are Alright<span class="paren">))</span>
-  </div>
-  <div class="cover-subtitle">A.I. first Production Company.</div>
-  <div class="cover-year">Brand Guide 2026</div>
-</div>
-
-<!-- ============================
-     PAGE 2 — TABLE OF CONTENTS
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-name">Indice</span>
-  </div>
-
-  <div class="toc">
-    <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Capa</span><span class="toc-page">1</span></div>
-    <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Indice</span><span class="toc-page">2</span></div>
-    <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Big Idea — ((Look again.))</span><span class="toc-page">3–4</span></div>
-    <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Estrategia</span><span class="toc-page">5–7</span></div>
-    <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Verbal</span><span class="toc-page">8–9</span></div>
-    <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Manifestos</span><span class="toc-page">10–11</span></div>
-    <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Logo System</span><span class="toc-page">12–14</span></div>
-    <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Tipografia</span><span class="toc-page">15–16</span></div>
-    <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Cores</span><span class="toc-page">17–19</span></div>
-    <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">House Look</span><span class="toc-page">20–21</span></div>
-    <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Motion</span><span class="toc-page">22–23</span></div>
-    <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">Aplicacoes</span><span class="toc-page">24</span></div>
-    <div class="toc-item"><span class="toc-num">13</span><span class="toc-label">Governanca</span><span class="toc-page">25</span></div>
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 3-4 — BIG IDEA
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">03</span>
-    <span class="section-name">Big Idea</span>
-  </div>
-
-  <div class="bigidea-section">
-    <div class="bigidea-headline">
-      <span class="paren">((</span>Look again.<span class="paren">))</span>
+<!-- ============================================================
+     PAGE 01 · COVER
+     ============================================================ -->
+<section class="page page--dark page--bleed">
+  <div class="cover">
+    <div class="cover__top">
+      <span class="cover__top-mark">A<b>l</b>right</span>
+      <span>Brand Book · 2026 · v2.0</span>
     </div>
-    <div class="bigidea-body">
-      A ideia matriz da Alright e um convite, nao uma explicacao. A marca nao diz "olha como somos espertos com tipografia"; mostra. Quem olha de novo encontra mais.
+    <div class="cover__center">
+      <img class="cover__lockup" src="../assets/logo/svg/lockup-we-are-alright-bone-transparent.svg" alt="((We Are Alright))" />
+      <span class="sticker" style="background:transparent;color:var(--orange-clay);border:0.5pt solid var(--orange-clay)">(( look again ))</span>
     </div>
-
-    <div class="layer-list">
-      <div class="layer-item">
-        <div class="layer-name">Estrategia</div>
-        <div class="layer-desc">O posicionamento esconde uma segunda leitura: AI-first nao e atalho, e metodo.</div>
-      </div>
-      <div class="layer-item">
-        <div class="layer-name">Verbal</div>
-        <div class="layer-desc">Frases curtas que recompensam releitura. "We are alright" e understatement proposital.</div>
-      </div>
-      <div class="layer-item">
-        <div class="layer-name">Visual</div>
-        <div class="layer-desc">O trocadilho Alright / AIright so aparece a quem olha duas vezes.</div>
-      </div>
-      <div class="layer-item">
-        <div class="layer-name">Motion</div>
-        <div class="layer-desc">Reveals lentos (1.4s+) forcam o olhar a revisitar o frame.</div>
-      </div>
-      <div class="layer-item">
-        <div class="layer-name">House Look</div>
-        <div class="layer-desc">Cada frame tem mais informacao do que parece. Densidade editorial recompensa o close.</div>
-      </div>
-      <div class="layer-item">
-        <div class="layer-name">Produto</div>
-        <div class="layer-desc">O cliente recebe o filme. So depois percebe o metodo por tras.</div>
-      </div>
+    <div class="cover__bottom">
+      <span>Produtora audiovisual · A.I. first · São Paulo / BR</span>
+      <span>01 / 25</span>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ============================
-     PAGES 5-7 — ESTRATEGIA
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">04</span>
-    <span class="section-name">Estrategia</span>
-    <div class="section-subtitle">O posicionamento estrategico que sustenta cada decisao da marca.</div>
-  </div>
-
-  <!-- Purpose / Vision / Mission -->
-  <div class="grid-3">
-    <div class="card">
-      <div class="card-label">Proposito</div>
-      <div class="card-title">Craft + IA</div>
-      <p class="card-body">Provar que IA nao dispensa craft — o exige mais.</p>
+<!-- ============================================================
+     PAGE 02 · SUMÁRIO
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>Sumário</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="toc__title">
+      <span class="eyebrow">Índice</span>
+      <h2 class="h-lg" style="margin-top:4mm">Sumário</h2>
     </div>
-    <div class="card">
-      <div class="card-label">Visao 2031</div>
-      <div class="card-title">Referencia mundial</div>
-      <p class="card-body">Ser referencia mundial de produtora audiovisual AI-first crafted, com sede em Sao Paulo.</p>
-    </div>
-    <div class="card">
-      <div class="card-label">Missao</div>
-      <div class="card-title">Rigor de tier-1</div>
-      <p class="card-body">Produzir filmes de marca AI-first com a logica e o rigor de uma produtora tradicional tier-1.</p>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Valores</p>
-  <div class="grid-4">
-    <div class="card">
-      <div class="card-title">Craft acima de tudo</div>
-      <p class="card-body">Cada decisao de cor, som, edicao e direcao e humana. O modelo gera; a Alright dirige.</p>
-    </div>
-    <div class="card">
-      <div class="card-title">Cada filme e um filme</div>
-      <p class="card-body">Sem look de casa. Metodo de casa. Cada projeto recebe estetica propria.</p>
-    </div>
-    <div class="card">
-      <div class="card-title">Tech sub-rosa</div>
-      <p class="card-body">A tecnologia e o meio, nunca o protagonista. O cliente paga pelo filme, nao pelo pipeline.</p>
-    </div>
-    <div class="card">
-      <div class="card-title">Humildade calculada</div>
-      <p class="card-body">Understatement proposital. Confianca sem soberba. O trabalho fala.</p>
-    </div>
-  </div>
-</div>
-
-<div class="page-break">
-  <!-- Archetypes -->
-  <p class="overline">Arquetipos</p>
-  <div class="arch-grid">
-    <div class="arch-card">
-      <div class="arch-type">Primario</div>
-      <div class="arch-name">Creator</div>
-      <p class="arch-desc">Impulso de dar forma. Visao artistica aplicada a negocios. A qualidade e a moeda.</p>
-    </div>
-    <div class="arch-card">
-      <div class="arch-type">Secundario</div>
-      <div class="arch-name">Magician</div>
-      <p class="arch-desc">Transformar algo invisivel (IA) em algo tangivel (filme). O truque e a competencia, nao a ilusao.</p>
-    </div>
-  </div>
-
-  <div class="sp-32"></div>
-  <p class="overline">Brand Pyramid</p>
-  <div class="pyramid">
-    <div class="pyramid-level" style="width: 30%; background: var(--orange-clay); color: #faf9f5;">
-      <div>
-        <div class="pyramid-level-label" style="color: rgba(250,249,245,0.6);">Essencia</div>
-        <div class="pyramid-level-content" style="color: #faf9f5;">((Look again.))</div>
-      </div>
-    </div>
-    <div class="pyramid-level" style="width: 45%;">
-      <div>
-        <div class="pyramid-level-label">Personalidade</div>
-        <div class="pyramid-level-content">Confiante, editorial, warm, understated</div>
-      </div>
-    </div>
-    <div class="pyramid-level" style="width: 60%;">
-      <div>
-        <div class="pyramid-level-label">Beneficios emocionais</div>
-        <div class="pyramid-level-content">Orgulho de mostrar. "Parece cinema, mas custou 10%."</div>
-      </div>
-    </div>
-    <div class="pyramid-level" style="width: 75%;">
-      <div>
-        <div class="pyramid-level-label">Beneficios funcionais</div>
-        <div class="pyramid-level-content">Filme de marca tier-1 sem custo de set</div>
-      </div>
-    </div>
-    <div class="pyramid-level" style="width: 90%;">
-      <div>
-        <div class="pyramid-level-label">Atributos</div>
-        <div class="pyramid-level-content">AI-first · Craft humano · Pre-producao rigorosa · Bilingue · SP</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="editorial-quote" style="margin-top: 32px;">
-    Voce leva o filme certo, com craft real, sem o custo da camera.
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 8-9 — VERBAL
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">05</span>
-    <span class="section-name">Verbal</span>
-    <div class="section-subtitle">Tom de voz, regra bilingue e vocabulario controlado.</div>
-  </div>
-
-  <p class="overline">Tom de voz</p>
-
-  <div class="tone-card">
-    <div class="tone-number">01</div>
-    <div class="tone-name">Confiante sem soberba</div>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Usar</div>
-        <ul>
-          <li>"A gente faz o filme."</li>
-          <li>"O trabalho fala."</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Evitar</div>
-        <ul>
-          <li>"Somos os melhores do mercado."</li>
-          <li>"Revolucionamos a industria."</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="tone-card">
-    <div class="tone-number">02</div>
-    <div class="tone-name">Direto</div>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Usar</div>
-        <ul>
-          <li>"Sem camera. Sem set. Sem alto custo."</li>
-          <li>Frases curtas. Ponto final.</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Evitar</div>
-        <ul>
-          <li>"Nossas solucoes integradas de producao audiovisual..."</li>
-          <li>Periodos longos com subordinadas encadeadas.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="tone-card">
-    <div class="tone-number">03</div>
-    <div class="tone-name">Editorial</div>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Usar</div>
-        <ul>
-          <li>Ritmo de revista — paragrafos curtos, espacamento generoso.</li>
-          <li>Pontuacao expressiva como recurso retorico.</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Evitar</div>
-        <ul>
-          <li>Tom de press release corporativo.</li>
-          <li>Bullets genericos tipo "solucao end-to-end".</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="tone-card">
-    <div class="tone-number">04</div>
-    <div class="tone-name">Bilingue como falante real</div>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Usar</div>
-        <ul>
-          <li>PT como base para Brasil, EN para internacional.</li>
-          <li>Catchphrases canon no idioma original, sem traduzir.</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Evitar</div>
-        <ul>
-          <li>Traduzir "We are alright" para "Estamos bem".</li>
-          <li>Misturar idiomas sem proposito.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="tone-card">
-    <div class="tone-number">05</div>
-    <div class="tone-name">Anti-AI-hype</div>
-    <div class="do-dont">
-      <div class="do-col">
-        <div class="do-label">Usar</div>
-        <ul>
-          <li>"A IA tirou o que era caro. Nao tirou o oficio."</li>
-          <li>Falar de IA como ferramenta, nao como magia.</li>
-        </ul>
-      </div>
-      <div class="dont-col">
-        <div class="do-label">Evitar</div>
-        <ul>
-          <li>"Inteligencia artificial revolucionaria"</li>
-          <li>"O futuro da producao", "next-gen", "disruptive"</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="page-break">
-  <!-- Bilingual Rule -->
-  <p class="overline">Regra bilingue</p>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-label">Brasil</div>
-      <div class="card-title">PT = lingua-base</div>
-      <p class="card-body">Documentos, site BR, redes sociais Brasil. Catchphrases canon ("We are alright", "Craft. Craft. And. More. Craft.") permanecem em EN.</p>
-    </div>
-    <div class="card">
-      <div class="card-label">Internacional</div>
-      <div class="card-title">EN = lingua-base</div>
-      <p class="card-body">Site global, decks internacionais. "Cada filme e um filme" permanece em PT — e canon.</p>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Vocabulario controlado</p>
-  <div class="vocab-grid">
-    <div class="vocab-col vocab-use">
-      <h4>Usar</h4>
-      <ul>
-        <li>craft</li>
-        <li>filme de marca</li>
-        <li>pre-producao</li>
-        <li>AI-first</li>
-        <li>direcao</li>
-        <li>rigor</li>
-        <li>metodo</li>
-        <li>oficio</li>
-        <li>produtora</li>
-        <li>color grade</li>
-      </ul>
-    </div>
-    <div class="vocab-col vocab-avoid">
-      <h4>Evitar</h4>
-      <ul>
-        <li>revolucionario</li>
-        <li>disruptive</li>
-        <li>magic / magico</li>
-        <li>transforma sua marca</li>
-        <li>next-gen</li>
-        <li>solucao</li>
-        <li>pipeline (externo)</li>
-        <li>game-changer</li>
-        <li>cutting-edge</li>
-        <li>seamless</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Naming</p>
-  <div class="naming-grid">
-    <div class="naming-item">
-      <div class="naming-word">Alright</div>
-      <div class="naming-desc">Default. 90% dos usos.</div>
-    </div>
-    <div class="naming-item">
-      <div class="naming-word">((We Are Alright))</div>
-      <div class="naming-desc">Lockup expressivo. Manifestos, hero, assinatura.</div>
-    </div>
-    <div class="naming-item naming-never">
-      <div class="naming-word" style="text-decoration: line-through;">Alright Productions</div>
-      <div class="naming-desc">Nunca. Nunca "Alright Studios".</div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 10-11 — MANIFESTOS
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">06</span>
-    <span class="section-name">Manifestos</span>
-    <div class="section-subtitle">As palavras que definem quem somos. Canon. Intocaveis.</div>
-  </div>
-
-  <!-- Manifesto PT -->
-  <div class="manifesto-text">
-    <div class="m-headline">((We Are Alright))</div>
-
-    <p>Tem produtora que pergunta: quanto custa o set? Quanto custa o equipamento? Quanto custa a camera, o lente, o gerador, o catering, o seguro, a diaria do diretor de fotografia, o frete da Steadicam de Sao Paulo ate Florianopolis?</p>
-
-    <p><span class="m-bold">A gente nao pergunta. A gente faz o filme.</span></p>
-
-    <p>Sem camera. Sem set. Sem alto custo. <span class="m-bold">We are alright.</span></p>
-
-    <p>Mas calma. Isso nao significa atalho. Isso significa que o orcamento que sobrou virou tempo de pre-producao. Virou referencia estudada a exaustao. Virou color grading frame a frame. Virou tres versoes do mesmo plano ate a quarta ficar certa. Virou roteiro lido em voz alta por gente que sabe ler em voz alta.</p>
-
-    <p><span class="m-bold">A IA tirou da mesa o que era caro. Ela nao tirou o oficio.</span></p>
-
-    <p>Por isso a gente repete: <span class="m-bold">craft, craft, e mais craft.</span> Nao e manifesto retorico, e regra de producao. Toda peca que sai daqui passa por mao humana antes de sair. Toda decisao de cor, som, edicao e direcao e de quem assina, nao do modelo. O modelo gera; a Alright dirige.</p>
-
-    <p>E por isso tambem a gente repete: <span class="m-bold">cada filme e um filme.</span> A gente nao tem look de casa que se repete. A gente tem metodo de casa que se repete. Cada projeto recebe uma estetica nova porque cada projeto e uma marca diferente, um briefing diferente, uma audiencia diferente. O que une os nossos cases e o rigor da pre-producao, nao a aparencia da pos.</p>
-
-    <p>A industria toda ta em transicao. A gente nao ta esperando ela decidir o que fazer com IA. A gente ta fazendo. Em Sao Paulo. Bilingue. Com clientes que pagam pelo filme, nao pelo pipeline.</p>
-
-    <p><span class="m-bold">((We are alright.))</span></p>
-  </div>
-</div>
-
-<div class="page-break">
-  <!-- Manifesto EN -->
-  <p class="overline">English version</p>
-  <div class="manifesto-text">
-    <div class="m-headline">((We Are Alright))</div>
-
-    <p>Some production companies ask: how much does the set cost? How much does the gear cost? The camera, the lens, the generator, the catering, the insurance, the DP day-rate, the Steadicam ship from Sao Paulo to Florianopolis?</p>
-
-    <p><span class="m-bold">We don't ask. We make the film.</span></p>
-
-    <p>No camera. No set. No high costs. <span class="m-bold">We are alright.</span></p>
-
-    <p>But hold on. That doesn't mean shortcut. It means the budget that used to go to gear now goes to pre-production. It goes to references studied to exhaustion. To color grading frame by frame. To three versions of the same shot until the fourth one is right. To scripts read aloud by people who know how to read aloud.</p>
-
-    <p><span class="m-bold">AI removed what was expensive. It did not remove the craft.</span></p>
-
-    <p>That's why we repeat: <span class="m-bold">craft, craft, and more craft.</span> It's not rhetoric, it's a production rule. Every piece that ships from here passes through human hands before it ships. Every decision on color, sound, edit, and direction is made by the person who signs it — not by the model. The model generates; Alright directs.</p>
-
-    <p>And that's why we also repeat: <span class="m-bold">every film is a film (cada filme e um filme).</span> We don't have a house look that repeats. We have a house method that repeats. Each project gets a new aesthetic because each project is a different brand, a different brief, a different audience. What unites our work is the rigor of pre-production, not the surface of post.</p>
-
-    <p>The industry is in transition. We are not waiting for it to decide what to do with AI. We are doing it. From Sao Paulo. Bilingual. With clients who pay for the film, not for the pipeline.</p>
-
-    <p><span class="m-bold">((We are alright.))</span></p>
-  </div>
-
-  <div class="sp-32"></div>
-  <p class="overline">Manifestos curtos — canon</p>
-  <div class="grid-2" style="margin-top: 12px;">
-    <div class="manifesto-mini">
-      <div class="mini-text">We are alright.</div>
-    </div>
-    <div class="manifesto-mini">
-      <div class="mini-text">Craft. Craft. And. More. Craft.</div>
-    </div>
-    <div class="manifesto-mini">
-      <div class="mini-text">Cada filme e um filme.</div>
-    </div>
-    <div class="manifesto-mini">
-      <div class="mini-text">No camera or set.<br>No high costs.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 12-14 — LOGO
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">07</span>
-    <span class="section-name">Logo System</span>
-    <div class="section-subtitle">Tres estados. Um sistema. O trocadilho visual Alright / AIright so aparece a quem olha duas vezes.</div>
-  </div>
-
-  <!-- C.2 Default -->
-  <p class="overline">State C.2 — Default (90% dos usos)</p>
-  <div class="logo-demo logo-on-bone">A<span class="logo-l-bold">l</span>right</div>
-  <div class="logo-caption"><span class="inline-code">l</span> em Bold 600 — Bricolage Grotesque</div>
-
-  <div class="logo-demo logo-on-dark" style="margin-top: 12px;">A<span class="logo-l-bold">l</span>right</div>
-  <div class="logo-caption">Sobre fundo Dark</div>
-
-  <div class="sp-24"></div>
-
-  <!-- C.1 Expressivo -->
-  <p class="overline">State C.1 — Expressivo (10% usos premium)</p>
-  <div class="logo-demo logo-on-bone">A<span class="logo-l-orange">l</span>right</div>
-  <div class="logo-caption"><span class="inline-code">l</span> em Orange Clay <span class="inline-code">#d97757</span></div>
-
-  <div class="logo-demo logo-on-dark" style="margin-top: 12px;">A<span class="logo-l-orange">l</span>right</div>
-  <div class="logo-caption">Sobre fundo Dark</div>
-
-  <div class="sp-24"></div>
-
-  <!-- Reveal -->
-  <p class="overline">State Reveal</p>
-  <div class="logo-demo logo-on-bone" style="letter-spacing: 0.3em; font-size: 36px;">((&nbsp;A&nbsp;I&nbsp;r&nbsp;i&nbsp;g&nbsp;h&nbsp;t&nbsp;))</div>
-  <div class="logo-caption">Ato editorial deliberado — espacamento revela "AI" no nome</div>
-
-  <div class="logo-demo logo-on-dark" style="margin-top: 12px; letter-spacing: 0.3em; font-size: 36px;">((&nbsp;A&nbsp;I&nbsp;r&nbsp;i&nbsp;g&nbsp;h&nbsp;t&nbsp;))</div>
-  <div class="logo-caption">Sobre fundo Dark</div>
-</div>
-
-<div class="page-break">
-  <!-- Trocadilho -->
-  <p class="overline">Trocadilho visual</p>
-  <div class="glyph-demo">
-    <div>
-      <div class="glyph-char">Alright</div>
-      <div class="glyph-label">Leitura natural</div>
-    </div>
-    <div class="glyph-eq">=</div>
-    <div>
-      <div class="glyph-char"><span class="accent">AI</span>right</div>
-      <div class="glyph-label">Segunda leitura</div>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Bricolage: I = l</p>
-  <div class="glyph-demo">
-    <div>
-      <div class="glyph-char">I</div>
-      <div class="glyph-label">Uppercase I</div>
-    </div>
-    <div class="glyph-eq">&asymp;</div>
-    <div>
-      <div class="glyph-char">l</div>
-      <div class="glyph-label">Lowercase L</div>
-    </div>
-  </div>
-  <p class="body-text" style="text-align: center; max-width: none; color: var(--slate-warm); font-size: 10pt; margin-top: 12px;">Em Bricolage Grotesque, os glifos <span class="inline-code">I</span> e <span class="inline-code">l</span> sao visualmente identicos — o trocadilho funciona sem forcacao.</p>
-
-  <div class="sp-24"></div>
-  <p class="overline">Brand device (( ))</p>
-  <div class="grid-3">
-    <div class="card" style="text-align: center;">
-      <div class="card-label">Standalone</div>
-      <div style="font-size: 36px; color: var(--slate-warm); font-weight: 300;">(( ))</div>
-    </div>
-    <div class="card" style="text-align: center;">
-      <div class="card-label">Com lockup</div>
-      <div style="font-size: 18px; font-weight: 400;"><span style="color: var(--slate-warm); font-weight: 300;">((</span>We Are Alright<span style="color: var(--slate-warm); font-weight: 300;">))</span></div>
-    </div>
-    <div class="card" style="text-align: center;">
-      <div class="card-label">Reveal</div>
-      <div style="font-size: 18px; font-weight: 400; letter-spacing: 0.15em;"><span style="color: var(--slate-warm); font-weight: 300;">((</span>Look again.<span style="color: var(--slate-warm); font-weight: 300;">))</span></div>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Escala responsiva</p>
-  <div class="responsive-sizes">
-    <div class="resp-size">
-      <div style="font-size: 28px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
-      <div class="resp-size-label">Hero</div>
-    </div>
-    <div class="resp-size">
-      <div style="font-size: 16px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
-      <div class="resp-size-label">Header</div>
-    </div>
-    <div class="resp-size">
-      <div style="font-size: 12px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
-      <div class="resp-size-label">Footer</div>
-    </div>
-    <div class="resp-size">
-      <div style="font-size: 16px; color: var(--slate-warm); font-weight: 300;">(( ))</div>
-      <div class="resp-size-label">Favicon</div>
-    </div>
-  </div>
-</div>
-
-<div class="page-break">
-  <!-- Do / Don't -->
-  <p class="overline">Usos e anti-usos do logo</p>
-  <div class="do-dont">
-    <div class="do-col">
-      <div class="do-label">Correto</div>
-      <ul>
-        <li>Sempre Bricolage Grotesque</li>
-        <li>Bold apenas no <span class="inline-code">l</span></li>
-        <li>Espaco entre (( e texto</li>
-        <li>Fundo Bone ou Dark — nunca cor solida</li>
-        <li>Area de protecao minima: altura do "A"</li>
-      </ul>
-    </div>
-    <div class="dont-col">
-      <div class="do-label">Proibido</div>
-      <ul>
-        <li>Trocar tipografia</li>
-        <li>Aplicar Bold no wordmark inteiro</li>
-        <li>Remover parenteses do lockup</li>
-        <li>Rotacionar, distorcer ou aplicar sombra</li>
-        <li>Usar sobre imagem sem overlay</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 15-16 — TIPOGRAFIA
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">08</span>
-    <span class="section-name">Tipografia</span>
-    <div class="section-subtitle">Bricolage Grotesque como tipografia primaria. JetBrains Mono como companion mono.</div>
-  </div>
-
-  <p class="overline">Bricolage Grotesque — Pesos</p>
-  <div class="weight-row"><span class="weight-label">200</span><span class="weight-sample" style="font-weight: 200;">Alright — AI-first Production Company</span></div>
-  <div class="weight-row"><span class="weight-label">300</span><span class="weight-sample" style="font-weight: 300;">Alright — AI-first Production Company</span></div>
-  <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-weight: 400;">Alright — AI-first Production Company</span></div>
-  <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-weight: 500;">Alright — AI-first Production Company</span></div>
-  <div class="weight-row"><span class="weight-label">600</span><span class="weight-sample" style="font-weight: 600;">Alright — AI-first Production Company</span></div>
-  <div class="weight-row">
-    <span class="weight-label" style="color: var(--error);">700</span>
-    <span class="weight-sample" style="font-weight: 400; color: var(--slate-warm); text-decoration: line-through;">Banido em editorial</span>
-  </div>
-  <div class="weight-row"><span class="weight-label">800</span><span class="weight-sample" style="font-weight: 800;">Alright — AI-first Production Company</span></div>
-
-  <div class="card" style="margin-top: 16px; border-left: 3px solid var(--error);">
-    <div class="card-label" style="color: var(--error);">Regra: Bold 700 banido</div>
-    <p class="card-body">O peso 700 (Bold) e proibido em todo uso editorial. Excecao unica: o accent C.2 do logo, onde o <span class="inline-code">l</span> usa peso 600/700 para criar a diferenciacao sutil. Fora do logo, usar Medium 500 para enfase.</p>
-  </div>
-
-  <div class="sp-32"></div>
-  <p class="overline">Type ramp</p>
-
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">Display XL<br>96px / Medium 500</div>
-    <div style="font-size: 48px; font-weight: 500; letter-spacing: -0.03em; line-height: 1;">Alright</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">Display<br>72px / Medium 500</div>
-    <div style="font-size: 36px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.05;">Alright</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">H1<br>64px / Medium 500</div>
-    <div style="font-size: 32px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;">Alright</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">H2<br>48px / Medium 500</div>
-    <div style="font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;">Alright</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">H3<br>32px / Medium 500</div>
-    <div style="font-size: 20px; font-weight: 500; line-height: 1.2;">Alright</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">H4<br>24px / Medium 500</div>
-    <div style="font-size: 16px; font-weight: 500; line-height: 1.3;">Alright</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">Body LG<br>20px / Regular 400</div>
-    <div style="font-size: 14px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">Body<br>18px / Regular 400</div>
-    <div style="font-size: 12px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">Caption<br>12px / Regular 400</div>
-    <div style="font-size: 10px; font-weight: 400; line-height: 1.5;">A gente nao pergunta. A gente faz o filme.</div>
-  </div>
-  <div class="type-ramp-item">
-    <div class="type-ramp-meta">Overline<br>11px / Medium 500</div>
-    <div style="font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;">A gente nao pergunta. A gente faz o filme.</div>
-  </div>
-</div>
-
-<div class="page-break">
-  <p class="overline">JetBrains Mono — Companion</p>
-  <div style="font-family: 'JetBrains Mono', monospace;">
-    <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 16pt;">--orange-clay: #d97757;</span></div>
-    <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 16pt;">--bone: #faf9f5;</span></div>
-  </div>
-  <p class="body-text" style="font-size: 10pt; color: var(--slate-warm); margin-top: 12px;">Uso restrito: tokens, codigo, metadados tecnicos, labels numericos. Nunca em titulos ou body copy.</p>
-</div>
-
-<!-- ============================
-     PAGES 17-19 — CORES
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">09</span>
-    <span class="section-name">Cores</span>
-    <div class="section-subtitle">Paleta controlada. Sem gradientes. Sem branco puro. Sem preto puro.</div>
-  </div>
-
-  <p class="overline">Paleta primaria</p>
-  <div class="grid-3">
-    <div>
-      <div class="swatch-large" style="background: #d97757; color: #faf9f5;">
-        <div class="swatch-info">
-          <div class="swatch-name" style="color: #faf9f5;">Orange Clay</div>
-          #d97757<br>RGB 217, 119, 87<br>Pantone 7578 C
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="swatch-large" style="background: #faf9f5; color: #141413; border: 1px solid #ece8dc;">
-        <div class="swatch-info">
-          <div class="swatch-name">Bone</div>
-          #faf9f5<br>RGB 250, 249, 245<br>Pantone 7527 C
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="swatch-large" style="background: #141413; color: #faf9f5;">
-        <div class="swatch-info">
-          <div class="swatch-name" style="color: #faf9f5;">Dark</div>
-          #141413<br>RGB 20, 20, 19<br>Pantone Black 6 C
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Paleta secundaria (text-safe)</p>
-  <div class="grid-3">
-    <div>
-      <div class="swatch-large" style="background: #8c4a32; color: #faf9f5;">
-        <div class="swatch-info">
-          <div class="swatch-name" style="color: #faf9f5;">Clay Deep</div>
-          #8c4a32<br>RGB 140, 74, 50<br>Pantone 7587 C
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="swatch-large" style="background: #3d3a35; color: #faf9f5;">
-        <div class="swatch-info">
-          <div class="swatch-name" style="color: #faf9f5;">Stone</div>
-          #3d3a35<br>RGB 61, 58, 53<br>Pantone Warm Gray 11 C
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="swatch-large" style="background: #5b5750; color: #faf9f5;">
-        <div class="swatch-info">
-          <div class="swatch-name" style="color: #faf9f5;">Slate-warm</div>
-          #5b5750<br>RGB 91, 87, 80<br>Pantone Warm Gray 9 C
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Escala neutra</p>
-  <div class="neutral-scale">
-    <div class="neutral-step" style="background: #faf9f5;"><span style="color: #141413;">#faf9f5</span></div>
-    <div class="neutral-step" style="background: #f3f0e8;"><span style="color: #141413;">#f3f0e8</span></div>
-    <div class="neutral-step" style="background: #ece8dc;"><span style="color: #141413;">#ece8dc</span></div>
-    <div class="neutral-step" style="background: #d4cfc3;"><span style="color: #141413;">#d4cfc3</span></div>
-    <div class="neutral-step" style="background: #b0aa9e;"><span style="color: #141413;">#b0aa9e</span></div>
-    <div class="neutral-step" style="background: #8a847a;"><span style="color: #faf9f5;">#8a847a</span></div>
-    <div class="neutral-step" style="background: #5b5750;"><span style="color: #faf9f5;">#5b5750</span></div>
-    <div class="neutral-step" style="background: #3d3a35;"><span style="color: #faf9f5;">#3d3a35</span></div>
-    <div class="neutral-step" style="background: #141413;"><span style="color: #faf9f5;">#141413</span></div>
-  </div>
-</div>
-
-<div class="page-break">
-  <p class="overline">Paleta funcional</p>
-  <div class="func-colors">
-    <div class="func-swatch" style="background: #5e6b3d; color: #faf9f5;"><span>Success<br>#5e6b3d</span></div>
-    <div class="func-swatch" style="background: #b04a36; color: #faf9f5;"><span>Error<br>#b04a36</span></div>
-    <div class="func-swatch" style="background: #945a0e; color: #faf9f5;"><span>Warning<br>#945a0e</span></div>
-    <div class="func-swatch" style="background: #4a6478; color: #faf9f5;"><span>Info<br>#4a6478</span></div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Tabela WCAG — Pares de contraste</p>
-  <div class="contrast-grid">
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #faf9f5; color: #141413;">Dark / Bone</div>
-      <div class="contrast-meta"><span>17.5 : 1</span><span class="badge badge-pass">AAA</span></div>
-    </div>
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #141413; color: #faf9f5;">Bone / Dark</div>
-      <div class="contrast-meta"><span>17.5 : 1</span><span class="badge badge-pass">AAA</span></div>
-    </div>
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #faf9f5; color: #3d3a35;">Stone / Bone</div>
-      <div class="contrast-meta"><span>8.6 : 1</span><span class="badge badge-pass">AAA</span></div>
-    </div>
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #faf9f5; color: #5b5750;">Slate / Bone</div>
-      <div class="contrast-meta"><span>5.5 : 1</span><span class="badge badge-pass">AA</span></div>
-    </div>
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #141413; color: #d97757;">Orange / Dark</div>
-      <div class="contrast-meta"><span>4.9 : 1</span><span class="badge badge-pass">AA</span></div>
-    </div>
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #faf9f5; color: #8c4a32;">Clay Deep / Bone</div>
-      <div class="contrast-meta"><span>5.7 : 1</span><span class="badge badge-pass">AA</span></div>
-    </div>
-    <div class="contrast-pair">
-      <div class="contrast-sample" style="background: #faf9f5; color: #d97757;">Orange / Bone</div>
-      <div class="contrast-meta"><span>2.9 : 1</span><span class="badge badge-fail">FAIL</span></div>
-    </div>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Regras de cor</p>
-  <ul class="color-rules">
-    <li>Orange Clay = 5-10% da area por peca. Accent, nunca dominante.</li>
-    <li>Orange Clay nunca como texto sobre Bone — falha WCAG AA.</li>
-    <li>Branco puro <span class="inline-code">#ffffff</span> proibido. Usar Bone <span class="inline-code">#faf9f5</span>.</li>
-    <li>Preto puro <span class="inline-code">#000000</span> proibido. Usar Dark <span class="inline-code">#141413</span>.</li>
-    <li>Gradientes proibidos. Excecao unica: <span class="inline-code">gradient.editorial-bone</span> no hero.</li>
-  </ul>
-</div>
-
-<div class="page-break">
-  <p class="overline">Dark mode — Mapeamento</p>
-  <div class="darkmode-demo">
-    <div class="darkmode-panel darkmode-panel-light">
-      <div class="dm-label">Light mode</div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #faf9f5; border: 1px solid #ece8dc;"></div><div class="dm-swatch-label">Background: Bone</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #141413;"></div><div class="dm-swatch-label">Foreground: Dark</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #3d3a35;"></div><div class="dm-swatch-label">Secondary: Stone</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #d97757;"></div><div class="dm-swatch-label">Accent: Orange Clay</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #ece8dc;"></div><div class="dm-swatch-label">Border: Mist</div></div>
-    </div>
-    <div class="darkmode-panel darkmode-panel-dark">
-      <div class="dm-label">Dark mode</div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #141413;"></div><div class="dm-swatch-label">Background: Dark</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #faf9f5;"></div><div class="dm-swatch-label">Foreground: Bone</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #b0aa9e;"></div><div class="dm-swatch-label">Secondary: Warm Gray</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #d97757;"></div><div class="dm-swatch-label">Accent: Orange Clay</div></div>
-      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #2a2926;"></div><div class="dm-swatch-label">Border: Warm Black</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 20-21 — HOUSE LOOK
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">10</span>
-    <span class="section-name">House Look</span>
-    <div class="section-subtitle">Cinco principios visuais que governam cada frame. Nao e estetica — e metodo.</div>
-  </div>
-
-  <div class="houselook-block">
-    <div class="houselook-number">01</div>
-    <div class="houselook-title">Cinematic, not slop</div>
-    <div class="houselook-subtitle">Cada frame e digno de cinema 35mm — nao e output bruto de modelo.</div>
-    <ul class="houselook-rules">
-      <li>Resolucao minima 4K para entrega final</li>
-      <li>Color grade autoral — nunca LUT generica</li>
-      <li>Composicao intencional: regra dos tercos, linhas de fuga, peso visual</li>
-      <li>Anti-modelo: blur excessivo, mao com 6 dedos, textura plastica</li>
+    <ul class="toc__list">
+      <li class="toc__item">
+        <span class="toc__num">01</span>
+        <span class="toc__label">Big idea <em>((Look again.))</em></span>
+        <span class="toc__page">03</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">02</span>
+        <span class="toc__label">Manifestos canon <em>quatro frases que a gente não negocia</em></span>
+        <span class="toc__page">05</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">03</span>
+        <span class="toc__label">Sistema de logo <em>default · expressivo · reveal · lockup</em></span>
+        <span class="toc__page">09</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">04</span>
+        <span class="toc__label">Tipografia <em>Bricolage Grotesque · JetBrains Mono</em></span>
+        <span class="toc__page">15</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">05</span>
+        <span class="toc__label">Paleta <em>sete tons editorial</em></span>
+        <span class="toc__page">18</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">06</span>
+        <span class="toc__label">House look <em>tátil · editorial</em></span>
+        <span class="toc__page">22</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">07</span>
+        <span class="toc__label">Aplicações <em>cartão · assinatura · disclosure</em></span>
+        <span class="toc__page">24</span>
+      </li>
+      <li class="toc__item">
+        <span class="toc__num">08</span>
+        <span class="toc__label">Governance <em>colophon · contato</em></span>
+        <span class="toc__page">25</span>
+      </li>
     </ul>
-  </div>
-
-  <div class="houselook-block">
-    <div class="houselook-number">02</div>
-    <div class="houselook-title">Crafted human finishing</div>
-    <div class="houselook-subtitle">A mao humana e visivel em hero. Color grade autoral, retouching, texture overlay.</div>
-    <ul class="houselook-rules">
-      <li>Retouching manual frame a frame nas hero shots</li>
-      <li>Texture overlay sutil (grain, halation) para quebrar perfeicao digital</li>
-      <li>Toda peca passa por aprovacao humana antes de sair</li>
-      <li>O modelo gera; a Alright dirige</li>
-    </ul>
-  </div>
-
-  <div class="houselook-block">
-    <div class="houselook-number">03</div>
-    <div class="houselook-title">Grounded weight</div>
-    <div class="houselook-subtitle">Pessoas, objetos e luz tem peso humano. Nada flutua sem motivo.</div>
-    <ul class="houselook-rules">
-      <li>Gravidade realista em todos os elementos</li>
-      <li>Iluminacao com fonte identificavel</li>
-      <li>Sombras de contato presentes</li>
-      <li>Sem elementos flutuando sem justificativa narrativa</li>
-    </ul>
-  </div>
-
-  <div class="houselook-block">
-    <div class="houselook-number">04</div>
-    <div class="houselook-title">Editorial density</div>
-    <div class="houselook-subtitle">Cada frame tem mais informacao do que parece — recompensa o close.</div>
-    <ul class="houselook-rules">
-      <li>Detalhes de producao visiveis em zoom</li>
-      <li>Camadas de leitura: primeiro impacto, segundo detalhe</li>
-      <li>Textura e materialidade nos objetos</li>
-      <li>((Look again.)) aplicado ao frame</li>
-    </ul>
-  </div>
-
-  <div class="houselook-block">
-    <div class="houselook-number">05</div>
-    <div class="houselook-title">Warm sub-rosa</div>
-    <div class="houselook-subtitle">Cor quente e estado-base — sutil, nao dramatica.</div>
-    <ul class="houselook-rules">
-      <li>Temperatura de cor tendendo a warm em todo o reel</li>
-      <li>Sem cool tones dominantes (exceto por motivo narrativo)</li>
-      <li>Bone como tom-base, nao branco esteril</li>
-      <li>Orange Clay como sotaque, nunca como dominante</li>
-    </ul>
-  </div>
-</div>
-
-<div class="page-break">
-  <p class="overline">Diretrizes visuais</p>
-  <div class="do-dont">
-    <div class="do-col">
-      <div class="do-label">Fazer</div>
-      <ul>
-        <li>Color grade autoral por projeto</li>
-        <li>Grain e textura organica</li>
-        <li>Composicao com peso e intencao</li>
-        <li>Iluminacao com fonte clara</li>
-        <li>Detalhes que recompensam zoom</li>
-      </ul>
-    </div>
-    <div class="dont-col">
-      <div class="do-label">Nao fazer</div>
-      <ul>
-        <li>Output bruto de modelo sem finishing</li>
-        <li>Estetica AI-slop (maos quebradas, olhos errados)</li>
-        <li>Gradientes SaaS roxo-azul</li>
-        <li>Iconografia AI literal (neural net, particula)</li>
-        <li>Iconografia cinema literal (claquete, pelicula)</li>
-      </ul>
+    <div class="toc__brand">
+      <span>Owner: Alright</span>
+      <span>v2.0 · 14.05.2026</span>
     </div>
   </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Sumário</span>
+    <span>02 / 25</span>
+  </footer>
+</section>
 
-  <div class="sp-32"></div>
-  <p class="overline">Disclosure de IA — Revogada (2026-05-13)</p>
-  <p class="disc-text" style="opacity:.7">Regra de disclosure obrigatorio foi revogada por Zuza em 2026-05-13. Aplicacao caso-a-caso quando legalmente exigido. Nao e mais norma padrao da marca.</p>
-
-  <div class="sp-24"></div>
-  <p class="overline">Anti-prompts (palavras banidas em prompts)</p>
-  <div class="anti-list">
-    <span class="anti-tag">hyper-realistic</span>
-    <span class="anti-tag">ultra-detailed</span>
-    <span class="anti-tag">8k</span>
-    <span class="anti-tag">masterpiece</span>
-    <span class="anti-tag">best quality</span>
-    <span class="anti-tag">trending on artstation</span>
-    <span class="anti-tag">unreal engine</span>
-    <span class="anti-tag">octane render</span>
-    <span class="anti-tag">photorealistic</span>
-    <span class="anti-tag">beautiful</span>
-    <span class="anti-tag">stunning</span>
-    <span class="anti-tag">gorgeous</span>
-    <span class="anti-tag">perfect</span>
-    <span class="anti-tag">flawless</span>
-  </div>
-</div>
-
-<!-- ============================
-     PAGES 22-23 — MOTION
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">11</span>
-    <span class="section-name">Motion</span>
-    <div class="section-subtitle">Movimento cinematografico. Reveals lentos. Easing humano. Sem springs.</div>
-  </div>
-
-  <div class="motion-principle">
-    <div class="houselook-number">01</div>
-    <div class="houselook-title">Look again moments</div>
-    <p class="body-text">Reveals duram no minimo 1.4 segundos. O olho precisa de tempo para processar e revisitar. Transicoes rapidas so para micro-interacoes.</p>
-  </div>
-
-  <div class="motion-principle">
-    <div class="houselook-number">02</div>
-    <div class="houselook-title">Reveal over cut</div>
-    <p class="body-text">Preferir revelacao progressiva a corte seco. O conteudo aparece como se ja estivesse la, esperando ser visto.</p>
-  </div>
-
-  <div class="motion-principle">
-    <div class="houselook-number">03</div>
-    <div class="houselook-title">Easing humano</div>
-    <p class="body-text">Sem springs, sem bounces, sem overshoots. O movimento desacelera naturalmente, como objetos fisicos. Cubic-bezier apenas.</p>
-  </div>
-
-  <div class="motion-principle">
-    <div class="houselook-number">04</div>
-    <div class="houselook-title">Tempo cinematografico</div>
-    <p class="body-text">Cada animacao respeita o ritmo do conteudo. Titulos entram devagar. Labels aparecem rapido. O tempo serve a hierarquia.</p>
-  </div>
-
-  <div class="motion-principle">
-    <div class="houselook-number">05</div>
-    <div class="houselook-title">Reduced motion friendly</div>
-    <p class="body-text">Todo movimento respeita <span class="inline-code">prefers-reduced-motion</span>. Conteudo permanece acessivel sem animacao.</p>
-  </div>
-
-  <div class="sp-24"></div>
-  <p class="overline">Duration tokens</p>
-  <table class="brand-table">
-    <thead>
-      <tr><th>Token</th><th>Duracao</th><th>Uso</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><span class="inline-code">instant</span></td><td>100ms</td><td>Micro-feedback (hover, focus)</td></tr>
-      <tr><td><span class="inline-code">fast</span></td><td>200ms</td><td>Transicoes de estado simples</td></tr>
-      <tr><td><span class="inline-code">normal</span></td><td>400ms</td><td>Transicoes padrao de conteudo</td></tr>
-      <tr><td><span class="inline-code">slow</span></td><td>800ms</td><td>Transicoes de secao, overlays</td></tr>
-      <tr><td><span class="inline-code">cinematic</span></td><td>1400ms</td><td>Reveals de hero, entrada de logo</td></tr>
-      <tr><td><span class="inline-code">editorial</span></td><td>1800ms</td><td>Reveals longos de manifesto</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="page-break">
-  <p class="overline">Easing curves</p>
-  <div class="easing-grid">
-    <div class="easing-card">
-      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
-        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
-        <path d="M 10 110 C 58 110 34 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
-      </svg>
-      <div class="easing-name">Standard</div>
-      <div class="easing-value">(0.4, 0.0, 0.2, 1.0)</div>
+<!-- ============================================================
+     PAGE 03 · DIVIDER — BIG IDEA
+     ============================================================ -->
+<section class="page page--dark page--bleed">
+  <div class="divider">
+    <div class="row row--between" style="align-items:flex-start">
+      <span class="divider__num" style="color:rgba(250,249,245,0.6)">Capítulo</span>
+      <span class="divider__num" style="color:rgba(250,249,245,0.6)">03 / 25</span>
     </div>
-    <div class="easing-card">
-      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
-        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
-        <path d="M 10 110 C 10 110 34 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
-      </svg>
-      <div class="easing-name">Decelerate</div>
-      <div class="easing-value">(0.0, 0.0, 0.2, 1.0)</div>
+    <div>
+      <div class="divider__num" style="color:var(--orange-clay);margin-bottom:6mm">01</div>
+      <h1 class="divider__title" style="color:var(--bone)">Big idea</h1>
+      <p class="divider__sub" style="color:rgba(250,249,245,0.7);margin-top:8mm">Uma só frase, cravada. A partir dela, todas as decisões da marca se justificam — ou são descartadas.</p>
     </div>
-    <div class="easing-card">
-      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
-        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
-        <path d="M 10 110 C 58 110 110 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
-      </svg>
-      <div class="easing-name">Accelerate</div>
-      <div class="easing-value">(0.4, 0.0, 1.0, 1.0)</div>
-    </div>
-    <div class="easing-card">
-      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
-        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
-        <path d="M 10 110 C 34 110 10 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
-      </svg>
-      <div class="easing-name">Emphasized</div>
-      <div class="easing-value">(0.2, 0.0, 0.0, 1.0)</div>
-    </div>
-    <div class="easing-card">
-      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
-        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
-        <path d="M 10 110 C 29 10 46 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
-      </svg>
-      <div class="easing-name">Cinematic</div>
-      <div class="easing-value">(0.16, 1.0, 0.3, 1.0)</div>
+    <div class="divider__bottom" style="color:rgba(250,249,245,0.6)">
+      <span>Alright · Brand Book 2026</span>
+      <span>01 · Big idea</span>
     </div>
   </div>
+</section>
 
-  <div class="sp-32"></div>
-  <p class="overline">Logo animation sequence</p>
-  <div class="card" style="margin-top: 12px;">
-    <div class="card-body">
-      <p style="margin-bottom: 12px; font-weight: 500;">Duracao total: 2.6 segundos</p>
-      <table class="brand-table" style="margin-top: 0;">
-        <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 10pt; min-width: 80px;">0.0 — 0.8s</td><td>Wordmark <span class="inline-code">Alright</span> fade-in com ease cinematic</td></tr>
-        <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 10pt;">0.6 — 1.6s</td><td>Parenteses <span class="inline-code">(( ))</span> aparecem, deslizando de fora</td></tr>
-        <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 10pt;">1.4 — 2.6s</td><td>Accent opcional: <span class="inline-code">l</span> muda para Orange Clay (fade de cor)</td></tr>
+<!-- ============================================================
+     PAGE 04 · ((Look again.)) — Mega type on dark
+     ============================================================ -->
+<section class="page page--dark page--bleed">
+  <div class="bigidea-page">
+    <div class="bigidea-page__top">
+      <span>01 · Big idea cravada</span>
+      <span>04 / 25</span>
+    </div>
+    <div class="bigidea-page__center">
+      <h2 class="bigidea-page__title"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></h2>
+      <p class="bigidea-page__copy">
+        A marca convida o público a descobrir, não explica. Cada peça pede um segundo olhar — porque o primeiro nunca conta tudo. É um manifesto contra o óbvio, contra o brief que se resolve sozinho, contra o filme que cabe num bullet point. A gente entrega imagens que sustentam um segundo olhar. <em>O resto é ruído.</em>
+      </p>
+    </div>
+    <div class="bigidea-page__bottom">
+      <span>Alright · Brand Book 2026</span>
+      <span>((  look again  ))</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAGE 05 · MANIFESTO 01 — We are alright.
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>02 · Manifestos canon</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="manifesto">
+      <div class="manifesto__head">
+        <div>
+          <span class="eyebrow">01 / Manifesto fundador</span>
+          <p style="font-family:var(--font-mono);font-size:9pt;margin-top:1mm;color:var(--slate-warm)">Sempre em inglês — não traduzir.</p>
+        </div>
+        <span class="sticker sticker--mist rot-2">(( sempre EN ))</span>
+      </div>
+      <h2 class="manifesto__big">We are alright.</h2>
+      <div>
+        <p class="manifesto__copy body">Assinatura. Atitude. O nome é declaração. Está tudo certo — e a gente não precisa gritar pra provar. É a frase que define o tom de tudo: confiança calma, sem performance.</p>
+        <div class="manifesto__footer" style="margin-top:10mm">
+          <span class="manifesto__index">Manifesto 01 / 04</span>
+          <span class="caption">Bone bg · Dark text</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Manifesto · We are alright.</span>
+    <span>05 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 06 · MANIFESTO 02 — Craft. Craft. And. More. Craft.
+     ============================================================ -->
+<section class="page page--dark">
+  <header class="page__header">
+    <span>02 · Manifestos canon</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="manifesto">
+      <div class="manifesto__head">
+        <div>
+          <span class="eyebrow">02 / Métier</span>
+          <p style="font-family:var(--font-mono);font-size:9pt;margin-top:1mm;color:rgba(250,249,245,0.65)">Repetição é o argumento. O ponto final, também.</p>
+        </div>
+        <span class="sticker sticker--ghost rot2">(( craft ))</span>
+      </div>
+      <h2 class="manifesto__big manifesto__big--small" style="color:var(--bone)">Craft.<br/>Craft.<br/>And.<br/>More. Craft.</h2>
+      <div>
+        <p class="manifesto__copy body body--on-dark">Repetição não é estilo — é princípio. Cada frame é uma decisão. Cada decisão é craft. A AI é ferramenta; o olho que escolhe é nosso.</p>
+        <div class="manifesto__footer" style="margin-top:10mm">
+          <span class="manifesto__index" style="color:rgba(250,249,245,0.7)">Manifesto 02 / 04</span>
+          <span class="caption">Dark bg · Bone text</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Manifesto · Craft.</span>
+    <span>06 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 07 · MANIFESTO 03 — Cada filme é um filme.
+     ============================================================ -->
+<section class="page page--orange">
+  <header class="page__header">
+    <span>02 · Manifestos canon</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="manifesto">
+      <div class="manifesto__head">
+        <div>
+          <span class="eyebrow">03 / Identidade do trabalho</span>
+          <p style="font-family:var(--font-mono);font-size:9pt;margin-top:1mm;color:rgba(20,20,19,0.7)">Único manifesto canon em português. Não traduzir.</p>
+        </div>
+        <span class="sticker sticker--dark rot-2">(( PT only ))</span>
+      </div>
+      <h2 class="manifesto__big">Cada filme<br/>é um filme.</h2>
+      <div>
+        <p class="manifesto__copy body" style="color:var(--dark)">Sem template. Sem fórmula. Cada projeto entra com seu próprio sistema visual — e sai com a própria assinatura. Postura de boutique, escala de máquina.</p>
+        <div class="manifesto__footer" style="margin-top:10mm">
+          <span class="manifesto__index" style="color:rgba(20,20,19,0.7)">Manifesto 03 / 04</span>
+          <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:rgba(20,20,19,0.7)">Orange Clay full-bleed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Manifesto · Cada filme é um filme.</span>
+    <span>07 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 08 · MANIFESTO 04 — No camera or set. No high costs.
+     ============================================================ -->
+<section class="page page--stone">
+  <header class="page__header">
+    <span>02 · Manifestos canon</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="manifesto">
+      <div class="manifesto__head">
+        <div>
+          <span class="eyebrow">04 / Operação</span>
+          <p style="font-family:var(--font-mono);font-size:9pt;margin-top:1mm;color:rgba(250,249,245,0.7)">A linha que separa boutique de tradicional.</p>
+        </div>
+        <span class="sticker sticker--ghost rot1">(( quiet tech ))</span>
+      </div>
+      <h2 class="manifesto__big manifesto__big--small" style="color:var(--bone)">No camera or set.<br/>No high costs.</h2>
+      <div>
+        <p class="manifesto__copy body body--on-dark">Pipeline AI-first. Estúdio compacto, ciclo curto, output editorial. <em>Postura de boutique, escala de máquina.</em> Não vendemos AI; vendemos cinema feito com ela.</p>
+        <div class="manifesto__footer" style="margin-top:10mm">
+          <span class="manifesto__index" style="color:rgba(250,249,245,0.7)">Manifesto 04 / 04</span>
+          <span class="caption">Stone bg · Bone text</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Manifesto · No camera or set.</span>
+    <span>08 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 09 · DIVIDER — LOGO SYSTEM
+     ============================================================ -->
+<section class="page page--bone page--bleed">
+  <div class="divider">
+    <div class="row row--between" style="align-items:flex-start">
+      <span class="divider__num" style="color:var(--slate-warm)">Capítulo</span>
+      <span class="divider__num" style="color:var(--slate-warm)">09 / 25</span>
+    </div>
+    <div>
+      <div class="divider__num" style="color:var(--orange-clay);margin-bottom:6mm">02</div>
+      <h1 class="divider__title">Sistema<br/>de logo</h1>
+      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">O <em>l</em> carrega a marca. Bricolage Grotesque · Regular 400 em todas as letras · Bold 700 só no l central · Reveal espaçado é ato editorial — não default.</p>
+    </div>
+    <div class="divider__bottom" style="color:var(--slate-warm)">
+      <span>Alright · Brand Book 2026</span>
+      <span>02 · Sistema de logo</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAGE 10 · LOGO DEFAULT C.2
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>02 · Sistema de logo</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">10 / Default C.2</span>
+        <h2 class="h-lg">90% dos casos.</h2>
+        <p class="body">Wordmark Bricolage Regular 400 — l central em Bold 700. É o estado neutro da marca: confiante sem ser performático.</p>
+      </div>
+      <span class="sticker sticker--mist rot-2">(( default ))</span>
+    </div>
+
+    <div class="logo-showcase" style="flex:1;min-height:90mm">
+      <img src="../assets/logo/svg/alright-default-dark-transparent.svg" alt="Logo Alright default — Dark sobre Bone" style="max-height:60mm" />
+      <span class="logo-showcase__caption">Default C.2 · Dark sobre Bone · l Bold 700</span>
+    </div>
+
+    <dl class="logo-info" style="margin-top:6mm">
+      <div>
+        <dt>Espec tipográfica</dt>
+        <dd>Bricolage Grotesque · 400 (corpo) + 700 (l central)</dd>
+      </div>
+      <div>
+        <dt>Quando usar</dt>
+        <dd>Default em UI, deck, document headers, signatures, footer wordmarks.</dd>
+      </div>
+      <div>
+        <dt>Cor padrão</dt>
+        <dd>Dark <code style="font-family:var(--font-mono);font-size:9pt">#141413</code> sobre Bone — ou Bone sobre Dark (reverse).</dd>
+      </div>
+      <div>
+        <dt>Não usar</dt>
+        <dd>Bold em todo o wordmark. Bold só no l — sempre.</dd>
+      </div>
+    </dl>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Logo · Default C.2</span>
+    <span>10 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 11 · LOGO EXPRESSIVO C.1
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>02 · Sistema de logo</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">11 / Expressivo C.1</span>
+        <h2 class="h-lg">10% premium.</h2>
+        <p class="body">Mesma estrutura — l central em Orange Clay <code style="font-family:var(--font-mono);font-size:10pt">#D97757</code> em vez de Bold. Reservado a aberturas, capas, hero pieces e key visuals.</p>
+      </div>
+      <span class="sticker rot2">(( 10% ))</span>
+    </div>
+
+    <div class="logo-showcase" style="flex:1;min-height:90mm">
+      <img src="../assets/logo/svg/alright-expressivo-dark-transparent.svg" alt="Logo Alright expressivo — l Orange Clay" style="max-height:60mm" />
+      <span class="logo-showcase__caption">Expressivo C.1 · l em Orange Clay</span>
+    </div>
+
+    <dl class="logo-info" style="margin-top:6mm">
+      <div>
+        <dt>Espec tipográfica</dt>
+        <dd>Bricolage Grotesque · 400 (corpo + l) — diferenciação por cor, não peso.</dd>
+      </div>
+      <div>
+        <dt>Quando usar</dt>
+        <dd>Cover de deck, posters premium, key art de campanha, brand book covers.</dd>
+      </div>
+      <div>
+        <dt>Cor padrão</dt>
+        <dd>Letras Dark + l Orange Clay sobre Bone — ou Bone + l Orange Clay sobre Dark.</dd>
+      </div>
+      <div>
+        <dt>Não usar</dt>
+        <dd>Em UI cotidiana, footers ou documentos longos. Perde força.</dd>
+      </div>
+    </dl>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Logo · Expressivo C.1</span>
+    <span>11 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 12 · REVEAL + LOCKUP
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>02 · Sistema de logo</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">12 / Reveal + Lockup</span>
+        <h2 class="h-lg">Atos editoriais.</h2>
+        <p class="body">Reveal <em>((A I r i g h t))</em> e Lockup <em>((We Are Alright))</em> — usos cerimoniais. Não default. Não em UI cotidiana.</p>
+      </div>
+    </div>
+
+    <div class="logo-pair" style="flex:1">
+      <div class="logo-showcase logo-showcase--dark">
+        <img src="../assets/logo/png/alright-reveal-bone@2x.png" alt="Reveal ((A I r i g h t)) espaçado" style="max-width:88%;max-height:30mm" />
+        <span class="logo-showcase__caption">Reveal · espaçado · ato editorial</span>
+      </div>
+      <div class="logo-showcase">
+        <img src="../assets/logo/svg/lockup-we-are-alright-dark-transparent.svg" alt="Lockup ((We Are Alright))" style="max-width:88%;max-height:30mm" />
+        <span class="logo-showcase__caption">Lockup · assinatura formal · sempre EN</span>
+      </div>
+    </div>
+
+    <dl class="logo-info" style="margin-top:6mm">
+      <div>
+        <dt>Reveal — quando usar</dt>
+        <dd>Sequência de abertura de filme, primeira página de proposal, capa de governance.</dd>
+      </div>
+      <div>
+        <dt>Lockup — quando usar</dt>
+        <dd>Footer institucional, capa de brand book, contratos. Sempre em inglês.</dd>
+      </div>
+      <div>
+        <dt>Espaçamento <code style="font-family:var(--font-mono);font-size:9pt">(( ))</code></dt>
+        <dd>Brand device com espaço respiratório. Nunca colado às letras.</dd>
+      </div>
+      <div>
+        <dt>Tradução</dt>
+        <dd><strong>Nunca</strong> traduzir o lockup. We Are Alright é canon.</dd>
+      </div>
+    </dl>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Logo · Reveal + Lockup</span>
+    <span>12 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 13 · DO / DON'T
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>02 · Sistema de logo</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">13 / Do &amp; Don't</span>
+        <h2 class="h-lg">Onde a marca trava.</h2>
+        <p class="body">As regras existem para que o logo nunca compita com o conteúdo. Bone-first, l protegido, sem efeitos.</p>
+      </div>
+    </div>
+
+    <div class="dodont" style="flex:1">
+      <div class="dodont__col dodont__col--do">
+        <div class="dodont__head">
+          <span class="dodont__icon ok">✓</span>
+          <span class="dodont__label">Do</span>
+        </div>
+        <ul class="dodont__list">
+          <li>Use o <strong>default C.2</strong> em 90% dos casos.</li>
+          <li>Mantenha o <strong>l</strong> em Bold 700 sempre.</li>
+          <li>Orange Clay no <strong>l</strong> só no expressivo C.1.</li>
+          <li>Use o reveal com intenção editorial.</li>
+          <li>Lockup em inglês — sempre.</li>
+          <li>Preserve clear space mínimo (altura do l).</li>
+          <li>Use Bone como background default.</li>
+        </ul>
+      </div>
+      <div class="dodont__col dodont__col--dont">
+        <div class="dodont__head">
+          <span class="dodont__icon no">✕</span>
+          <span class="dodont__label">Don't</span>
+        </div>
+        <ul class="dodont__list">
+          <li>Não <strong>rotacione, distorça</strong> ou aplique sombra.</li>
+          <li>Não troque a fonte — Bricolage é trava.</li>
+          <li>Não use o reveal como default ou em UI.</li>
+          <li>Não coloque o logo sobre imagem ruidosa sem scrim.</li>
+          <li>Não traduza We Are Alright.</li>
+          <li>Não use Bold em todo o wordmark.</li>
+          <li>Não troque Orange Clay por outro tom no l.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Logo · Do &amp; Don't</span>
+    <span>13 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 14 · CLEAR SPACE + MIN SIZE
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>02 · Sistema de logo</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">14 / Clear space &amp; min size</span>
+        <h2 class="h-lg">Respiração e legibilidade.</h2>
+        <p class="body">Margem mínima ao redor do logo: altura do <em>l</em> em todos os lados. Tamanho mínimo: 14pt em print, 24px em tela.</p>
+      </div>
+    </div>
+
+    <div class="clearspace" style="flex:1;align-content:start">
+      <div class="clearspace__diagram">
+        <div class="clearspace__inner">
+          <img src="../assets/logo/svg/alright-default-dark-transparent.svg" alt="Logo com clear space" />
+          <span class="clearspace__mark tl">l-height</span>
+          <span class="clearspace__mark tr">l-height</span>
+          <span class="clearspace__mark bl">l-height</span>
+          <span class="clearspace__mark br">l-height</span>
+        </div>
+      </div>
+      <div class="minsize">
+        <div class="minsize__row">
+          <span class="minsize__sample s24">A<b>l</b>right</span>
+          <span class="minsize__meta">Display<br/><strong>24pt+</strong> · headers</span>
+        </div>
+        <div class="minsize__row">
+          <span class="minsize__sample s14">A<b>l</b>right</span>
+          <span class="minsize__meta">Print mínimo<br/><strong>14pt</strong> · doc body</span>
+        </div>
+        <div class="minsize__row">
+          <span class="minsize__sample s8">A<b>l</b>right</span>
+          <span class="minsize__meta">Footer absoluto<br/><strong>8pt</strong> · não menor</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Logo · Clear space</span>
+    <span>14 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 15 · BRICOLAGE GROTESQUE SPECIMEN
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>03 · Tipografia</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">15 / Primária · variable</span>
+        <h2 class="h-lg">Bricolage Grotesque</h2>
+        <p class="body">Família variable (OFL) — opsz 12-96, peso 200-800. É o sistema inteiro. Display, body, eyebrow, lockup. Sem fallback estilístico.</p>
+      </div>
+      <span class="sticker sticker--mist rot-2">(( OFL ))</span>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+      <p class="specimen__name">Aa Ll <span class="paren">((</span> A<b>l</b>right <span class="paren">))</span></p>
+      <div class="specimen__weights">
+        <span><span class="meta">200</span><span class="w200">Thin · Look again at the frame.</span></span>
+        <span><span class="meta">300</span><span class="w300">Light · Look again at the frame.</span></span>
+        <span><span class="meta">400</span><span class="w400">Regular · Look again at the frame.</span></span>
+        <span><span class="meta">500</span><span class="w500">Medium · Look again at the frame.</span></span>
+        <span><span class="meta">600</span><span class="w600">SemiBold · Look again at the frame.</span></span>
+        <span><span class="meta">700</span><span class="w700">Bold · banido em uso editorial.</span></span>
+        <span><span class="meta">800</span><span class="w800">ExtraBold · banido em uso editorial.</span></span>
+        <span style="margin-top:3mm"><span class="meta">L+B</span><span class="w-l">A<b>l</b>right — Regular 400 com <b>l</b> Bold 700</span></span>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Tipografia · Bricolage Grotesque</span>
+    <span>15 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 16 · JETBRAINS MONO
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>03 · Tipografia</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">16 / Companion · mono</span>
+        <h2 class="h-lg">JetBrains Mono</h2>
+        <p class="body">Companion técnica (Apache 2.0). Eyebrows, captions, tokens, code labels, footer chrome. Nunca como body de texto longo.</p>
+      </div>
+      <span class="sticker sticker--mist rot1">(( Apache 2.0 ))</span>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;gap:6mm">
+      <div>
+        <span class="mono-specimen-label">Token specimen</span>
+        <div class="mono-specimen">
+          <div><span class="c">--orange-clay:</span> <span class="v">#d97757;</span></div>
+          <div><span class="c">--bone:</span>        <span class="v">#faf9f5;</span></div>
+          <div><span class="c">--dark:</span>        <span class="v">#141413;</span></div>
+          <div><span class="c">--font-sans:</span>   <span class="v">"Bricolage Grotesque";</span></div>
+          <div><span class="c">--ease-cine:</span>   <span class="v">cubic-bezier(.16, 1, .3, 1);</span></div>
+        </div>
+      </div>
+
+      <table class="usage-table">
+        <thead>
+          <tr><th>Uso</th><th>Tamanho</th><th>Letter-spacing</th><th>Case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="role">Eyebrow</td><td class="mono">8pt</td><td class="mono">0.16em</td><td class="mono">UPPERCASE</td></tr>
+          <tr><td class="role">Caption</td><td class="mono">8–9pt</td><td class="mono">0.12–0.14em</td><td class="mono">UPPERCASE</td></tr>
+          <tr><td class="role">Footer chrome</td><td class="mono">7.5pt</td><td class="mono">0.14em</td><td class="mono">UPPERCASE</td></tr>
+          <tr><td class="role">Token / code</td><td class="mono">9–13pt</td><td class="mono">0.04–0.06em</td><td class="mono">lowercase</td></tr>
+          <tr><td class="role">Sticker badge</td><td class="mono">7.5pt</td><td class="mono">0.12em</td><td class="mono">UPPERCASE</td></tr>
+        </tbody>
       </table>
     </div>
   </div>
-</div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Tipografia · JetBrains Mono</span>
+    <span>16 / 25</span>
+  </footer>
+</section>
 
-<!-- ============================
-     PAGE 24 — APLICACOES
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">12</span>
-    <span class="section-name">Aplicacoes</span>
-    <div class="section-subtitle">Resumo dos pontos de contato da marca. Para detalhes completos e exemplos interativos, consultar o microsite.</div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-label">Website</div>
-      <div class="card-title">alright.com.br</div>
-      <p class="card-body">Light mode default, dark mode toggle. Bricolage Grotesque em todo o site. Background Bone, nunca branco puro. Responsivo, WCAG 2.2 AA. Hero com gradient.editorial-bone (unica excecao a regra anti-gradiente).</p>
+<!-- ============================================================
+     PAGE 17 · TYPE USAGE RULES
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>03 · Tipografia</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">17 / Hierarquia &amp; regras</span>
+        <h2 class="h-lg">Duas famílias. Uma trava.</h2>
+        <p class="body">Hierarquia simples: tudo em Bricolage exceto eyebrows / chrome / código. Nada acima de Medium em corrido — Bold é banido em uso editorial.</p>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-label">Social Media</div>
-      <div class="card-title">Instagram, LinkedIn, YouTube</div>
-      <p class="card-body">Avatar: (( )) em Dark sobre Bone. Posts seguem paleta e tipografia do brand — sem templates SaaS. Disclosure de IA obrigatorio em todo conteudo gerado. Hashtag: nao usar. Voz: mesmos 5 principios do tom.</p>
+
+    <table class="usage-table" style="flex:1">
+      <thead>
+        <tr><th>Papel</th><th>Família</th><th>Peso</th><th>Tamanho</th><th>Line</th><th>Sample</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="role">H1 mega</td>
+          <td>Bricolage</td>
+          <td class="mono">200–300</td>
+          <td class="mono">80–120pt</td>
+          <td class="mono">0.92</td>
+          <td><span class="sample s32">Look again.</span></td>
+        </tr>
+        <tr>
+          <td class="role">H1 section</td>
+          <td>Bricolage</td>
+          <td class="mono">300–400</td>
+          <td class="mono">48–64pt</td>
+          <td class="mono">0.95</td>
+          <td><span class="sample s32">Sistema</span></td>
+        </tr>
+        <tr>
+          <td class="role">H2</td>
+          <td>Bricolage</td>
+          <td class="mono">400–500</td>
+          <td class="mono">32–40pt</td>
+          <td class="mono">1.05</td>
+          <td><span class="sample s18">Sumário</span></td>
+        </tr>
+        <tr>
+          <td class="role">H3</td>
+          <td>Bricolage</td>
+          <td class="mono">500</td>
+          <td class="mono">20–24pt</td>
+          <td class="mono">1.15</td>
+          <td><span class="sample s18">Como pensamos</span></td>
+        </tr>
+        <tr>
+          <td class="role">Body</td>
+          <td>Bricolage</td>
+          <td class="mono">400</td>
+          <td class="mono">11pt</td>
+          <td class="mono">1.45</td>
+          <td><span class="sample s11">Cada filme é um filme.</span></td>
+        </tr>
+        <tr>
+          <td class="role">Caption</td>
+          <td>JetBrains Mono</td>
+          <td class="mono">500</td>
+          <td class="mono">8–9pt</td>
+          <td class="mono">1.4</td>
+          <td><span style="font-family:var(--font-mono);font-size:9pt;letter-spacing:0.14em;text-transform:uppercase">(( quiet tech ))</span></td>
+        </tr>
+        <tr>
+          <td class="role">Eyebrow</td>
+          <td>JetBrains Mono</td>
+          <td class="mono">500</td>
+          <td class="mono">8pt</td>
+          <td class="mono">1</td>
+          <td><span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.16em;text-transform:uppercase">01 — Capítulo</span></td>
+        </tr>
+        <tr>
+          <td class="role">Italic</td>
+          <td>Bricolage</td>
+          <td class="mono">—</td>
+          <td class="mono">inherit</td>
+          <td class="mono">inherit</td>
+          <td><em style="color:var(--orange-clay)">simulado com indent</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Tipografia · Hierarquia</span>
+    <span>17 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 18 · DIVIDER — COLOR
+     ============================================================ -->
+<section class="page page--bone page--bleed">
+  <div class="divider">
+    <div class="row row--between" style="align-items:flex-start">
+      <span class="divider__num" style="color:var(--slate-warm)">Capítulo</span>
+      <span class="divider__num" style="color:var(--slate-warm)">18 / 25</span>
     </div>
-    <div class="card">
-      <div class="card-label">Email</div>
-      <div class="card-title">Assinatura e newsletters</div>
-      <p class="card-body">Assinatura: Alright (com l bold) + cargo + telefone. Sem banners. Sem "enviado do meu iPhone". Newsletter: Bone background, Dark texto, Orange Clay apenas em CTAs (botao, nao texto).</p>
+    <div>
+      <div class="divider__num" style="color:var(--orange-clay);margin-bottom:6mm">04</div>
+      <h1 class="divider__title">Paleta</h1>
+      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">Sete tons. Light e dark coexistem como linguagem. Sem gradientes — uma exceção: gradient.editorial-bone para hero.</p>
     </div>
-    <div class="card">
-      <div class="card-label">Deck / Apresentacoes</div>
-      <div class="card-title">Keynote / Google Slides</div>
-      <p class="card-body">Slide 16:9. Background Bone. Tipografia Bricolage. Capa: ((We Are Alright)) centralizado. Contracapa: contato + disclosure IA. Sem transicoes chamativas — corte seco ou fade suave.</p>
+    <div class="divider__bottom" style="color:var(--slate-warm)">
+      <span>Alright · Brand Book 2026</span>
+      <span>04 · Paleta</span>
     </div>
   </div>
+</section>
 
-  <div class="sp-24"></div>
-  <div class="card" style="border-left: 3px solid var(--orange-clay);">
-    <div class="card-label">Referencia completa</div>
-    <p class="card-body">Para exemplos visuais, templates e guidelines detalhados de cada aplicacao, consultar o microsite interativo do brand guide: <span class="inline-code">04-applications-microsite/brand-book.html</span></p>
-  </div>
-</div>
-
-<!-- ============================
-     PAGE 25 — GOVERNANCA
-     ============================ -->
-<div class="page-break">
-  <div class="section-header">
-    <span class="section-number">13</span>
-    <span class="section-name">Governanca</span>
-    <div class="section-subtitle">Quem cuida da marca, como ela evolui e como pedir ajuda.</div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-label">Owner</div>
-      <div class="card-title">Zuza</div>
-      <p class="card-body">Responsavel final por toda decisao de marca. Qualquer alteracao no brand guide — paleta, tipografia, tom de voz, logo — passa por aprovacao do owner.</p>
+<!-- ============================================================
+     PAGE 19 · SWATCH SPLIT — BONE + MIST
+     ============================================================ -->
+<section class="page page--bone page--bleed">
+  <div class="split">
+    <div class="swatch swatch--bone">
+      <div>
+        <span class="swatch__eyebrow">01 / Background default</span>
+        <h3 class="swatch__name">Bone</h3>
+        <p class="swatch__hex">#FAF9F5 · sRGB · L 97</p>
+        <p class="swatch__desc">Fundo default. Light mode permanente. Nada vibra sobre ela sem motivo.</p>
+        <div class="swatch__tokens">
+          <code>--bone</code>
+          <code>color/surface/default</code>
+        </div>
+      </div>
+      <div class="swatch__pagemark">19 / 25 · Bone · light surface</div>
     </div>
-    <div class="card">
-      <div class="card-label">Revisao</div>
-      <div class="card-title">Semestral</div>
-      <p class="card-body">O brand guide e revisado a cada 6 meses. Ajustes menores (tokens, aplicacoes) podem ocorrer entre revisoes. Mudancas estruturais (Big Idea, paleta primaria, logo) exigem processo formal.</p>
+    <div class="swatch swatch--mist">
+      <div>
+        <span class="swatch__eyebrow">02 / Surface alt</span>
+        <h3 class="swatch__name">Mist</h3>
+        <p class="swatch__hex">#ECE8DC · warm gray</p>
+        <p class="swatch__desc">Cinza quente sutil. Cards alternativos, divisores, headers de sessão.</p>
+        <div class="swatch__tokens">
+          <code>--mist</code>
+          <code>color/surface/alt</code>
+        </div>
+      </div>
+      <div class="swatch__pagemark">04 · Paleta · Mist · warm gray</div>
     </div>
   </div>
+</section>
 
-  <div class="sp-24"></div>
-
-  <h3>Niveis de alteracao</h3>
-  <table class="brand-table">
-    <thead>
-      <tr><th>Nivel</th><th>Exemplos</th><th>Aprovacao</th></tr>
-    </thead>
-    <tbody>
-      <tr><td style="font-weight: 500;">Cosmetico</td><td>Ajuste de token, nova aplicacao, template novo</td><td>Qualquer membro do time</td></tr>
-      <tr><td style="font-weight: 500;">Tatico</td><td>Nova cor funcional, ajuste de tom, nova regra de uso</td><td>Owner (Zuza)</td></tr>
-      <tr><td style="font-weight: 500;">Estrategico</td><td>Big Idea, paleta primaria, logo, manifesto</td><td>Owner + CSO (Bera)</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sp-24"></div>
-
-  <h3>Contato</h3>
-  <div class="card">
-    <p class="card-body">
-      Para duvidas sobre aplicacao do brand guide, uso do logo ou tom de voz, contatar o owner.<br><br>
-      Para propostas de alteracao estrutural, preparar documento com: contexto, proposta, justificativa, impacto estimado. Submeter ao owner para avaliacao.
-    </p>
-  </div>
-
-  <div class="sp-32"></div>
-
-  <!-- Final footer -->
-  <div style="text-align: center; padding: 48px 0; border-top: 2px solid var(--orange-clay);">
-    <div style="font-size: 20pt; font-weight: 400; letter-spacing: -0.01em;">
-      <span style="color: var(--slate-warm); font-weight: 300;">((</span>We Are Alright<span style="color: var(--slate-warm); font-weight: 300;">))</span>
+<!-- ============================================================
+     PAGE 20 · SWATCH SPLIT — DARK + STONE + SLATE
+     ============================================================ -->
+<section class="page page--dark page--bleed">
+  <div class="split" style="grid-template-rows: 1.2fr 0.9fr 0.9fr">
+    <div class="swatch swatch--dark">
+      <div>
+        <span class="swatch__eyebrow">03 / Texto + reverse</span>
+        <h3 class="swatch__name">Dark</h3>
+        <p class="swatch__hex">#141413 · quase-preto</p>
+        <p class="swatch__desc">Texto. Wordmark. Background dark mode. Nunca puro #000.</p>
+        <div class="swatch__tokens">
+          <code>--dark</code>
+          <code>color/text/default</code>
+        </div>
+      </div>
+      <div class="swatch__pagemark">20 / 25 · Dark · text + reverse surface</div>
     </div>
-    <div style="font-size: 11pt; color: var(--slate-warm); margin-top: 8px;">A.I. first Production Company. Sao Paulo.</div>
-    <div style="font-size: 10pt; color: var(--slate-warm); margin-top: 12px;">Brand Guide 2026 · Owner: Zuza</div>
+    <div class="swatch swatch--stone" style="padding:12mm 18mm">
+      <div>
+        <span class="swatch__eyebrow">04 / Body text-safe</span>
+        <h3 class="swatch__name" style="font-size:36pt;margin:2mm 0">Stone · #3D3A35</h3>
+        <p class="swatch__desc" style="margin-bottom:2mm">Body copy padrão. Contraste WCAG AA sobre Bone confirmado.</p>
+        <div class="swatch__tokens">
+          <code>--stone</code>
+          <code>color/text/body</code>
+        </div>
+      </div>
+    </div>
+    <div class="swatch swatch--slate" style="padding:12mm 18mm">
+      <div>
+        <span class="swatch__eyebrow">05 / Subtle</span>
+        <h3 class="swatch__name" style="font-size:36pt;margin:2mm 0">Slate Warm · #5B5750</h3>
+        <p class="swatch__desc" style="margin-bottom:2mm">Eyebrows, captions, labels secundários. Sempre sobre Bone ou Mist.</p>
+        <div class="swatch__tokens">
+          <code>--slate-warm</code>
+          <code>color/text/subtle</code>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- ============================================================
+     PAGE 21 · SWATCH SPLIT — ORANGE CLAY + CLAY DEEP
+     ============================================================ -->
+<section class="page page--orange page--bleed">
+  <div class="split">
+    <div class="swatch swatch--orange">
+      <div>
+        <span class="swatch__eyebrow">06 / Accent único</span>
+        <h3 class="swatch__name">Orange<br/>Clay</h3>
+        <p class="swatch__hex">#D97757</p>
+        <p class="swatch__desc">Accent. Wordmark expressivo. Stickers. Nada além disso.</p>
+        <div class="swatch__tokens">
+          <code>--orange-clay</code>
+          <code>color/accent</code>
+        </div>
+        <div class="swatch__warning">
+          <strong>Atenção:</strong> nunca como body text sobre Bone — falha WCAG AA. Para texto, use Clay Deep.
+        </div>
+      </div>
+      <div class="swatch__pagemark">21 / 25 · Orange Clay · accent único</div>
+    </div>
+    <div class="swatch swatch--clay">
+      <div>
+        <span class="swatch__eyebrow">07 / Orange text-safe</span>
+        <h3 class="swatch__name">Clay<br/>Deep</h3>
+        <p class="swatch__hex">#8C4A32</p>
+        <p class="swatch__desc">Versão escurecida do accent. Usada quando precisa de Orange como texto sobre Bone.</p>
+        <div class="swatch__tokens">
+          <code>--clay-deep</code>
+          <code>color/accent/text-safe</code>
+        </div>
+      </div>
+      <div class="swatch__pagemark">04 · Paleta · Clay Deep · accent text-safe</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAGE 22 · DIVIDER — HOUSE LOOK
+     ============================================================ -->
+<section class="page page--bone page--bleed">
+  <div class="divider">
+    <div class="row row--between" style="align-items:flex-start">
+      <span class="divider__num" style="color:var(--slate-warm)">Capítulo</span>
+      <span class="divider__num" style="color:var(--slate-warm)">22 / 25</span>
+    </div>
+    <div>
+      <div class="divider__num" style="color:var(--orange-clay);margin-bottom:6mm">05</div>
+      <h1 class="divider__title">House look<br/><span style="font-style:italic;font-weight:300;color:var(--orange-clay)">Tátil. Editorial.</span></h1>
+      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">Bone-first com profundidade fotográfica — pele, têxtil, materiais reais. AI invisível, output cinema.</p>
+    </div>
+    <div class="divider__bottom" style="color:var(--slate-warm)">
+      <span>Alright · Brand Book 2026</span>
+      <span>05 · House look</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAGE 23 · GALLERY GRID
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>05 · House look</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">23 / Stills selection</span>
+        <h2 class="h-lg">Tátil. Editorial.</h2>
+        <p class="body">Oito stills cobrem o range — editorial, retail, music, sport, brand, tactile. Cada filme é um filme.</p>
+      </div>
+      <span class="sticker sticker--mist rot2">(( warm ))</span>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery__tile c3 r2" style="background-image:url('../assets/work/web/puma-portugal-portrait.jpg')">
+        <span class="gallery__caption">Puma Portugal · editorial</span>
+      </div>
+      <div class="gallery__tile c3" style="background-image:url('../assets/work/web/liniker-negra-li.jpg')">
+        <span class="gallery__caption">Liniker · Negra Li · music</span>
+      </div>
+      <div class="gallery__tile c3" style="background-image:url('../assets/work/web/chupa-chups.jpg')">
+        <span class="gallery__caption">Chupa Chups · commercial</span>
+      </div>
+
+      <div class="gallery__tile c2 gallery__tile--top25" style="background-image:url('../assets/work/web/dove-ecom.jpg')">
+        <span class="gallery__caption">Dove · retail</span>
+      </div>
+      <div class="gallery__tile c2" style="background-image:url('../assets/work/web/seda-still.jpg')">
+        <span class="gallery__caption">Seda · tactile</span>
+      </div>
+      <div class="gallery__tile c2" style="background-image:url('../assets/work/web/cash-pop.jpg')">
+        <span class="gallery__caption">Cash Pop · brand</span>
+      </div>
+
+      <div class="gallery__tile c3" style="background-image:url('../assets/work/web/olympikus-corre5.jpg')">
+        <span class="gallery__caption">Olympikus Corre 5 · sport</span>
+      </div>
+      <div class="gallery__tile c3" style="background-image:url('../assets/work/web/peanut.jpg')">
+        <span class="gallery__caption">Peanut · playful</span>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>House look · stills selection</span>
+    <span>23 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 24 · APPLICATIONS — CARD + EMAIL + DISCLOSURE
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>06 · Aplicações</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="section-head">
+      <div class="section-head__title-block">
+        <span class="eyebrow">24 / Aplicações</span>
+        <h2 class="h-lg">Como ((Alright)) vive no mundo.</h2>
+        <p class="body">Cartão, assinatura, disclosure. Tudo Bone-first, mono no chrome, Bricolage no nome.</p>
+      </div>
+    </div>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <span class="app-card__label">Cartão de visita · 55×85 mm</span>
+        <div>
+          <div class="app-card__wordmark">A<b>l</b>right</div>
+          <div class="app-card__meta" style="margin-top:6mm">
+            Fabiano Albergaria · Founder<br/>
+            albergaria@wearealright.cc<br/>
+            +55 11 92353-8110<br/>
+            www.wearealright.cc · @wearealright.cc<br/>
+            São Paulo · BR
+          </div>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-warm)">Default C.2 · Dark sobre Bone</span>
+      </div>
+
+      <div class="app-card app-card--mist">
+        <span class="app-card__label">Email signature</span>
+        <div>
+          <div style="font-family:var(--font-mono);font-size:7.5pt;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4mm;color:var(--slate-warm)">—— assinatura padrão ——</div>
+          <div class="app-card__sig-name"><b>Fabiano Albergaria</b> · Founder, Alright</div>
+          <div class="app-card__sig-body">
+            albergaria@wearealright.cc<br/>
+            +55 11 92353-8110 · WhatsApp<br/>
+            www.wearealright.cc · @wearealright.cc
+          </div>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-warm)">Bricolage no nome · Mono no chrome</span>
+      </div>
+
+      <div class="app-card app-card--dark" style="grid-column:span 2">
+        <div>
+          <span class="app-card__label">((Look again.))</span>
+          <h3 class="h-md" style="color:var(--bone);margin-top:4mm">Brand device em uso</h3>
+          <p class="body body--on-dark" style="margin-top:4mm;max-width:140mm;font-size:10pt">
+            <code style="font-family:var(--font-mono);color:var(--orange-clay);font-size:10pt">(( ))</code> sempre com <strong style="color:var(--bone)">um espaço</strong> antes do conteúdo e <strong style="color:var(--bone)">um espaço</strong> depois — nunca colado às letras. Aplica-se a stickers, captions, social copy, eyebrow editorial. É o respiro visual da marca.
+          </p>
+        </div>
+        <div class="row" style="gap:3mm;flex-wrap:wrap">
+          <span class="sticker sticker--ghost rot-2">(( look again ))</span>
+          <span class="sticker rot2">(( quiet tech ))</span>
+          <span class="sticker sticker--clay rot-1">(( a.i. first ))</span>
+        </div>
+      </div>
+
+      <div class="app-card app-card--note" style="grid-column:span 2">
+        <div>
+          <span class="revoked">Revogada · 2026-05-13</span>
+          <h3 class="h-sm" style="color:var(--dark);margin-bottom:3mm">Disclosure de IA</h3>
+          <p>
+            A regra de disclosure obrigatório (<strong>"Imagens criadas com Inteligência Artificial."</strong>) foi <strong>revogada por decisão da owner em 2026-05-13</strong>. Não é mais norma da marca em peças padrão.
+          </p>
+          <p style="margin-top:2mm">
+            Aplicação <strong>case-by-case</strong> permanece quando legalmente exigido — regulamentação local, regras de plataforma específica, contratos cliente. Fora desses casos, não usar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Aplicações</span>
+    <span>24 / 25</span>
+  </footer>
+</section>
+
+<!-- ============================================================
+     PAGE 25 · GOVERNANCE / COLOPHON
+     ============================================================ -->
+<section class="page page--bone">
+  <header class="page__header">
+    <span>Governance · Colophon</span>
+    <span>Alright Brand Book 2026</span>
+  </header>
+  <div class="content">
+    <div class="colophon">
+      <div class="colophon__head">
+        <span class="eyebrow">07 / Governance</span>
+        <h2 class="h-lg">Colophon</h2>
+        <p class="body" style="max-width:130mm;text-align:center;margin-top:2mm">
+          Brand book vivo, revisado a cada semestre. Toda decisão é registrada em <code style="font-family:var(--font-mono);font-size:10pt">/governance</code> com data, owner e justificativa.
+        </p>
+      </div>
+
+      <div class="colophon__rows">
+        <div class="colophon__row">
+          <span><strong>Owner</strong> · Alright</span>
+          <span><strong>Versão</strong> · 2.0</span>
+          <span><strong>Data</strong> · 14.05.2026</span>
+        </div>
+        <div class="colophon__row">
+          <span><strong>Revisão</strong> · semestral</span>
+          <span><strong>Próxima</strong> · 11.2026</span>
+          <span><strong>Path</strong> · /governance</span>
+        </div>
+
+        <div class="colophon__divider"></div>
+
+        <div class="colophon__row">
+          <span style="font-family:var(--font-sans);font-size:11pt;font-weight:500;color:var(--dark);text-transform:none;letter-spacing:-0.005em">Fabiano Albergaria · Founder</span>
+        </div>
+        <div class="colophon__row">
+          <span>albergaria@wearealright.cc</span>
+          <span>+55 11 92353-8110</span>
+        </div>
+        <div class="colophon__row">
+          <span>www.wearealright.cc</span>
+          <span>@wearealright.cc</span>
+          <span>São Paulo · BR</span>
+        </div>
+
+        <div class="colophon__divider"></div>
+
+        <div class="colophon__row" style="font-size:8pt">
+          <span>Bone-first</span>
+          <span>A.I. first</span>
+          <span>Cinema-grade</span>
+          <span>Quiet tech</span>
+        </div>
+      </div>
+
+      <p class="colophon__quote">((  We Are Alright  ))</p>
+
+      <div style="display:flex;justify-content:center;width:100%">
+        <img src="../assets/logo/svg/lockup-we-are-alright-dark-transparent.svg" alt="((We Are Alright))" style="max-width:120mm;height:auto" />
+      </div>
+
+      <p class="colophon__year" style="margin-top:4mm">© 2026 · wearealright.cc · Brand Book v2.0</p>
+    </div>
+  </div>
+  <footer class="page__footer">
+    <span>Alright · Brand Book 2026</span>
+    <span>Governance · Colophon</span>
+    <span>25 / 25</span>
+  </footer>
+</section>
 
 </body>
 </html>

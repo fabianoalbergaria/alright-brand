@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Alright — Brand Guide 2026 (Print)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   ALRIGHT BRAND BOOK — PRINT-READY
+   ============================================ */
+
+@page {
+  size: A4;
+  margin: 20mm 25mm;
+  @bottom-left {
+    content: "Alright — Brand Guide 2026";
+    font-family: 'Bricolage Grotesque', Georgia, serif;
+    font-size: 9pt;
+    color: #5b5750;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt;
+    color: #5b5750;
+  }
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange-clay: #d97757;
+  --bone: #faf9f5;
+  --dark: #141413;
+  --clay-deep: #8c4a32;
+  --stone: #3d3a35;
+  --slate-warm: #5b5750;
+  --mist: #ece8dc;
+  --border: #e8e4da;
+  --success: #5e6b3d;
+  --error: #b04a36;
+  --warning: #945a0e;
+  --info: #4a6478;
+}
+
+html { font-size: 11pt; }
+
+body {
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  background: var(--bone);
+  color: var(--dark);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media print {
+  body { background: white; padding: 0; }
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+}
+
+@media screen {
+  .page-break { border-top: 2px dashed var(--mist); margin-top: 48px; padding-top: 48px; }
+  body { padding-bottom: 80px; }
+}
+
+/* ---- PAGE FOOTER (screen fallback) ---- */
+.print-footer {
+  display: none;
+}
+@media print {
+  .print-footer {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 25mm 10mm;
+    font-size: 9pt;
+    color: var(--slate-warm);
+  }
+  .print-footer .pf-right {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* ---- TYPOGRAPHY ---- */
+.overline {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  margin-bottom: 12px;
+}
+
+.section-header {
+  margin-bottom: 32px;
+}
+
+.section-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14pt;
+  font-weight: 500;
+  color: var(--clay-deep);
+  display: inline;
+  margin-right: 12px;
+}
+
+.section-name {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--dark);
+  display: inline;
+}
+
+.section-subtitle {
+  font-size: 13pt;
+  font-weight: 400;
+  color: var(--stone);
+  line-height: 1.5;
+  margin-top: 12px;
+  max-width: 600px;
+}
+
+h3 {
+  font-size: 18pt;
+  font-weight: 500;
+  margin-bottom: 12px;
+  margin-top: 28px;
+  color: var(--dark);
+}
+
+h4 {
+  font-size: 13pt;
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 20px;
+  color: var(--dark);
+}
+
+p, li { font-size: 11pt; line-height: 1.6; }
+
+.body-text {
+  font-size: 11pt;
+  line-height: 1.7;
+  color: var(--stone);
+  max-width: 600px;
+}
+
+.body-text + .body-text { margin-top: 10px; }
+
+.accent { color: var(--orange-clay); }
+
+.inline-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: var(--mist);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+/* ---- COVER ---- */
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  text-align: center;
+}
+
+@media print {
+  .cover { min-height: 0; height: 100vh; page-break-after: always; }
+}
+
+.cover-wordmark {
+  font-size: 72px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--dark);
+}
+
+.cover-wordmark .paren {
+  color: var(--slate-warm);
+  font-weight: 300;
+}
+
+.cover-subtitle {
+  font-size: 16pt;
+  color: var(--stone);
+  margin-top: 16px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.cover-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12pt;
+  color: var(--slate-warm);
+  margin-top: 48px;
+  letter-spacing: 0.06em;
+}
+
+/* ---- TOC ---- */
+.toc { margin-top: 24px; }
+
+.toc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12pt;
+}
+
+.toc-item .toc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10pt;
+  color: var(--clay-deep);
+  min-width: 32px;
+}
+
+.toc-item .toc-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.toc-item .toc-page {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10pt;
+  color: var(--slate-warm);
+}
+
+/* ---- CARDS ---- */
+.card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 12px;
+  page-break-inside: avoid;
+}
+
+.card-label {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 14pt;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.card-body {
+  font-size: 11pt;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+/* ---- GRIDS ---- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+
+/* ---- DO / DON'T ---- */
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+
+.do-col, .dont-col {
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  page-break-inside: avoid;
+}
+
+.do-col { border-left: 3px solid var(--success); }
+.dont-col { border-left: 3px solid var(--error); }
+
+.do-label {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.do-col .do-label { color: var(--success); }
+.dont-col .do-label { color: var(--error); }
+
+.do-col ul, .dont-col ul { list-style: none; padding: 0; }
+
+.do-col li, .dont-col li {
+  font-size: 10pt;
+  color: var(--stone);
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+/* ---- TABLES ---- */
+.brand-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 10pt;
+}
+
+.brand-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--stone);
+}
+
+.brand-table tr:last-child td { border-bottom: none; }
+
+/* ---- SWATCHES ---- */
+.swatch-large {
+  border-radius: 8px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  position: relative;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.swatch-info {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8pt;
+  line-height: 1.6;
+}
+
+.swatch-name {
+  font-family: 'Bricolage Grotesque', serif;
+  font-size: 10pt;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+/* ---- CONTRAST TABLE ---- */
+.contrast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.contrast-pair {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  page-break-inside: avoid;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.contrast-sample {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10pt;
+  font-weight: 500;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.contrast-meta {
+  padding: 8px;
+  font-size: 9pt;
+  color: var(--stone);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.badge-pass { background: var(--success); color: #faf9f5; }
+.badge-fail { background: var(--error); color: #faf9f5; }
+
+/* ---- LOGO DEMO ---- */
+.logo-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  border-radius: 8px;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.logo-demo .logo-l-bold { font-weight: 600; }
+.logo-demo .logo-l-orange { color: var(--orange-clay); }
+
+.logo-on-bone {
+  background: #faf9f5;
+  color: #141413;
+  border: 1px solid var(--mist);
+}
+
+.logo-on-dark {
+  background: #141413;
+  color: #faf9f5;
+}
+
+.logo-caption {
+  font-size: 9pt;
+  color: var(--slate-warm);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* ---- TYPE SPECIMEN ---- */
+.weight-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.weight-row:last-child { border-bottom: none; }
+
+.weight-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  color: var(--slate-warm);
+  min-width: 48px;
+}
+
+.weight-sample {
+  font-size: 20pt;
+  letter-spacing: -0.01em;
+}
+
+.type-ramp-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.type-ramp-item:last-child { border-bottom: none; }
+
+.type-ramp-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8pt;
+  color: var(--slate-warm);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+/* ---- PYRAMID ---- */
+.pyramid {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.pyramid-level {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  font-size: 10pt;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.pyramid-level-label {
+  font-size: 8pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  margin-bottom: 4px;
+}
+
+.pyramid-level-content {
+  font-size: 11pt;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+/* ---- NEUTRAL SCALE ---- */
+.neutral-scale {
+  display: flex;
+  margin-top: 16px;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 56px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.neutral-step {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 6px 2px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.neutral-step span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7pt;
+}
+
+/* ---- FUNCTIONAL COLORS ---- */
+.func-colors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.func-swatch {
+  border-radius: 6px;
+  height: 56px;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.func-swatch span {
+  font-size: 9pt;
+  font-weight: 500;
+}
+
+/* ---- DARK MODE DEMO ---- */
+.darkmode-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.darkmode-panel { padding: 24px 20px; }
+
+.darkmode-panel-light {
+  background: #faf9f5;
+  color: #141413;
+}
+
+.darkmode-panel-dark {
+  background: #141413;
+  color: #faf9f5;
+}
+
+.dm-label {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+
+.dm-swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.dm-swatch-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.dm-swatch-label {
+  font-size: 9pt;
+  opacity: 0.7;
+}
+
+/* ---- HOUSE LOOK ---- */
+.houselook-block {
+  margin-bottom: 28px;
+  page-break-inside: avoid;
+}
+
+.houselook-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  color: var(--orange-clay);
+  margin-bottom: 4px;
+}
+
+.houselook-title {
+  font-size: 16pt;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.houselook-subtitle {
+  font-size: 11pt;
+  color: var(--stone);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.houselook-rules {
+  list-style: none;
+  padding: 0;
+}
+
+.houselook-rules li {
+  font-size: 10pt;
+  color: var(--stone);
+  padding: 3px 0 3px 14px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.houselook-rules li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 5px;
+  height: 1px;
+  background: var(--orange-clay);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ---- DISCLOSURE ---- */
+.disclosure-box {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.disclosure-box .lang {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  margin-bottom: 6px;
+}
+
+.disclosure-box .disc-text {
+  font-size: 11pt;
+  color: var(--stone);
+  margin-bottom: 16px;
+}
+
+.disclosure-box .disc-text:last-of-type { margin-bottom: 0; }
+
+/* ---- ANTI-PROMPTS ---- */
+.anti-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.anti-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  padding: 2px 8px;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 3px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ---- MOTION ---- */
+.motion-principle {
+  margin-bottom: 24px;
+  page-break-inside: avoid;
+}
+
+.easing-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.easing-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.easing-card svg { margin-bottom: 8px; }
+
+.easing-name {
+  font-size: 10pt;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.easing-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7pt;
+  color: var(--slate-warm);
+}
+
+/* ---- GLYPH DEMO ---- */
+.glyph-demo {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 20px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  justify-content: center;
+}
+
+.glyph-char { font-size: 48px; font-weight: 400; line-height: 1; }
+.glyph-label { font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: var(--slate-warm); text-align: center; margin-top: 4px; }
+.glyph-eq { font-size: 24px; color: var(--slate-warm); }
+
+/* ---- MANIFESTO ---- */
+.manifesto-text {
+  font-size: 12pt;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--stone);
+  max-width: 640px;
+}
+
+.manifesto-text p { margin-bottom: 16px; }
+
+.manifesto-text .m-headline {
+  font-size: 24pt;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.manifesto-text .m-bold {
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.manifesto-mini {
+  text-align: center;
+  padding: 32px 20px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.manifesto-mini .mini-text {
+  font-size: 18pt;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ---- EDITORIAL QUOTE ---- */
+.editorial-quote {
+  font-size: 18pt;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  max-width: 600px;
+  margin: 32px 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--orange-clay);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ---- TONE CARD ---- */
+.tone-card {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  page-break-inside: avoid;
+}
+
+.tone-card:last-child { border-bottom: none; }
+
+.tone-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  color: var(--orange-clay);
+  margin-bottom: 4px;
+}
+
+.tone-name {
+  font-size: 14pt;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+/* ---- VOCAB ---- */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.vocab-col h4 {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.vocab-col.vocab-use h4 { color: var(--success); }
+.vocab-col.vocab-avoid h4 { color: var(--error); }
+
+.vocab-col ul { list-style: none; padding: 0; }
+
+.vocab-col li {
+  font-size: 10pt;
+  color: var(--stone);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.vocab-col li:last-child { border-bottom: none; }
+
+/* ---- NAMING ---- */
+.naming-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.naming-item {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.naming-item.naming-never { border-color: var(--error); opacity: 0.6; }
+.naming-word { font-size: 14pt; font-weight: 500; margin-bottom: 4px; }
+.naming-desc { font-size: 9pt; color: var(--slate-warm); }
+
+/* ---- ARCHETYPE ---- */
+.arch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.arch-card {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.arch-type {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  margin-bottom: 4px;
+}
+
+.arch-name { font-size: 18pt; font-weight: 500; margin-bottom: 8px; }
+.arch-desc { font-size: 10pt; color: var(--stone); line-height: 1.5; }
+
+/* ---- RESPONSIVE SIZES ---- */
+.responsive-sizes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+  align-items: end;
+}
+
+.resp-size {
+  text-align: center;
+  padding: 16px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.resp-size-label {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-warm);
+  margin-top: 8px;
+}
+
+/* ---- DURATION TABLE ---- */
+.duration-table td {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10pt;
+}
+
+/* ---- SPACERS ---- */
+.sp-8 { height: 8px; }
+.sp-16 { height: 16px; }
+.sp-24 { height: 24px; }
+.sp-32 { height: 32px; }
+
+/* ---- COLOR RULES LIST ---- */
+.color-rules { list-style: none; padding: 0; margin-top: 12px; }
+.color-rules li {
+  font-size: 10pt;
+  color: var(--stone);
+  padding: 4px 0 4px 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.color-rules li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10px;
+  width: 5px; height: 1px;
+  background: var(--orange-clay);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* Big Idea section */
+.bigidea-section {
+  background: #141413;
+  color: #faf9f5;
+  padding: 48px 40px;
+  border-radius: 8px;
+  margin-top: 16px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.bigidea-headline {
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 32px;
+}
+
+.bigidea-headline .paren {
+  color: #5b5750;
+  font-weight: 300;
+}
+
+.bigidea-body {
+  font-size: 12pt;
+  line-height: 1.7;
+  color: #b0aa9e;
+  max-width: 580px;
+  margin-bottom: 28px;
+}
+
+.layer-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.layer-item {
+  padding: 14px 16px;
+  border: 1px solid #2a2926;
+  border-radius: 4px;
+}
+
+.layer-name {
+  font-size: 9pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d97757;
+  margin-bottom: 4px;
+}
+
+.layer-desc {
+  font-size: 10pt;
+  color: #8a847a;
+  line-height: 1.4;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================
+     PAGE 1 — COVER
+     ============================ -->
+<div class="cover">
+  <div class="cover-wordmark">
+    <span class="paren">((</span>We Are Alright<span class="paren">))</span>
+  </div>
+  <div class="cover-subtitle">A.I. first Production Company.</div>
+  <div class="cover-year">Brand Guide 2026</div>
+</div>
+
+<!-- ============================
+     PAGE 2 — TABLE OF CONTENTS
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-name">Indice</span>
+  </div>
+
+  <div class="toc">
+    <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Capa</span><span class="toc-page">1</span></div>
+    <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Indice</span><span class="toc-page">2</span></div>
+    <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Big Idea — ((Look again.))</span><span class="toc-page">3–4</span></div>
+    <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Estrategia</span><span class="toc-page">5–7</span></div>
+    <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Verbal</span><span class="toc-page">8–9</span></div>
+    <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Manifestos</span><span class="toc-page">10–11</span></div>
+    <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Logo System</span><span class="toc-page">12–14</span></div>
+    <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Tipografia</span><span class="toc-page">15–16</span></div>
+    <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Cores</span><span class="toc-page">17–19</span></div>
+    <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">House Look</span><span class="toc-page">20–21</span></div>
+    <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Motion</span><span class="toc-page">22–23</span></div>
+    <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">Aplicacoes</span><span class="toc-page">24</span></div>
+    <div class="toc-item"><span class="toc-num">13</span><span class="toc-label">Governanca</span><span class="toc-page">25</span></div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 3-4 — BIG IDEA
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <span class="section-name">Big Idea</span>
+  </div>
+
+  <div class="bigidea-section">
+    <div class="bigidea-headline">
+      <span class="paren">((</span>Look again.<span class="paren">))</span>
+    </div>
+    <div class="bigidea-body">
+      A ideia matriz da Alright e um convite, nao uma explicacao. A marca nao diz "olha como somos espertos com tipografia"; mostra. Quem olha de novo encontra mais.
+    </div>
+
+    <div class="layer-list">
+      <div class="layer-item">
+        <div class="layer-name">Estrategia</div>
+        <div class="layer-desc">O posicionamento esconde uma segunda leitura: AI-first nao e atalho, e metodo.</div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-name">Verbal</div>
+        <div class="layer-desc">Frases curtas que recompensam releitura. "We are alright" e understatement proposital.</div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-name">Visual</div>
+        <div class="layer-desc">O trocadilho Alright / AIright so aparece a quem olha duas vezes.</div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-name">Motion</div>
+        <div class="layer-desc">Reveals lentos (1.4s+) forcam o olhar a revisitar o frame.</div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-name">House Look</div>
+        <div class="layer-desc">Cada frame tem mais informacao do que parece. Densidade editorial recompensa o close.</div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-name">Produto</div>
+        <div class="layer-desc">O cliente recebe o filme. So depois percebe o metodo por tras.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 5-7 — ESTRATEGIA
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <span class="section-name">Estrategia</span>
+    <div class="section-subtitle">O posicionamento estrategico que sustenta cada decisao da marca.</div>
+  </div>
+
+  <!-- Purpose / Vision / Mission -->
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label">Proposito</div>
+      <div class="card-title">Craft + IA</div>
+      <p class="card-body">Provar que IA nao dispensa craft — o exige mais.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Visao 2031</div>
+      <div class="card-title">Referencia mundial</div>
+      <p class="card-body">Ser referencia mundial de produtora audiovisual AI-first crafted, com sede em Sao Paulo.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Missao</div>
+      <div class="card-title">Rigor de tier-1</div>
+      <p class="card-body">Produzir filmes de marca AI-first com a logica e o rigor de uma produtora tradicional tier-1.</p>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Valores</p>
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-title">Craft acima de tudo</div>
+      <p class="card-body">Cada decisao de cor, som, edicao e direcao e humana. O modelo gera; a Alright dirige.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Cada filme e um filme</div>
+      <p class="card-body">Sem look de casa. Metodo de casa. Cada projeto recebe estetica propria.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tech sub-rosa</div>
+      <p class="card-body">A tecnologia e o meio, nunca o protagonista. O cliente paga pelo filme, nao pelo pipeline.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Humildade calculada</div>
+      <p class="card-body">Understatement proposital. Confianca sem soberba. O trabalho fala.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-break">
+  <!-- Archetypes -->
+  <p class="overline">Arquetipos</p>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <div class="arch-type">Primario</div>
+      <div class="arch-name">Creator</div>
+      <p class="arch-desc">Impulso de dar forma. Visao artistica aplicada a negocios. A qualidade e a moeda.</p>
+    </div>
+    <div class="arch-card">
+      <div class="arch-type">Secundario</div>
+      <div class="arch-name">Magician</div>
+      <p class="arch-desc">Transformar algo invisivel (IA) em algo tangivel (filme). O truque e a competencia, nao a ilusao.</p>
+    </div>
+  </div>
+
+  <div class="sp-32"></div>
+  <p class="overline">Brand Pyramid</p>
+  <div class="pyramid">
+    <div class="pyramid-level" style="width: 30%; background: var(--orange-clay); color: #faf9f5;">
+      <div>
+        <div class="pyramid-level-label" style="color: rgba(250,249,245,0.6);">Essencia</div>
+        <div class="pyramid-level-content" style="color: #faf9f5;">((Look again.))</div>
+      </div>
+    </div>
+    <div class="pyramid-level" style="width: 45%;">
+      <div>
+        <div class="pyramid-level-label">Personalidade</div>
+        <div class="pyramid-level-content">Confiante, editorial, warm, understated</div>
+      </div>
+    </div>
+    <div class="pyramid-level" style="width: 60%;">
+      <div>
+        <div class="pyramid-level-label">Beneficios emocionais</div>
+        <div class="pyramid-level-content">Orgulho de mostrar. "Parece cinema, mas custou 10%."</div>
+      </div>
+    </div>
+    <div class="pyramid-level" style="width: 75%;">
+      <div>
+        <div class="pyramid-level-label">Beneficios funcionais</div>
+        <div class="pyramid-level-content">Filme de marca tier-1 sem custo de set</div>
+      </div>
+    </div>
+    <div class="pyramid-level" style="width: 90%;">
+      <div>
+        <div class="pyramid-level-label">Atributos</div>
+        <div class="pyramid-level-content">AI-first · Craft humano · Pre-producao rigorosa · Bilingue · SP</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="editorial-quote" style="margin-top: 32px;">
+    Voce leva o filme certo, com craft real, sem o custo da camera.
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 8-9 — VERBAL
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <span class="section-name">Verbal</span>
+    <div class="section-subtitle">Tom de voz, regra bilingue e vocabulario controlado.</div>
+  </div>
+
+  <p class="overline">Tom de voz</p>
+
+  <div class="tone-card">
+    <div class="tone-number">01</div>
+    <div class="tone-name">Confiante sem soberba</div>
+    <div class="do-dont">
+      <div class="do-col">
+        <div class="do-label">Usar</div>
+        <ul>
+          <li>"A gente faz o filme."</li>
+          <li>"O trabalho fala."</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <div class="do-label">Evitar</div>
+        <ul>
+          <li>"Somos os melhores do mercado."</li>
+          <li>"Revolucionamos a industria."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tone-card">
+    <div class="tone-number">02</div>
+    <div class="tone-name">Direto</div>
+    <div class="do-dont">
+      <div class="do-col">
+        <div class="do-label">Usar</div>
+        <ul>
+          <li>"Sem camera. Sem set. Sem alto custo."</li>
+          <li>Frases curtas. Ponto final.</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <div class="do-label">Evitar</div>
+        <ul>
+          <li>"Nossas solucoes integradas de producao audiovisual..."</li>
+          <li>Periodos longos com subordinadas encadeadas.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tone-card">
+    <div class="tone-number">03</div>
+    <div class="tone-name">Editorial</div>
+    <div class="do-dont">
+      <div class="do-col">
+        <div class="do-label">Usar</div>
+        <ul>
+          <li>Ritmo de revista — paragrafos curtos, espacamento generoso.</li>
+          <li>Pontuacao expressiva como recurso retorico.</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <div class="do-label">Evitar</div>
+        <ul>
+          <li>Tom de press release corporativo.</li>
+          <li>Bullets genericos tipo "solucao end-to-end".</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tone-card">
+    <div class="tone-number">04</div>
+    <div class="tone-name">Bilingue como falante real</div>
+    <div class="do-dont">
+      <div class="do-col">
+        <div class="do-label">Usar</div>
+        <ul>
+          <li>PT como base para Brasil, EN para internacional.</li>
+          <li>Catchphrases canon no idioma original, sem traduzir.</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <div class="do-label">Evitar</div>
+        <ul>
+          <li>Traduzir "We are alright" para "Estamos bem".</li>
+          <li>Misturar idiomas sem proposito.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tone-card">
+    <div class="tone-number">05</div>
+    <div class="tone-name">Anti-AI-hype</div>
+    <div class="do-dont">
+      <div class="do-col">
+        <div class="do-label">Usar</div>
+        <ul>
+          <li>"A IA tirou o que era caro. Nao tirou o oficio."</li>
+          <li>Falar de IA como ferramenta, nao como magia.</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <div class="do-label">Evitar</div>
+        <ul>
+          <li>"Inteligencia artificial revolucionaria"</li>
+          <li>"O futuro da producao", "next-gen", "disruptive"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-break">
+  <!-- Bilingual Rule -->
+  <p class="overline">Regra bilingue</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Brasil</div>
+      <div class="card-title">PT = lingua-base</div>
+      <p class="card-body">Documentos, site BR, redes sociais Brasil. Catchphrases canon ("We are alright", "Craft. Craft. And. More. Craft.") permanecem em EN.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Internacional</div>
+      <div class="card-title">EN = lingua-base</div>
+      <p class="card-body">Site global, decks internacionais. "Cada filme e um filme" permanece em PT — e canon.</p>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Vocabulario controlado</p>
+  <div class="vocab-grid">
+    <div class="vocab-col vocab-use">
+      <h4>Usar</h4>
+      <ul>
+        <li>craft</li>
+        <li>filme de marca</li>
+        <li>pre-producao</li>
+        <li>AI-first</li>
+        <li>direcao</li>
+        <li>rigor</li>
+        <li>metodo</li>
+        <li>oficio</li>
+        <li>produtora</li>
+        <li>color grade</li>
+      </ul>
+    </div>
+    <div class="vocab-col vocab-avoid">
+      <h4>Evitar</h4>
+      <ul>
+        <li>revolucionario</li>
+        <li>disruptive</li>
+        <li>magic / magico</li>
+        <li>transforma sua marca</li>
+        <li>next-gen</li>
+        <li>solucao</li>
+        <li>pipeline (externo)</li>
+        <li>game-changer</li>
+        <li>cutting-edge</li>
+        <li>seamless</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Naming</p>
+  <div class="naming-grid">
+    <div class="naming-item">
+      <div class="naming-word">Alright</div>
+      <div class="naming-desc">Default. 90% dos usos.</div>
+    </div>
+    <div class="naming-item">
+      <div class="naming-word">((We Are Alright))</div>
+      <div class="naming-desc">Lockup expressivo. Manifestos, hero, assinatura.</div>
+    </div>
+    <div class="naming-item naming-never">
+      <div class="naming-word" style="text-decoration: line-through;">Alright Productions</div>
+      <div class="naming-desc">Nunca. Nunca "Alright Studios".</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 10-11 — MANIFESTOS
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <span class="section-name">Manifestos</span>
+    <div class="section-subtitle">As palavras que definem quem somos. Canon. Intocaveis.</div>
+  </div>
+
+  <!-- Manifesto PT -->
+  <div class="manifesto-text">
+    <div class="m-headline">((We Are Alright))</div>
+
+    <p>Tem produtora que pergunta: quanto custa o set? Quanto custa o equipamento? Quanto custa a camera, o lente, o gerador, o catering, o seguro, a diaria do diretor de fotografia, o frete da Steadicam de Sao Paulo ate Florianopolis?</p>
+
+    <p><span class="m-bold">A gente nao pergunta. A gente faz o filme.</span></p>
+
+    <p>Sem camera. Sem set. Sem alto custo. <span class="m-bold">We are alright.</span></p>
+
+    <p>Mas calma. Isso nao significa atalho. Isso significa que o orcamento que sobrou virou tempo de pre-producao. Virou referencia estudada a exaustao. Virou color grading frame a frame. Virou tres versoes do mesmo plano ate a quarta ficar certa. Virou roteiro lido em voz alta por gente que sabe ler em voz alta.</p>
+
+    <p><span class="m-bold">A IA tirou da mesa o que era caro. Ela nao tirou o oficio.</span></p>
+
+    <p>Por isso a gente repete: <span class="m-bold">craft, craft, e mais craft.</span> Nao e manifesto retorico, e regra de producao. Toda peca que sai daqui passa por mao humana antes de sair. Toda decisao de cor, som, edicao e direcao e de quem assina, nao do modelo. O modelo gera; a Alright dirige.</p>
+
+    <p>E por isso tambem a gente repete: <span class="m-bold">cada filme e um filme.</span> A gente nao tem look de casa que se repete. A gente tem metodo de casa que se repete. Cada projeto recebe uma estetica nova porque cada projeto e uma marca diferente, um briefing diferente, uma audiencia diferente. O que une os nossos cases e o rigor da pre-producao, nao a aparencia da pos.</p>
+
+    <p>A industria toda ta em transicao. A gente nao ta esperando ela decidir o que fazer com IA. A gente ta fazendo. Em Sao Paulo. Bilingue. Com clientes que pagam pelo filme, nao pelo pipeline.</p>
+
+    <p><span class="m-bold">((We are alright.))</span></p>
+  </div>
+</div>
+
+<div class="page-break">
+  <!-- Manifesto EN -->
+  <p class="overline">English version</p>
+  <div class="manifesto-text">
+    <div class="m-headline">((We Are Alright))</div>
+
+    <p>Some production companies ask: how much does the set cost? How much does the gear cost? The camera, the lens, the generator, the catering, the insurance, the DP day-rate, the Steadicam ship from Sao Paulo to Florianopolis?</p>
+
+    <p><span class="m-bold">We don't ask. We make the film.</span></p>
+
+    <p>No camera. No set. No high costs. <span class="m-bold">We are alright.</span></p>
+
+    <p>But hold on. That doesn't mean shortcut. It means the budget that used to go to gear now goes to pre-production. It goes to references studied to exhaustion. To color grading frame by frame. To three versions of the same shot until the fourth one is right. To scripts read aloud by people who know how to read aloud.</p>
+
+    <p><span class="m-bold">AI removed what was expensive. It did not remove the craft.</span></p>
+
+    <p>That's why we repeat: <span class="m-bold">craft, craft, and more craft.</span> It's not rhetoric, it's a production rule. Every piece that ships from here passes through human hands before it ships. Every decision on color, sound, edit, and direction is made by the person who signs it — not by the model. The model generates; Alright directs.</p>
+
+    <p>And that's why we also repeat: <span class="m-bold">every film is a film (cada filme e um filme).</span> We don't have a house look that repeats. We have a house method that repeats. Each project gets a new aesthetic because each project is a different brand, a different brief, a different audience. What unites our work is the rigor of pre-production, not the surface of post.</p>
+
+    <p>The industry is in transition. We are not waiting for it to decide what to do with AI. We are doing it. From Sao Paulo. Bilingual. With clients who pay for the film, not for the pipeline.</p>
+
+    <p><span class="m-bold">((We are alright.))</span></p>
+  </div>
+
+  <div class="sp-32"></div>
+  <p class="overline">Manifestos curtos — canon</p>
+  <div class="grid-2" style="margin-top: 12px;">
+    <div class="manifesto-mini">
+      <div class="mini-text">We are alright.</div>
+    </div>
+    <div class="manifesto-mini">
+      <div class="mini-text">Craft. Craft. And. More. Craft.</div>
+    </div>
+    <div class="manifesto-mini">
+      <div class="mini-text">Cada filme e um filme.</div>
+    </div>
+    <div class="manifesto-mini">
+      <div class="mini-text">No camera or set.<br>No high costs.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 12-14 — LOGO
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <span class="section-name">Logo System</span>
+    <div class="section-subtitle">Tres estados. Um sistema. O trocadilho visual Alright / AIright so aparece a quem olha duas vezes.</div>
+  </div>
+
+  <!-- C.2 Default -->
+  <p class="overline">State C.2 — Default (90% dos usos)</p>
+  <div class="logo-demo logo-on-bone">A<span class="logo-l-bold">l</span>right</div>
+  <div class="logo-caption"><span class="inline-code">l</span> em Bold 600 — Bricolage Grotesque</div>
+
+  <div class="logo-demo logo-on-dark" style="margin-top: 12px;">A<span class="logo-l-bold">l</span>right</div>
+  <div class="logo-caption">Sobre fundo Dark</div>
+
+  <div class="sp-24"></div>
+
+  <!-- C.1 Expressivo -->
+  <p class="overline">State C.1 — Expressivo (10% usos premium)</p>
+  <div class="logo-demo logo-on-bone">A<span class="logo-l-orange">l</span>right</div>
+  <div class="logo-caption"><span class="inline-code">l</span> em Orange Clay <span class="inline-code">#d97757</span></div>
+
+  <div class="logo-demo logo-on-dark" style="margin-top: 12px;">A<span class="logo-l-orange">l</span>right</div>
+  <div class="logo-caption">Sobre fundo Dark</div>
+
+  <div class="sp-24"></div>
+
+  <!-- Reveal -->
+  <p class="overline">State Reveal</p>
+  <div class="logo-demo logo-on-bone" style="letter-spacing: 0.3em; font-size: 36px;">((&nbsp;A&nbsp;I&nbsp;r&nbsp;i&nbsp;g&nbsp;h&nbsp;t&nbsp;))</div>
+  <div class="logo-caption">Ato editorial deliberado — espacamento revela "AI" no nome</div>
+
+  <div class="logo-demo logo-on-dark" style="margin-top: 12px; letter-spacing: 0.3em; font-size: 36px;">((&nbsp;A&nbsp;I&nbsp;r&nbsp;i&nbsp;g&nbsp;h&nbsp;t&nbsp;))</div>
+  <div class="logo-caption">Sobre fundo Dark</div>
+</div>
+
+<div class="page-break">
+  <!-- Trocadilho -->
+  <p class="overline">Trocadilho visual</p>
+  <div class="glyph-demo">
+    <div>
+      <div class="glyph-char">Alright</div>
+      <div class="glyph-label">Leitura natural</div>
+    </div>
+    <div class="glyph-eq">=</div>
+    <div>
+      <div class="glyph-char"><span class="accent">AI</span>right</div>
+      <div class="glyph-label">Segunda leitura</div>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Bricolage: I = l</p>
+  <div class="glyph-demo">
+    <div>
+      <div class="glyph-char">I</div>
+      <div class="glyph-label">Uppercase I</div>
+    </div>
+    <div class="glyph-eq">&asymp;</div>
+    <div>
+      <div class="glyph-char">l</div>
+      <div class="glyph-label">Lowercase L</div>
+    </div>
+  </div>
+  <p class="body-text" style="text-align: center; max-width: none; color: var(--slate-warm); font-size: 10pt; margin-top: 12px;">Em Bricolage Grotesque, os glifos <span class="inline-code">I</span> e <span class="inline-code">l</span> sao visualmente identicos — o trocadilho funciona sem forcacao.</p>
+
+  <div class="sp-24"></div>
+  <p class="overline">Brand device (( ))</p>
+  <div class="grid-3">
+    <div class="card" style="text-align: center;">
+      <div class="card-label">Standalone</div>
+      <div style="font-size: 36px; color: var(--slate-warm); font-weight: 300;">(( ))</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div class="card-label">Com lockup</div>
+      <div style="font-size: 18px; font-weight: 400;"><span style="color: var(--slate-warm); font-weight: 300;">((</span>We Are Alright<span style="color: var(--slate-warm); font-weight: 300;">))</span></div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div class="card-label">Reveal</div>
+      <div style="font-size: 18px; font-weight: 400; letter-spacing: 0.15em;"><span style="color: var(--slate-warm); font-weight: 300;">((</span>Look again.<span style="color: var(--slate-warm); font-weight: 300;">))</span></div>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Escala responsiva</p>
+  <div class="responsive-sizes">
+    <div class="resp-size">
+      <div style="font-size: 28px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
+      <div class="resp-size-label">Hero</div>
+    </div>
+    <div class="resp-size">
+      <div style="font-size: 16px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
+      <div class="resp-size-label">Header</div>
+    </div>
+    <div class="resp-size">
+      <div style="font-size: 12px; font-weight: 400;">A<span style="font-weight: 600;">l</span>right</div>
+      <div class="resp-size-label">Footer</div>
+    </div>
+    <div class="resp-size">
+      <div style="font-size: 16px; color: var(--slate-warm); font-weight: 300;">(( ))</div>
+      <div class="resp-size-label">Favicon</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-break">
+  <!-- Do / Don't -->
+  <p class="overline">Usos e anti-usos do logo</p>
+  <div class="do-dont">
+    <div class="do-col">
+      <div class="do-label">Correto</div>
+      <ul>
+        <li>Sempre Bricolage Grotesque</li>
+        <li>Bold apenas no <span class="inline-code">l</span></li>
+        <li>Espaco entre (( e texto</li>
+        <li>Fundo Bone ou Dark — nunca cor solida</li>
+        <li>Area de protecao minima: altura do "A"</li>
+      </ul>
+    </div>
+    <div class="dont-col">
+      <div class="do-label">Proibido</div>
+      <ul>
+        <li>Trocar tipografia</li>
+        <li>Aplicar Bold no wordmark inteiro</li>
+        <li>Remover parenteses do lockup</li>
+        <li>Rotacionar, distorcer ou aplicar sombra</li>
+        <li>Usar sobre imagem sem overlay</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 15-16 — TIPOGRAFIA
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">08</span>
+    <span class="section-name">Tipografia</span>
+    <div class="section-subtitle">Bricolage Grotesque como tipografia primaria. JetBrains Mono como companion mono.</div>
+  </div>
+
+  <p class="overline">Bricolage Grotesque — Pesos</p>
+  <div class="weight-row"><span class="weight-label">200</span><span class="weight-sample" style="font-weight: 200;">Alright — AI-first Production Company</span></div>
+  <div class="weight-row"><span class="weight-label">300</span><span class="weight-sample" style="font-weight: 300;">Alright — AI-first Production Company</span></div>
+  <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-weight: 400;">Alright — AI-first Production Company</span></div>
+  <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-weight: 500;">Alright — AI-first Production Company</span></div>
+  <div class="weight-row"><span class="weight-label">600</span><span class="weight-sample" style="font-weight: 600;">Alright — AI-first Production Company</span></div>
+  <div class="weight-row">
+    <span class="weight-label" style="color: var(--error);">700</span>
+    <span class="weight-sample" style="font-weight: 400; color: var(--slate-warm); text-decoration: line-through;">Banido em editorial</span>
+  </div>
+  <div class="weight-row"><span class="weight-label">800</span><span class="weight-sample" style="font-weight: 800;">Alright — AI-first Production Company</span></div>
+
+  <div class="card" style="margin-top: 16px; border-left: 3px solid var(--error);">
+    <div class="card-label" style="color: var(--error);">Regra: Bold 700 banido</div>
+    <p class="card-body">O peso 700 (Bold) e proibido em todo uso editorial. Excecao unica: o accent C.2 do logo, onde o <span class="inline-code">l</span> usa peso 600/700 para criar a diferenciacao sutil. Fora do logo, usar Medium 500 para enfase.</p>
+  </div>
+
+  <div class="sp-32"></div>
+  <p class="overline">Type ramp</p>
+
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">Display XL<br>96px / Medium 500</div>
+    <div style="font-size: 48px; font-weight: 500; letter-spacing: -0.03em; line-height: 1;">Alright</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">Display<br>72px / Medium 500</div>
+    <div style="font-size: 36px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.05;">Alright</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">H1<br>64px / Medium 500</div>
+    <div style="font-size: 32px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;">Alright</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">H2<br>48px / Medium 500</div>
+    <div style="font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;">Alright</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">H3<br>32px / Medium 500</div>
+    <div style="font-size: 20px; font-weight: 500; line-height: 1.2;">Alright</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">H4<br>24px / Medium 500</div>
+    <div style="font-size: 16px; font-weight: 500; line-height: 1.3;">Alright</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">Body LG<br>20px / Regular 400</div>
+    <div style="font-size: 14px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">Body<br>18px / Regular 400</div>
+    <div style="font-size: 12px; font-weight: 400; line-height: 1.6;">A gente nao pergunta. A gente faz o filme.</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">Caption<br>12px / Regular 400</div>
+    <div style="font-size: 10px; font-weight: 400; line-height: 1.5;">A gente nao pergunta. A gente faz o filme.</div>
+  </div>
+  <div class="type-ramp-item">
+    <div class="type-ramp-meta">Overline<br>11px / Medium 500</div>
+    <div style="font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;">A gente nao pergunta. A gente faz o filme.</div>
+  </div>
+</div>
+
+<div class="page-break">
+  <p class="overline">JetBrains Mono — Companion</p>
+  <div style="font-family: 'JetBrains Mono', monospace;">
+    <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 16pt;">--orange-clay: #d97757;</span></div>
+    <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 16pt;">--bone: #faf9f5;</span></div>
+  </div>
+  <p class="body-text" style="font-size: 10pt; color: var(--slate-warm); margin-top: 12px;">Uso restrito: tokens, codigo, metadados tecnicos, labels numericos. Nunca em titulos ou body copy.</p>
+</div>
+
+<!-- ============================
+     PAGES 17-19 — CORES
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">09</span>
+    <span class="section-name">Cores</span>
+    <div class="section-subtitle">Paleta controlada. Sem gradientes. Sem branco puro. Sem preto puro.</div>
+  </div>
+
+  <p class="overline">Paleta primaria</p>
+  <div class="grid-3">
+    <div>
+      <div class="swatch-large" style="background: #d97757; color: #faf9f5;">
+        <div class="swatch-info">
+          <div class="swatch-name" style="color: #faf9f5;">Orange Clay</div>
+          #d97757<br>RGB 217, 119, 87<br>Pantone 7578 C
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="swatch-large" style="background: #faf9f5; color: #141413; border: 1px solid #ece8dc;">
+        <div class="swatch-info">
+          <div class="swatch-name">Bone</div>
+          #faf9f5<br>RGB 250, 249, 245<br>Pantone 7527 C
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="swatch-large" style="background: #141413; color: #faf9f5;">
+        <div class="swatch-info">
+          <div class="swatch-name" style="color: #faf9f5;">Dark</div>
+          #141413<br>RGB 20, 20, 19<br>Pantone Black 6 C
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Paleta secundaria (text-safe)</p>
+  <div class="grid-3">
+    <div>
+      <div class="swatch-large" style="background: #8c4a32; color: #faf9f5;">
+        <div class="swatch-info">
+          <div class="swatch-name" style="color: #faf9f5;">Clay Deep</div>
+          #8c4a32<br>RGB 140, 74, 50<br>Pantone 7587 C
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="swatch-large" style="background: #3d3a35; color: #faf9f5;">
+        <div class="swatch-info">
+          <div class="swatch-name" style="color: #faf9f5;">Stone</div>
+          #3d3a35<br>RGB 61, 58, 53<br>Pantone Warm Gray 11 C
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="swatch-large" style="background: #5b5750; color: #faf9f5;">
+        <div class="swatch-info">
+          <div class="swatch-name" style="color: #faf9f5;">Slate-warm</div>
+          #5b5750<br>RGB 91, 87, 80<br>Pantone Warm Gray 9 C
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Escala neutra</p>
+  <div class="neutral-scale">
+    <div class="neutral-step" style="background: #faf9f5;"><span style="color: #141413;">#faf9f5</span></div>
+    <div class="neutral-step" style="background: #f3f0e8;"><span style="color: #141413;">#f3f0e8</span></div>
+    <div class="neutral-step" style="background: #ece8dc;"><span style="color: #141413;">#ece8dc</span></div>
+    <div class="neutral-step" style="background: #d4cfc3;"><span style="color: #141413;">#d4cfc3</span></div>
+    <div class="neutral-step" style="background: #b0aa9e;"><span style="color: #141413;">#b0aa9e</span></div>
+    <div class="neutral-step" style="background: #8a847a;"><span style="color: #faf9f5;">#8a847a</span></div>
+    <div class="neutral-step" style="background: #5b5750;"><span style="color: #faf9f5;">#5b5750</span></div>
+    <div class="neutral-step" style="background: #3d3a35;"><span style="color: #faf9f5;">#3d3a35</span></div>
+    <div class="neutral-step" style="background: #141413;"><span style="color: #faf9f5;">#141413</span></div>
+  </div>
+</div>
+
+<div class="page-break">
+  <p class="overline">Paleta funcional</p>
+  <div class="func-colors">
+    <div class="func-swatch" style="background: #5e6b3d; color: #faf9f5;"><span>Success<br>#5e6b3d</span></div>
+    <div class="func-swatch" style="background: #b04a36; color: #faf9f5;"><span>Error<br>#b04a36</span></div>
+    <div class="func-swatch" style="background: #945a0e; color: #faf9f5;"><span>Warning<br>#945a0e</span></div>
+    <div class="func-swatch" style="background: #4a6478; color: #faf9f5;"><span>Info<br>#4a6478</span></div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Tabela WCAG — Pares de contraste</p>
+  <div class="contrast-grid">
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #faf9f5; color: #141413;">Dark / Bone</div>
+      <div class="contrast-meta"><span>17.5 : 1</span><span class="badge badge-pass">AAA</span></div>
+    </div>
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #141413; color: #faf9f5;">Bone / Dark</div>
+      <div class="contrast-meta"><span>17.5 : 1</span><span class="badge badge-pass">AAA</span></div>
+    </div>
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #faf9f5; color: #3d3a35;">Stone / Bone</div>
+      <div class="contrast-meta"><span>8.6 : 1</span><span class="badge badge-pass">AAA</span></div>
+    </div>
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #faf9f5; color: #5b5750;">Slate / Bone</div>
+      <div class="contrast-meta"><span>5.5 : 1</span><span class="badge badge-pass">AA</span></div>
+    </div>
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #141413; color: #d97757;">Orange / Dark</div>
+      <div class="contrast-meta"><span>4.9 : 1</span><span class="badge badge-pass">AA</span></div>
+    </div>
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #faf9f5; color: #8c4a32;">Clay Deep / Bone</div>
+      <div class="contrast-meta"><span>5.7 : 1</span><span class="badge badge-pass">AA</span></div>
+    </div>
+    <div class="contrast-pair">
+      <div class="contrast-sample" style="background: #faf9f5; color: #d97757;">Orange / Bone</div>
+      <div class="contrast-meta"><span>2.9 : 1</span><span class="badge badge-fail">FAIL</span></div>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Regras de cor</p>
+  <ul class="color-rules">
+    <li>Orange Clay = 5-10% da area por peca. Accent, nunca dominante.</li>
+    <li>Orange Clay nunca como texto sobre Bone — falha WCAG AA.</li>
+    <li>Branco puro <span class="inline-code">#ffffff</span> proibido. Usar Bone <span class="inline-code">#faf9f5</span>.</li>
+    <li>Preto puro <span class="inline-code">#000000</span> proibido. Usar Dark <span class="inline-code">#141413</span>.</li>
+    <li>Gradientes proibidos. Excecao unica: <span class="inline-code">gradient.editorial-bone</span> no hero.</li>
+  </ul>
+</div>
+
+<div class="page-break">
+  <p class="overline">Dark mode — Mapeamento</p>
+  <div class="darkmode-demo">
+    <div class="darkmode-panel darkmode-panel-light">
+      <div class="dm-label">Light mode</div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #faf9f5; border: 1px solid #ece8dc;"></div><div class="dm-swatch-label">Background: Bone</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #141413;"></div><div class="dm-swatch-label">Foreground: Dark</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #3d3a35;"></div><div class="dm-swatch-label">Secondary: Stone</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #d97757;"></div><div class="dm-swatch-label">Accent: Orange Clay</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #ece8dc;"></div><div class="dm-swatch-label">Border: Mist</div></div>
+    </div>
+    <div class="darkmode-panel darkmode-panel-dark">
+      <div class="dm-label">Dark mode</div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #141413;"></div><div class="dm-swatch-label">Background: Dark</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #faf9f5;"></div><div class="dm-swatch-label">Foreground: Bone</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #b0aa9e;"></div><div class="dm-swatch-label">Secondary: Warm Gray</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #d97757;"></div><div class="dm-swatch-label">Accent: Orange Clay</div></div>
+      <div class="dm-swatch"><div class="dm-swatch-dot" style="background: #2a2926;"></div><div class="dm-swatch-label">Border: Warm Black</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 20-21 — HOUSE LOOK
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">10</span>
+    <span class="section-name">House Look</span>
+    <div class="section-subtitle">Cinco principios visuais que governam cada frame. Nao e estetica — e metodo.</div>
+  </div>
+
+  <div class="houselook-block">
+    <div class="houselook-number">01</div>
+    <div class="houselook-title">Cinematic, not slop</div>
+    <div class="houselook-subtitle">Cada frame e digno de cinema 35mm — nao e output bruto de modelo.</div>
+    <ul class="houselook-rules">
+      <li>Resolucao minima 4K para entrega final</li>
+      <li>Color grade autoral — nunca LUT generica</li>
+      <li>Composicao intencional: regra dos tercos, linhas de fuga, peso visual</li>
+      <li>Anti-modelo: blur excessivo, mao com 6 dedos, textura plastica</li>
+    </ul>
+  </div>
+
+  <div class="houselook-block">
+    <div class="houselook-number">02</div>
+    <div class="houselook-title">Crafted human finishing</div>
+    <div class="houselook-subtitle">A mao humana e visivel em hero. Color grade autoral, retouching, texture overlay.</div>
+    <ul class="houselook-rules">
+      <li>Retouching manual frame a frame nas hero shots</li>
+      <li>Texture overlay sutil (grain, halation) para quebrar perfeicao digital</li>
+      <li>Toda peca passa por aprovacao humana antes de sair</li>
+      <li>O modelo gera; a Alright dirige</li>
+    </ul>
+  </div>
+
+  <div class="houselook-block">
+    <div class="houselook-number">03</div>
+    <div class="houselook-title">Grounded weight</div>
+    <div class="houselook-subtitle">Pessoas, objetos e luz tem peso humano. Nada flutua sem motivo.</div>
+    <ul class="houselook-rules">
+      <li>Gravidade realista em todos os elementos</li>
+      <li>Iluminacao com fonte identificavel</li>
+      <li>Sombras de contato presentes</li>
+      <li>Sem elementos flutuando sem justificativa narrativa</li>
+    </ul>
+  </div>
+
+  <div class="houselook-block">
+    <div class="houselook-number">04</div>
+    <div class="houselook-title">Editorial density</div>
+    <div class="houselook-subtitle">Cada frame tem mais informacao do que parece — recompensa o close.</div>
+    <ul class="houselook-rules">
+      <li>Detalhes de producao visiveis em zoom</li>
+      <li>Camadas de leitura: primeiro impacto, segundo detalhe</li>
+      <li>Textura e materialidade nos objetos</li>
+      <li>((Look again.)) aplicado ao frame</li>
+    </ul>
+  </div>
+
+  <div class="houselook-block">
+    <div class="houselook-number">05</div>
+    <div class="houselook-title">Warm sub-rosa</div>
+    <div class="houselook-subtitle">Cor quente e estado-base — sutil, nao dramatica.</div>
+    <ul class="houselook-rules">
+      <li>Temperatura de cor tendendo a warm em todo o reel</li>
+      <li>Sem cool tones dominantes (exceto por motivo narrativo)</li>
+      <li>Bone como tom-base, nao branco esteril</li>
+      <li>Orange Clay como sotaque, nunca como dominante</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break">
+  <p class="overline">Diretrizes visuais</p>
+  <div class="do-dont">
+    <div class="do-col">
+      <div class="do-label">Fazer</div>
+      <ul>
+        <li>Color grade autoral por projeto</li>
+        <li>Grain e textura organica</li>
+        <li>Composicao com peso e intencao</li>
+        <li>Iluminacao com fonte clara</li>
+        <li>Detalhes que recompensam zoom</li>
+      </ul>
+    </div>
+    <div class="dont-col">
+      <div class="do-label">Nao fazer</div>
+      <ul>
+        <li>Output bruto de modelo sem finishing</li>
+        <li>Estetica AI-slop (maos quebradas, olhos errados)</li>
+        <li>Gradientes SaaS roxo-azul</li>
+        <li>Iconografia AI literal (neural net, particula)</li>
+        <li>Iconografia cinema literal (claquete, pelicula)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sp-32"></div>
+  <p class="overline">Disclosure de IA — Revogada (2026-05-13)</p>
+  <p class="disc-text" style="opacity:.7">Regra de disclosure obrigatorio foi revogada por Zuza em 2026-05-13. Aplicacao caso-a-caso quando legalmente exigido. Nao e mais norma padrao da marca.</p>
+
+  <div class="sp-24"></div>
+  <p class="overline">Anti-prompts (palavras banidas em prompts)</p>
+  <div class="anti-list">
+    <span class="anti-tag">hyper-realistic</span>
+    <span class="anti-tag">ultra-detailed</span>
+    <span class="anti-tag">8k</span>
+    <span class="anti-tag">masterpiece</span>
+    <span class="anti-tag">best quality</span>
+    <span class="anti-tag">trending on artstation</span>
+    <span class="anti-tag">unreal engine</span>
+    <span class="anti-tag">octane render</span>
+    <span class="anti-tag">photorealistic</span>
+    <span class="anti-tag">beautiful</span>
+    <span class="anti-tag">stunning</span>
+    <span class="anti-tag">gorgeous</span>
+    <span class="anti-tag">perfect</span>
+    <span class="anti-tag">flawless</span>
+  </div>
+</div>
+
+<!-- ============================
+     PAGES 22-23 — MOTION
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">11</span>
+    <span class="section-name">Motion</span>
+    <div class="section-subtitle">Movimento cinematografico. Reveals lentos. Easing humano. Sem springs.</div>
+  </div>
+
+  <div class="motion-principle">
+    <div class="houselook-number">01</div>
+    <div class="houselook-title">Look again moments</div>
+    <p class="body-text">Reveals duram no minimo 1.4 segundos. O olho precisa de tempo para processar e revisitar. Transicoes rapidas so para micro-interacoes.</p>
+  </div>
+
+  <div class="motion-principle">
+    <div class="houselook-number">02</div>
+    <div class="houselook-title">Reveal over cut</div>
+    <p class="body-text">Preferir revelacao progressiva a corte seco. O conteudo aparece como se ja estivesse la, esperando ser visto.</p>
+  </div>
+
+  <div class="motion-principle">
+    <div class="houselook-number">03</div>
+    <div class="houselook-title">Easing humano</div>
+    <p class="body-text">Sem springs, sem bounces, sem overshoots. O movimento desacelera naturalmente, como objetos fisicos. Cubic-bezier apenas.</p>
+  </div>
+
+  <div class="motion-principle">
+    <div class="houselook-number">04</div>
+    <div class="houselook-title">Tempo cinematografico</div>
+    <p class="body-text">Cada animacao respeita o ritmo do conteudo. Titulos entram devagar. Labels aparecem rapido. O tempo serve a hierarquia.</p>
+  </div>
+
+  <div class="motion-principle">
+    <div class="houselook-number">05</div>
+    <div class="houselook-title">Reduced motion friendly</div>
+    <p class="body-text">Todo movimento respeita <span class="inline-code">prefers-reduced-motion</span>. Conteudo permanece acessivel sem animacao.</p>
+  </div>
+
+  <div class="sp-24"></div>
+  <p class="overline">Duration tokens</p>
+  <table class="brand-table">
+    <thead>
+      <tr><th>Token</th><th>Duracao</th><th>Uso</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="inline-code">instant</span></td><td>100ms</td><td>Micro-feedback (hover, focus)</td></tr>
+      <tr><td><span class="inline-code">fast</span></td><td>200ms</td><td>Transicoes de estado simples</td></tr>
+      <tr><td><span class="inline-code">normal</span></td><td>400ms</td><td>Transicoes padrao de conteudo</td></tr>
+      <tr><td><span class="inline-code">slow</span></td><td>800ms</td><td>Transicoes de secao, overlays</td></tr>
+      <tr><td><span class="inline-code">cinematic</span></td><td>1400ms</td><td>Reveals de hero, entrada de logo</td></tr>
+      <tr><td><span class="inline-code">editorial</span></td><td>1800ms</td><td>Reveals longos de manifesto</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="page-break">
+  <p class="overline">Easing curves</p>
+  <div class="easing-grid">
+    <div class="easing-card">
+      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
+        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
+        <path d="M 10 110 C 58 110 34 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="easing-name">Standard</div>
+      <div class="easing-value">(0.4, 0.0, 0.2, 1.0)</div>
+    </div>
+    <div class="easing-card">
+      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
+        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
+        <path d="M 10 110 C 10 110 34 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="easing-name">Decelerate</div>
+      <div class="easing-value">(0.0, 0.0, 0.2, 1.0)</div>
+    </div>
+    <div class="easing-card">
+      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
+        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
+        <path d="M 10 110 C 58 110 110 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="easing-name">Accelerate</div>
+      <div class="easing-value">(0.4, 0.0, 1.0, 1.0)</div>
+    </div>
+    <div class="easing-card">
+      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
+        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
+        <path d="M 10 110 C 34 110 10 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="easing-name">Emphasized</div>
+      <div class="easing-value">(0.2, 0.0, 0.0, 1.0)</div>
+    </div>
+    <div class="easing-card">
+      <svg width="80" height="80" viewBox="0 0 120 120" fill="none">
+        <rect width="120" height="120" rx="4" fill="none" stroke="#e8e4da" stroke-width="1"/>
+        <path d="M 10 110 C 29 10 46 10 110 10" stroke="#d97757" stroke-width="2" fill="none"/>
+      </svg>
+      <div class="easing-name">Cinematic</div>
+      <div class="easing-value">(0.16, 1.0, 0.3, 1.0)</div>
+    </div>
+  </div>
+
+  <div class="sp-32"></div>
+  <p class="overline">Logo animation sequence</p>
+  <div class="card" style="margin-top: 12px;">
+    <div class="card-body">
+      <p style="margin-bottom: 12px; font-weight: 500;">Duracao total: 2.6 segundos</p>
+      <table class="brand-table" style="margin-top: 0;">
+        <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 10pt; min-width: 80px;">0.0 — 0.8s</td><td>Wordmark <span class="inline-code">Alright</span> fade-in com ease cinematic</td></tr>
+        <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 10pt;">0.6 — 1.6s</td><td>Parenteses <span class="inline-code">(( ))</span> aparecem, deslizando de fora</td></tr>
+        <tr><td style="font-family: 'JetBrains Mono', monospace; font-size: 10pt;">1.4 — 2.6s</td><td>Accent opcional: <span class="inline-code">l</span> muda para Orange Clay (fade de cor)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PAGE 24 — APLICACOES
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">12</span>
+    <span class="section-name">Aplicacoes</span>
+    <div class="section-subtitle">Resumo dos pontos de contato da marca. Para detalhes completos e exemplos interativos, consultar o microsite.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Website</div>
+      <div class="card-title">alright.com.br</div>
+      <p class="card-body">Light mode default, dark mode toggle. Bricolage Grotesque em todo o site. Background Bone, nunca branco puro. Responsivo, WCAG 2.2 AA. Hero com gradient.editorial-bone (unica excecao a regra anti-gradiente).</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Social Media</div>
+      <div class="card-title">Instagram, LinkedIn, YouTube</div>
+      <p class="card-body">Avatar: (( )) em Dark sobre Bone. Posts seguem paleta e tipografia do brand — sem templates SaaS. Disclosure de IA obrigatorio em todo conteudo gerado. Hashtag: nao usar. Voz: mesmos 5 principios do tom.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Email</div>
+      <div class="card-title">Assinatura e newsletters</div>
+      <p class="card-body">Assinatura: Alright (com l bold) + cargo + telefone. Sem banners. Sem "enviado do meu iPhone". Newsletter: Bone background, Dark texto, Orange Clay apenas em CTAs (botao, nao texto).</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Deck / Apresentacoes</div>
+      <div class="card-title">Keynote / Google Slides</div>
+      <p class="card-body">Slide 16:9. Background Bone. Tipografia Bricolage. Capa: ((We Are Alright)) centralizado. Contracapa: contato + disclosure IA. Sem transicoes chamativas — corte seco ou fade suave.</p>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+  <div class="card" style="border-left: 3px solid var(--orange-clay);">
+    <div class="card-label">Referencia completa</div>
+    <p class="card-body">Para exemplos visuais, templates e guidelines detalhados de cada aplicacao, consultar o microsite interativo do brand guide: <span class="inline-code">04-applications-microsite/brand-book.html</span></p>
+  </div>
+</div>
+
+<!-- ============================
+     PAGE 25 — GOVERNANCA
+     ============================ -->
+<div class="page-break">
+  <div class="section-header">
+    <span class="section-number">13</span>
+    <span class="section-name">Governanca</span>
+    <div class="section-subtitle">Quem cuida da marca, como ela evolui e como pedir ajuda.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Owner</div>
+      <div class="card-title">Zuza</div>
+      <p class="card-body">Responsavel final por toda decisao de marca. Qualquer alteracao no brand guide — paleta, tipografia, tom de voz, logo — passa por aprovacao do owner.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Revisao</div>
+      <div class="card-title">Semestral</div>
+      <p class="card-body">O brand guide e revisado a cada 6 meses. Ajustes menores (tokens, aplicacoes) podem ocorrer entre revisoes. Mudancas estruturais (Big Idea, paleta primaria, logo) exigem processo formal.</p>
+    </div>
+  </div>
+
+  <div class="sp-24"></div>
+
+  <h3>Niveis de alteracao</h3>
+  <table class="brand-table">
+    <thead>
+      <tr><th>Nivel</th><th>Exemplos</th><th>Aprovacao</th></tr>
+    </thead>
+    <tbody>
+      <tr><td style="font-weight: 500;">Cosmetico</td><td>Ajuste de token, nova aplicacao, template novo</td><td>Qualquer membro do time</td></tr>
+      <tr><td style="font-weight: 500;">Tatico</td><td>Nova cor funcional, ajuste de tom, nova regra de uso</td><td>Owner (Zuza)</td></tr>
+      <tr><td style="font-weight: 500;">Estrategico</td><td>Big Idea, paleta primaria, logo, manifesto</td><td>Owner + CSO (Bera)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sp-24"></div>
+
+  <h3>Contato</h3>
+  <div class="card">
+    <p class="card-body">
+      Para duvidas sobre aplicacao do brand guide, uso do logo ou tom de voz, contatar o owner.<br><br>
+      Para propostas de alteracao estrutural, preparar documento com: contexto, proposta, justificativa, impacto estimado. Submeter ao owner para avaliacao.
+    </p>
+  </div>
+
+  <div class="sp-32"></div>
+
+  <!-- Final footer -->
+  <div style="text-align: center; padding: 48px 0; border-top: 2px solid var(--orange-clay);">
+    <div style="font-size: 20pt; font-weight: 400; letter-spacing: -0.01em;">
+      <span style="color: var(--slate-warm); font-weight: 300;">((</span>We Are Alright<span style="color: var(--slate-warm); font-weight: 300;">))</span>
+    </div>
+    <div style="font-size: 11pt; color: var(--slate-warm); margin-top: 8px;">A.I. first Production Company. Sao Paulo.</div>
+    <div style="font-size: 10pt; color: var(--slate-warm); margin-top: 12px;">Brand Guide 2026 · Owner: Zuza</div>
+  </div>
+</div>
+
+</body>
+</html>
