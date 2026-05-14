@@ -1,8 +1,24 @@
 # Alright — Direção C detalhada (logo system)
 
+> ## 🔄 ATUALIZAÇÃO 2026-05-14 — Hierarquia revisada
+>
+> **C.1 Expressivo foi promovido a Default. C.2 (Bold dark) virou Mono fallback.**
+>
+> **Por quê**: a prática de uso (portfolio hero, deck cover, OG image, favicon, HUD de navegação, social) já operava 80%+ com o l Orange Clay. A regra "10% premium" estava desalinhada com o uso real. Promover C.1 codifica o que já existe e dá à marca uma cor signature consistente (estratégia editorial padrão — Hermès orange, Tiffany blue, Anthropic warm clay).
+>
+> **Nova hierarquia**:
+> - **Default** (90% usos): `Alright` com `l` central em **Bold 700 Orange Clay `#d97757`** (era C.1 Expressivo).
+> - **Mono fallback**: `Alright` com `l` central em Bold 700 Dark `#141413`. Reservado a **reprodução B&W obrigatória** — jornal B&W, fax, bordado, gravação a laser, embossing, co-branding com cliente cuja paleta conflita com Orange Clay. (Era C.2 Default.)
+> - **Reveal `((A I r i g h t))`** espaçado: inalterado, ato editorial.
+> - **Lockup `((We Are Alright))`**: inalterado.
+>
+> O conteúdo histórico abaixo descreve a hierarquia original (C.2 como default). Mantido para referência mas **não vale mais como cravado**.
+>
+> ---
+>
 > Aprofundamento da **Direção C — Wordmark com glifo central destacado**, agora com a fonte primária cravada (**Bricolage Grotesque**, OFL, Atelier Triay). Entrega 3 variações do accent (cor / weight / marca discreta) para escolha do cliente, com mockups verbais, trade-offs, análise do Δ stem 2,7%, variantes obrigatórias, grid, anti-usos, co-branding e matriz comparativa.
 >
-> **Versão**: 0.2 — DECISÃO FINAL CRAVADA. **Data**: 2026-05-10. **Owner**: brand visual core.
+> **Versão**: 0.3 — HIERARQUIA REVISADA. **Data**: 2026-05-14. **Owner**: Alright.
 >
 > **Pré-requisitos cravados**: Big idea `((Look again.))` (Fase 1 §12), sistema tipográfico v1.2 (Bricolage Grotesque + JetBrains Mono), brand device `(( ))` autônomo, paleta warm (orange clay `#d97757` / bone `#faf9f5` / dark `#141413` — a ratificar na Fase 3).
 >

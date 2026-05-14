@@ -54,7 +54,7 @@ alright-brand/
 
 - **Paleta**: Orange Clay `#d97757`, Bone `#faf9f5`, Dark `#141413`, Stone `#3d3a35`, Slate Warm `#5b5750`, Mist `#ece8dc`, Clay Deep `#8c4a32`
 - **Fontes**: Bricolage Grotesque (200-800 var) + JetBrains Mono
-- **Logo**: dual-state Direção C — default (l Bold 700) ou expressivo (l Orange Clay)
+- **Logo** *(hierarquia atualizada 2026-05-14)*: Direção C dual-state — **Default = l Bold 700 Orange Clay** (90% usos, era C.1 Expressivo, promovido). **Mono fallback** = l Bold 700 Dark (era C.2 Default, agora só pra reprodução B&W). Reveal `((A I r i g h t))` inalterado.
 - **Brand device**: `(( ))` com espaçamento
 - **Big idea**: `((Look again.))`
 - **Manifestos canon**: `We are alright.` · `Craft. Craft. And. More. Craft.` · `Cada filme é um filme.` · `No camera or set. No high costs.`

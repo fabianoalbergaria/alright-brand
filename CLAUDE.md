@@ -67,9 +67,9 @@ Avance com decisões secundárias usando recomendações dos subagentes. Comuniq
 ### Brand device
 - `(( ))` com espaçamento — sempre.
 - Variantes oficiais (cravadas em `02-visual-core/logo/02-direction-C-detailed.md`):
-  - State Default: `Alright` (Bricolage Regular 400 com `l` central em Bold 700).
-  - State Expressivo: `Alright` (Bricolage Regular 400 com `l` central em Orange Clay `#d97757`).
-  - State Reveal: `((A I r i g h t))` espaçado (ato editorial deliberado).
+  - State **Default** (90% usos, atualizado 2026-05-14): `Alright` (Bricolage Regular 400 com `l` central em **Bold 700 Orange Clay `#d97757`**).
+  - State **Mono fallback**: `Alright` (Bricolage Regular 400 com `l` central em Bold 700 Dark) — só pra reprodução B&W obrigatória (jornal, fax, bordado, gravação laser, co-branding com paleta conflitante).
+  - State **Reveal**: `((A I r i g h t))` espaçado (ato editorial deliberado).
 
 ### Paleta cravada
 - Orange Clay `#d97757` (accent — não use como texto sobre Bone, falha WCAG AA)
@@ -81,7 +81,7 @@ Avance com decisões secundárias usando recomendações dos subagentes. Comuniq
 ### Tipografia cravada
 - Primária: **Bricolage Grotesque** (variable, OFL).
 - Companion mono: **JetBrains Mono** (Apache 2.0).
-- Bold 700 banido em uso editorial — exceção restrita ao accent C.2 do logo.
+- Bold 700 banido em uso editorial — exceção restrita ao `l` central do logo (Orange Clay no default, Dark no mono fallback).
 - Italic ausente — usar Regular + indent (até Bricolage upstream lançar Italic).
 
 ### Anti-modelos visuais (não usar nunca)

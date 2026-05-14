@@ -29,12 +29,12 @@
 - Logo system (3 direções avaliadas): `02-visual-core/logo/01-logo-system.md`.
 - Direção C detalhada com 3 variações de accent: `02-visual-core/logo/02-direction-C-detailed.md`.
 - Sistema tipográfico cravado: `02-visual-core/typography/01-type-system.md`.
-- **Logo cravado**: **Direção C dual-state**:
-  - **Default C.2 (90% usos)**: `Alright` em Bricolage Grotesque, `l` central em Bold 700, resto em Regular 400.
-  - **Expressivo C.1 (10% usos premium)**: `l` central em Orange Clay `#d97757`, resto em Dark `#141413`.
+- **Logo cravado**: **Direção C dual-state** *(hierarquia atualizada 2026-05-14)*:
+  - **Default (90% usos)**: `Alright` em Bricolage Regular 400, `l` central em **Bold 700 Orange Clay `#d97757`**. (Era C.1 Expressivo — promovido a default por codificar o uso real em portfolio/deck/site/OG/favicon.)
+  - **Mono fallback**: `l` central em Bold 700 Dark `#141413`. Reservado a reprodução B&W obrigatória (jornal, fax, bordado, gravação laser, co-branding com paleta conflitante). (Era C.2 Default.)
   - **Reveal `((A I r i g h t))`** espaçado: ato editorial deliberado, não default.
 - **Fonte primária cravada**: **Bricolage Grotesque** (Atelier Triay, OFL grátis) + **JetBrains Mono** companion (Apache 2.0).
-- **Override**: Bold 700 banido em uso editorial geral, exceção restrita ao accent C.2 do logo.
+- **Override**: Bold 700 banido em uso editorial geral, exceção restrita ao **l central do logo** (sempre Orange Clay no default, dark no mono fallback).
 - **Decisões cravadas**:
   - "Alright Dings" → Fase 3+ futura (não agora)
   - Reveal `((A I r i g h t))` → ativo oficial codificado
