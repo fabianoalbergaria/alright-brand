@@ -95,11 +95,13 @@ alright-brand/
 
 ## Pendente
 
-1. **Domínio custom** `wearealright.cc` — bloqueado pelo acesso GoDaddy
-2. **Brand book print PDF** (`05-deliverables/brand-book-print.html`) — desatualizado vs brand book v2 web. Regerar se for usar.
-3. **Microsite legado** (`04-applications-microsite/site/`) — versão antiga não-deployada. Pode deletar ou deixar como arquivo.
-4. **Deck**: 11 slides finais (House Look slide foi removido em 2026-05-14 por decisão do owner). Cover, The Process, Storyboard→Imageboard, Animatic (Claro), O que fazemos, PUMA, Negra Li, Chupa Chups, Olympikus, Como trabalhamos, Contato.
-5. **Domínio custom wearealright.cc** — bloqueado por acesso GoDaddy.
+1. **Domínio custom** `wearealright.cc` — bloqueado pelo acesso GoDaddy (ver seção *Domínio* acima).
+2. **Microsite legado** (`04-applications-microsite/site/index.html`) — versão antiga não-deployada (~3k linhas, sozinha na pasta `site/`). Decisão pendente: deletar, mover pra `archive/`, ou deixar como está.
+3. **Redeploy** após cleanup de nomenclatura stale (C.1/C.2/expressivo → default/mono fallback) em `brand-book.html` e `brand-book-print.html` — fix aplicado em 2026-05-14, precisa republicar.
+
+## Deck — composição final
+
+11 slides (House Look removido em 2026-05-14): Cover · The Process · Storyboard→Imageboard · Animatic (Claro) · O que fazemos · PUMA · Negra Li · Chupa Chups · Olympikus · Como trabalhamos · Contato.
 
 ## Como retomar em nova sessão
 
@@ -116,6 +118,7 @@ alright-brand/
 ## Mudanças recentes (últimas 24h)
 
 - **Logo hierarchy revisada** (2026-05-14): C.1 Expressivo (l Orange Clay) promovido a Default. C.2 (l Bold dark) virou Mono fallback (B&W only). Reveal e Lockup inalterados.
+- **Nomenclatura stale removida** (2026-05-14): refs residuais a "C.1"/"C.2"/"expressivo" como labels de variante em `brand-book.html` (do/don't list) e `brand-book-print.html` (TOC + comment) atualizadas para a nova hierarquia (default · mono · reveal · lockup).
 - **Brand book print v2** entregue (25 páginas A4, `05-deliverables/brand-book-print.html`, online em `/brand-book/print/`)
 - **Deck v3 finalizado** com 11 slides (House Look removido), lightbox Vimeo em todos os cases, Animatic Claro como slide 04
 - **Portfolio v3**: case Brime adicionado, todas as descrições nos cases, Mizuno/Olympikus com vídeos full sem corte, Negra Li com novo trecho (CORTE_NEGRA_LI)
