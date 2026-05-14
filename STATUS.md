@@ -64,7 +64,7 @@
 - Specs do microsite: `04-applications-microsite/02-microsite-specs.md`
 - Brand book visual (aprovado por Zuza): `04-applications-microsite/brand-book.html`
 - Preview de ID visual: `04-applications-microsite/id-visual-preview.html`
-- **Microsite v0 navegável**: `04-applications-microsite/site/index.html` — sidebar, search Cmd+K, copy-to-clipboard, specimen interativo, downloads, dark mode, WCAG AA.
+- **Brand book web v2 navegável** (sucessor do Microsite v0, que foi deletado em 2026-05-14): `brand-book.html` na raiz, deployado em `/brand-book.html` em https://wearealright.pages.dev/ — todas as seções da marca em uma página, light mode default, responsivo.
 
 ### Fase 5 — Deck + PDF + Hand-off ✅
 

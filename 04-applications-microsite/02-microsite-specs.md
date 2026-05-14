@@ -1,8 +1,10 @@
 # Alright — Microsite v0: Especificações e Estrutura
 
-> Blueprint completo do brand guide interativo da Alright. Este documento é a referência para implementação HTML/CSS/JS com a skill huashu-design. Não contém código — apenas specs implementáveis.
+> ⚠️ **Spec histórico / deprecated em 2026-05-14**. A implementação `04-applications-microsite/site/index.html` foi deletada e o microsite navegável foi superseded pelo brand book web v2 (`brand-book.html` na raiz, live em https://wearealright.pages.dev/brand-book.html). Este documento permanece como referência histórica da arquitetura planejada. Para a estrutura atual do brand book, ver o próprio `brand-book.html`.
 >
-> **Data**: 2026-05-10. **Owner**: Zuza. **Status**: draft.
+> Blueprint completo do brand guide interativo da Alright. Este documento foi a referência para implementação HTML/CSS/JS com a skill huashu-design. Não contém código — apenas specs implementáveis.
+>
+> **Data**: 2026-05-10. **Owner ao redigir**: Zuza. **Status**: deprecated (superseded em 2026-05-14).
 
 ---
 
