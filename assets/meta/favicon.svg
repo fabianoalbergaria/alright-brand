@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&amp;display=block');text{font-family:'Bricolage Grotesque',sans-serif}</style></defs>
+  <rect width="64" height="64" fill="#141413"/>
+  <text x="32" y="49" text-anchor="middle" font-size="50" font-weight="400" letter-spacing="-0.02em" fill="#faf9f5">A<tspan font-weight="700" fill="#d97757">l</tspan></text>
+</svg>
