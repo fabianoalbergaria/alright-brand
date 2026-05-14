@@ -45,6 +45,6 @@ mkdir -p "$DIST/deck"
 cp "$ROOT/05-deliverables/deck-alright-v3.html" "$DIST/deck/index.html"
 
 echo "→ Deploy Cloudflare Pages…"
-wrangler pages deploy "$DIST" --project-name=wearealright --branch=main --commit-dirty=true
+wrangler pages deploy "$DIST" --project-name=wearealright --branch=main --commit-dirty=true --commit-message="alright deploy"
 
 echo "✔ Pronto. https://wearealright.pages.dev/"
