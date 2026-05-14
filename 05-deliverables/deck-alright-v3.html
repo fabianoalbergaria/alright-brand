@@ -114,9 +114,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .s-cover__top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
 .s-cover__chip{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.85);padding:8px 14px;border:1px solid rgba(250,249,245,0.28);border-radius:var(--radius-pill);background:rgba(20,20,19,0.18);backdrop-filter:blur(8px)}
 .s-cover__chip .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay)}
-.s-cover__center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;padding:0 clamp(32px,4vw,80px)}
+.s-cover__center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;padding:0 clamp(32px,4vw,80px);display:flex;flex-direction:column;align-items:center;gap:24px}
 .s-cover__title{font-size:clamp(72px,14vw,260px);font-weight:200;line-height:.92;letter-spacing:-0.035em;color:var(--bone);margin:0}
 .s-cover__title .paren{color:var(--orange-clay);font-weight:300}
+.s-cover__logo{display:flex;justify-content:center;line-height:1;margin:0}
+.s-cover__logo img{width:min(720px,80vw);height:auto;display:block}
+.s-cover__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.82)}
+.s-cover__chips{display:flex;gap:10px;flex-wrap:wrap}
+.s-cover__eyebrow{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.9);text-align:right;line-height:1.7}
 .s-cover__bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.78)}
 .s-cover__cue{display:inline-flex;align-items:center;gap:10px}
 .s-cover__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay);animation:pulse 2.4s var(--ease-cine) infinite}
@@ -296,7 +301,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .slide{transition:none}
   video[autoplay]{display:none !important}
   .s-cover__video{display:none}
-  .s-cover{background:var(--dark) url('../assets/work/web/negra-li-retrovisor-poster.jpg') center/cover no-repeat}
+  .s-cover{background:var(--dark) url('../assets/work/web/fundo-em-play-poster.jpg') center/cover no-repeat}
 }
 
 /* ---------- Print stylesheet ---------- */
@@ -307,7 +312,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .slide{position:relative;width:100vw;height:100vh;page-break-after:always;break-after:page;opacity:1 !important;pointer-events:auto;display:block !important}
   .slide:last-child{page-break-after:auto}
   video{display:none !important}
-  .s-cover{background:var(--dark) url('../assets/work/web/negra-li-retrovisor-poster.jpg') center/cover no-repeat}
+  .s-cover{background:var(--dark) url('../assets/work/web/fundo-em-play-poster.jpg') center/cover no-repeat}
   .s-cover__video{display:none}
   .s-bigidea__media video{display:none}
   /* poster fallbacks via the existing <img> within media containers — videos hidden, poster img inferred */
@@ -325,21 +330,27 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
        01 · COVER
        ============================================================ -->
   <section class="slide slide--dark is-active s-cover" data-index="0" data-tone="dark" aria-label="Cover">
-    <video class="s-cover__video" autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/negra-li-retrovisor-poster.jpg">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/retrovisor-loop.mp4" type="video/mp4" />
+    <video class="s-cover__video" autoplay muted loop playsinline preload="metadata" poster="../assets/work/web/fundo-em-play-poster.jpg">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fundo-em-play.mp4" type="video/mp4" />
     </video>
     <div class="s-cover__scrim"></div>
     <div class="s-cover__inner">
       <div class="s-cover__top">
-        <span></span>
-        <span class="s-cover__chip"><span class="dot"></span>A.I. first Production Company · 2026</span>
+        <div class="s-cover__chips">
+          <span class="sticker sticker--ghost-bone rot-2">(( look again ))</span>
+          <span class="sticker sticker--ghost-bone rot1">(( a.i. first ))</span>
+        </div>
+        <span class="s-cover__eyebrow">A.I. first<br/>Production Company<br/>São Paulo / BR</span>
       </div>
       <div class="s-cover__center">
-        <h1 class="s-cover__title"><span class="paren">((</span>Look again.<span class="paren">))</span></h1>
+        <h1 class="s-cover__logo" aria-label="Alright">
+          <img src="../assets/logo/svg/alright-expressivo-bone-transparent.svg" alt="Alright — l em Orange Clay" />
+        </h1>
+        <span class="s-cover__sub">A.I. First Production Company.</span>
       </div>
       <div class="s-cover__bottom">
         <span class="s-cover__cue"><span class="dot"></span>Use ← → para navegar</span>
-        <span>São Paulo / BR</span>
+        <span>São Paulo / BR · 2026</span>
       </div>
     </div>
   </section>
@@ -643,7 +654,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <!-- ===== Persistent HUD ===== -->
 <div class="hud" aria-hidden="false">
   <a class="hud__brand" href="#" id="hudBrand" aria-label="Voltar à capa">
-    <img id="hudLogo" src="../assets/logo/png/alright-default-bone@2x.png" alt="Alright" />
+    <img id="hudLogo" src="../assets/logo/svg/alright-expressivo-bone-transparent.svg" alt="Alright" />
   </a>
   <span class="hud__counter" id="hudCounter">01 / 12</span>
   <span class="hud__hint" id="hudHint">← → · page · esc</span>
@@ -670,8 +681,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   let current = 0;
 
   // Logo swap per tone
-  const LOGO_BONE = '../assets/logo/png/alright-default-bone@2x.png';
-  const LOGO_DARK = '../assets/logo/png/alright-default-dark@2x.png';
+  const LOGO_BONE = '../assets/logo/svg/alright-expressivo-bone-transparent.svg';
+  const LOGO_DARK = '../assets/logo/svg/alright-expressivo-dark-transparent.svg';
 
   // Build dot indicators
   for(let i=0;i<total;i++){
