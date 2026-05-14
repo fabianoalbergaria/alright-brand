@@ -74,19 +74,36 @@
 .reveal-overlay__logo,
 .reveal-overlay__text{
   position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   opacity:0;
+  /* default = entrance start: lifted 12px below, slight underscale */
+  transform: translateY(12px) scale(0.97);
+  transition: opacity .9s var(--ease-cine), transform 1.2s var(--ease-cine);
+  will-change: transform, opacity;
   text-align:center;
-  transition: opacity .7s var(--ease-cine);
 }
 .reveal-overlay__logo--in,
-.reveal-overlay__text--in{ opacity:1; }
+.reveal-overlay__text--in{
+  opacity:1;
+  transform: translateY(0) scale(1);
+}
+.reveal-overlay__logo--out,
+.reveal-overlay__text--out{
+  /* exit continues upward, slight overscale — "lift off" */
+  opacity:0;
+  transform: translateY(-12px) scale(1.03);
+}
 .reveal-overlay__logo img{
   width:min(72%, 360px);
-  display:block;margin:0 auto;
+  height:auto;
+  display:block;
 }
 .reveal-overlay__text{
   font-family:var(--font-sans);
-  font-size:clamp(36px, 11vw, 72px);
+  font-size:clamp(32px, 9.5vw, 64px);
   font-weight:400;
   color:#faf9f5;
   letter-spacing:-0.02em;
@@ -97,7 +114,15 @@
 @media (prefers-reduced-motion: reduce){
   .reveal-overlay,
   .reveal-overlay__logo,
-  .reveal-overlay__text{ transition: opacity 0s; }
+  .reveal-overlay__text{
+    transition: opacity 0s, transform 0s;
+  }
+  .reveal-overlay__logo,
+  .reveal-overlay__text,
+  .reveal-overlay__logo--out,
+  .reveal-overlay__text--out{
+    transform: none;
+  }
 }
 
 /* Shake hint pill (mobile-only discoverability) */
@@ -945,8 +970,11 @@ article{margin:0;padding:0;display:block}
   }
   function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 
-  // Reveal sequence (~6.5s): overlay 1.1s → logo 0.7+0.7+0.6 →
-  // text 0.7+1.0+0.6 → overlay out 1.1s. Tweak constants to taste.
+  // Reveal sequence (~7.9s): overlay in 1.1s → logo lift-in 1.8 +
+  // lift-out 0.9 → text lift-in 2.1 + lift-out 0.9 → overlay out 1.1s.
+  // Motion: each element rises 12px from below + scales 0.97→1.0 on
+  // entrance, then continues rising (-12px) + scales 1.0→1.03 on exit.
+  // Direction stays uniformly upward — like a film title card.
   var revealing = false;
   var lastShake = 0;
   var lastX = null, lastY = null, lastZ = null;
@@ -964,17 +992,21 @@ article{margin:0;padding:0;display:block}
     overlay.classList.add('reveal-overlay--active');
     await wait(1100);
 
-    // 2. Logo: fade in, hold, fade out
+    // 2. Logo: rise in, hold, lift out
     revealLogo.classList.add('reveal-overlay__logo--in');
-    await wait(700 + 700);
+    await wait(1200 + 600); // transform 1.2s lift-in + hold 0.6s
     revealLogo.classList.remove('reveal-overlay__logo--in');
-    await wait(600);
+    revealLogo.classList.add('reveal-overlay__logo--out');
+    await wait(900); // lift out (opacity .9s dominates the visible motion)
+    revealLogo.classList.remove('reveal-overlay__logo--out');
 
-    // 3. (( Look again. )): fade in, hold (climax), fade out
+    // 3. (( Look again. )): rise in, hold (climax), lift out
     revealText.classList.add('reveal-overlay__text--in');
-    await wait(700 + 1000);
+    await wait(1200 + 900); // lift-in + slightly longer hold (the payoff)
     revealText.classList.remove('reveal-overlay__text--in');
-    await wait(600);
+    revealText.classList.add('reveal-overlay__text--out');
+    await wait(900);
+    revealText.classList.remove('reveal-overlay__text--out');
 
     // 4. Slow fade back to the site
     overlay.classList.remove('reveal-overlay--active');
