@@ -98,31 +98,42 @@ alright-brand/
 1. **Domínio custom** `wearealright.cc` — bloqueado pelo acesso GoDaddy
 2. **Brand book print PDF** (`05-deliverables/brand-book-print.html`) — desatualizado vs brand book v2 web. Regerar se for usar.
 3. **Microsite legado** (`04-applications-microsite/site/`) — versão antiga não-deployada. Pode deletar ou deixar como arquivo.
-4. **Deck**: usuário estava iterando ativo:
-   - Slide 01 Cover ✅ atualizado (fundo-em-play + logo expressivo)
-   - Slide 02 The Process ✅ atualizado
-   - Slide 03 Storyboard → Imageboard ✅ atualizado
-   - Slide 04 Animatic (Claro) ✅ atualizado
-   - Slides 05-12 (O que fazemos, cases, house look, processo, CTA) — última iteração ainda pode ter ajustes pedidos
-5. **STATUS.md update** — quando finalizar tudo
+4. **Deck**: 11 slides finais (House Look slide foi removido em 2026-05-14 por decisão do owner). Cover, The Process, Storyboard→Imageboard, Animatic (Claro), O que fazemos, PUMA, Negra Li, Chupa Chups, Olympikus, Como trabalhamos, Contato.
+5. **Domínio custom wearealright.cc** — bloqueado por acesso GoDaddy.
 
 ## Como retomar em nova sessão
 
 1. Abrir o repo: `cd /Users/fabianoalbergaria/Desktop/alright-brand`
-2. Mostrar pro Claude: `Leia RESUME.md, CLAUDE.md e STATUS.md pra entender onde paramos`
-3. Token Cloudflare ativo (precisa de Pages + R2 Edit): se perdeu, criar novo em https://dash.cloudflare.com/profile/api-tokens
+2. Cole no Claude: `Leia RESUME.md, CLAUDE.md e STATUS.md pra entender onde paramos. Auto mode ativo. Continuamos de onde a sessão anterior parou.`
+3. Token Cloudflare ativo (precisa de Pages + R2 Edit): se perdeu, criar novo em https://dash.cloudflare.com/profile/api-tokens com permissões:
+   - Account → Cloudflare Pages → Edit
+   - Account → R2 Storage → Edit
+   - Account → Account Settings → Read
+   - User → User Details → Read
 4. Deploy: `CLOUDFLARE_API_TOKEN=<token> ./deploy.sh`
-5. Os arquivos originais pesados (`assets/work/real/`) não estão no Git — se você mudou de PC, vai precisar do backup local.
+5. Os arquivos originais pesados (`assets/work/real/`) não estão no Git — se mudou de PC, vai precisar do backup local pra recomprimir/regerar.
 
 ## Mudanças recentes (últimas 24h)
 
-- Portfolio + brand book + deck unificados em design (Bricolage, Orange Clay l, stickers)
-- OG image + favicons + meta tags adicionados (preview no WhatsApp/social)
-- Meta description simplificada pra apenas `((Look again.))`
-- Brand book lockup centralizado (SVG transparente)
-- Deck slides 01-04 reformulados
-- Lightbox Vimeo + video direto nos vídeos do deck
-- Claro re-encodado com áudio pra animatic slide
+- **Logo hierarchy revisada** (2026-05-14): C.1 Expressivo (l Orange Clay) promovido a Default. C.2 (l Bold dark) virou Mono fallback (B&W only). Reveal e Lockup inalterados.
+- **Brand book print v2** entregue (25 páginas A4, `05-deliverables/brand-book-print.html`, online em `/brand-book/print/`)
+- **Deck v3 finalizado** com 11 slides (House Look removido), lightbox Vimeo em todos os cases, Animatic Claro como slide 04
+- **Portfolio v3**: case Brime adicionado, todas as descrições nos cases, Mizuno/Olympikus com vídeos full sem corte, Negra Li com novo trecho (CORTE_NEGRA_LI)
+- OG image + favicons + meta tags em todas as páginas (preview WhatsApp/social)
+- Meta description simplificada pra `((Look again.))`
+- Lockups centralizados (SVG transparente com text-anchor middle)
+- AI disclosure revogada em 2026-05-13 (removida de todos os entregáveis)
+
+## Estrutura final do deploy
+
+```
+wearealright.pages.dev/
+├── /                              → portfolio (index.html)
+├── /brand-book.html               → brand book web v2
+├── /brand-book/print/             → brand book print v2 (Cmd+P → PDF)
+├── /deck/                         → deck v3 (11 slides)
+└── /assets/                       → todos os assets compartilhados
+```
 
 ---
 
