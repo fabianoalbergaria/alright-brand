@@ -109,7 +109,7 @@ alright-brand/
 | Chupa Chups Surreal Dream | `chupa-chups-surreal-dream.mp4` | 1191600943 |
 | Chupa Chups Surreal Unboxing | `chupa-chups-surreal-unboxing.mp4` | 1191600942 |
 | Chupa Chups Forever Fun | `chupa-chups-forever-fun.mp4` | 1191599456 |
-| Olympikus Corre 5 | `olympikus-corre5-full.mp4` | 1191598803 |
+| Olympikus Corre 5 | `olympikus-corre5-full.mp4` (CORRE5_16X9 cut, 19.5MB) | 1192635125 |
 | PUMA Portugal | `puma-portugal.mp4` | 1191599038 |
 | Mizuno x Botafogo | `mizuno-botafogo.mp4` | 1191597286 |
 | Negra Li Lollapalooza | `negra-li-visual.mp4` | 1192041713 |
