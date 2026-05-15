@@ -119,6 +119,7 @@ alright-brand/
 ## Pendente
 
 1. **Domínio custom** `wearealright.cc` — Cloudflare side já pronto (4 custom domains registrados: apex, www, book, deck). Falta ação manual no dashboard Cloudflare (criar zona + import DNS) e GoDaddy (trocar nameservers). Passo a passo cravado na seção *Domínio* acima.
+2. **Reels de venda** *(pedido em 2026-05-15)* — produzir reel/sizzle pra vender o trabalho. Bruto: vídeo curto (60–90s típico) combinando cases já existentes em R2 (Chupa Chups, PUMA, Olympikus, Mizuno, Negra Li, Brime, Claro) com a ID visual da marca (Bricolage Grotesque + `(( ))` + Orange Clay accent + motion `cubic-bezier(0.16,1.0,0.3,1.0)`). Decisões a cravar com o owner antes de produzir: duração final, plataformas alvo (Instagram Reels / YouTube Shorts / LinkedIn / TikTok), narrativa (cases por categoria? ordem cronológica? climax + reveal?), trilha, presença ou não de voiceover, e se tem CTA final (link, contato, ou só lockup).
 
 ## Deck — composição final
 
