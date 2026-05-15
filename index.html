@@ -65,64 +65,39 @@
   transition: opacity 1.1s cubic-bezier(0.65, 0, 0.35, 1);
 }
 .reveal-overlay--active{ opacity:1; pointer-events:auto; }
-.reveal-overlay__stage{
-  position:relative;
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  padding:0 6vw;
-}
-.reveal-overlay__logo,
-.reveal-overlay__text{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  /* default = entrance start: lifted 12px below, slight underscale */
-  transform: translateY(12px) scale(0.97);
-  transition: opacity .9s var(--ease-cine), transform 1.2s var(--ease-cine);
-  will-change: transform, opacity;
-  text-align:center;
-}
-.reveal-overlay__logo--in,
-.reveal-overlay__text--in{
-  opacity:1;
-  transform: translateY(0) scale(1);
-}
-.reveal-overlay__logo--out,
-.reveal-overlay__text--out{
-  /* exit continues upward, slight overscale — "lift off" */
-  opacity:0;
-  transform: translateY(-12px) scale(1.03);
-}
-.reveal-overlay__logo img{
-  width:min(72%, 360px);
-  height:auto;
+.reveal-overlay__video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
   display:block;
+  background:#141413;
+  /* Avoid native controls flash on iOS */
+  -webkit-user-select:none;
+  user-select:none;
 }
-.reveal-overlay__text{
-  font-family:var(--font-sans);
-  font-size:clamp(32px, 9.5vw, 64px);
-  font-weight:400;
+.reveal-overlay__skip{
+  position:absolute;
+  bottom:max(24px, env(safe-area-inset-bottom, 24px));
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(20,20,19,0.55);
   color:#faf9f5;
-  letter-spacing:-0.02em;
-  white-space:nowrap;
+  border:1px solid rgba(250,249,245,0.18);
+  padding:8px 14px;
+  border-radius:var(--radius-pill);
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:.14em;
+  text-transform:lowercase;
+  pointer-events:auto;
+  cursor:pointer;
+  opacity:0;
+  transition: opacity .5s var(--ease-cine) .8s;
 }
-.reveal-bracket{ color:var(--orange-clay); }
+.reveal-overlay--active .reveal-overlay__skip{ opacity:1; }
 
 @media (prefers-reduced-motion: reduce){
-  .reveal-overlay,
-  .reveal-overlay__logo,
-  .reveal-overlay__text{
-    transition: opacity 0s, transform 0s;
-  }
-  .reveal-overlay__logo,
-  .reveal-overlay__text,
-  .reveal-overlay__logo--out,
-  .reveal-overlay__text--out{
-    transform: none;
-  }
+  .reveal-overlay{ transition: opacity 0s; }
 }
 
 /* Shake hint pill (mobile-only discoverability) */
@@ -918,21 +893,18 @@ article{margin:0;padding:0;display:block}
 </script>
 
 <!-- ============================================================
-     SHAKE → CINEMATIC REVEAL — mobile only
-     On shake: overlay fades to Dark → Alright wordmark fades in,
-     holds, fades out → (( Look again. )) fades in, holds, fades
-     out → overlay fades back to the site. ~6.5s total.
+     SHAKE → REEL PLAYBACK — mobile only
+     On shake: overlay fades to Dark → vertical reel plays full
+     (cover-fit, muted, no audio in source) → overlay fades back
+     to the site. Tap the skip pill to cut short.
      iOS 13+ gates DeviceMotion behind a tap on the hint pill.
      ============================================================ -->
 <div class="reveal-overlay" id="revealOverlay" aria-hidden="true">
-  <div class="reveal-overlay__stage">
-    <div class="reveal-overlay__logo">
-      <img src="assets/logo/svg/alright-expressivo-bone-transparent.svg" alt="Alright" />
-    </div>
-    <div class="reveal-overlay__text" aria-hidden="true">
-      <span class="reveal-bracket">((</span><span>&nbsp;Look&nbsp;again.&nbsp;</span><span class="reveal-bracket">))</span>
-    </div>
-  </div>
+  <video class="reveal-overlay__video" id="revealVideo"
+         muted playsinline preload="metadata"
+         src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/alright-reel-vertical.mp4?v=1"
+         aria-label="Alright reel"></video>
+  <button class="reveal-overlay__skip" id="revealSkip" type="button" aria-label="Pular reel">(( skip ))</button>
 </div>
 <div class="shake-hint" id="shakeHint" role="button" tabindex="0" aria-label="Ativar shake reveal">
   <span class="shake-hint__text">(( shake the phone ))</span>
@@ -949,8 +921,8 @@ article{margin:0;padding:0;display:block}
   var hint = document.getElementById('shakeHint');
   var hintText = hint && hint.querySelector('.shake-hint__text');
   var overlay = document.getElementById('revealOverlay');
-  var revealLogo = overlay && overlay.querySelector('.reveal-overlay__logo');
-  var revealText = overlay && overlay.querySelector('.reveal-overlay__text');
+  var revealVideo = document.getElementById('revealVideo');
+  var revealSkip = document.getElementById('revealSkip');
 
   var SEEN_KEY = 'alright.shakeSeen';
   var seen = false;
@@ -970,16 +942,43 @@ article{margin:0;padding:0;display:block}
   }
   function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 
-  // Reveal sequence (~7.9s): overlay in 1.1s → logo lift-in 1.8 +
-  // lift-out 0.9 → text lift-in 2.1 + lift-out 0.9 → overlay out 1.1s.
-  // Motion: each element rises 12px from below + scales 0.97→1.0 on
-  // entrance, then continues rising (-12px) + scales 1.0→1.03 on exit.
-  // Direction stays uniformly upward — like a film title card.
+  // Reveal sequence: overlay fades to Dark (1.1s) → reel plays
+  // (~32s, cover-fit, muted) → overlay fades back to site (1.1s).
+  // Tap the skip pill or the screen during playback to cut short.
   var revealing = false;
   var lastShake = 0;
   var lastX = null, lastY = null, lastZ = null;
   var THRESHOLD = 28;
   var COOLDOWN = 1500;
+
+  function playVideoToEnd(video){
+    return new Promise(function(resolve){
+      var done = false;
+      function finish(){
+        if (done) return;
+        done = true;
+        video.removeEventListener('ended', finish);
+        video.removeEventListener('error', finish);
+        if (skipHandler) {
+          revealSkip && revealSkip.removeEventListener('click', skipHandler);
+          overlay.removeEventListener('click', skipHandler);
+        }
+        clearTimeout(safety);
+        resolve();
+      }
+      function skipHandler(){
+        try { video.pause(); } catch(_){}
+        finish();
+      }
+      video.addEventListener('ended', finish, { once: true });
+      video.addEventListener('error', finish, { once: true });
+      revealSkip && revealSkip.addEventListener('click', skipHandler);
+      overlay.addEventListener('click', skipHandler);
+      // Safety: if 'ended' never fires (mobile glitch), force-resolve
+      // a bit after the video's known duration (32s + buffer).
+      var safety = setTimeout(finish, 36000);
+    });
+  }
 
   async function playReveal(){
     if (!overlay || revealing) return;
@@ -992,23 +991,15 @@ article{margin:0;padding:0;display:block}
     overlay.classList.add('reveal-overlay--active');
     await wait(1100);
 
-    // 2. Logo: rise in, hold, lift out
-    revealLogo.classList.add('reveal-overlay__logo--in');
-    await wait(1200 + 600); // transform 1.2s lift-in + hold 0.6s
-    revealLogo.classList.remove('reveal-overlay__logo--in');
-    revealLogo.classList.add('reveal-overlay__logo--out');
-    await wait(900); // lift out (opacity .9s dominates the visible motion)
-    revealLogo.classList.remove('reveal-overlay__logo--out');
+    // 2. Play reel from start
+    if (revealVideo) {
+      try { revealVideo.currentTime = 0; } catch(_){}
+      try { await revealVideo.play(); } catch(_){}
+      await playVideoToEnd(revealVideo);
+      try { revealVideo.pause(); } catch(_){}
+    }
 
-    // 3. (( Look again. )): rise in, hold (climax), lift out
-    revealText.classList.add('reveal-overlay__text--in');
-    await wait(1200 + 900); // lift-in + slightly longer hold (the payoff)
-    revealText.classList.remove('reveal-overlay__text--in');
-    revealText.classList.add('reveal-overlay__text--out');
-    await wait(900);
-    revealText.classList.remove('reveal-overlay__text--out');
-
-    // 4. Slow fade back to the site
+    // 3. Slow fade back to the site
     overlay.classList.remove('reveal-overlay--active');
     await wait(1100);
 
