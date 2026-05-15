@@ -56,6 +56,7 @@ const slugMap = {
   // batch 3
   'chupa-chups-art-gallery.mp4': 'chupa-chups-art-gallery',
   'olympikus-corre5.mp4': 'olympikus-corre5-video',
+  'CORRE5_16X9.mov': 'olympikus-corre5-full',
   'seda-sensorial-v3.mp4': 'seda-sensorial-v3',
   'chupa-chups-surreal-dream.mp4': 'chupa-chups-surreal-dream',
   'chupa-chups-surreal-unboxing.mp4': 'chupa-chups-surreal-unboxing',
