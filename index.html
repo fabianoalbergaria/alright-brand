@@ -1036,19 +1036,30 @@ article{margin:0;padding:0;display:block}
 
   var needsPermission = typeof DeviceMotionEvent.requestPermission === 'function';
 
+  var pillBusy = false;
   function requestAndAttach(){
-    if (!needsPermission) { attachShake(); return; }
+    if (pillBusy) return;
+    pillBusy = true;
+    // Immediate feedback: proves the tap handler fired
+    setHintText('(( requesting... ))');
+    if (!needsPermission) {
+      attachShake();
+      setHintText('(( shake the phone! ))');
+      setTimeout(function(){ hideHint(); pillBusy = false; }, 4500);
+      return;
+    }
     DeviceMotionEvent.requestPermission().then(function(result){
       if (result === 'granted') {
         attachShake();
-        showHint('(( shake the phone ))', 4500);
+        setHintText('(( shake the phone! ))');
+        setTimeout(function(){ hideHint(); pillBusy = false; }, 4500);
       } else {
-        setHintText('(( permission denied ))');
-        setTimeout(hideHint, 2500);
+        setHintText('(( permission denied — settings ))');
+        setTimeout(function(){ hideHint(); pillBusy = false; }, 5000);
       }
-    }).catch(function(){
-      setHintText('(( shake unavailable ))');
-      setTimeout(hideHint, 2500);
+    }).catch(function(err){
+      setHintText('(( error: ' + (err && err.message ? err.message.slice(0,20) : 'unknown') + ' ))');
+      setTimeout(function(){ hideHint(); pillBusy = false; }, 6000);
     });
   }
 
@@ -1058,7 +1069,9 @@ article{margin:0;padding:0;display:block}
       setHintText('(( tap to shake ))');
       hint.classList.add('shake-hint--show');
     }, 2200);
+    // Both click and touchend (some iOS edge cases lose 'click')
     hint.addEventListener('click', requestAndAttach);
+    hint.addEventListener('touchend', function(e){ e.preventDefault(); requestAndAttach(); }, { passive: false });
     hint.addEventListener('keydown', function(e){
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); requestAndAttach(); }
     });
