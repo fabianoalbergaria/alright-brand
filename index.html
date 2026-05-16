@@ -68,7 +68,9 @@
 .reveal-overlay__video{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain; /* show the full 9:16 reel — letterbox on
+                         taller phones is fine, the (( )) brackets
+                         live at the edges and we don't want to crop. */
   display:block;
   background:#141413;
   /* Avoid native controls flash on iOS */
