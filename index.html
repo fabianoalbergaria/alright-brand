@@ -901,7 +901,7 @@ article{margin:0;padding:0;display:block}
      ============================================================ -->
 <div class="reveal-overlay" id="revealOverlay" aria-hidden="true">
   <video class="reveal-overlay__video" id="revealVideo"
-         muted playsinline preload="metadata"
+         muted playsinline webkit-playsinline preload="auto"
          src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/alright-reel-vertical.mp4?v=1"
          aria-label="Alright reel"></video>
   <button class="reveal-overlay__skip" id="revealSkip" type="button" aria-label="Pular reel">(( skip ))</button>
@@ -951,6 +951,43 @@ article{margin:0;padding:0;display:block}
   var THRESHOLD = 28;
   var COOLDOWN = 1500;
 
+  // iOS may reject the autoplay triggered by shake. Convert the
+  // overlay/skip-pill into a single-tap "(( tap to play ))" gate
+  // so the next tap is a true user gesture that satisfies WebKit.
+  function waitForTapToPlay(video){
+    return new Promise(function(resolve){
+      var settled = false;
+      var originalSkip = revealSkip ? revealSkip.textContent : '';
+      if (revealSkip) revealSkip.textContent = '(( tap to play ))';
+
+      function settle(ok){
+        if (settled) return;
+        settled = true;
+        if (revealSkip) revealSkip.textContent = originalSkip || '(( skip ))';
+        overlay.removeEventListener('click', onTap);
+        revealSkip && revealSkip.removeEventListener('click', onTap);
+        resolve(ok);
+      }
+      function onTap(e){
+        // Stop the skip pill click from also bubbling to overlay
+        if (e && e.stopPropagation) e.stopPropagation();
+        // We are now in a true user-gesture context. Try again.
+        var p;
+        try { p = video.play(); } catch(_){ settle(false); return; }
+        if (p && typeof p.then === 'function') {
+          p.then(function(){ settle(true); }).catch(function(){ settle(false); });
+        } else {
+          settle(true);
+        }
+      }
+      overlay.addEventListener('click', onTap);
+      revealSkip && revealSkip.addEventListener('click', onTap);
+      // If user never taps, give up after 10s (will fall through to
+      // the overlay fade-out and back to the site).
+      setTimeout(function(){ settle(false); }, 10000);
+    });
+  }
+
   function playVideoToEnd(video){
     return new Promise(function(resolve){
       var done = false;
@@ -991,11 +1028,21 @@ article{margin:0;padding:0;display:block}
     overlay.classList.add('reveal-overlay--active');
     await wait(1100);
 
-    // 2. Play reel from start
+    // 2. Play reel from start. iOS Safari may reject autoplay
+    //    triggered from a shake event (not a strict user gesture).
+    //    On reject: switch the skip pill to "(( tap to play ))"
+    //    and wait for an explicit tap (which is a user gesture).
     if (revealVideo) {
       try { revealVideo.currentTime = 0; } catch(_){}
-      try { await revealVideo.play(); } catch(_){}
-      await playVideoToEnd(revealVideo);
+      try { revealVideo.muted = true; } catch(_){} // double-ensure mute
+      var played = false;
+      try {
+        await revealVideo.play();
+        played = true;
+      } catch(_) {
+        played = await waitForTapToPlay(revealVideo);
+      }
+      if (played) await playVideoToEnd(revealVideo);
       try { revealVideo.pause(); } catch(_){}
     }
 
@@ -1027,6 +1074,11 @@ article{margin:0;padding:0;display:block}
 
   function attachShake(){
     window.addEventListener('devicemotion', onMotion, { passive: true });
+    // Warm the video cache as soon as the user opts in — by the time
+    // they actually shake, the reel should already be buffered.
+    if (revealVideo) {
+      try { revealVideo.preload = 'auto'; revealVideo.load(); } catch(_){}
+    }
     // Pause listening when tab is hidden (battery)
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) window.removeEventListener('devicemotion', onMotion);
