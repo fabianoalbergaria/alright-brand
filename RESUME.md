@@ -142,7 +142,12 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 - 11 peças editáveis inline: 3 avatars + 6 feed posts (1080×1350) + 2 vertical (1080×1920)
 - Cada peça tem 3 botões de download:
   - **PNG / PDF** (com edições inline) — via html-to-image + jspdf no client
-  - **PSD · camadas** — Background raster (bg color + wordmark Alright + decorações canon) + uma **text layer vetorial por elemento editável** (double-click no Photoshop pra mudar texto, mantém fonte/cor/posição). Wordmark fica no Background, intocável. Avatares (sem texto) caem pra 2-layer Background+Content raster.
+  - **PSD · camadas** — 3 camadas base separadas + N text layers vetoriais:
+    - **Background** = só a cor sólida (ou split panes pra feed-split) — gerada no Node, troca livre
+    - **Brand · wordmark** = wordmark Alright + decorações canon (accent bars etc) sobre transparente — captura com editáveis hidden + bg transparente
+    - **Text layers** = uma por elemento editável (double-click no PS pra mudar texto, fonte/cor/posição preservados via PostScript name match)
+    - Trocar bg color não afeta wordmark; esconder wordmark deixa só cor + texto.
+    - Avatares (sem texto editável) caem pra 2-layer Background+Content raster.
 - Geração de PSDs: `node tools/generate-instagram-psd.mjs` (Playwright detacha cada peça num holder isolado, hide nos selectors editáveis pra capturar Background, extrai font/size/cor/baseline computados → ag-psd empacota como text layers vetoriais). `--only=<id1,id2>` pra regenerar subset.
 - Deploy: `./deploy-kit.sh` (build em `.kit-dist/` + wrangler pages deploy)
 - Recuperado de edge cache em 2026-05-18 antes do TTL expirar — outra sessão tinha feito o source mas não commitou.

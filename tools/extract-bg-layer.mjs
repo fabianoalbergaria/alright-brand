@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-// Extract just the Background layer raster from a PSD for visual debugging.
+// Extract any named raster layer from a PSD for visual debugging.
+//   node extract-bg-layer.mjs <file.psd> [layerName]
+// Default layerName is "Background".
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { readPsd, initializeCanvas } from 'ag-psd';
@@ -11,15 +13,18 @@ initializeCanvas(
 );
 
 const file = resolve(process.argv[2]);
+const targetName = process.argv[3] || 'Background';
 const buf = readFileSync(file);
 const psd = readPsd(buf, { skipCompositeImageData: true, skipThumbnail: true });
 
-const bg = (psd.children || []).find(l => l.name === 'Background');
-if (!bg || !bg.canvas) {
-  console.error('No Background layer with canvas');
+const layer = (psd.children || []).find(l => l.name === targetName);
+if (!layer || !layer.canvas) {
+  console.error(`No layer named "${targetName}" with canvas in ${file}`);
+  console.error('Available:', (psd.children || []).map(l => l.name).join(', '));
   process.exit(1);
 }
 
-const out = file.replace(/\.psd$/i, '-bg.png');
-writeFileSync(out, bg.canvas.toBuffer('image/png'));
+const safeName = targetName.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+const out = file.replace(/\.psd$/i, `-${safeName}.png`);
+writeFileSync(out, layer.canvas.toBuffer('image/png'));
 console.log(`wrote ${out}`);

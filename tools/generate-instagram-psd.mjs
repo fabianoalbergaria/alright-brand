@@ -388,10 +388,11 @@ async function buildLayeredPsd(page, piece) {
   const flatPng = await shoot(page, w, h);
   await restoreFrame(page);
 
-  // Capture background with editable text hidden — wordmark, meta, brackets,
-  // accent bars, manifesto's orange dot, etc. survive here.
-  await setupFrame(page, piece, { hideEditable: true });
-  const bgPng = await shoot(page, w, h);
+  // Capture the brand layer: wordmark + non-editable decorations (accent bars,
+  // canon brackets, etc.) on a transparent canvas. Editable text is hidden so
+  // it doesn't end up baked in alongside the wordmark.
+  await setupFrame(page, piece, { hideEditable: true, bgTransparent: true });
+  const brandPng = await shoot(page, w, h, { omitBackground: true });
   // Text layers extracted from the same DOM state — but with editable elements
   // still in layout (we didn't display:none, we set visibility:hidden), so
   // getBoundingClientRect returns the real position.
@@ -408,9 +409,13 @@ async function buildLayeredPsd(page, piece) {
   const flatCv = createCanvas(w, h);
   flatCv.getContext('2d').drawImage(flatImg, 0, 0, w, h);
 
-  const bgImg = await loadImage(bgPng);
-  const bgCv = createCanvas(w, h);
-  bgCv.getContext('2d').drawImage(bgImg, 0, 0, w, h);
+  const brandImg = await loadImage(brandPng);
+  const brandCv = createCanvas(w, h);
+  brandCv.getContext('2d').drawImage(brandImg, 0, 0, w, h);
+
+  // Background is a separate, solid layer below the brand — lets you swap
+  // bg colors without touching the wordmark or decorations.
+  const bgCv = buildSolidBackground(piece);
 
   // Build text layer children
   const textChildren = textLayers.map(t => ({
@@ -454,7 +459,8 @@ async function buildLayeredPsd(page, piece) {
     width: w, height: h,
     canvas: flatCv,
     children: [
-      { name: 'Background', canvas: bgCv, left: 0, top: 0, right: w, bottom: h },
+      { name: 'Background',         canvas: bgCv,    left: 0, top: 0, right: w, bottom: h },
+      { name: 'Brand · wordmark',   canvas: brandCv, left: 0, top: 0, right: w, bottom: h },
       ...textChildren,
     ],
   };
