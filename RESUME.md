@@ -87,14 +87,15 @@ alright-brand/
 | `https://book.wearealright.cc/` | 301 → `wearealright.cc/brand-book.html` | ✅ |
 | `https://deck.wearealright.cc/` | 301 → `wearealright.cc/deck/` | ✅ |
 
-### Cloudflare Pages — 4 custom domains (status `active`)
+### Cloudflare Pages — 5 custom domains (4 public · 1 gated)
 
-| Domain | Pages domain ID |
-|---|---|
-| `wearealright.cc` (apex) | `e08198dc-070c-4e60-9d99-b8d6414aa66a` |
-| `www.wearealright.cc` | `85955d23-32ae-40e1-a7ed-a326a6d11d74` |
-| `book.wearealright.cc` (redirect → `/brand-book.html`) | `ad53a2ae-2563-44c8-92f0-7d6340713351` |
-| `deck.wearealright.cc` (redirect → `/deck/`) | `c5b1a14f-7572-44b8-93e0-8053224e8dbb` |
+| Domain | Pages domain ID | Access |
+|---|---|---|
+| `wearealright.cc` (apex) | `e08198dc-070c-4e60-9d99-b8d6414aa66a` | Public |
+| `www.wearealright.cc` | `85955d23-32ae-40e1-a7ed-a326a6d11d74` | Public |
+| `book.wearealright.cc` (redirect → `/brand-book.html`) | `ad53a2ae-2563-44c8-92f0-7d6340713351` | Public |
+| `deck.wearealright.cc` (redirect → `/deck/`) | `c5b1a14f-7572-44b8-93e0-8053224e8dbb` | Public |
+| `kit.wearealright.cc` (internal tools) | `88567033-491f-4a9d-ad9e-a065c96ace86` | 🔒 Cloudflare Access · `@wearealright.cc` only |
 
 ### Cloudflare DNS records ativos
 
@@ -104,6 +105,7 @@ alright-brand/
 | CNAME | `www` | `wearealright.pages.dev` | 🟠 |
 | CNAME | `book` | `wearealright.pages.dev` | 🟠 |
 | CNAME | `deck` | `wearealright.pages.dev` | 🟠 |
+| CNAME | `kit` | `wearealright.pages.dev` | 🟠 |
 | MX × 5 | `@` | Google Workspace (aspmx.l.google.com + alts) | DNS only |
 | TXT × 2 | `@` | SPF + google-site-verification | DNS only |
 
@@ -111,6 +113,16 @@ alright-brand/
 
 - `hostname eq "book.wearealright.cc"` → 301 → `https://wearealright.cc/brand-book.html` (preserve query)
 - `hostname eq "deck.wearealright.cc"` → 301 → `https://wearealright.cc/deck/` (preserve query)
+
+### Cloudflare Access (Zero Trust) — kit.wearealright.cc
+
+- Team URL backstage: `autumn-pond-de74.cloudflareaccess.com` (auto-named, não visível pra usuários)
+- Application: `Alright Kit` · Self-hosted · Subdomain `kit.wearealright.cc` (path: vazio)
+- Policy: `Wearealright team` · Allow · Include: emails ending in `@wearealright.cc`
+- Session duration: 24h (ajustável no dashboard)
+- Identity provider: One-time PIN default (manda código por email). Pode trocar pra Google Workspace SSO depois pra fluxo sem PIN.
+- Pra acessar: abrir https://kit.wearealright.cc/ → login wall → digita email @wearealright.cc → recebe PIN → entra. Sessão dura 24h.
+- Conteúdo atualmente servido: portfolio (placeholder até o Instagram editor da outra sessão ser jogado em cima).
 
 ## Vídeos no portfolio (com Vimeo lightbox)
 
