@@ -126,6 +126,9 @@ alright-brand/
 | Negra Li Lollapalooza | `negra-li-visual.mp4` | 1192041713 |
 | Brime · Tem uma sexta | `brime-sexta-na-quarta.mp4` | 1192047832 |
 | Claro · Animatic (deck slide 04) | `claro.mp4` (preview) + `claro-full.mp4` (com áudio, sem Vimeo) | — |
+| HBO Max · Paulistão | `hbo-max-paulistao.mp4` (10.5MB) | 1193297749 |
+| Instituto Caldeira | `instituto-caldeira.mp4` (28MB) | 1193297752 |
+| BK · Visuals | `bk-visuals.mp4` (11MB) | 1193297750 |
 
 ## Pendente
 
