@@ -1663,14 +1663,16 @@
 
 (function () {
   // Selectors that map every editable piece of copy in every frame.
-  // Wordmarks, brand devices (((, )), brackets in big idea) stay locked.
+  // Owner rule: the Alright wordmark in the footer is the only locked element.
+  // Everything else — including canon phrases like ((Look again.)) — is fair
+  // game for inline edit (and ships as a vector text layer in the PSD).
   var EDITABLE_SELECTORS = [
     // Case
     '#feed-case .eyebrow', '#feed-case .index', '#feed-case .title',
     // Manifesto
     '#feed-manifesto .kicker', '#feed-manifesto .quote', '#feed-manifesto .tag',
-    // Big idea — only the kickers + tag are editable. Phrase itself stays canon.
-    '#feed-bigidea .kicker', '#feed-bigidea .tag',
+    // Big idea — phrase is editable too (was previously locked, opened up by owner)
+    '#feed-bigidea .kicker', '#feed-bigidea .phrase', '#feed-bigidea .tag',
     // Making-of
     '#feed-making .eyebrow', '#feed-making .ref', '#feed-making .frame-tag', '#feed-making .title', '#feed-making .meta',
     // Quote

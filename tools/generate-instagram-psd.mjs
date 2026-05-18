@@ -38,6 +38,34 @@ const OUT_DIR = resolve(REPO_ROOT, 'assets/social/instagram/psd');
 const BONE = '#faf9f5';
 const DARK = '#141413';
 
+// Photoshop matches text layer fonts by PostScript name in the layer's
+// FontSet, NOT by the CSS family name. Map CSS family + computed weight to
+// the PostScript IDs that Google Fonts ships for Bricolage Grotesque and
+// JetBrains Mono. Falls back to "Family-Regular" for unknown weights and to
+// the raw family for unknown families.
+const POSTSCRIPT_WEIGHT_SUFFIX = {
+  100: 'Thin',
+  200: 'ExtraLight',
+  300: 'Light',
+  400: 'Regular',
+  500: 'Medium',
+  600: 'SemiBold',
+  700: 'Bold',
+  800: 'ExtraBold',
+  900: 'Black',
+};
+const KNOWN_FONT_BASES = {
+  'Bricolage Grotesque': 'BricolageGrotesque',
+  'JetBrains Mono':      'JetBrainsMono',
+};
+function fontPostScriptName(cssFamily, cssWeight) {
+  const base = KNOWN_FONT_BASES[cssFamily];
+  if (!base) return cssFamily;  // unknown family — ship as-is
+  const w = Math.round(cssWeight / 100) * 100;
+  const suffix = POSTSCRIPT_WEIGHT_SUFFIX[w] || 'Regular';
+  return `${base}-${suffix}`;
+}
+
 // Per-piece spec: size + bg recipe + editable text layer selectors.
 //
 // User rule: the Alright wordmark in the footer never changes — every OTHER
@@ -394,7 +422,7 @@ async function buildLayeredPsd(page, piece) {
       shapeType: 'point',
       antiAlias: 'smooth',
       style: {
-        font: { name: t.fontFamily },
+        font: { name: fontPostScriptName(t.fontFamily, t.fontWeight) },
         fontSize: t.fontSize,
         fillColor: t.color,
         fillFlag: true,
@@ -402,7 +430,8 @@ async function buildLayeredPsd(page, piece) {
         autoLeading: false,
         leading: t.lineHeight,
         autoKerning: true,
-        fauxBold: t.fontWeight >= 700,
+        // Skip fauxBold — the weight is already encoded in the PostScript name
+        // (e.g. BricolageGrotesque-Bold), so PS picks the real weighted glyph.
       },
       paragraphStyle: {
         justification: ({
