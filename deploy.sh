@@ -50,12 +50,10 @@ mkdir -p "$DIST/brand-book/print"
 sed 's|"\.\./assets/|"../../assets/|g; s|url(\(['\''"]*\)\.\./assets/|url(\1../../assets/|g' \
   "$ROOT/05-deliverables/brand-book-print.html" > "$DIST/brand-book/print/index.html"
 
-# Instagram kit editor: serve at /instagram-kit/ (internal team tool,
-# gated via Cloudflare Access on kit.wearealright.cc — see RESUME.md)
-if [ -d "$ROOT/instagram-kit" ]; then
-  mkdir -p "$DIST/instagram-kit"
-  cp -R "$ROOT/instagram-kit/." "$DIST/instagram-kit/"
-fi
+# NOTE: The Instagram kit editor (instagram-kit/index.html) is NOT
+# included here on purpose. It lives in its own Pages project
+# (wearealright-kit) served at https://kit.wearealright.cc/ behind
+# Cloudflare Access. Deploy that separately with ./deploy-kit.sh.
 
 echo "→ Deploy Cloudflare Pages…"
 wrangler pages deploy "$DIST" --project-name=wearealright --branch=main --commit-dirty=true --commit-message="alright deploy"

@@ -87,7 +87,9 @@ alright-brand/
 | `https://book.wearealright.cc/` | 301 → `wearealright.cc/brand-book.html` | ✅ |
 | `https://deck.wearealright.cc/` | 301 → `wearealright.cc/deck/` | ✅ |
 
-### Cloudflare Pages — 5 custom domains (4 public · 1 gated)
+### Cloudflare Pages — 2 projects
+
+**Project `wearealright`** (main public site) · 4 custom domains:
 
 | Domain | Pages domain ID | Access |
 |---|---|---|
@@ -95,7 +97,14 @@ alright-brand/
 | `www.wearealright.cc` | `85955d23-32ae-40e1-a7ed-a326a6d11d74` | Public |
 | `book.wearealright.cc` (redirect → `/brand-book.html`) | `ad53a2ae-2563-44c8-92f0-7d6340713351` | Public |
 | `deck.wearealright.cc` (redirect → `/deck/`) | `c5b1a14f-7572-44b8-93e0-8053224e8dbb` | Public |
-| `kit.wearealright.cc` (internal tools) | `88567033-491f-4a9d-ad9e-a065c96ace86` | 🔒 Cloudflare Access · `@wearealright.cc` only |
+
+**Project `wearealright-kit`** (internal tools — Instagram editor) · 1 custom domain:
+
+| Domain | Access |
+|---|---|
+| `kit.wearealright.cc` (editor at root) | 🔒 Cloudflare Access · `@wearealright.cc` only |
+
+Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit.sh` for `wearealright-kit`. The kit project's source lives at `instagram-kit/index.html` + `assets/social/instagram/*` in this repo.
 
 ### Cloudflare DNS records ativos
 
@@ -114,15 +123,26 @@ alright-brand/
 - `hostname eq "book.wearealright.cc"` → 301 → `https://wearealright.cc/brand-book.html` (preserve query)
 - `hostname eq "deck.wearealright.cc"` → 301 → `https://wearealright.cc/deck/` (preserve query)
 
-### Cloudflare Access (Zero Trust) — kit.wearealright.cc
+### Cloudflare Access (Zero Trust) — `Alright Kit` app
 
-- Team URL backstage: `autumn-pond-de74.cloudflareaccess.com` (auto-named, não visível pra usuários)
-- Application: `Alright Kit` · Self-hosted · Subdomain `kit.wearealright.cc` (path: vazio)
+- Team URL backstage: `autumn-pond-de74.cloudflareaccess.com` (auto-named)
+- Application: `Alright Kit` · Self-hosted
+- **Destinations** (paths protegidos):
+  - `kit.wearealright.cc/*` (todo o subdomínio do kit, serve editor)
+  - `wearealright.cc/instagram-kit/*` (apex/path antigo, gated por defesa em profundidade — Pages project não tem mais conteúdo aqui)
 - Policy: `Wearealright team` · Allow · Include: emails ending in `@wearealright.cc`
-- Session duration: 24h (ajustável no dashboard)
-- Identity provider: One-time PIN default (manda código por email). Pode trocar pra Google Workspace SSO depois pra fluxo sem PIN.
-- Pra acessar: abrir https://kit.wearealright.cc/ → login wall → digita email @wearealright.cc → recebe PIN → entra. Sessão dura 24h.
-- Conteúdo atualmente servido: portfolio (placeholder até o Instagram editor da outra sessão ser jogado em cima).
+- Session duration: 24h
+- Identity provider: One-time PIN (email) por default. Pode trocar pra Google Workspace SSO no dashboard.
+- Pra acessar: abre https://kit.wearealright.cc/ → tela login → email `@wearealright.cc` → recebe PIN → entra. Editor abre direto.
+
+### Instagram kit editor
+
+- Source: `instagram-kit/index.html` (1743 linhas, html-to-image + jspdf via CDN)
+- Assets: `assets/social/instagram/avatar-{a,b,c}.png` + `assets/social/instagram/psd/feed-01-case.psd`
+- 11 peças editáveis inline: 3 avatars + 6 feed posts (1080×1350) + 2 vertical (1080×1920)
+- Cada peça tem download PNG/PDF (com edições inline) e PSD (só `feed-01-case` por enquanto — outros 10 PSDs nunca foram deployados)
+- Deploy: `./deploy-kit.sh` (build em `.kit-dist/` + wrangler pages deploy)
+- Recuperado de edge cache em 2026-05-18 antes do TTL expirar — outra sessão tinha feito o source mas não commitou.
 
 ## Vídeos no portfolio (com Vimeo lightbox)
 
