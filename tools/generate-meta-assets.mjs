@@ -64,26 +64,31 @@ console.log('✓ og-image.jpg');
 
 // ---------- Favicon ----------
 // Brand device with the central l in Orange Clay: (( l ))
-// SVG (modern browsers, scales)
+// In Bricolage Grotesque the lowercase l ascender is taller than the
+// cap-height of `(` and `)`. Left unchecked the l pokes above the
+// brackets. Compensation:
+//   - SVG: dy shifts only the l down ~10% font-size, then resets so
+//     the closing `))` lands back on the original baseline.
+//   - PNG (HTML template): same idea via a smaller font-size on the
+//     l + translateY to drop it visually.
 const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs><style>@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&amp;display=block');text{font-family:'Bricolage Grotesque',sans-serif}</style></defs>
   <rect width="64" height="64" fill="${DARK}"/>
-  <text x="32" y="46" text-anchor="middle" font-size="40" font-weight="400" letter-spacing="-0.04em" fill="${BONE}">((<tspan font-weight="700" fill="${ORANGE}">l</tspan>))</text>
+  <text x="32" y="46" text-anchor="middle" font-size="40" font-weight="400" letter-spacing="-0.04em" fill="${BONE}">((<tspan font-weight="700" fill="${ORANGE}" dy="4">l</tspan><tspan dy="-4">))</tspan></text>
 </svg>`;
 await fs.writeFile(path.join(OUT, 'favicon.svg'), faviconSvg);
 console.log('✓ favicon.svg');
 
 // Render PNG variants via browser (so Bricolage renders correctly)
 function faviconHtml(size){
-  // ((l)) is 5 glyphs — needs more vertical breathing room than 'Al'.
-  // Cap font-size around ~0.62 of the canvas so the brackets read
-  // even at 16×16.
   const fs = Math.round(size * 0.62);
+  // l rendered ~88% of the bracket font size so its top sits below
+  // the bracket top, and nudged down ~6% to vertically center it.
   return `<!DOCTYPE html><html><head>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=block" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:${size}px;height:${size}px;background:${DARK};font-family:'Bricolage Grotesque',sans-serif;overflow:hidden}
-.icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center;font-size:${fs}px;font-weight:400;color:${BONE};line-height:1;letter-spacing:-0.04em}
-.icon b{font-weight:700;color:${ORANGE}}
+.icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center;line-height:1;letter-spacing:-0.04em;color:${BONE};font-weight:400;font-size:${fs}px}
+.icon b{font-weight:700;color:${ORANGE};font-size:0.88em;display:inline-block;transform:translateY(0.07em);margin:0 -0.02em}
 </style></head><body><div class="icon">((<b>l</b>))</div></body></html>`;
 }
 
