@@ -247,7 +247,8 @@ Canonical Pages URLs (sempre acessíveis):
 | `./deploy-kit.sh` | Deploy do project `wearealright-kit` (Instagram editor). Usa `.kit-dist/` |
 | `tools/generate-meta-assets.mjs` | Regenera favicon SVG + 7 PNG sizes + OG image |
 | `tools/generate-instagram-kit.mjs` | Regenera os 5 templates PNG do Instagram kit zip estático |
-| `tools/generate-instagram-psd.mjs` | Regenera as 10 PSDs do editor (2 layers Background+Content). `--only=<id1,id2>` pra subset. Não toca `feed-01-case` (hand-crafted) |
+| `tools/generate-instagram-psd.mjs` | Regenera as 11 PSDs do editor (Background raster + uma text layer vetorial por elemento editável). `--only=<id1,id2>` pra subset. PostScript font names mapeados via `fontPostScriptName()` |
+| `tools/generate-swatches.mjs` | Gera `assets/downloads/alright.aco` (Photoshop) + `alright.ase` (Illustrator/InDesign/Affinity) com as 7 cores nomeadas |
 | `tools/generate-press-kit.mjs` | Regenera palette card PNG + PDF + bundle do press kit |
 | `tools/compress-work-assets.mjs` | Compressa originais em assets/work/real/ → web/ |
 
