@@ -4,11 +4,13 @@
 
 ---
 
-## URLs ao vivo
+## URLs ao vivo (domínio próprio — 2026-05-15)
 
-- **Portfolio**: https://wearealright.pages.dev/
-- **Brand Book**: https://wearealright.pages.dev/brand-book.html
-- **Deck**: https://wearealright.pages.dev/deck/
+- **Portfolio**: https://wearealright.cc/
+- **Brand Book**: https://wearealright.cc/brand-book.html · alias curto: https://book.wearealright.cc/
+- **Brand Book print**: https://wearealright.cc/brand-book/print/
+- **Deck**: https://wearealright.cc/deck/ · alias curto: https://deck.wearealright.cc/
+- **Cloudflare Pages canon (sem domínio próprio)**: https://wearealright.pages.dev/
 - **GitHub repo**: https://github.com/fabianoalbergaria/alright-brand
 
 ## Infra
@@ -69,37 +71,46 @@ alright-brand/
 - www.wearealright.cc · @wearealright.cc
 - São Paulo / BR
 
-## Domínio
+## Domínio · LIVE em 2026-05-15 ✅
 
-- **Registrar**: GoDaddy (acesso recuperado em 2026-05-14)
-- **DNS atual**: ainda em `domaincontrol.com` (GoDaddy)
-- **Email ativo (NÃO PODE QUEBRAR)**: Google Workspace via 5 MX records `aspmx.l.google.com` + alts. TXT SPF `v=spf1 include:dc-aa8e722993._spfm.wearealright.cc ~all` + `google-site-verification=mHJsxF912JuJ-...` — também preservar.
-- **Apex aponta hoje** (parking): A `15.197.148.33` + A `3.33.130.190` (a remover quando migrar).
+- **Registrar**: GoDaddy (mantido — só os nameservers foram trocados)
+- **DNS**: Cloudflare DNS via nameservers `karsyn.ns.cloudflare.com` + `mike.ns.cloudflare.com`
+- **Email Google Workspace**: preservado (5 MX + 2 TXT importados intactos)
+- **SSL**: Cloudflare/Google automático (certificate authority: `google`)
 
-### Estado da configuração (2026-05-14)
+### URLs em produção
 
-**Cloudflare Pages — 4 custom domains registrados** (todos status `pending`, SSL provider: Google):
+| URL | Comportamento | Status |
+|---|---|---|
+| `https://wearealright.cc/` | Portfolio direto | 200 ✅ |
+| `https://www.wearealright.cc/` | Portfolio direto (mesma origem) | 200 ✅ |
+| `https://book.wearealright.cc/` | 301 → `wearealright.cc/brand-book.html` | ✅ |
+| `https://deck.wearealright.cc/` | 301 → `wearealright.cc/deck/` | ✅ |
 
-| Domain | ID |
+### Cloudflare Pages — 4 custom domains (status `active`)
+
+| Domain | Pages domain ID |
 |---|---|
 | `wearealright.cc` (apex) | `e08198dc-070c-4e60-9d99-b8d6414aa66a` |
 | `www.wearealright.cc` | `85955d23-32ae-40e1-a7ed-a326a6d11d74` |
-| `book.wearealright.cc` (vai redirect → `/brand-book.html`) | `ad53a2ae-2563-44c8-92f0-7d6340713351` |
-| `deck.wearealright.cc` (vai redirect → `/deck/`) | `c5b1a14f-7572-44b8-93e0-8053224e8dbb` |
+| `book.wearealright.cc` (redirect → `/brand-book.html`) | `ad53a2ae-2563-44c8-92f0-7d6340713351` |
+| `deck.wearealright.cc` (redirect → `/deck/`) | `c5b1a14f-7572-44b8-93e0-8053224e8dbb` |
 
-### Passos restantes (faltam ações manuais)
+### Cloudflare DNS records ativos
 
-1. **Adicionar wearealright.cc como zona no Cloudflare DNS** (dash.cloudflare.com → "Add a site" → Free plan). Cloudflare faz scan do GoDaddy e mostra registros pra importar. **Conferir** que importou os 5 MX + 2 TXT (SPF + google-verification). Os 2 A de parking podem ser deletados/ignorados.
-2. **Trocar nameservers no GoDaddy** dos `ns61/ns62.domaincontrol.com` pros 2 que o Cloudflare entregar. Propagação geralmente <1h, máximo 48h.
-3. **Configurar CNAMEs no Cloudflare DNS** (proxied 🟠) depois da migração:
-   - `@` → `wearealright.pages.dev` (apex via flattening do CF)
-   - `www` → `wearealright.pages.dev`
-   - `book` → `wearealright.pages.dev`
-   - `deck` → `wearealright.pages.dev`
-4. **Configurar 2 Redirect Rules** (Cloudflare → Rules → Redirect Rules):
-   - `hostname eq "book.wearealright.cc"` → 301 → `https://wearealright.cc/brand-book.html`
-   - `hostname eq "deck.wearealright.cc"` → 301 → `https://wearealright.cc/deck/`
-5. **SSL provisiona automático** ~15min depois que DNS verificar.
+| Tipo | Nome | Target | Proxy |
+|---|---|---|---|
+| CNAME | `@` | `wearealright.pages.dev` | 🟠 |
+| CNAME | `www` | `wearealright.pages.dev` | 🟠 |
+| CNAME | `book` | `wearealright.pages.dev` | 🟠 |
+| CNAME | `deck` | `wearealright.pages.dev` | 🟠 |
+| MX × 5 | `@` | Google Workspace (aspmx.l.google.com + alts) | DNS only |
+| TXT × 2 | `@` | SPF + google-site-verification | DNS only |
+
+### Redirect Rules ativas
+
+- `hostname eq "book.wearealright.cc"` → 301 → `https://wearealright.cc/brand-book.html` (preserve query)
+- `hostname eq "deck.wearealright.cc"` → 301 → `https://wearealright.cc/deck/` (preserve query)
 
 ## Vídeos no portfolio (com Vimeo lightbox)
 
@@ -118,7 +129,7 @@ alright-brand/
 
 ## Pendente
 
-1. **Domínio custom** `wearealright.cc` — Cloudflare side já pronto (4 custom domains registrados: apex, www, book, deck). Falta ação manual no dashboard Cloudflare (criar zona + import DNS) e GoDaddy (trocar nameservers). Passo a passo cravado na seção *Domínio* acima.
+<!-- Domínio custom completamente migrado em 2026-05-15 — ver seção Domínio acima -->
 2. **Reels de venda** *(pedido em 2026-05-15)* — produzir reel/sizzle pra vender o trabalho. Bruto: vídeo curto (60–90s típico) combinando cases já existentes em R2 (Chupa Chups, PUMA, Olympikus, Mizuno, Negra Li, Brime, Claro) com a ID visual da marca (Bricolage Grotesque + `(( ))` + Orange Clay accent + motion `cubic-bezier(0.16,1.0,0.3,1.0)`). Decisões a cravar com o owner antes de produzir: duração final, plataformas alvo (Instagram Reels / YouTube Shorts / LinkedIn / TikTok), narrativa (cases por categoria? ordem cronológica? climax + reveal?), trilha, presença ou não de voiceover, e se tem CTA final (link, contato, ou só lockup).
 
 ## Deck — composição final
@@ -145,6 +156,7 @@ alright-brand/
 - **Microsite legado deletado** (2026-05-14): `04-applications-microsite/site/` removido (era versão antiga não-deployada, superseded pelo brand book web v2 `brand-book.html` live). Refs stale atualizadas em `STATUS.md`, `governance/README.md` (também alinhada ao novo owner) e `02-microsite-specs.md` (marcado como deprecated).
 - **Shake to reveal** (2026-05-14): no mobile, balançar o telefone agora dispara uma sequência cinematográfica em ~7.9s — overlay fade to Dark → wordmark Alright (l Orange Clay) sobe de baixo, escala, volta → `(( Look again. ))` (brackets em Orange Clay) sobe de baixo, hold no climax, lift off → site volta. iOS 13+ gated via tap-to-enable. Deploy `b0130276`. Implementação em `index.html` (CSS `.reveal-overlay*` + JS `playReveal()`).
 - **Domínio em andamento** (2026-05-14): 4 custom domains registrados no Cloudflare Pages via API (apex + www + book + deck). Faltam ações manuais: criar zona DNS no Cloudflare (importa MX/SPF do GoDaddy), trocar nameservers no GoDaddy, configurar 2 Redirect Rules (book/deck). Email Google Workspace preservado durante a migração. Passo a passo em seção *Domínio*.
+- **Domínio LIVE** (2026-05-15): migração completa. Nameservers flipados pra `karsyn.ns.cloudflare.com` + `mike.ns.cloudflare.com` no GoDaddy, zona DNS importou os 5 MX + 2 TXT do Google Workspace (email preservado), 4 CNAMEs proxied criados (apex + www + book + deck → wearealright.pages.dev), 2 Redirect Rules configuradas (book → /brand-book.html, deck → /deck/). Site servindo em https://wearealright.cc com SSL Google. Smoke test passou em todas as URLs.
 - **Brand book print v2** entregue (25 páginas A4, `05-deliverables/brand-book-print.html`, online em `/brand-book/print/`)
 - **Deck v3 finalizado** com 11 slides (House Look removido), lightbox Vimeo em todos os cases, Animatic Claro como slide 04
 - **Portfolio v3**: case Brime adicionado, todas as descrições nos cases, Mizuno/Olympikus com vídeos full sem corte, Negra Li com novo trecho (CORTE_NEGRA_LI)
@@ -156,14 +168,20 @@ alright-brand/
 ## Estrutura final do deploy
 
 ```
-wearealright.pages.dev/
+wearealright.cc/                  ← LIVE (custom domain, SSL Google)
 ├── /                              → portfolio (index.html)
 ├── /brand-book.html               → brand book web v2
 ├── /brand-book/print/             → brand book print v2 (Cmd+P → PDF)
 ├── /deck/                         → deck v3 (11 slides)
 └── /assets/                       → todos os assets compartilhados
+
+www.wearealright.cc/              ← alias do apex (Cloudflare CNAME proxied)
+book.wearealright.cc/             ← 301 → wearealright.cc/brand-book.html
+deck.wearealright.cc/             ← 301 → wearealright.cc/deck/
+
+wearealright.pages.dev/           ← origem Cloudflare Pages (sempre acessível)
 ```
 
 ---
 
-*Última atualização: 2026-05-14. Owner: Alright. Orquestrador: Claude Code.*
+*Última atualização: 2026-05-15. Owner: Alright. Orquestrador: Claude Code.*
