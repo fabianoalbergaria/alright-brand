@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 747" width="2000" height="747">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=swap');
+      text { font-family:'Bricolage Grotesque', 'Inter', sans-serif; }
+    ]]></style>
+  </defs>
+  
+  <text x="80" y="583" font-size="538" font-weight="400" letter-spacing="-0.01em" fill="#faf9f5">A<tspan font-weight="700">l</tspan>right</text>
+</svg>
