@@ -1083,7 +1083,7 @@
   <div class="edit-bar" id="edit-bar">
     <button class="btn" id="toggle-edit" aria-pressed="false">Modo edição · OFF</button>
     <button class="btn" id="export-html" disabled>Exportar HTML editado ↓</button>
-    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com camadas separadas (Background + Content) — pra atualizar com edições, exporta o HTML editado e roda local <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs --source &lt;html&gt;</code>.</span>
+    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com Background + uma <em>text layer vetorial por elemento editável</em> (double-click no Photoshop pra mudar texto, mantém fonte/cor/posição). Wordmark Alright fica no Background, intocável. Pra regenerar: <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs</code>.</span>
   </div>
 
   <header class="page-header">
@@ -1629,7 +1629,7 @@
       // add one: drop the .psd in assets/social/instagram/psd/ and list its
       // FILENAMES key in PSD_AVAILABLE below.)
       if (PSD_AVAILABLE[filename]) {
-        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com camadas separadas (Background + Content) — versão master pré-renderizada, sem suas edições inline">PSD · camadas <span class="arrow">↓</span></a>';
+        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com Background + uma text layer vetorial por elemento editável (double-click no Photoshop pra mudar texto). Wordmark Alright fica no Background, intocável.">PSD · camadas <span class="arrow">↓</span></a>';
       }
       actions.innerHTML = html;
       label.appendChild(actions);
