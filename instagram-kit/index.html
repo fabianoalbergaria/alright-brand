@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alright · Instagram Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --bone: #faf9f5;
+    --dark: #141413;
+    --orange: #d97757;
+    --clay-deep: #8c4a32;
+    --stone: #3d3a35;
+    --slate-warm: #5b5750;
+    --mist: #ece8dc;
+    --font-sans: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --ease-cinematic: cubic-bezier(0.16, 1.0, 0.3, 1.0);
+
+    --scale-square: 0.30;
+    --scale-portrait: 0.28;
+    --scale-vertical: 0.22;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #1a1a18;
+    color: var(--bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─────────── Page chrome ─────────── */
+
+  .page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(250, 249, 245, 0.15);
+    padding-bottom: 32px;
+    margin-bottom: 80px;
+  }
+
+  .page-header .brand {
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .page-header .brand .l {
+    font-weight: 700;
+    color: var(--orange);
+  }
+  .page-header .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .intro {
+    max-width: 720px;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(250, 249, 245, 0.78);
+    margin-bottom: 64px;
+  }
+  .intro strong {
+    font-weight: 500;
+    color: var(--bone);
+  }
+  .intro code {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--orange);
+    background: rgba(217, 119, 87, 0.08);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  /* ─────────── Section ─────────── */
+
+  .section {
+    margin-bottom: 96px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 12px;
+  }
+  .section-head .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .section-head h2 {
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+  }
+  .section-sub {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(250, 249, 245, 0.6);
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+
+  /* ─────────── Frame grids ─────────── */
+
+  .grid {
+    display: grid;
+    gap: 56px 40px;
+  }
+  .grid.square    { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .grid.portrait  { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .grid.vertical  { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+  .piece {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .piece-frame-wrap {
+    background: repeating-conic-gradient(#222 0 25%, #1a1a18 0 50%) 0 0 / 16px 16px;
+    border: 1px solid rgba(250, 249, 245, 0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Native frame sizes — Playwright captures these at 1:1 */
+  .frame {
+    transform-origin: top left;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  .frame.square    { width: 1080px; height: 1080px; transform: scale(var(--scale-square)); }
+  .frame.portrait  { width: 1080px; height: 1350px; transform: scale(var(--scale-portrait)); }
+  .frame.vertical  { width: 1080px; height: 1920px; transform: scale(var(--scale-vertical)); }
+
+  .piece-frame-wrap.square   { width: calc(1080px * var(--scale-square));   height: calc(1080px * var(--scale-square)); }
+  .piece-frame-wrap.portrait { width: calc(1080px * var(--scale-portrait)); height: calc(1350px * var(--scale-portrait)); }
+  .piece-frame-wrap.vertical { width: calc(1080px * var(--scale-vertical)); height: calc(1920px * var(--scale-vertical)); }
+
+  /* ─────────── Scale test (real IG circle sizes) ─────────── */
+
+  .scale-test {
+    margin-top: 32px;
+    border-top: 1px dashed rgba(250, 249, 245, 0.12);
+    padding-top: 40px;
+  }
+  .scale-test-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .scale-test-head .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .scale-test-head h3 {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: var(--bone);
+  }
+  .scale-test-sub {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(250, 249, 245, 0.55);
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+
+  .scale-matrix {
+    display: grid;
+    grid-template-columns: 110px repeat(4, 1fr);
+    gap: 24px 32px;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(250, 249, 245, 0.02) 0%, rgba(250, 249, 245, 0.04) 100%);
+    border: 1px solid rgba(250, 249, 245, 0.08);
+    padding: 28px 32px;
+  }
+  .scale-matrix .row-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    line-height: 1.5;
+  }
+  .scale-matrix .col-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: center;
+  }
+  .scale-matrix .col-label .size {
+    color: var(--orange);
+    font-weight: 500;
+  }
+  .scale-matrix .col-label .context {
+    color: rgba(250, 249, 245, 0.4);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    max-width: 110px;
+    line-height: 1.4;
+  }
+  .scale-matrix .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scale-matrix .avatar-thumb {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .scale-matrix .avatar-thumb.s-32  { width: 32px;  height: 32px; }
+  .scale-matrix .avatar-thumb.s-44  { width: 44px;  height: 44px; }
+  .scale-matrix .avatar-thumb.s-56  { width: 56px;  height: 56px; }
+  .scale-matrix .avatar-thumb.s-110 { width: 110px; height: 110px; }
+
+  /* Story ring around 56px */
+  .scale-matrix .ring {
+    padding: 3px;
+    background: linear-gradient(135deg, var(--orange), var(--clay-deep));
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .scale-matrix .ring .avatar-thumb {
+    border: 2px solid #1a1a18;
+  }
+
+  /* Avatar circle preview overlay — simulates IG profile crop */
+  .piece-frame-wrap.avatar-preview::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    box-shadow: 0 0 0 9999px rgba(26, 26, 24, 0.78);
+    mix-blend-mode: normal;
+    opacity: 0;
+    transition: opacity 200ms var(--ease-cinematic);
+  }
+  .piece-frame-wrap.avatar-preview:hover::after {
+    opacity: 1;
+  }
+
+  .piece-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .piece-label .kicker {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.45);
+  }
+  .piece-label .name {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--bone);
+  }
+  .piece-label .desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(250, 249, 245, 0.55);
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     FRAME INTERNALS — shared
+     ════════════════════════════════════════════════════════════════ */
+
+  .frame {
+    font-family: var(--font-sans);
+    position: relative;
+    overflow: hidden;
+  }
+  .frame.bg-bone { background: var(--bone); color: var(--dark); }
+  .frame.bg-dark { background: var(--dark); color: var(--bone); }
+  .frame.bg-mist { background: var(--mist); color: var(--dark); }
+
+  /* Wordmark inside frames */
+  .wm {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    display: inline-block;
+  }
+  .wm .l { font-weight: 700; color: var(--orange); }
+  .wm.on-dark { color: var(--bone); }
+  .wm.on-dark .l { color: var(--orange); }
+  .wm.mono { color: inherit; }
+  .wm.mono .l { font-weight: 700; color: inherit; }
+
+  /* Brackets — universal device */
+  .brk {
+    display: inline-block;
+    letter-spacing: 0.06em;
+  }
+
+  /* Editorial corners + meta strips */
+  .corner {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .corner.tl { top: 60px; left: 64px; }
+  .corner.tr { top: 60px; right: 64px; text-align: right; }
+  .corner.bl { bottom: 60px; left: 64px; }
+  .corner.br { bottom: 60px; right: 64px; text-align: right; }
+
+  .accent-line {
+    position: absolute;
+    background: var(--orange);
+    height: 4px;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     AVATAR FRAMES (1080×1080) — all Dark bg + l Orange Clay
+     ════════════════════════════════════════════════════════════════ */
+
+  /* Avatar A — Símbolo: (( l )) com l opticamente centralizado */
+  .avatar-symbol {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-sans);
+    line-height: 1;
+  }
+  .avatar-symbol .glyph {
+    position: absolute;
+    top: 50%;
+    font-size: 820px;
+    font-weight: 300;
+    display: block;
+    color: var(--bone);
+  }
+  .avatar-symbol .brk-left  { left: 130px;  transform: translateY(-50%); }
+  .avatar-symbol .brk-right { right: 130px; transform: translateY(-50%); }
+  .avatar-symbol .el {
+    left: 50%;
+    color: var(--orange);
+    font-weight: 700;
+    /* nudge: bracket has descender extending below baseline, l minúsculo
+       doesn't — push l down so its optical center matches the brackets' */
+    transform: translate(-50%, calc(-50% + 56px));
+  }
+
+  /* Avatar B — Favicon style: "Al" gigante (A Bone + l Orange Bold) */
+  .avatar-favicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  .avatar-favicon .wm {
+    font-size: 720px;
+    letter-spacing: -0.04em;
+  }
+  .avatar-favicon .wm .a { color: var(--bone); font-weight: 400; }
+  .avatar-favicon .wm .l { color: var(--orange); font-weight: 700; }
+
+  /* Avatar C — Wordmark Alright completo, sobre Dark */
+  .avatar-wordmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  .avatar-wordmark .wm {
+    font-size: 400px;
+    color: var(--bone);
+  }
+  .avatar-wordmark .wm .l { color: var(--orange); font-weight: 700; }
+
+  /* ════════════════════════════════════════════════════════════════
+     FEED COVERS (1080×1350) — 4:5 portrait
+     ════════════════════════════════════════════════════════════════ */
+
+  /* Capa · Case */
+  .cover-case {
+    width: 100%; height: 100%;
+    padding: 96px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-case .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-case .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    line-height: 1.4;
+  }
+  .cover-case .index {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--orange);
+  }
+  .cover-case .title-block { display: flex; flex-direction: column; gap: 28px; }
+  .cover-case .title {
+    font-size: 140px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+  }
+  .cover-case .title .accent { color: var(--orange); font-weight: 700; }
+  .cover-case .accent-bar {
+    width: 200px;
+    height: 4px;
+    background: var(--orange);
+  }
+  .cover-case .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-case .bottom .wm { font-size: 56px; }
+  .cover-case .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* Capa · Manifesto */
+  .cover-manifesto {
+    width: 100%; height: 100%;
+    padding: 96px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-manifesto .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-manifesto .kicker {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.6);
+  }
+  .cover-manifesto .center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 40px;
+  }
+  .cover-manifesto .quote {
+    font-size: 128px;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+  }
+  .cover-manifesto .quote .dot { color: var(--orange); }
+  .cover-manifesto .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-manifesto .bottom .wm { font-size: 56px; }
+  .cover-manifesto .bottom .tag {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
+  /* Capa · Big idea — Look again. */
+  .cover-bigidea {
+    width: 100%; height: 100%;
+    padding: 96px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-bigidea .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-bigidea .kicker {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-bigidea .center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover-bigidea .phrase {
+    font-size: 196px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: var(--dark);
+  }
+  .cover-bigidea .phrase .brk {
+    color: var(--orange);
+    font-weight: 300;
+    margin: 0 0.05em;
+    letter-spacing: 0;
+  }
+  .cover-bigidea .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-bigidea .bottom .wm { font-size: 56px; }
+  .cover-bigidea .bottom .tag {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+  }
+
+  /* Capa · Making-of (com still placeholder) */
+  .cover-making {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 88px 88px 96px;
+  }
+  .cover-making .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 56px;
+  }
+  .cover-making .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .cover-making .ref {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--slate-warm);
+  }
+  .cover-making .still {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, rgba(217, 119, 87, 0.45) 0%, rgba(20, 20, 19, 0.85) 60%, rgba(20, 20, 19, 0.95) 100%),
+      linear-gradient(45deg, var(--stone) 0%, var(--clay-deep) 50%, var(--dark) 100%);
+    margin-bottom: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-making .still::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(250, 249, 245, 0.18), transparent 60%),
+      radial-gradient(ellipse at 75% 65%, rgba(217, 119, 87, 0.32), transparent 55%);
+  }
+  .cover-making .still .frame-tag {
+    position: absolute;
+    bottom: 32px;
+    left: 36px;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.85);
+    z-index: 2;
+  }
+  .cover-making .title {
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .cover-making .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 32px;
+  }
+  .cover-making .bottom .wm { font-size: 56px; }
+  .cover-making .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+  }
+
+  /* Capa · Pensamento / Quote */
+  .cover-quote {
+    width: 100%; height: 100%;
+    padding: 96px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-quote .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-quote .kicker {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-quote .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    gap: 36px;
+  }
+  .cover-quote .body {
+    font-size: 112px;
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+  }
+  .cover-quote .body .em { color: var(--orange); font-weight: 700; }
+  .cover-quote .attrib {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-quote .attrib .bullet {
+    width: 28px; height: 2px;
+    background: var(--orange);
+  }
+  .cover-quote .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-quote .bottom .wm { font-size: 56px; }
+  .cover-quote .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+  }
+
+  /* Capa · Split anúncio */
+  .cover-split {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .cover-split .pane-top {
+    flex: 1;
+    background: var(--bone);
+    padding: 88px 88px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-split .pane-bottom {
+    height: 38%;
+    background: var(--dark);
+    padding: 56px 88px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-split .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .cover-split .headline {
+    font-size: 132px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+  .cover-split .headline .brk { color: var(--orange); font-weight: 300; }
+  .cover-split .pane-bottom .lead {
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    max-width: 80%;
+  }
+  .cover-split .pane-bottom .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-split .pane-bottom .wm { font-size: 48px; color: var(--bone); }
+  .cover-split .pane-bottom .wm .l { color: var(--orange); }
+  .cover-split .pane-bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     VERTICAL COVERS (1080×1920)
+     ════════════════════════════════════════════════════════════════ */
+
+  /* Reels cover · editorial */
+  .reels-edit {
+    width: 100%; height: 100%;
+    padding: 280px 80px 320px; /* top + bottom safe zones */
+    display: flex;
+    flex-direction: column;
+    background: var(--bone);
+    position: relative;
+  }
+  .reels-edit .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 64px;
+  }
+  .reels-edit .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .reels-edit .ref {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .reels-edit .title {
+    font-size: 152px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+  }
+  .reels-edit .title .brk { color: var(--orange); font-weight: 300; }
+  .reels-edit .still {
+    flex: 1;
+    width: 100%;
+    margin-top: 80px;
+    background:
+      linear-gradient(160deg, rgba(217, 119, 87, 0.55) 0%, rgba(20, 20, 19, 0.85) 70%),
+      linear-gradient(45deg, var(--stone) 0%, var(--clay-deep) 50%, var(--dark) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .reels-edit .still::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 35% 45%, rgba(250, 249, 245, 0.18), transparent 55%),
+      radial-gradient(ellipse at 70% 70%, rgba(217, 119, 87, 0.32), transparent 50%);
+  }
+  .reels-edit .footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+  }
+  .reels-edit .footer .wm { font-size: 64px; }
+
+  /* Stories template — dark, swipe */
+  .stories-swipe {
+    width: 100%; height: 100%;
+    padding: 280px 80px 340px;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .stories-swipe .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .stories-swipe .wm { font-size: 48px; color: var(--bone); }
+  .stories-swipe .wm .l { color: var(--orange); }
+  .stories-swipe .index {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+  .stories-swipe .center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 48px;
+  }
+  .stories-swipe .headline {
+    font-size: 184px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+  }
+  .stories-swipe .accent-bar {
+    width: 240px;
+    height: 4px;
+    background: var(--orange);
+  }
+  .stories-swipe .lead {
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: rgba(250, 249, 245, 0.78);
+    max-width: 80%;
+  }
+  .stories-swipe .cta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .stories-swipe .cta .label {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--bone);
+  }
+  .stories-swipe .cta .arrow {
+    font-size: 32px;
+    color: var(--orange);
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     EDIT MODE — contenteditable inline + export HTML
+     ════════════════════════════════════════════════════════════════ */
+
+  .edit-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: -80px -48px 32px;
+    padding: 16px 48px;
+    background: rgba(20, 20, 19, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(250, 249, 245, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .edit-bar .btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid rgba(250, 249, 245, 0.25);
+    background: transparent;
+    color: var(--bone);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 250ms var(--ease-cinematic);
+  }
+  .edit-bar .btn:hover {
+    background: var(--bone);
+    color: var(--dark);
+    border-color: var(--bone);
+  }
+  .edit-bar .btn[aria-pressed="true"],
+  .edit-bar .btn.is-active {
+    background: var(--orange);
+    color: var(--dark);
+    border-color: var(--orange);
+  }
+  .edit-bar .btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .edit-bar .hint {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.5);
+    line-height: 1.6;
+  }
+  .edit-bar .hint b {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  /* Per-piece download buttons */
+  .piece-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .piece-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.7);
+    text-decoration: none;
+    padding: 7px 12px;
+    border: 1px solid rgba(250, 249, 245, 0.16);
+    border-radius: 999px;
+    background: transparent;
+    transition: all 200ms var(--ease-cinematic);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .piece-btn:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--dark);
+  }
+  .piece-btn .arrow {
+    opacity: 0.6;
+  }
+  .piece-btn:hover .arrow {
+    opacity: 1;
+  }
+
+  /* Hide edit bar in print/PDF export */
+  @media print {
+    .edit-bar { display: none !important; }
+  }
+
+  /* Editable indicator — only shown when edit mode is on */
+  body.edit-mode [data-editable] {
+    outline: 1px dashed rgba(217, 119, 87, 0.4);
+    outline-offset: 6px;
+    cursor: text;
+    transition: outline-color 150ms var(--ease-cinematic), background 150ms var(--ease-cinematic);
+  }
+  body.edit-mode [data-editable]:hover {
+    outline-color: var(--orange);
+  }
+  body.edit-mode [data-editable]:focus {
+    outline: 2px solid var(--orange);
+    outline-offset: 6px;
+    background: rgba(217, 119, 87, 0.06);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="edit-bar" id="edit-bar">
+    <button class="btn" id="toggle-edit" aria-pressed="false">Modo edição · OFF</button>
+    <button class="btn" id="export-html" disabled>Exportar HTML editado ↓</button>
+    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com camadas separadas (Background + Content) — pra atualizar com edições, exporta o HTML editado e roda local <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs --source &lt;html&gt;</code>.</span>
+  </div>
+
+  <header class="page-header">
+    <div class="brand">A<span class="l">l</span>right</div>
+    <div class="meta">
+      Instagram Kit · v1<br />
+      2026-05-15
+    </div>
+  </header>
+
+  <p class="intro">
+    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Bricolage Grotesque, paleta Bone / Dark / Orange Clay, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
+  </p>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       1 — AVATAR
+       ════════════════════════════════════════════════════════════════ -->
+
+  <section class="section" id="avatar">
+    <div class="section-head">
+      <span class="num">01 / Avatar</span>
+      <h2>Foto de perfil</h2>
+    </div>
+    <p class="section-sub">
+      Instagram corta o avatar em círculo (≈ 75% do quadrado). As três variantes abaixo testam diferentes níveis de escala — passe o mouse sobre cada peça para simular o crop circular.
+    </p>
+
+    <div class="grid square">
+
+      <!-- Avatar A · Símbolo (( l )) sobre Dark -->
+      <div class="piece">
+        <div class="piece-frame-wrap square avatar-preview">
+          <div class="frame square bg-dark" id="avatar-a">
+            <div class="avatar-symbol">
+              <span class="glyph brk-left">((</span>
+              <span class="glyph el">l</span>
+              <span class="glyph brk-right">))</span>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">A · 1080 × 1080</span>
+          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">((l))</code></span>
+          <span class="desc">Brackets Bone enquadram o <em>l</em> Orange Clay opticamente centralizado. Símbolo abstrato puro — mais reconhecível em scale pequena.</span>
+        </div>
+      </div>
+
+      <!-- Avatar B · Favicon style "Al" sobre Dark -->
+      <div class="piece">
+        <div class="piece-frame-wrap square avatar-preview">
+          <div class="frame square bg-dark" id="avatar-b">
+            <div class="avatar-favicon">
+              <span class="wm"><span class="a">A</span><span class="l">l</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">B · 1080 × 1080</span>
+          <span class="name">Favicon style <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Al</code></span>
+          <span class="desc">Pegada do favicon — primeiros dois caracteres do wordmark cheios no quadro. <em>A</em> Bone + <em>l</em> Bold Orange Clay. Já se lê como fragmento da palavra.</span>
+        </div>
+      </div>
+
+      <!-- Avatar C · Wordmark Alright completo sobre Dark -->
+      <div class="piece">
+        <div class="piece-frame-wrap square avatar-preview">
+          <div class="frame square bg-dark" id="avatar-c">
+            <div class="avatar-wordmark">
+              <span class="wm">A<span class="l">l</span>right</span>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">C · 1080 × 1080</span>
+          <span class="name">Wordmark <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Alright</code></span>
+          <span class="desc">Logo Default completo sobre Dark. Reconhecimento total (palavra inteira) ao custo de menor escala efetiva no círculo do perfil.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scale test — real Instagram circle sizes -->
+    <div class="scale-test">
+      <div class="scale-test-head">
+        <span class="label">Teste · escala real</span>
+        <h3>Como cada opção aparece nos contextos do Instagram</h3>
+      </div>
+      <p class="scale-test-sub">
+        Cada coluna reproduz o diâmetro real (em CSS pixels) em que o Instagram exibe o avatar no respectivo contexto. Crop circular aplicado como na app. Compare lendo cada linha.
+      </p>
+
+      <div class="scale-matrix">
+        <!-- Header row -->
+        <div></div>
+        <div class="col-label">
+          <span class="size">32 px</span>
+          <span class="context">Comentários<br/>Post no feed</span>
+        </div>
+        <div class="col-label">
+          <span class="size">44 px</span>
+          <span class="context">DMs<br/>Busca / sugestões</span>
+        </div>
+        <div class="col-label">
+          <span class="size">56 px</span>
+          <span class="context">Stories ring<br/>no feed</span>
+        </div>
+        <div class="col-label">
+          <span class="size">110 px</span>
+          <span class="context">Header<br/>do perfil</span>
+        </div>
+
+        <!-- Row A -->
+        <div class="row-label">A<br/><span style="color: rgba(250,249,245,0.4); font-weight: 400; letter-spacing: 0.15em;">((l))</span></div>
+        <div class="cell"><img class="avatar-thumb s-32" src="../assets/social/instagram/avatar-a-symbol.png" alt="A em 32px" /></div>
+        <div class="cell"><img class="avatar-thumb s-44" src="../assets/social/instagram/avatar-a-symbol.png" alt="A em 44px" /></div>
+        <div class="cell"><span class="ring"><img class="avatar-thumb s-56" src="../assets/social/instagram/avatar-a-symbol.png" alt="A em 56px com story ring" /></span></div>
+        <div class="cell"><img class="avatar-thumb s-110" src="../assets/social/instagram/avatar-a-symbol.png" alt="A em 110px" /></div>
+
+        <!-- Row B -->
+        <div class="row-label">B<br/><span style="color: rgba(250,249,245,0.4); font-weight: 400; letter-spacing: 0.15em;">Al</span></div>
+        <div class="cell"><img class="avatar-thumb s-32" src="../assets/social/instagram/avatar-b-favicon.png" alt="B em 32px" /></div>
+        <div class="cell"><img class="avatar-thumb s-44" src="../assets/social/instagram/avatar-b-favicon.png" alt="B em 44px" /></div>
+        <div class="cell"><span class="ring"><img class="avatar-thumb s-56" src="../assets/social/instagram/avatar-b-favicon.png" alt="B em 56px com story ring" /></span></div>
+        <div class="cell"><img class="avatar-thumb s-110" src="../assets/social/instagram/avatar-b-favicon.png" alt="B em 110px" /></div>
+
+        <!-- Row C -->
+        <div class="row-label">C<br/><span style="color: rgba(250,249,245,0.4); font-weight: 400; letter-spacing: 0.15em;">Alright</span></div>
+        <div class="cell"><img class="avatar-thumb s-32" src="../assets/social/instagram/avatar-c-wordmark.png" alt="C em 32px" /></div>
+        <div class="cell"><img class="avatar-thumb s-44" src="../assets/social/instagram/avatar-c-wordmark.png" alt="C em 44px" /></div>
+        <div class="cell"><span class="ring"><img class="avatar-thumb s-56" src="../assets/social/instagram/avatar-c-wordmark.png" alt="C em 56px com story ring" /></span></div>
+        <div class="cell"><img class="avatar-thumb s-110" src="../assets/social/instagram/avatar-c-wordmark.png" alt="C em 110px" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       2 — FEED COVERS
+       ════════════════════════════════════════════════════════════════ -->
+
+  <section class="section" id="feed">
+    <div class="section-head">
+      <span class="num">02 / Feed</span>
+      <h2>Capas de post</h2>
+    </div>
+    <p class="section-sub">
+      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Bricolage Grotesque; accent Orange Clay sempre ≤ 10% da peça.
+    </p>
+
+    <div class="grid portrait">
+
+      <!-- Capa · Case -->
+      <div class="piece">
+        <div class="piece-frame-wrap portrait">
+          <div class="frame portrait bg-bone" id="feed-case">
+            <div class="cover-case">
+              <div class="top">
+                <div class="eyebrow">Case · 2026<br />Olympikus</div>
+                <div class="index">N.07</div>
+              </div>
+              <div class="title-block">
+                <div class="accent-bar"></div>
+                <div class="title">Corre.<br />Filme sem<br />câmera.</div>
+              </div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="meta">wearealright.cc<br />A.I. first prod. co.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">01 · 1080 × 1350</span>
+          <span class="name">Capa · Case</span>
+          <span class="desc">Anuncia um trabalho. Eyebrow cliente · ano + index; título grande; wordmark + meta no rodapé.</span>
+        </div>
+      </div>
+
+      <!-- Capa · Manifesto -->
+      <div class="piece">
+        <div class="piece-frame-wrap portrait">
+          <div class="frame portrait bg-dark" id="feed-manifesto">
+            <div class="cover-manifesto">
+              <div class="top">
+                <div class="kicker">Manifesto · 01</div>
+                <div class="kicker" style="color: var(--orange)">((  ))</div>
+              </div>
+              <div class="center">
+                <div class="quote">Craft.<br />Craft.<br />And. More.<br />Craft<span class="dot">.</span></div>
+              </div>
+              <div class="bottom">
+                <span class="wm on-dark">A<span class="l">l</span>right</span>
+                <span class="tag">2026 · São Paulo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">02 · 1080 × 1350</span>
+          <span class="name">Capa · Manifesto</span>
+          <span class="desc">Bandeira canônica sobre Dark. Texto-protagonista; nada além dele. Use para frases canon: <code>Craft. Craft. And. More. Craft.</code>, <code>Cada filme é um filme.</code>, <code>No camera or set.</code></span>
+        </div>
+      </div>
+
+      <!-- Capa · Big idea -->
+      <div class="piece">
+        <div class="piece-frame-wrap portrait">
+          <div class="frame portrait bg-bone" id="feed-bigidea">
+            <div class="cover-bigidea">
+              <div class="top">
+                <div class="kicker">Alright · Big idea</div>
+                <div class="kicker">EP · 03</div>
+              </div>
+              <div class="center">
+                <div class="phrase"><span class="brk">((</span>Look<br />again.<span class="brk">))</span></div>
+              </div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="tag">A.I. first<br />Production Co.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">03 · 1080 × 1350</span>
+          <span class="name">Capa · Big idea</span>
+          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Orange Clay como heroes. Para abrir séries ou marcar reveals.</span>
+        </div>
+      </div>
+
+      <!-- Capa · Making-of -->
+      <div class="piece">
+        <div class="piece-frame-wrap portrait">
+          <div class="frame portrait bg-bone" id="feed-making">
+            <div class="cover-making">
+              <div class="header">
+                <span class="eyebrow">Making-of · PUMA</span>
+                <span class="ref">FRAME 048 / 240</span>
+              </div>
+              <div class="still">
+                <span class="frame-tag">Take 12 · interior · 16:9</span>
+              </div>
+              <div class="title">Sem câmera. Sem set.<br />Só craft.</div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="meta">Carrossel · arraste →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">04 · 1080 × 1350</span>
+          <span class="name">Capa · Making-of</span>
+          <span class="desc">Frame still 16:9 (placeholder warm gradient — substituir por still real do projeto) + título embaixo. Padrão para abrir carrosséis de bastidores.</span>
+        </div>
+      </div>
+
+      <!-- Capa · Quote -->
+      <div class="piece">
+        <div class="piece-frame-wrap portrait">
+          <div class="frame portrait bg-bone" id="feed-quote">
+            <div class="cover-quote">
+              <div class="top">
+                <div class="kicker">Pensamento · 04</div>
+                <div class="kicker" style="color:var(--orange)">((  ))</div>
+              </div>
+              <div class="center">
+                <div class="body">Não filmamos.<br /><span class="em">Imaginamos</span>.</div>
+                <div class="attrib">
+                  <span class="bullet"></span>
+                  Diário Alright · 2026
+                </div>
+              </div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="meta">((Look again.))</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">05 · 1080 × 1350</span>
+          <span class="name">Capa · Pensamento</span>
+          <span class="desc">Citação editorial autoral. Uma palavra em Orange Clay como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
+        </div>
+      </div>
+
+      <!-- Capa · Split -->
+      <div class="piece">
+        <div class="piece-frame-wrap portrait">
+          <div class="frame portrait" id="feed-split">
+            <div class="cover-split">
+              <div class="pane-top">
+                <span class="eyebrow">Novo · 2026</span>
+                <div class="headline">Chupa<br />Chups<br /><span class="brk">((</span>Forever<br />Fun<span class="brk">))</span></div>
+              </div>
+              <div class="pane-bottom">
+                <p class="lead">Quatro filmes. Um universo. Zero câmeras.</p>
+                <div class="bottom-row">
+                  <span class="wm">A<span class="l">l</span>right</span>
+                  <span class="meta">Link na bio →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">06 · 1080 × 1350</span>
+          <span class="name">Capa · Anúncio split</span>
+          <span class="desc">Composição split Bone/Dark 62/38 para anúncios de lançamento, com lead em Bone sobre Dark + CTA. Funciona como capa standalone ou cover de carrossel.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       3 — VERTICAL COVERS
+       ════════════════════════════════════════════════════════════════ -->
+
+  <section class="section" id="vertical">
+    <div class="section-head">
+      <span class="num">03 / Vertical</span>
+      <h2>Reels & Stories</h2>
+    </div>
+    <p class="section-sub">
+      Formato <strong>9:16 vertical (1080×1920)</strong>. Safe-zone superior ≈ 280 px (header app) e inferior ≈ 320–340 px (UI nativa + label). Conteúdo crítico no centro 1080×1320.
+    </p>
+
+    <div class="grid vertical">
+
+      <!-- Reels cover editorial -->
+      <div class="piece">
+        <div class="piece-frame-wrap vertical">
+          <div class="frame vertical" id="vert-reels">
+            <div class="reels-edit">
+              <div class="header">
+                <span class="eyebrow">Making-of · Olympikus</span>
+                <span class="ref">Reel · 60s</span>
+              </div>
+              <div class="title"><span class="brk">((</span>Corre 5<span class="brk">))</span></div>
+              <div class="still"></div>
+              <div class="footer">
+                <span class="wm">A<span class="l">l</span>right</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">07 · 1080 × 1920</span>
+          <span class="name">Reels cover · editorial</span>
+          <span class="desc">Padrão para capa de Reels. Brackets enquadram o título; still warm gradient embaixo (placeholder); wordmark centralizado no rodapé respeitando safe-zone.</span>
+        </div>
+      </div>
+
+      <!-- Stories swipe -->
+      <div class="piece">
+        <div class="piece-frame-wrap vertical">
+          <div class="frame vertical" id="vert-stories">
+            <div class="stories-swipe">
+              <div class="top">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="index">2026<br />05 · 15</span>
+              </div>
+              <div class="center">
+                <div class="headline">Case<br />novo.</div>
+                <div class="accent-bar"></div>
+                <p class="lead">PUMA Portugal — filme institucional sem câmera, sem set, sem custo alto.</p>
+                <div class="cta">
+                  <span class="label">Arraste →</span>
+                  <span class="arrow">↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">08 · 1080 × 1920</span>
+          <span class="name">Stories · swipe</span>
+          <span class="desc">Template para Stories. Dark background (a marca respira em dark no efêmero); headline + lead + CTA. Wordmark top-left, índice mono top-right.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+// ─── Per-piece live download (captures current DOM state) ────────
+(function () {
+  var FILENAMES = {
+    'avatar-a':       'avatar-a-symbol',
+    'avatar-b':       'avatar-b-favicon',
+    'avatar-c':       'avatar-c-wordmark',
+    'feed-case':      'feed-01-case',
+    'feed-manifesto': 'feed-02-manifesto',
+    'feed-bigidea':   'feed-03-bigidea',
+    'feed-making':    'feed-04-making-of',
+    'feed-quote':     'feed-05-quote',
+    'feed-split':     'feed-06-split',
+    'vert-reels':     'vertical-07-reels-cover',
+    'vert-stories':   'vertical-08-stories'
+  };
+
+  // Filenames that actually have a real .psd file on disk.
+  // PSD download button only renders for these pieces.
+  var PSD_AVAILABLE = {
+    'feed-01-case': true
+  };
+
+  function pieceSize(frame) {
+    if (frame.classList.contains('square'))   return [1080, 1080];
+    if (frame.classList.contains('portrait')) return [1080, 1350];
+    if (frame.classList.contains('vertical')) return [1080, 1920];
+    return [1080, 1080];
+  }
+
+  // Render the current state of a frame to a PNG dataURL at native dimensions.
+  // Strategy: deep-clone the frame, strip edit artefacts, parent it offscreen,
+  // reset scale + size, then call modern-screenshot's domToPng on the clone.
+  async function captureFrame(frame) {
+    var size = pieceSize(frame);
+    var w = size[0], h = size[1];
+
+    var clone = frame.cloneNode(true);
+    clone.style.transform = 'none';
+    clone.style.boxShadow = 'none';
+    clone.style.width = w + 'px';
+    clone.style.height = h + 'px';
+    clone.style.visibility = 'visible';
+
+    clone.querySelectorAll('[contenteditable]').forEach(function (el) {
+      el.removeAttribute('contenteditable');
+    });
+
+    // Wrapper that pins the clone offscreen but keeps it laid out at native size.
+    var holder = document.createElement('div');
+    holder.style.cssText = 'position:fixed;left:-99999px;top:0;width:' + w + 'px;height:' + h + 'px;z-index:-1;pointer-events:none;';
+    holder.appendChild(clone);
+    document.body.appendChild(holder);
+
+    try {
+      await document.fonts.ready;
+      // Two RAFs so layout + font shaping fully settle on the clone
+      await new Promise(function (r) { requestAnimationFrame(function () { requestAnimationFrame(r); }); });
+
+      return await window.htmlToImage.toPng(clone, {
+        width: w,
+        height: h,
+        pixelRatio: 1,
+        cacheBust: true,
+        backgroundColor: getComputedStyle(frame).backgroundColor || '#faf9f5'
+      });
+    } finally {
+      document.body.removeChild(holder);
+    }
+  }
+
+  // Poll until the capture lib is ready (in case the CDN script is still loading)
+  function waitForLib(maxMs) {
+    maxMs = maxMs || 8000;
+    var start = Date.now();
+    return new Promise(function (resolve, reject) {
+      (function poll() {
+        if (window.htmlToImage && window.jspdf) return resolve();
+        if (Date.now() - start > maxMs) return reject(new Error('Bibliotecas de captura demoraram a carregar — recarregue a página.'));
+        setTimeout(poll, 100);
+      })();
+    });
+  }
+
+  function triggerDownload(dataUrl, filename) {
+    var a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  async function downloadPNG(frame, filename) {
+    var dataUrl = await captureFrame(frame);
+    triggerDownload(dataUrl, filename + '.png');
+  }
+
+  async function downloadPDF(frame, filename) {
+    var dataUrl = await captureFrame(frame);
+    var size = pieceSize(frame);
+    var w = size[0], h = size[1];
+    var jsPDF = window.jspdf && window.jspdf.jsPDF;
+    if (!jsPDF) throw new Error('jsPDF not loaded');
+    var pdf = new jsPDF({
+      orientation: h > w ? 'portrait' : 'landscape',
+      unit: 'px',
+      format: [w, h],
+      compress: true,
+      hotfixes: ['px_scaling']
+    });
+    pdf.addImage(dataUrl, 'PNG', 0, 0, w, h, undefined, 'FAST');
+    pdf.save(filename + '.pdf');
+  }
+
+  function setBusy(btn, busy) {
+    if (busy) {
+      btn.dataset.label = btn.textContent;
+      btn.textContent = 'Gerando…';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.55';
+    } else {
+      if (btn.dataset.label) btn.textContent = btn.dataset.label;
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    }
+  }
+
+  function bindButtons() {
+    document.querySelectorAll('.piece').forEach(function (piece) {
+      var frame = piece.querySelector('.frame');
+      if (!frame) return;
+      var filename = FILENAMES[frame.id];
+      if (!filename) return;
+      var label = piece.querySelector('.piece-label');
+      if (!label) return;
+      if (label.querySelector('.piece-actions')) return; // already bound
+
+      var actions = document.createElement('div');
+      actions.className = 'piece-actions';
+      var html =
+        '<button type="button" class="piece-btn" data-format="png" title="Captura o estado atual da peça (com edições inline) como PNG">PNG <span class="arrow">↓</span></button>' +
+        '<button type="button" class="piece-btn" data-format="pdf" title="Captura o estado atual como PDF (raster wrapped, A4 fit)">PDF <span class="arrow">↓</span></button>';
+      // PSD download only shown for pieces that have a real master PSD on disk.
+      // (Most PSDs from the initial scaffolding never made it to deploy. To
+      // add one: drop the .psd in assets/social/instagram/psd/ and list its
+      // FILENAMES key in PSD_AVAILABLE below.)
+      if (PSD_AVAILABLE[filename]) {
+        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com camadas separadas (Background + Content) — versão master pré-renderizada, sem suas edições inline">PSD · camadas <span class="arrow">↓</span></a>';
+      }
+      actions.innerHTML = html;
+      label.appendChild(actions);
+
+      actions.querySelectorAll('.piece-btn').forEach(function (btn) {
+        btn.addEventListener('click', async function () {
+          var format = btn.dataset.format;
+          setBusy(btn, true);
+          try {
+            await waitForLib();
+            if (format === 'pdf') await downloadPDF(frame, filename);
+            else                   await downloadPNG(frame, filename);
+          } catch (e) {
+            console.error(e);
+            alert('Falha ao capturar: ' + (e && e.message ? e.message : e));
+          } finally {
+            setBusy(btn, false);
+          }
+        });
+      });
+    });
+  }
+
+  // Bind once libs are loaded (defer + DOMContentLoaded ordering)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindButtons);
+  } else {
+    bindButtons();
+  }
+})();
+
+(function () {
+  // Selectors that map every editable piece of copy in every frame.
+  // Wordmarks, brand devices (((, )), brackets in big idea) stay locked.
+  var EDITABLE_SELECTORS = [
+    // Case
+    '#feed-case .eyebrow', '#feed-case .index', '#feed-case .title',
+    // Manifesto
+    '#feed-manifesto .kicker', '#feed-manifesto .quote', '#feed-manifesto .tag',
+    // Big idea — only the kickers + tag are editable. Phrase itself stays canon.
+    '#feed-bigidea .kicker', '#feed-bigidea .tag',
+    // Making-of
+    '#feed-making .eyebrow', '#feed-making .ref', '#feed-making .frame-tag', '#feed-making .title', '#feed-making .meta',
+    // Quote
+    '#feed-quote .kicker', '#feed-quote .body', '#feed-quote .attrib', '#feed-quote .meta',
+    // Split
+    '#feed-split .eyebrow', '#feed-split .headline', '#feed-split .lead', '#feed-split .meta',
+    // Reels
+    '#vert-reels .eyebrow', '#vert-reels .ref', '#vert-reels .title',
+    // Stories
+    '#vert-stories .index', '#vert-stories .headline', '#vert-stories .lead', '#vert-stories .cta .label'
+  ];
+
+  // Tag every targetable element so CSS + export logic can find them
+  EDITABLE_SELECTORS.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.setAttribute('data-editable', '');
+      el.spellcheck = false;
+    });
+  });
+
+  var toggleBtn = document.getElementById('toggle-edit');
+  var exportBtn = document.getElementById('export-html');
+  var isEditing = false;
+
+  function setEditMode(on) {
+    isEditing = on;
+    document.body.classList.toggle('edit-mode', on);
+    toggleBtn.setAttribute('aria-pressed', String(on));
+    toggleBtn.textContent = on ? 'Modo edição · ON' : 'Modo edição · OFF';
+    toggleBtn.classList.toggle('is-active', on);
+    exportBtn.disabled = !on;
+
+    document.querySelectorAll('[data-editable]').forEach(function (el) {
+      if (on) {
+        el.contentEditable = 'true';
+      } else {
+        el.removeAttribute('contenteditable');
+      }
+    });
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    setEditMode(!isEditing);
+  });
+
+  // Prevent newline-on-Enter inside short fields like eyebrows/indexes —
+  // the layout assumes single-line for those.
+  var SINGLE_LINE = ['eyebrow', 'index', 'ref', 'frame-tag', 'kicker', 'meta', 'tag', 'attrib', 'label'];
+  document.addEventListener('keydown', function (e) {
+    if (!isEditing) return;
+    if (e.key !== 'Enter') return;
+    var t = e.target;
+    if (!t || !t.matches || !t.matches('[data-editable]')) return;
+    var classes = t.className.split(/\s+/);
+    var isSingle = classes.some(function (c) { return SINGLE_LINE.indexOf(c) !== -1; });
+    if (isSingle) e.preventDefault();
+  });
+
+  exportBtn.addEventListener('click', function () {
+    // Clone the document so we can strip edit-mode artifacts before serializing
+    var clone = document.documentElement.cloneNode(true);
+
+    // Remove the edit bar entirely from the exported file
+    var bar = clone.querySelector('#edit-bar');
+    if (bar) bar.parentNode.removeChild(bar);
+
+    // Strip contenteditable attributes left over from active editing
+    clone.querySelectorAll('[contenteditable]').forEach(function (el) {
+      el.removeAttribute('contenteditable');
+    });
+    // Strip edit-mode body class
+    var body = clone.querySelector('body');
+    if (body) body.classList.remove('edit-mode');
+    // Remove THIS script from the export (so opened-file doesn't re-bootstrap)
+    clone.querySelectorAll('script').forEach(function (s) { s.parentNode.removeChild(s); });
+
+    var html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    var stamp = new Date().toISOString().slice(0, 10);
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'instagram-kit-edited-' + stamp + '.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+})();
+</script>
+
+</body>
+</html>
