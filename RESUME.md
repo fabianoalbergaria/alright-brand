@@ -138,9 +138,12 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 ### Instagram kit editor
 
 - Source: `instagram-kit/index.html` (1743 linhas, html-to-image + jspdf via CDN)
-- Assets: `assets/social/instagram/avatar-{a,b,c}.png` + `assets/social/instagram/psd/feed-01-case.psd`
+- Assets: `assets/social/instagram/avatar-{a,b,c}.png` + 11 PSDs em `assets/social/instagram/psd/`
 - 11 peças editáveis inline: 3 avatars + 6 feed posts (1080×1350) + 2 vertical (1080×1920)
-- Cada peça tem download PNG/PDF (com edições inline) e PSD (só `feed-01-case` por enquanto — outros 10 PSDs nunca foram deployados)
+- Cada peça tem 3 botões de download:
+  - **PNG / PDF** (com edições inline) — via html-to-image + jspdf no client
+  - **PSD · camadas** (master pré-renderizado sem edições) — `Background` + `Content` em camadas separadas, composite incluso
+- Geração de PSDs: `node tools/generate-instagram-psd.mjs` (Playwright renderiza cada peça → ag-psd empacota). `--only=<id1,id2>` pra regenerar subset. `feed-01-case` é hand-crafted (text layers vetoriais reais) — preservado e não regenerado.
 - Deploy: `./deploy-kit.sh` (build em `.kit-dist/` + wrangler pages deploy)
 - Recuperado de edge cache em 2026-05-18 antes do TTL expirar — outra sessão tinha feito o source mas não commitou.
 
@@ -166,7 +169,6 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 
 1. **Reels de venda** *(pedido em 2026-05-15)* — produzir reel/sizzle pra vender o trabalho. Bruto: vídeo curto (60–90s típico) combinando cases já existentes em R2 (HBO Max, Chupa Chups, PUMA, Olympikus, Mizuno, Negra Li, Brime, Instituto Caldeira, BK, Claro) com a ID visual da marca (Bricolage Grotesque + `(( ))` + Orange Clay accent + motion `cubic-bezier(0.16,1.0,0.3,1.0)`). Decisões a cravar com o owner antes de produzir: duração final, plataformas alvo (Instagram Reels / YouTube Shorts / LinkedIn / TikTok), narrativa (cases por categoria? ordem cronológica? climax + reveal?), trilha, presença ou não de voiceover, e CTA final (link, contato, ou só lockup).
 2. **Brand book print v2** — gallery não inclui os 3 cases novos (HBO Max, Instituto Caldeira, BK). Página 23 (House look · stills) tem 8 tiles fixos no grid A4 — adicionar 3 daria overflow. Pra incluir, ou reorganiza tiles existentes (alguns col-3 → col-2) ou cria uma página 26 nova. Não-bloqueante: brand book web já tem os 3 novos.
-3. **10 PSDs do Instagram kit** — apenas `feed-01-case.psd` existe como PSD real. Os outros 10 (`avatar-{a,b,c}`, `feed-{02..06}`, `vertical-{07,08}`) nunca foram deployados — botão de PSD no editor só aparece pra `feed-01-case` via `PSD_AVAILABLE` flag. Pra recuperar: encontrar a outra sessão Claude que produziu esses arquivos, OU rodar um `tools/generate-instagram-psd.mjs` (referenciado no editor mas inexistente no repo) — provavelmente em outra sessão.
 
 ## Deck — composição final
 
@@ -201,6 +203,7 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 - **Downloads section no brand book web** (2026-05-18): nova seção 10 com 6 cards: Press kit (hero dark span-12), Logo pack, Design tokens, Favicon kit, Brand book PDF, Instagram kit. Nav ganhou link `↓ Downloads` accent. 5 zips servidos em `assets/downloads/`: `alright-press-kit.zip` (740KB), `alright-logo-pack.zip` (2MB), `alright-tokens.zip` (7KB), `alright-favicon-kit.zip` (52KB), `alright-instagram-kit.zip` (199KB).
 - **Press kit gerador** (2026-05-18): `tools/generate-press-kit.mjs` produz palette card 1080×1350 PNG + PDF A4 via Playwright. Press kit zip contém logos curados (5 SVG + 2 PNG), palette card (PNG + PDF), bio PT + EN, 3 stills (HBO Max, Olympikus, Negra Li), README com brand essentials, contact.txt.
 - **Instagram kit editor — separate Pages project** (2026-05-18): editor HTML recuperado de edge cache (outra sessão tinha feito mas não commitado). Source em `instagram-kit/index.html`. Criado **NOVO Pages project `wearealright-kit`** (separado do main `wearealright`). Hostname `kit.wearealright.cc` movido pro novo project. CNAME atualizado pra `wearealright-kit.pages.dev`. Editor serve em `https://kit.wearealright.cc/` (root, sem `/instagram-kit/`). Cloudflare Access policy `Alright Kit` continua intacta com 2 destinations: `kit.wearealright.cc/*` (gated) + `wearealright.cc/instagram-kit/*` (defesa em profundidade, path não existe mais no main project). Deploys agora separados: `./deploy.sh` (main) + `./deploy-kit.sh` (kit).
+- **Instagram kit · 10 PSDs gerados** (2026-05-18): novo `tools/generate-instagram-psd.mjs` (Playwright + ag-psd) renderiza cada peça do editor como PSD 2-camadas (`Background` solid raster + `Content` transparent overlay + composite flat). 10 PSDs novos em `assets/social/instagram/psd/`: 3 avatars (1080×1080) + 5 feed covers (1080×1350, exceto `feed-01-case` que continua hand-crafted com text layers vetoriais) + 2 vertical (1080×1920). `feed-06-split` ganhou bg split-62-bone-dark customizado. `PSD_AVAILABLE` flag no editor expandida pras 11 peças — botão "PSD · camadas ↓" agora renderiza pra todas. Próximo `./deploy-kit.sh` publica.
 - **Brand book print v2** entregue (25 páginas A4, `05-deliverables/brand-book-print.html`, online em `/brand-book/print/`)
 - **Deck v3 finalizado** com 11 slides (House Look removido), lightbox Vimeo em todos os cases, Animatic Claro como slide 04
 - **Portfolio v3**: case Brime adicionado, todas as descrições nos cases, Mizuno/Olympikus com vídeos full sem corte, Negra Li com novo trecho (CORTE_NEGRA_LI)
@@ -243,6 +246,7 @@ Canonical Pages URLs (sempre acessíveis):
 | `./deploy-kit.sh` | Deploy do project `wearealright-kit` (Instagram editor). Usa `.kit-dist/` |
 | `tools/generate-meta-assets.mjs` | Regenera favicon SVG + 7 PNG sizes + OG image |
 | `tools/generate-instagram-kit.mjs` | Regenera os 5 templates PNG do Instagram kit zip estático |
+| `tools/generate-instagram-psd.mjs` | Regenera as 10 PSDs do editor (2 layers Background+Content). `--only=<id1,id2>` pra subset. Não toca `feed-01-case` (hand-crafted) |
 | `tools/generate-press-kit.mjs` | Regenera palette card PNG + PDF + bundle do press kit |
 | `tools/compress-work-assets.mjs` | Compressa originais em assets/work/real/ → web/ |
 
