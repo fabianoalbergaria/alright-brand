@@ -164,12 +164,13 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 
 ## Pendente
 
-<!-- Domínio custom completamente migrado em 2026-05-15 — ver seção Domínio acima -->
-2. **Reels de venda** *(pedido em 2026-05-15)* — produzir reel/sizzle pra vender o trabalho. Bruto: vídeo curto (60–90s típico) combinando cases já existentes em R2 (Chupa Chups, PUMA, Olympikus, Mizuno, Negra Li, Brime, Claro) com a ID visual da marca (Bricolage Grotesque + `(( ))` + Orange Clay accent + motion `cubic-bezier(0.16,1.0,0.3,1.0)`). Decisões a cravar com o owner antes de produzir: duração final, plataformas alvo (Instagram Reels / YouTube Shorts / LinkedIn / TikTok), narrativa (cases por categoria? ordem cronológica? climax + reveal?), trilha, presença ou não de voiceover, e se tem CTA final (link, contato, ou só lockup).
+1. **Reels de venda** *(pedido em 2026-05-15)* — produzir reel/sizzle pra vender o trabalho. Bruto: vídeo curto (60–90s típico) combinando cases já existentes em R2 (HBO Max, Chupa Chups, PUMA, Olympikus, Mizuno, Negra Li, Brime, Instituto Caldeira, BK, Claro) com a ID visual da marca (Bricolage Grotesque + `(( ))` + Orange Clay accent + motion `cubic-bezier(0.16,1.0,0.3,1.0)`). Decisões a cravar com o owner antes de produzir: duração final, plataformas alvo (Instagram Reels / YouTube Shorts / LinkedIn / TikTok), narrativa (cases por categoria? ordem cronológica? climax + reveal?), trilha, presença ou não de voiceover, e CTA final (link, contato, ou só lockup).
+2. **Brand book print v2** — gallery não inclui os 3 cases novos (HBO Max, Instituto Caldeira, BK). Página 23 (House look · stills) tem 8 tiles fixos no grid A4 — adicionar 3 daria overflow. Pra incluir, ou reorganiza tiles existentes (alguns col-3 → col-2) ou cria uma página 26 nova. Não-bloqueante: brand book web já tem os 3 novos.
+3. **10 PSDs do Instagram kit** — apenas `feed-01-case.psd` existe como PSD real. Os outros 10 (`avatar-{a,b,c}`, `feed-{02..06}`, `vertical-{07,08}`) nunca foram deployados — botão de PSD no editor só aparece pra `feed-01-case` via `PSD_AVAILABLE` flag. Pra recuperar: encontrar a outra sessão Claude que produziu esses arquivos, OU rodar um `tools/generate-instagram-psd.mjs` (referenciado no editor mas inexistente no repo) — provavelmente em outra sessão.
 
 ## Deck — composição final
 
-11 slides (House Look removido em 2026-05-14): Cover · The Process · Storyboard→Imageboard · Animatic (Claro) · O que fazemos · PUMA · Negra Li · Chupa Chups · Olympikus · Como trabalhamos · Contato.
+14 slides (após adição dos 3 cases novos em 2026-05-18): Cover · The Process · Storyboard→Imageboard · Animatic (Claro) · O que fazemos · PUMA · **HBO Max · Instituto Caldeira · BK** · Negra Li · Chupa Chups · Olympikus · Como trabalhamos · Contato.
 
 ## Como retomar em nova sessão
 
@@ -192,6 +193,14 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 - **Shake to reveal** (2026-05-14): no mobile, balançar o telefone agora dispara uma sequência cinematográfica em ~7.9s — overlay fade to Dark → wordmark Alright (l Orange Clay) sobe de baixo, escala, volta → `(( Look again. ))` (brackets em Orange Clay) sobe de baixo, hold no climax, lift off → site volta. iOS 13+ gated via tap-to-enable. Deploy `b0130276`. Implementação em `index.html` (CSS `.reveal-overlay*` + JS `playReveal()`).
 - **Domínio em andamento** (2026-05-14): 4 custom domains registrados no Cloudflare Pages via API (apex + www + book + deck). Faltam ações manuais: criar zona DNS no Cloudflare (importa MX/SPF do GoDaddy), trocar nameservers no GoDaddy, configurar 2 Redirect Rules (book/deck). Email Google Workspace preservado durante a migração. Passo a passo em seção *Domínio*.
 - **Domínio LIVE** (2026-05-15): migração completa. Nameservers flipados pra `karsyn.ns.cloudflare.com` + `mike.ns.cloudflare.com` no GoDaddy, zona DNS importou os 5 MX + 2 TXT do Google Workspace (email preservado), 4 CNAMEs proxied criados (apex + www + book + deck → wearealright.pages.dev), 2 Redirect Rules configuradas (book → /brand-book.html, deck → /deck/). Site servindo em https://wearealright.cc com SSL Google. Smoke test passou em todas as URLs.
+- **Olympikus video swap** (2026-05-15): preview no R2 substituído pelo CORRE5_16X9 cut (1m15s, 19.5MB, sem áudio). Vimeo lightbox apontando pro novo upload com áudio: id `1192635125` (era `1191598803`).
+- **Shake → reel** (2026-05-15): no mobile, balançar o telefone agora toca o reel vertical `alright-reel-vertical-30s` em fullscreen (32s, mute, R2). iOS autoplay block resolvido com tap-to-play fallback. Skip pill `(( skip ))` aparece após 0.8s. object-fit:contain pra não cortar `(( ))` nas laterais. 44px tap target + touch-action:manipulation pra resolver button-fica-lento. Implementação substituiu a sequência editorial logo+text anterior.
+- **Favicon redesign `((l))`** (2026-05-16): novo design — brackets bone em volta do `l` Bold 700 Orange Clay sobre Dark. Substituiu o antigo `Al`. SVG + 7 PNG tamanhos (16/32/48/64/180/192/512). Cache-bust `?v=2` em todas as 4 superfícies (index, brand-book, brand-book-print, deck) pra forçar refresh nas abas. `l` centralizado vertical via tspan dy="4" no SVG e font-size 0.88em + translateY 0.07em nos PNGs (Bricolage `l` ascender é mais alto que cap-height dos brackets — sem compensação o l estoura por cima).
+- **Business card · l Orange Clay** (2026-05-16): brand book web e print tinham CSS `b { font-weight: 700 }` sem cor — l aparecia dark. Adicionado `color: var(--orange-clay)` em `.app-tile--card .name b`, `.app-tile--email .sig b`, `.app-card__wordmark b`, `.app-card__sig-name b`.
+- **3 cases novos no portfolio + deck + brand book web** (2026-05-18): HBO Max · Paulistão (vimeo `1193297749`), Instituto Caldeira (`1193297752`), BK · Visuals (`1193297750`). Inseridos depois do PUMA com alternação flip/no-flip preservada (cascade em Mizuno/Negra Li/Brime). Deck cresceu pra 14 slides com data-index e eyebrow renumerados. Brand book web ganhou Row 10 na House Look gallery. Brand book print NÃO atualizado (gallery A4 fixa, overflow risk — item 2 do Pendente).
+- **Downloads section no brand book web** (2026-05-18): nova seção 10 com 6 cards: Press kit (hero dark span-12), Logo pack, Design tokens, Favicon kit, Brand book PDF, Instagram kit. Nav ganhou link `↓ Downloads` accent. 5 zips servidos em `assets/downloads/`: `alright-press-kit.zip` (740KB), `alright-logo-pack.zip` (2MB), `alright-tokens.zip` (7KB), `alright-favicon-kit.zip` (52KB), `alright-instagram-kit.zip` (199KB).
+- **Press kit gerador** (2026-05-18): `tools/generate-press-kit.mjs` produz palette card 1080×1350 PNG + PDF A4 via Playwright. Press kit zip contém logos curados (5 SVG + 2 PNG), palette card (PNG + PDF), bio PT + EN, 3 stills (HBO Max, Olympikus, Negra Li), README com brand essentials, contact.txt.
+- **Instagram kit editor — separate Pages project** (2026-05-18): editor HTML recuperado de edge cache (outra sessão tinha feito mas não commitado). Source em `instagram-kit/index.html`. Criado **NOVO Pages project `wearealright-kit`** (separado do main `wearealright`). Hostname `kit.wearealright.cc` movido pro novo project. CNAME atualizado pra `wearealright-kit.pages.dev`. Editor serve em `https://kit.wearealright.cc/` (root, sem `/instagram-kit/`). Cloudflare Access policy `Alright Kit` continua intacta com 2 destinations: `kit.wearealright.cc/*` (gated) + `wearealright.cc/instagram-kit/*` (defesa em profundidade, path não existe mais no main project). Deploys agora separados: `./deploy.sh` (main) + `./deploy-kit.sh` (kit).
 - **Brand book print v2** entregue (25 páginas A4, `05-deliverables/brand-book-print.html`, online em `/brand-book/print/`)
 - **Deck v3 finalizado** com 11 slides (House Look removido), lightbox Vimeo em todos os cases, Animatic Claro como slide 04
 - **Portfolio v3**: case Brime adicionado, todas as descrições nos cases, Mizuno/Olympikus com vídeos full sem corte, Negra Li com novo trecho (CORTE_NEGRA_LI)
@@ -203,20 +212,40 @@ Each project has its own deploy: `./deploy.sh` for `wearealright`, `./deploy-kit
 ## Estrutura final do deploy
 
 ```
+PROJETO Pages wearealright (público)
 wearealright.cc/                  ← LIVE (custom domain, SSL Google)
-├── /                              → portfolio (index.html)
-├── /brand-book.html               → brand book web v2
+├── /                              → portfolio (index.html, 9 cases incl. 3 novos)
+├── /brand-book.html               → brand book web v2 com Downloads section
 ├── /brand-book/print/             → brand book print v2 (Cmd+P → PDF)
-├── /deck/                         → deck v3 (11 slides)
-└── /assets/                       → todos os assets compartilhados
+├── /deck/                         → deck v3 (14 slides)
+├── /assets/                       → todos os assets compartilhados
+└── /assets/downloads/             → 5 zips (press kit, logo, tokens, favicon, IG kit)
 
 www.wearealright.cc/              ← alias do apex (Cloudflare CNAME proxied)
 book.wearealright.cc/             ← 301 → wearealright.cc/brand-book.html
 deck.wearealright.cc/             ← 301 → wearealright.cc/deck/
 
-wearealright.pages.dev/           ← origem Cloudflare Pages (sempre acessível)
+PROJETO Pages wearealright-kit (interno · gated)
+kit.wearealright.cc/              ← editor direto (após Cloudflare Access)
+├── /                              → instagram-kit/index.html (editor)
+└── /assets/social/instagram/      → avatars + 1 PSD master
+
+Canonical Pages URLs (sempre acessíveis):
+- wearealright.pages.dev/         ← main project origem
+- wearealright-kit.pages.dev/     ← kit project origem (TAMBÉM gated via Access)
 ```
+
+## Scripts de deploy
+
+| Comando | O que faz |
+|---|---|
+| `./deploy.sh` | Deploy do project `wearealright` (portfolio, brand book, deck, print). Usa `.deploy-dist/` |
+| `./deploy-kit.sh` | Deploy do project `wearealright-kit` (Instagram editor). Usa `.kit-dist/` |
+| `tools/generate-meta-assets.mjs` | Regenera favicon SVG + 7 PNG sizes + OG image |
+| `tools/generate-instagram-kit.mjs` | Regenera os 5 templates PNG do Instagram kit zip estático |
+| `tools/generate-press-kit.mjs` | Regenera palette card PNG + PDF + bundle do press kit |
+| `tools/compress-work-assets.mjs` | Compressa originais em assets/work/real/ → web/ |
 
 ---
 
-*Última atualização: 2026-05-15. Owner: Alright. Orquestrador: Claude Code.*
+*Última atualização: 2026-05-18. Owner: Alright. Orquestrador: Claude Code.*
