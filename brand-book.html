@@ -384,7 +384,7 @@ section{position:relative}
 .app-tile__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-warm);margin-bottom:14px}
 .app-tile--card{display:flex;flex-direction:column;justify-content:space-between}
 .app-tile--card .name{font-size:28px;font-weight:400;letter-spacing:-0.01em}
-.app-tile--card .name b{font-weight:700}
+.app-tile--card .name b{font-weight:700;color:var(--orange-clay)}
 .app-tile--card .meta{font-family:var(--font-mono);font-size:12px;color:var(--slate-warm);line-height:1.6;margin-top:8px}
 .app-tile--social{background:var(--dark);color:var(--bone);padding:0;overflow:hidden}
 .app-tile--social .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
@@ -395,7 +395,7 @@ section{position:relative}
 .app-tile--deck .title{font-size:32px;font-weight:300;letter-spacing:-0.015em;line-height:1.05;margin:0}
 .app-tile--email{background:var(--bone);font-family:var(--font-mono);font-size:13px;color:var(--stone);line-height:1.7;display:flex;flex-direction:column;justify-content:space-between}
 .app-tile--email .sig{margin-top:14px;font-family:var(--font-sans);font-size:15px;color:var(--dark)}
-.app-tile--email .sig b{font-weight:700}
+.app-tile--email .sig b{font-weight:700;color:var(--orange-clay)}
 .app-tile--poster{padding:0;overflow:hidden}
 .app-tile--poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .app-tile--poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
@@ -1130,6 +1130,28 @@ section{position:relative}
     <div class="app-tile app-tile--poster col-3 reveal" style="min-height:240px">
       <img src="assets/work/web/editorial-portrait-02.jpg" alt="Mockup poster editorial" />
       <span class="sticker sticker--clay-deep badge rot-2">(( editorial ))</span>
+    </div>
+
+    <div class="app-tile col-12 reveal" style="background:var(--mist);display:flex;flex-direction:column;gap:18px;min-height:220px">
+      <span class="app-tile__label">Favicon · tab icon</span>
+      <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+        <!-- Big preview tile (the actual brand mark, dark bg) -->
+        <div style="background:var(--dark);width:120px;height:120px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <img src="assets/meta/icon-192.png" alt="Favicon Alright — (( l )) com l Orange Clay" style="width:96px;height:96px;border-radius:0" />
+        </div>
+        <!-- Browser tab mockup (real-world context) -->
+        <div style="flex:1;min-width:240px;background:var(--bone);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;border:1px solid rgba(20,20,19,0.08);box-shadow:0 4px 12px rgba(20,20,19,0.06)">
+          <img src="assets/meta/icon-32.png" alt="Favicon 18px na aba do browser" style="width:18px;height:18px;border-radius:3px;flex-shrink:0" />
+          <span style="font-family:var(--font-sans);font-size:14px;color:var(--dark);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Alright — A.I. first Production Company</span>
+        </div>
+        <!-- Size scale -->
+        <div style="display:flex;gap:14px;align-items:center;flex-shrink:0">
+          <img src="assets/meta/icon-16.png" alt="favicon 16px" style="width:16px;height:16px;image-rendering:pixelated" />
+          <img src="assets/meta/icon-32.png" alt="favicon 32px" style="width:32px;height:32px" />
+          <img src="assets/meta/icon-64.png" alt="favicon 64px" style="width:64px;height:64px;border-radius:8px" />
+        </div>
+      </div>
+      <span class="sticker sticker--bone rot-1" style="align-self:flex-start">(( l Orange Clay sobre Dark ))</span>
     </div>
   </div>
 </section>

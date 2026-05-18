@@ -63,24 +63,28 @@ await sharp(ogBuf).jpeg({ quality: 90, mozjpeg: true }).toFile(path.join(OUT, 'o
 console.log('✓ og-image.jpg');
 
 // ---------- Favicon ----------
+// Brand device with the central l in Orange Clay: (( l ))
 // SVG (modern browsers, scales)
 const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs><style>@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&amp;display=block');text{font-family:'Bricolage Grotesque',sans-serif}</style></defs>
   <rect width="64" height="64" fill="${DARK}"/>
-  <text x="32" y="49" text-anchor="middle" font-size="50" font-weight="400" letter-spacing="-0.02em" fill="${BONE}">A<tspan font-weight="700" fill="${ORANGE}">l</tspan></text>
+  <text x="32" y="46" text-anchor="middle" font-size="40" font-weight="400" letter-spacing="-0.04em" fill="${BONE}">((<tspan font-weight="700" fill="${ORANGE}">l</tspan>))</text>
 </svg>`;
 await fs.writeFile(path.join(OUT, 'favicon.svg'), faviconSvg);
 console.log('✓ favicon.svg');
 
 // Render PNG variants via browser (so Bricolage renders correctly)
 function faviconHtml(size){
-  const fs = Math.round(size * 0.78);
+  // ((l)) is 5 glyphs — needs more vertical breathing room than 'Al'.
+  // Cap font-size around ~0.62 of the canvas so the brackets read
+  // even at 16×16.
+  const fs = Math.round(size * 0.62);
   return `<!DOCTYPE html><html><head>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=block" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:${size}px;height:${size}px;background:${DARK};font-family:'Bricolage Grotesque',sans-serif;overflow:hidden}
-.icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center;font-size:${fs}px;font-weight:400;color:${BONE};line-height:1;letter-spacing:-0.02em}
+.icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center;font-size:${fs}px;font-weight:400;color:${BONE};line-height:1;letter-spacing:-0.04em}
 .icon b{font-weight:700;color:${ORANGE}}
-</style></head><body><div class="icon">A<b>l</b></div></body></html>`;
+</style></head><body><div class="icon">((<b>l</b>))</div></body></html>`;
 }
 
 const sizes = [16, 32, 48, 64, 180, 192, 512];
