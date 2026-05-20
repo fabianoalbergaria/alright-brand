@@ -14,11 +14,11 @@ await fs.mkdir(path.join(OUT, 'stills'), { recursive: true });
 
 const DARK = '#141413';
 const BONE = '#faf9f5';
-const ORANGE = '#d97757';
+const ORANGE = '#ed1c24';
 const STONE = '#3d3a35';
 const SLATE = '#5b5750';
 const MIST = '#ece8dc';
-const CLAY_DEEP = '#8c4a32';
+const CLAY_DEEP = '#a6192e';
 
 const fonts = `
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,7 @@ html,body{width:1080px;height:1350px;background:${BONE};font-family:'Bricolage G
   <div class="grid">
     <div class="sw"><div class="sw__chip" style="background:${DARK};color:${BONE}"><span class="hex">#141413</span></div><div class="sw__meta"><div class="sw__name">Dark</div><div class="sw__role">Texto · wordmark</div></div></div>
     <div class="sw"><div class="sw__chip" style="background:${BONE};color:${DARK};border-bottom:1px solid rgba(20,20,19,0.08)"><span class="hex">#FAF9F5</span></div><div class="sw__meta" style="background:${MIST}"><div class="sw__name">Bone</div><div class="sw__role">Background default</div></div></div>
-    <div class="sw"><div class="sw__chip" style="background:${ORANGE};color:${DARK}"><span class="hex">#D97757</span></div><div class="sw__meta"><div class="sw__name">Orange Clay</div><div class="sw__role">Accent · l central</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:${ORANGE};color:${DARK}"><span class="hex">#ed1c24</span></div><div class="sw__meta"><div class="sw__name">Kodak Red</div><div class="sw__role">Accent · l central</div></div></div>
     <div class="sw"><div class="sw__chip" style="background:${MIST};color:${DARK}"><span class="hex">#ECE8DC</span></div><div class="sw__meta"><div class="sw__name">Mist</div><div class="sw__role">Warm subtle bg</div></div></div>
     <div class="sw"><div class="sw__chip" style="background:${STONE};color:${BONE}"><span class="hex">#3D3A35</span></div><div class="sw__meta"><div class="sw__name">Stone</div><div class="sw__role">Texto secundário</div></div></div>
     <div class="sw"><div class="sw__chip" style="background:${SLATE};color:${BONE}"><span class="hex">#5B5750</span></div><div class="sw__meta"><div class="sw__name">Slate Warm</div><div class="sw__role">Texto faded</div></div></div>
@@ -220,13 +220,13 @@ Big idea       ((Look again.))
 
 Brand device   (( )) — parentheses with one space, never glued to the letters
 
-Palette        Dark #141413 · Bone #FAF9F5 · Orange Clay #D97757
+Palette        Dark #141413 · Bone #FAF9F5 · Kodak Red #ed1c24
                Stone #3D3A35 · Slate Warm #5B5750 · Mist #ECE8DC
 
 Type           Bricolage Grotesque (OFL) + JetBrains Mono (Apache 2.0)
 
-Logo           The default wordmark has the central 'l' in Orange Clay.
-               Use the mono fallback only when Orange Clay can't reproduce
+Logo           The default wordmark has the central 'l' in Kodak Red.
+               Use the mono fallback only when Kodak Red can't reproduce
                (B&W print, fax, mono engraving, conflicting co-brand palettes).
 
 For more       wearealright.cc/brand-book.html (full brand book)

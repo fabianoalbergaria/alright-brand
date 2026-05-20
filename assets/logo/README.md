@@ -16,7 +16,7 @@ assets/logo/
 |---|---|---|---|
 | `alright-default-dark` | C.2 | Bone `#faf9f5` | **Default — 90% dos casos.** `Alright` com `l` central Bold 700. |
 | `alright-default-bone` | C.2 reverse | Dark `#141413` | Mesmo, sobre fundos escuros. |
-| `alright-expressivo-dark` | C.1 | Bone | **Premium — 10% dos casos.** `l` central Orange Clay `#d97757`. |
+| `alright-expressivo-dark` | C.1 | Bone | **Premium — 10% dos casos.** `l` central Kodak Red `#ed1c24`. |
 | `alright-expressivo-bone` | C.1 reverse | Dark | Mesmo, sobre fundos escuros. |
 | `alright-reveal-dark` | Reveal | Bone | `((A I r i g h t))` espaçado. **Ato editorial deliberado.** Não usar como default. |
 | `alright-reveal-bone` | Reveal reverse | Dark | Mesmo, sobre fundos escuros. |
@@ -40,7 +40,7 @@ Manter ao redor do logo um espaço mínimo equivalente à altura da letra `A` da
 - Web: **24px** de altura
 - Print: **8mm** de altura
 
-Abaixo disso, o `l` Bold ou o Orange Clay perdem legibilidade — use o lockup completo `((We Are Alright))` ou apenas `Alright` simplificado.
+Abaixo disso, o `l` Bold ou o Kodak Red perdem legibilidade — use o lockup completo `((We Are Alright))` ou apenas `Alright` simplificado.
 
 ### Sobre fotos
 - Foto clara → use variantes `-dark`
@@ -50,7 +50,7 @@ Abaixo disso, o `l` Bold ou o Orange Clay perdem legibilidade — use o lockup c
 ### O que **não** fazer
 - ❌ Trocar a fonte (deve ser sempre Bricolage)
 - ❌ Mudar o peso do `l` (Bold 700 fixo)
-- ❌ Aplicar Orange Clay em outras letras além do `l`
+- ❌ Aplicar Kodak Red em outras letras além do `l`
 - ❌ Adicionar contorno, sombra, gradiente
 - ❌ Distorcer proporção (esticar/achatar)
 - ❌ Rotacionar

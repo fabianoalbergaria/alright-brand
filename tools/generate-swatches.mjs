@@ -16,13 +16,13 @@ const OUT_DIR = resolve(__dirname, '..', 'assets', 'downloads');
 mkdirSync(OUT_DIR, { recursive: true });
 
 const COLORS = [
-  { name: 'Alright · Orange Clay', hex: 'd97757' },
+  { name: 'Alright · Kodak Red',   hex: 'ed1c24' },
   { name: 'Alright · Bone',        hex: 'faf9f5' },
   { name: 'Alright · Dark',        hex: '141413' },
   { name: 'Alright · Stone',       hex: '3d3a35' },
   { name: 'Alright · Slate Warm',  hex: '5b5750' },
   { name: 'Alright · Mist',        hex: 'ece8dc' },
-  { name: 'Alright · Clay Deep',   hex: '8c4a32' },
+  { name: 'Alright · Kodak Deep',  hex: 'a6192e' },
 ];
 
 function rgbFromHex(hex) {

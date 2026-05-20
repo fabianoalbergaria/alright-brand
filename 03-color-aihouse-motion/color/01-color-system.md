@@ -1,10 +1,11 @@
 # Alright — Sistema de cores
 
+> ⚠ **Paleta v2 cravada em 2026-05-20**: accent primário evoluiu de Orange Clay `#d97757` (Pantone 7578 C) → **Kodak Red `#ed1c24`** (Pantone 185 C). Variante text-safe evoluiu de Clay Deep `#8c4a32` (Pantone 7595 C) → **Kodak Deep `#a6192e`** (Pantone 187 C). Spec atual da paleta vive em `tokens/color.tokens.json` (DTCG v2.0) e nas CSS vars `--kodak-red` / `--kodak-deep` dos HTMLs live. O corpo deste documento documenta a filosofia warm/anti-conformista (mantida) + os WCAG checks (recalculados na v2: Kodak Red ~4:1 sobre Bone NOK normal text · Kodak Deep ~7:1 sobre Bone PASS AA + AAA grandes). Onde aparecer "Orange Clay" e "Clay Deep" abaixo, leia como referência histórica v1.
+>
 > Sistema cromático cravado da Alright (produtora audiovisual AI-first, SP/Brasil). Codifica a paleta warm já em ato no deck atual, valida WCAG 2.2 AA, define a operação dual-state do logo (default vs expressivo), regula gradientes (proibidos por padrão), textura papel-craft (signature), comportamento dark mode (secundário) e regras de proporção.
 >
-> **Versão**: 1.0 — DECISÃO FINAL CRAVADA.
-> **Data**: 2026-05-10.
-> **Owner**: brand visual core.
+> **Versão**: 2.0 — Kodak Red. Cravada em 2026-05-20 por Alright. **Versão anterior**: 1.0 — Orange Clay (2026-05-10), Pantone 7578 C / Anthropic-aligned.
+> **Owner**: Alright.
 >
 > **Arquivos correlatos**:
 > - Tokens W3C DTCG: `/Users/beralzir/Projetos/alright-brand/tokens/color.tokens.json`

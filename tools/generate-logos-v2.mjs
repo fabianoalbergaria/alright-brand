@@ -15,7 +15,7 @@ await fs.mkdir(OUT_PNG, { recursive: true });
 
 const DARK = '#141413';
 const BONE = '#faf9f5';
-const ORANGE = '#d97757';
+const ORANGE = '#ed1c24';
 
 // Each variant defines HTML markup for the logo and which background
 // to draw on. The browser does the heavy lifting (Bricolage from Google Fonts).

@@ -30,8 +30,8 @@
 <style>
 /* ---------- Tokens ---------- */
 :root{
-  --orange-clay:#d97757;
-  --clay-deep:#8c4a32;
+  --kodak-red:#ed1c24;
+  --kodak-deep:#a6192e;
   --bone:#faf9f5;
   --mist:#ece8dc;
   --dark:#141413;
@@ -148,14 +148,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:inline-flex;align-items:center;gap:6px;
   font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   padding:7px 12px;border-radius:var(--radius-pill);
-  background:var(--orange-clay);color:var(--dark);
+  background:var(--kodak-red);color:var(--dark);
   white-space:nowrap;
   box-shadow:0 1px 0 rgba(20,20,19,0.06);
 }
 .sticker--mist{background:var(--mist);color:var(--stone)}
 .sticker--dark{background:var(--dark);color:var(--bone)}
 .sticker--bone{background:var(--bone);color:var(--dark);border:1px solid rgba(20,20,19,0.12)}
-.sticker--clay-deep{background:var(--clay-deep);color:var(--bone)}
+.sticker--kodak-deep{background:var(--kodak-deep);color:var(--bone)}
 .sticker--ghost-bone{background:transparent;border:1px solid rgba(250,249,245,0.4);color:var(--bone)}
 .rot-3{transform:rotate(-3deg)}
 .rot3{transform:rotate(3deg)}
@@ -172,8 +172,8 @@ section{position:relative}
 .bg-dark{background:var(--dark);color:var(--bone)}
 .bg-stone{background:var(--stone);color:var(--bone)}
 .bg-slate{background:var(--slate-warm);color:var(--bone)}
-.bg-orange{background:var(--orange-clay);color:var(--dark)}
-.bg-clay-deep{background:var(--clay-deep);color:var(--bone)}
+.bg-orange{background:var(--kodak-red);color:var(--dark)}
+.bg-kodak-deep{background:var(--kodak-deep);color:var(--bone)}
 
 .section-head{
   display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
@@ -189,10 +189,10 @@ section{position:relative}
 .hero__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(96px,10vw,120px) clamp(20px,4vw,72px) clamp(40px,5vw,72px)}
 .hero__center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
 .hero__title{font-size:clamp(72px,15vw,260px);font-weight:200;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
-.hero__title .paren{color:var(--orange-clay);font-weight:300}
+.hero__title .paren{color:var(--kodak-red);font-weight:300}
 .hero__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.78)}
 .hero__cue{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.7)}
-.hero__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-clay);animation:pulse 2.4s var(--ease-cine) infinite}
+.hero__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--kodak-red);animation:pulse 2.4s var(--ease-cine) infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
 .hero__topbar{display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;flex-wrap:wrap}
 .hero__chips{display:flex;gap:8px;flex-wrap:wrap}
@@ -217,8 +217,8 @@ section{position:relative}
 .card--dark{background:var(--dark);color:var(--bone);border-color:rgba(250,249,245,0.08)}
 .card--mist{background:var(--mist);border-color:rgba(20,20,19,0.05)}
 .card--stone{background:var(--stone);color:var(--bone);border-color:rgba(250,249,245,0.05)}
-.card--orange{background:var(--orange-clay);color:var(--dark);border-color:transparent}
-.card--clay{background:var(--clay-deep);color:var(--bone);border-color:transparent}
+.card--orange{background:var(--kodak-red);color:var(--dark);border-color:transparent}
+.card--clay{background:var(--kodak-deep);color:var(--bone);border-color:transparent}
 .card--media{padding:0}
 .card__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .card__media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 40%, rgba(20,20,19,0.55) 100%)}
@@ -249,7 +249,7 @@ section{position:relative}
   font-size:clamp(96px,20vw,440px);font-weight:200;line-height:.92;letter-spacing:-0.035em;
   margin:0;color:var(--bone);
 }
-.bigidea__title .paren{color:var(--orange-clay);font-weight:300}
+.bigidea__title .paren{color:var(--kodak-red);font-weight:300}
 .bigidea__grid{
   display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,80px);
   margin-top:clamp(48px,6vw,96px);text-align:left;align-items:center;
@@ -293,7 +293,7 @@ section{position:relative}
 .logo-tile--bone{background:var(--bone)} .logo-tile--bone .logo-tile__label{color:var(--stone)}
 .logo-tile--dark{background:var(--dark)} .logo-tile--dark .logo-tile__label{color:#cfcbc1}
 .logo-tile--mist{background:var(--mist)} .logo-tile--mist .logo-tile__label{color:var(--stone)}
-.logo-tile--orange{background:var(--orange-clay)} .logo-tile--orange .logo-tile__label{color:var(--dark)}
+.logo-tile--orange{background:var(--kodak-red)} .logo-tile--orange .logo-tile__label{color:var(--dark)}
 
 .banner{padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px);text-align:center;position:relative}
 .banner img{max-width:min(720px,86vw);margin:0 auto;height:auto}
@@ -324,7 +324,7 @@ section{position:relative}
 .type-weights .w-l{font-weight:400}
 .type-weights .w-l b{font-weight:700}
 .type-mono-demo{font-family:var(--font-mono);font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:var(--stone)}
-.type-mono-demo .c{color:var(--clay-deep)}
+.type-mono-demo .c{color:var(--kodak-deep)}
 .type-img{position:relative;border-radius:var(--radius-card);overflow:hidden;aspect-ratio:4/3}
 .type-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .type-img__overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:32px;background:linear-gradient(180deg,rgba(20,20,19,0) 50%, rgba(20,20,19,0.7) 100%);color:var(--bone)}
@@ -346,7 +346,7 @@ section{position:relative}
 .swatch__meta p{margin:14px 0 0;max-width:42ch}
 .swatch__tokens{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px}
 .swatch__tokens code{font-family:var(--font-mono);font-size:12px;padding:6px 10px;border-radius:8px;background:rgba(20,20,19,0.08)}
-.bg-dark .swatch__tokens code,.bg-stone .swatch__tokens code,.bg-slate .swatch__tokens code,.bg-clay-deep .swatch__tokens code{background:rgba(250,249,245,0.1);color:var(--bone)}
+.bg-dark .swatch__tokens code,.bg-stone .swatch__tokens code,.bg-slate .swatch__tokens code,.bg-kodak-deep .swatch__tokens code{background:rgba(250,249,245,0.1);color:var(--bone)}
 
 /* ---------- House look (section 8) ---------- */
 .house{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;grid-auto-flow:dense;gap:var(--gap-card)}
@@ -366,7 +366,7 @@ section{position:relative}
 .motion-card h3{font-family:var(--font-sans);font-weight:500;font-size:22px;margin:0 0 6px;letter-spacing:-0.01em;color:var(--bone)}
 .motion-card .mono{display:block;color:#a59f93;margin-bottom:20px}
 .motion-track{position:relative;height:6px;background:rgba(250,249,245,0.12);border-radius:999px;overflow:hidden;margin-top:auto}
-.motion-dot{position:absolute;top:50%;transform:translate(0,-50%);width:18px;height:18px;border-radius:50%;background:var(--orange-clay);left:0;animation-duration:2.6s;animation-iteration-count:infinite;animation-fill-mode:both}
+.motion-dot{position:absolute;top:50%;transform:translate(0,-50%);width:18px;height:18px;border-radius:50%;background:var(--kodak-red);left:0;animation-duration:2.6s;animation-iteration-count:infinite;animation-fill-mode:both}
 .motion-card[data-easing="cinematic"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.16,1.0,0.3,1.0)}
 .motion-card[data-easing="standard"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0.4,0,0.2,1)}
 .motion-card[data-easing="decelerate"] .motion-dot{animation-name:slide;animation-timing-function:cubic-bezier(0,0,0.2,1)}
@@ -384,7 +384,7 @@ section{position:relative}
 .app-tile__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-warm);margin-bottom:14px}
 .app-tile--card{display:flex;flex-direction:column;justify-content:space-between}
 .app-tile--card .name{font-size:28px;font-weight:400;letter-spacing:-0.01em}
-.app-tile--card .name b{font-weight:700;color:var(--orange-clay)}
+.app-tile--card .name b{font-weight:700;color:var(--kodak-red)}
 .app-tile--card .meta{font-family:var(--font-mono);font-size:12px;color:var(--slate-warm);line-height:1.6;margin-top:8px}
 .app-tile--social{background:var(--dark);color:var(--bone);padding:0;overflow:hidden}
 .app-tile--social .img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
@@ -395,7 +395,7 @@ section{position:relative}
 .app-tile--deck .title{font-size:32px;font-weight:300;letter-spacing:-0.015em;line-height:1.05;margin:0}
 .app-tile--email{background:var(--bone);font-family:var(--font-mono);font-size:13px;color:var(--stone);line-height:1.7;display:flex;flex-direction:column;justify-content:space-between}
 .app-tile--email .sig{margin-top:14px;font-family:var(--font-sans);font-size:15px;color:var(--dark)}
-.app-tile--email .sig b{font-weight:700;color:var(--orange-clay)}
+.app-tile--email .sig b{font-weight:700;color:var(--kodak-red)}
 .app-tile--poster{padding:0;overflow:hidden}
 .app-tile--poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .app-tile--poster video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
@@ -408,7 +408,7 @@ section{position:relative}
 .footer__meta{margin-top:clamp(40px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:18px}
 .footer__row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9d978a}
 .footer__row span{display:inline-flex;align-items:center;gap:8px}
-.footer__row span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--orange-clay);display:inline-block}
+.footer__row span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--kodak-red);display:inline-block}
 .footer__brand{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px}
 .footer__brand img{width:120px;height:auto}
 .footer__year{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7a7468}
@@ -617,7 +617,7 @@ section{position:relative}
       <div style="margin-top:28px;display:flex;gap:8px;flex-wrap:wrap">
         <span class="sticker rot-2">(( look again ))</span>
         <span class="sticker sticker--ghost-bone rot2">(( quiet tech ))</span>
-        <span class="sticker sticker--clay-deep rot-1">(( descoberta &gt; explicação ))</span>
+        <span class="sticker sticker--kodak-deep rot-1">(( descoberta &gt; explicação ))</span>
       </div>
     </div>
     <div class="bigidea__img reveal">
@@ -696,23 +696,23 @@ section{position:relative}
     <div class="section-head__title">
       <span class="eyebrow">04 — Sistema de logo</span>
       <h2 id="logo-title" class="h-lg">O <em>l</em> carrega a marca.</h2>
-      <p class="body" style="margin-top:14px;max-width:54ch">Bricolage Grotesque. Regular 400 em todas as letras. Bold 700 só no <strong>l</strong> central — sempre em <strong style="color:var(--clay-deep)">Orange Clay</strong>. Mono dark é fallback pra reprodução B&W. Reveal espaçado é ato editorial — não default.</p>
+      <p class="body" style="margin-top:14px;max-width:54ch">Bricolage Grotesque. Regular 400 em todas as letras. Bold 700 só no <strong>l</strong> central — sempre em <strong style="color:var(--kodak-deep)">Kodak Red</strong>. Mono dark é fallback pra reprodução B&W. Reveal espaçado é ato editorial — não default.</p>
     </div>
     <span class="sticker sticker--mist rot2">(( Bone-first ))</span>
   </div>
 
   <div class="logo-hero reveal">
-    <img src="assets/logo/png/alright-expressivo-dark@2x.png" alt="Logo Alright default — l em Orange Clay" />
+    <img src="assets/logo/png/alright-expressivo-dark@2x.png" alt="Logo Alright default — l em Kodak Red" />
   </div>
 
   <div class="logo-grid">
     <div class="logo-tile logo-tile--bone reveal">
-      <img src="assets/logo/png/alright-expressivo-dark@2x.png" alt="Logo default — l Orange Clay sobre Bone" />
+      <img src="assets/logo/png/alright-expressivo-dark@2x.png" alt="Logo default — l Kodak Red sobre Bone" />
       <span class="logo-tile__label">Default · light</span>
       <span class="sticker card__sticker tr rot-2">(( 90% dos casos ))</span>
     </div>
     <div class="logo-tile logo-tile--dark reveal">
-      <img src="assets/logo/png/alright-expressivo-bone@2x.png" alt="Logo default sobre Dark — l Orange Clay" />
+      <img src="assets/logo/png/alright-expressivo-bone@2x.png" alt="Logo default sobre Dark — l Kodak Red" />
       <span class="logo-tile__label">Default · reverse</span>
     </div>
     <div class="logo-tile logo-tile--mist reveal">
@@ -721,7 +721,7 @@ section{position:relative}
       <span class="sticker card__sticker tr rot2">(( B&W only ))</span>
     </div>
     <div class="logo-tile logo-tile--orange reveal">
-      <img src="assets/logo/png/alright-default-bone@2x.png" alt="Logo mono Bone sobre Orange Clay" />
+      <img src="assets/logo/png/alright-default-bone@2x.png" alt="Logo mono Bone sobre Kodak Red" />
       <span class="logo-tile__label">Mono · sobre orange</span>
     </div>
   </div>
@@ -744,7 +744,7 @@ section{position:relative}
       <ul class="dodont__list">
         <li>Use o default em 90% dos casos.</li>
         <li>Mantenha o <strong>l</strong> em Bold 700 sempre.</li>
-        <li>Orange Clay só no <strong>l</strong> central — nunca em outra letra.</li>
+        <li>Kodak Red só no <strong>l</strong> central — nunca em outra letra.</li>
         <li>Mono fallback só pra reprodução B&amp;W obrigatória.</li>
         <li>Use o reveal com intenção editorial.</li>
       </ul>
@@ -790,7 +790,7 @@ section{position:relative}
         <p class="type-spec" style="margin-top:14px;color:var(--bone)">JetBrains Mono</p>
       </div>
       <div class="type-mono-demo" style="color:#cfcbc1">
-        <div><span class="c">--orange-clay:</span> #d97757;</div>
+        <div><span class="c">--kodak-red:</span> #ed1c24;</div>
         <div><span class="c">--bone:</span> #faf9f5;</div>
         <div><span class="c">--ease-cine:</span> cubic-bezier(.16,1,.3,1);</div>
       </div>
@@ -873,21 +873,21 @@ section{position:relative}
   <article class="swatch bg-orange reveal">
     <div class="swatch__meta">
       <span class="eyebrow">06 / Accent único</span>
-      <h3 class="name">Orange Clay</h3>
-      <p class="hex">#D97757</p>
+      <h3 class="name">Kodak Red</h3>
+      <p class="hex">#ed1c24</p>
       <p class="body" style="color:var(--dark)">Accent. Wordmark expressivo. Stickers. <strong>Nunca como body text sobre Bone — falha WCAG AA.</strong></p>
-      <div class="swatch__tokens"><code>--orange-clay</code><code>color/accent</code></div>
+      <div class="swatch__tokens"><code>--kodak-red</code><code>color/accent</code></div>
       <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="sticker sticker--dark rot-2">(( accent only ))</span><span class="sticker sticker--bone rot2">(( nunca body sobre bone ))</span></div>
     </div>
   </article>
 
-  <article class="swatch bg-clay-deep reveal">
+  <article class="swatch bg-kodak-deep reveal">
     <div class="swatch__meta">
       <span class="eyebrow" style="color:#f6dccd">07 / Orange text-safe</span>
-      <h3 class="name" style="color:var(--bone)">Clay Deep</h3>
-      <p class="hex" style="color:#f6dccd">#8C4A32</p>
+      <h3 class="name" style="color:var(--bone)">Kodak Deep</h3>
+      <p class="hex" style="color:#f6dccd">#a6192e</p>
       <p class="body body-on-dark">Versão escurecida do accent. Usada quando precisa de Orange como texto sobre Bone.</p>
-      <div class="swatch__tokens"><code>--clay-deep</code><code>color/accent/text-safe</code></div>
+      <div class="swatch__tokens"><code>--kodak-deep</code><code>color/accent/text-safe</code></div>
     </div>
   </article>
 </section>
@@ -922,7 +922,7 @@ section{position:relative}
     <!-- Row 2 — Trio -->
     <div class="house__tile col-4">
       <img src="assets/work/web/editorial-portrait-02.jpg" alt="Retrato editorial 02" />
-      <span class="sticker sticker--clay-deep rot1">(( editorial ))</span>
+      <span class="sticker sticker--kodak-deep rot1">(( editorial ))</span>
     </div>
     <div class="house__tile col-4">
       <img src="assets/work/web/chupa-chups.jpg" alt="Frame Chupa Chups" />
@@ -953,7 +953,7 @@ section{position:relative}
       <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/baile-do-brime-poster.jpg" aria-label="Baile do Brime">
         <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/baile-do-brime.mp4" type="video/mp4" />
       </video>
-      <span class="sticker sticker--clay-deep rot2">(( moving ))</span>
+      <span class="sticker sticker--kodak-deep rot2">(( moving ))</span>
     </div>
     <div class="house__tile col-4">
       <img src="assets/work/web/cash-pop.jpg" alt="Cash Pop" />
@@ -977,7 +977,7 @@ section{position:relative}
     </div>
     <div class="house__tile col-4">
       <img src="assets/work/web/seda-still.jpg" alt="Seda · still" />
-      <span class="sticker sticker--clay-deep rot-1">(( tactile ))</span>
+      <span class="sticker sticker--kodak-deep rot-1">(( tactile ))</span>
     </div>
 
     <!-- Row 7 — Wide closer -->
@@ -1003,7 +1003,7 @@ section{position:relative}
       <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/chupa-chups-surreal-dream-poster.jpg" aria-label="Chupa Chups · Surreal Dream">
         <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" />
       </video>
-      <span class="sticker sticker--clay-deep rot-2">(( surreal dream ))</span>
+      <span class="sticker sticker--kodak-deep rot-2">(( surreal dream ))</span>
     </div>
     <div class="house__tile col-3">
       <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/chupa-chups-surreal-unboxing-poster.jpg" aria-label="Chupa Chups · Surreal Unboxing">
@@ -1043,7 +1043,7 @@ section{position:relative}
       <video autoplay muted loop playsinline preload="metadata" poster="assets/work/web/bk-visuals-poster.jpg" aria-label="BK · Visuals">
         <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/bk-visuals.mp4" type="video/mp4" />
       </video>
-      <span class="sticker sticker--clay-deep rot-2">(( visuals ))</span>
+      <span class="sticker sticker--kodak-deep rot-2">(( visuals ))</span>
     </div>
   </div>
 </section>
@@ -1086,7 +1086,7 @@ section{position:relative}
   </div>
 
   <p class="reveal" style="margin-top:48px;max-width:54ch;font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:#cfcbc1">
-    <span style="color:var(--orange-clay)">▸</span> prefers-reduced-motion: animações viram instantâneas; vídeos param de auto-play.
+    <span style="color:var(--kodak-red)">▸</span> prefers-reduced-motion: animações viram instantâneas; vídeos param de auto-play.
   </p>
 </section>
 
@@ -1150,7 +1150,7 @@ section{position:relative}
 
     <div class="app-tile app-tile--poster col-3 reveal" style="min-height:240px">
       <img src="assets/work/web/editorial-portrait-02.jpg" alt="Mockup poster editorial" />
-      <span class="sticker sticker--clay-deep badge rot-2">(( editorial ))</span>
+      <span class="sticker sticker--kodak-deep badge rot-2">(( editorial ))</span>
     </div>
 
     <div class="app-tile col-12 reveal" style="background:var(--mist);display:flex;flex-direction:column;gap:18px;min-height:220px">
@@ -1158,7 +1158,7 @@ section{position:relative}
       <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
         <!-- Big preview tile (the actual brand mark, dark bg) -->
         <div style="background:var(--dark);width:120px;height:120px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <img src="assets/meta/icon-192.png?v=2" alt="Favicon Alright — (( l )) com l Orange Clay" style="width:96px;height:96px;border-radius:0" />
+          <img src="assets/meta/icon-192.png?v=2" alt="Favicon Alright — (( l )) com l Kodak Red" style="width:96px;height:96px;border-radius:0" />
         </div>
         <!-- Browser tab mockup (real-world context) -->
         <div style="flex:1;min-width:240px;background:var(--bone);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;border:1px solid rgba(20,20,19,0.08);box-shadow:0 4px 12px rgba(20,20,19,0.06)">
@@ -1172,7 +1172,7 @@ section{position:relative}
           <img src="assets/meta/icon-64.png?v=2" alt="favicon 64px" style="width:64px;height:64px;border-radius:8px" />
         </div>
       </div>
-      <span class="sticker sticker--bone rot-1" style="align-self:flex-start">(( l Orange Clay sobre Dark ))</span>
+      <span class="sticker sticker--bone rot-1" style="align-self:flex-start">(( l Kodak Red sobre Dark ))</span>
     </div>
   </div>
 </section>
@@ -1192,12 +1192,12 @@ section{position:relative}
     <a href="assets/downloads/alright-press-kit.zip" download class="reveal" style="grid-column:span 12;background:var(--dark);color:var(--bone);padding:40px 44px;border-radius:var(--radius-card);display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center;min-height:200px;text-decoration:none">
       <div>
         <span class="eyebrow" style="color:rgba(250,249,245,0.6)">Press kit</span>
-        <h3 class="h-lg" style="color:var(--bone);margin-top:14px;font-weight:300">Tudo num zip.<br/>Pra <strong style="color:var(--orange-clay);font-weight:700">imprensa</strong>, <strong style="color:var(--orange-clay);font-weight:700">parceiros</strong> e <strong style="color:var(--orange-clay);font-weight:700">podcast</strong>.</h3>
+        <h3 class="h-lg" style="color:var(--bone);margin-top:14px;font-weight:300">Tudo num zip.<br/>Pra <strong style="color:var(--kodak-red);font-weight:700">imprensa</strong>, <strong style="color:var(--kodak-red);font-weight:700">parceiros</strong> e <strong style="color:var(--kodak-red);font-weight:700">podcast</strong>.</h3>
         <p style="margin-top:16px;color:rgba(250,249,245,0.78);font-size:15px;line-height:1.55;max-width:46ch">Logos curados (5 SVG + 2 PNG), brand palette card (PNG + PDF A4), bio PT + EN, 3 stills representativos (HBO Max · Olympikus · Negra Li) e contato. README inclui specs essenciais da marca.</p>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px">
         <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,249,245,0.5)">740 KB · zip · all-in-one</span>
-        <span style="font-family:var(--font-mono);font-size:60px;color:var(--orange-clay);line-height:1">↓</span>
+        <span style="font-family:var(--font-mono);font-size:60px;color:var(--kodak-red);line-height:1">↓</span>
         <span class="sticker sticker--ghost-bone rot2" style="margin-top:8px">(( official ))</span>
       </div>
     </a>
@@ -1206,11 +1206,11 @@ section{position:relative}
       <div>
         <span class="eyebrow">Logo pack</span>
         <h3 class="h-md" style="margin-top:16px">Logos.<br/>Todos.</h3>
-        <p style="margin-top:14px;color:var(--slate-warm);font-size:14px;line-height:1.55">Todas as variantes em SVG e PNG: default (l Orange Clay), mono fallback, reveal, lockup.</p>
+        <p style="margin-top:14px;color:var(--slate-warm);font-size:14px;line-height:1.55">Todas as variantes em SVG e PNG: default (l Kodak Red), mono fallback, reveal, lockup.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px">
-        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-clay)">2.0 MB · zip</span>
-        <span style="font-family:var(--font-mono);font-size:18px;color:var(--orange-clay)">↓</span>
+        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kodak-red)">2.0 MB · zip</span>
+        <span style="font-family:var(--font-mono);font-size:18px;color:var(--kodak-red)">↓</span>
       </div>
     </a>
 
@@ -1221,20 +1221,20 @@ section{position:relative}
         <p style="margin-top:14px;color:var(--slate-warm);font-size:14px;line-height:1.55">W3C DTCG JSON (83 tokens — paleta, semânticos, durations, easings) + swatches Photoshop (.aco) e Illustrator/InDesign (.ase) com as 7 cores nomeadas.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px">
-        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-clay)">8 KB · zip · json + aco + ase</span>
-        <span style="font-family:var(--font-mono);font-size:18px;color:var(--orange-clay)">↓</span>
+        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kodak-red)">8 KB · zip · json + aco + ase</span>
+        <span style="font-family:var(--font-mono);font-size:18px;color:var(--kodak-red)">↓</span>
       </div>
     </a>
 
     <a href="assets/downloads/alright-favicon-kit.zip" download class="reveal" style="grid-column:span 4;background:var(--bone);padding:32px;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;min-height:260px;border:1px solid rgba(20,20,19,0.06);text-decoration:none;color:inherit">
       <div>
         <span class="eyebrow">Favicon kit</span>
-        <h3 class="h-md" style="margin-top:16px">(( <strong style="color:var(--orange-clay);font-size:0.88em;display:inline-block;transform:translateY(0.07em)">l</strong> ))</h3>
+        <h3 class="h-md" style="margin-top:16px">(( <strong style="color:var(--kodak-red);font-size:0.88em;display:inline-block;transform:translateY(0.07em)">l</strong> ))</h3>
         <p style="margin-top:14px;color:var(--slate-warm);font-size:14px;line-height:1.55">SVG + PNG nos 7 tamanhos: 16/32/48/64/180/192/512 px.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px">
-        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-clay)">52 KB · zip</span>
-        <span style="font-family:var(--font-mono);font-size:18px;color:var(--orange-clay)">↓</span>
+        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kodak-red)">52 KB · zip</span>
+        <span style="font-family:var(--font-mono);font-size:18px;color:var(--kodak-red)">↓</span>
       </div>
     </a>
 
@@ -1245,19 +1245,19 @@ section{position:relative}
         <p style="margin-top:14px;color:rgba(250,249,245,0.7);font-size:14px;line-height:1.55">Abre o brand book print no browser → Cmd+P → Save as PDF.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px">
-        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-clay)">Web · Print-ready</span>
-        <span style="font-family:var(--font-mono);font-size:18px;color:var(--orange-clay)">→</span>
+        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kodak-red)">Web · Print-ready</span>
+        <span style="font-family:var(--font-mono);font-size:18px;color:var(--kodak-red)">→</span>
       </div>
     </a>
 
-    <a href="assets/downloads/alright-instagram-kit.zip" download class="reveal" style="grid-column:span 6;background:var(--orange-clay);color:var(--dark);padding:32px;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;text-decoration:none">
+    <a href="assets/downloads/alright-instagram-kit.zip" download class="reveal" style="grid-column:span 6;background:var(--kodak-red);color:var(--dark);padding:32px;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;text-decoration:none">
       <div>
-        <span class="eyebrow" style="color:var(--clay-deep)">Instagram kit</span>
+        <span class="eyebrow" style="color:var(--kodak-deep)">Instagram kit</span>
         <h3 class="h-md" style="margin-top:16px">5 templates.<br/>Prontos pra postar.</h3>
         <p style="margin-top:14px;color:var(--dark);font-size:14px;line-height:1.55;opacity:0.78">Profile (1080×1080), 2 posts (1080×1080) e 2 stories (1080×1920) com brand DNA — ((Look again.)), lockup e manifesto de Craft.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px">
-        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-deep)">199 KB · zip · PNG</span>
+        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kodak-deep)">199 KB · zip · PNG</span>
         <span style="font-family:var(--font-mono);font-size:18px;color:var(--dark)">↓</span>
       </div>
     </a>

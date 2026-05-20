@@ -1,5 +1,5 @@
 Alright · Press Kit
-Generated: 2026-05-18
+Generated: 2026-05-20
 
 What's inside
 ─────────────
@@ -17,13 +17,13 @@ Big idea       ((Look again.))
 
 Brand device   (( )) — parentheses with one space, never glued to the letters
 
-Palette        Dark #141413 · Bone #FAF9F5 · Orange Clay #D97757
+Palette        Dark #141413 · Bone #FAF9F5 · Kodak Red #ed1c24
                Stone #3D3A35 · Slate Warm #5B5750 · Mist #ECE8DC
 
 Type           Bricolage Grotesque (OFL) + JetBrains Mono (Apache 2.0)
 
-Logo           The default wordmark has the central 'l' in Orange Clay.
-               Use the mono fallback only when Orange Clay can't reproduce
+Logo           The default wordmark has the central 'l' in Kodak Red.
+               Use the mono fallback only when Kodak Red can't reproduce
                (B&W print, fax, mono engraving, conflicting co-brand palettes).
 
 For more       wearealright.cc/brand-book.html (full brand book)

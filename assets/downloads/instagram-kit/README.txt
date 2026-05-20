@@ -1,5 +1,5 @@
 Alright · Instagram kit
-Generated: 2026-05-18
+Generated: 2026-05-20
 
 Files
 ─────
@@ -7,13 +7,13 @@ profile-1080.png             Profile picture (1:1) — ((l)) brand mark, Dark bg
 post-look-again-1080.png     Post (1:1) — ((Look again.)) on Dark
 post-craft-1080.png          Post (1:1) — Craft. Craft. And. More. Craft. on Bone
 story-lockup-1080x1920.png   Story (9:16) — ((We Are Alright)) lockup
-story-look-again-1080x1920.png  Story (9:16) — ((Look again.)) on Orange Clay
+story-look-again-1080x1920.png  Story (9:16) — ((Look again.)) on Kodak Red
 
 Brand
 ─────
 Dark         #141413
 Bone         #faf9f5
-Orange Clay  #d97757
+Kodak Red  #ed1c24
 Type         Bricolage Grotesque (OFL) + JetBrains Mono (Apache 2.0)
 Brand device (( )) — always with one space inside
 

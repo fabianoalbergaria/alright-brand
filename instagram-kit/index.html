@@ -13,8 +13,8 @@
   :root {
     --bone: #faf9f5;
     --dark: #141413;
-    --orange: #d97757;
-    --clay-deep: #8c4a32;
+    --orange: #ed1c24;
+    --kodak-deep: #a6192e;
     --stone: #3d3a35;
     --slate-warm: #5b5750;
     --mist: #ece8dc;
@@ -92,7 +92,7 @@
     font-family: var(--font-mono);
     font-size: 14px;
     color: var(--orange);
-    background: rgba(217, 119, 87, 0.08);
+    background: rgba(237, 28, 36, 0.08);
     padding: 1px 6px;
     border-radius: 2px;
   }
@@ -265,7 +265,7 @@
   /* Story ring around 56px */
   .scale-matrix .ring {
     padding: 3px;
-    background: linear-gradient(135deg, var(--orange), var(--clay-deep));
+    background: linear-gradient(135deg, var(--orange), var(--kodak-deep));
     border-radius: 50%;
     display: inline-block;
   }
@@ -370,7 +370,7 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
-     AVATAR FRAMES (1080×1080) — all Dark bg + l Orange Clay
+     AVATAR FRAMES (1080×1080) — all Dark bg + l Kodak Red
      ════════════════════════════════════════════════════════════════ */
 
   /* Avatar A — Símbolo: (( l )) com l opticamente centralizado */
@@ -634,8 +634,8 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     background:
-      linear-gradient(135deg, rgba(217, 119, 87, 0.45) 0%, rgba(20, 20, 19, 0.85) 60%, rgba(20, 20, 19, 0.95) 100%),
-      linear-gradient(45deg, var(--stone) 0%, var(--clay-deep) 50%, var(--dark) 100%);
+      linear-gradient(135deg, rgba(237, 28, 36, 0.45) 0%, rgba(20, 20, 19, 0.85) 60%, rgba(20, 20, 19, 0.95) 100%),
+      linear-gradient(45deg, var(--stone) 0%, var(--kodak-deep) 50%, var(--dark) 100%);
     margin-bottom: 56px;
     position: relative;
     overflow: hidden;
@@ -646,7 +646,7 @@
     inset: 0;
     background:
       radial-gradient(ellipse at 30% 40%, rgba(250, 249, 245, 0.18), transparent 60%),
-      radial-gradient(ellipse at 75% 65%, rgba(217, 119, 87, 0.32), transparent 55%);
+      radial-gradient(ellipse at 75% 65%, rgba(237, 28, 36, 0.32), transparent 55%);
   }
   .cover-making .still .frame-tag {
     position: absolute;
@@ -863,8 +863,8 @@
     width: 100%;
     margin-top: 80px;
     background:
-      linear-gradient(160deg, rgba(217, 119, 87, 0.55) 0%, rgba(20, 20, 19, 0.85) 70%),
-      linear-gradient(45deg, var(--stone) 0%, var(--clay-deep) 50%, var(--dark) 100%);
+      linear-gradient(160deg, rgba(237, 28, 36, 0.55) 0%, rgba(20, 20, 19, 0.85) 70%),
+      linear-gradient(45deg, var(--stone) 0%, var(--kodak-deep) 50%, var(--dark) 100%);
     position: relative;
     overflow: hidden;
   }
@@ -874,7 +874,7 @@
     inset: 0;
     background:
       radial-gradient(ellipse at 35% 45%, rgba(250, 249, 245, 0.18), transparent 55%),
-      radial-gradient(ellipse at 70% 70%, rgba(217, 119, 87, 0.32), transparent 50%);
+      radial-gradient(ellipse at 70% 70%, rgba(237, 28, 36, 0.32), transparent 50%);
   }
   .reels-edit .footer {
     display: flex;
@@ -1061,7 +1061,7 @@
 
   /* Editable indicator — only shown when edit mode is on */
   body.edit-mode [data-editable] {
-    outline: 1px dashed rgba(217, 119, 87, 0.4);
+    outline: 1px dashed rgba(237, 28, 36, 0.4);
     outline-offset: 6px;
     cursor: text;
     transition: outline-color 150ms var(--ease-cinematic), background 150ms var(--ease-cinematic);
@@ -1072,7 +1072,7 @@
   body.edit-mode [data-editable]:focus {
     outline: 2px solid var(--orange);
     outline-offset: 6px;
-    background: rgba(217, 119, 87, 0.06);
+    background: rgba(237, 28, 36, 0.06);
   }
 </style>
 </head>
@@ -1095,7 +1095,7 @@
   </header>
 
   <p class="intro">
-    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Bricolage Grotesque, paleta Bone / Dark / Orange Clay, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
+    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Bricolage Grotesque, paleta Bone / Dark / Kodak Red, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
   </p>
 
   <!-- ════════════════════════════════════════════════════════════════
@@ -1127,7 +1127,7 @@
         <div class="piece-label">
           <span class="kicker">A · 1080 × 1080</span>
           <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">((l))</code></span>
-          <span class="desc">Brackets Bone enquadram o <em>l</em> Orange Clay opticamente centralizado. Símbolo abstrato puro — mais reconhecível em scale pequena.</span>
+          <span class="desc">Brackets Bone enquadram o <em>l</em> Kodak Red opticamente centralizado. Símbolo abstrato puro — mais reconhecível em scale pequena.</span>
         </div>
       </div>
 
@@ -1143,7 +1143,7 @@
         <div class="piece-label">
           <span class="kicker">B · 1080 × 1080</span>
           <span class="name">Favicon style <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Al</code></span>
-          <span class="desc">Pegada do favicon — primeiros dois caracteres do wordmark cheios no quadro. <em>A</em> Bone + <em>l</em> Bold Orange Clay. Já se lê como fragmento da palavra.</span>
+          <span class="desc">Pegada do favicon — primeiros dois caracteres do wordmark cheios no quadro. <em>A</em> Bone + <em>l</em> Bold Kodak Red. Já se lê como fragmento da palavra.</span>
         </div>
       </div>
 
@@ -1229,7 +1229,7 @@
       <h2>Capas de post</h2>
     </div>
     <p class="section-sub">
-      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Bricolage Grotesque; accent Orange Clay sempre ≤ 10% da peça.
+      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Bricolage Grotesque; accent Kodak Red sempre ≤ 10% da peça.
     </p>
 
     <div class="grid portrait">
@@ -1309,7 +1309,7 @@
         <div class="piece-label">
           <span class="kicker">03 · 1080 × 1350</span>
           <span class="name">Capa · Big idea</span>
-          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Orange Clay como heroes. Para abrir séries ou marcar reveals.</span>
+          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Kodak Red como heroes. Para abrir séries ou marcar reveals.</span>
         </div>
       </div>
 
@@ -1366,7 +1366,7 @@
         <div class="piece-label">
           <span class="kicker">05 · 1080 × 1350</span>
           <span class="name">Capa · Pensamento</span>
-          <span class="desc">Citação editorial autoral. Uma palavra em Orange Clay como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
+          <span class="desc">Citação editorial autoral. Uma palavra em Kodak Red como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
         </div>
       </div>
 

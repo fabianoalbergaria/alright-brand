@@ -68,21 +68,21 @@ Avance com decisões secundárias usando recomendações dos subagentes. Comuniq
 ### Brand device
 - `(( ))` com espaçamento — sempre.
 - Variantes oficiais (cravadas em `02-visual-core/logo/02-direction-C-detailed.md`):
-  - State **Default** (90% usos, atualizado 2026-05-14): `Alright` (Bricolage Regular 400 com `l` central em **Bold 700 Orange Clay `#d97757`**).
+  - State **Default** (90% usos, atualizado 2026-05-14): `Alright` (Bricolage Regular 400 com `l` central em **Bold 700 Kodak Red `#ed1c24`**).
   - State **Mono fallback**: `Alright` (Bricolage Regular 400 com `l` central em Bold 700 Dark) — só pra reprodução B&W obrigatória (jornal, fax, bordado, gravação laser, co-branding com paleta conflitante).
   - State **Reveal**: `((A I r i g h t))` espaçado (ato editorial deliberado).
 
 ### Paleta cravada
-- Orange Clay `#d97757` (accent — não use como texto sobre Bone, falha WCAG AA)
+- Kodak Red `#ed1c24` (accent — não use como texto sobre Bone, falha WCAG AA)
 - Bone `#faf9f5` (background light mode default)
 - Dark `#141413` (texto + wordmark)
-- Secundárias text-safe: Clay Deep `#8c4a32`, Stone `#3d3a35`, Slate-warm `#5b5750`
+- Secundárias text-safe: Kodak Deep `#a6192e`, Stone `#3d3a35`, Slate-warm `#5b5750`
 - **Gradientes proibidos** (1 exceção: `gradient.editorial-bone` para hero)
 
 ### Tipografia cravada
 - Primária: **Bricolage Grotesque** (variable, OFL).
 - Companion mono: **JetBrains Mono** (Apache 2.0).
-- Bold 700 banido em uso editorial — exceção restrita ao `l` central do logo (Orange Clay no default, Dark no mono fallback).
+- Bold 700 banido em uso editorial — exceção restrita ao `l` central do logo (Kodak Red no default, Dark no mono fallback).
 - Italic ausente — usar Regular + indent (até Bricolage upstream lançar Italic).
 
 ### Anti-modelos visuais (não usar nunca)

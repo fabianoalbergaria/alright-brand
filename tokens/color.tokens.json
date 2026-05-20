@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
-  "$description": "Alright — Sistema cromático v1.0. Light mode warm como estado primário (anti-conformista vs dark-mode-first). Codifica paleta primária (Orange Clay + Bone + Dark), secundária (Clay Deep + Stone + Slate-warm), neutra warm 7-step, funcional (success/error/warning/info), dark mode aliases e gradiente editorial único permitido. Documentação completa em /Users/beralzir/Projetos/alright-brand/03-color-aihouse-motion/color/01-color-system.md.",
+  "$description": "Alright — Sistema cromático v2.0 (2026-05-20). Paleta primária evoluiu: Orange Clay → Kodak Red (Pantone 185 C). Clay Deep → Kodak Deep (Pantone 187 C). Light mode warm permanece como estado primário (anti-conformista vs dark-mode-first). Codifica paleta primária (Kodak Red + Bone + Dark), secundária (Kodak Deep + Stone + Slate-warm), neutra warm 7-step, funcional (success/error/warning/info), dark mode aliases e gradiente editorial único permitido. Documentação completa em 03-color-aihouse-motion/color/01-color-system.md.",
 
   "color": {
     "$type": "color",
@@ -10,21 +10,21 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [0.851, 0.467, 0.341],
+          "components": [0.929, 0.110, 0.141],
           "alpha": 1,
-          "hex": "#d97757"
+          "hex": "#ed1c24"
         },
-        "$description": "Orange Clay — accent canônico da marca. Logo state Expressivo C.1, hover sobre dark, key visual, capa de deck premium. NUNCA texto sobre Bone (falha WCAG 2.96:1). Pantone PMS 7578 C. Aligned com Anthropic Claude Orange. Regra de proporção: 5–10% por peça."
+        "$description": "Kodak Red — accent canônico v2 (2026-05-20). Logo state Default: glifo l central. Hover sobre dark, key visual, capa de deck premium. NUNCA texto sobre Bone (falha WCAG ~4:1 normal text). Pantone 185 C. Brand evolution: substituiu Orange Clay #d97757 / PMS 7578 C. Regra de proporção: 5–10% por peça."
       },
       "warm-deep": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [0.549, 0.290, 0.196],
+          "components": [0.651, 0.098, 0.180],
           "alpha": 1,
-          "hex": "#8c4a32"
+          "hex": "#a6192e"
         },
-        "$description": "Clay Deep — variante text-safe do Orange Clay. Passa 6.35:1 sobre Bone (AA texto). Use para texto laranja sobre Bone, links inline, citações editoriais. Pantone PMS 7595 C."
+        "$description": "Kodak Deep — variante text-safe do Kodak Red. Passa ~7:1 sobre Bone (AA texto + AAA grandes). Use para texto vermelho sobre Bone, links inline, citações editoriais. Pantone 187 C. Substituiu Clay Deep #8c4a32 / PMS 7595 C."
       }
     },
 
@@ -193,7 +193,7 @@
           "alpha": 1,
           "hex": "#945a0e"
         },
-        "$description": "Warning Amber — derivado mais escuro e saturado do orange para passar AA sobre Bone (5.35:1). NÃO confundir com Orange Clay (que é signature visual, não mensagem). Sempre acompanhar de ícone + label."
+        "$description": "Warning Amber — derivado mais escuro e saturado do orange para passar AA sobre Bone (5.35:1). NÃO confundir com Kodak Red (que é signature visual, não mensagem). Sempre acompanhar de ícone + label."
       },
       "warning-light": {
         "$type": "color",
@@ -277,19 +277,19 @@
         "accent": {
           "$type": "color",
           "$value": "{color.primary.warm-deep}",
-          "$description": "Texto laranja sobre Bone. Usa Clay Deep, NÃO o Orange Clay canônico (que falha texto)."
+          "$description": "Texto vermelho sobre Bone. Usa Kodak Deep, NÃO o Kodak Red canônico (que falha texto)."
         }
       },
       "accent": {
         "primary": {
           "$type": "color",
           "$value": "{color.primary.warm}",
-          "$description": "Orange Clay decorativo (logo accent, hover, key visual). NÃO usar para texto sobre Bone."
+          "$description": "Kodak Red decorativo (logo accent, hover, key visual). NÃO usar para texto sobre Bone."
         },
         "primary-on-dark": {
           "$type": "color",
           "$value": "{color.primary.warm}",
-          "$description": "Orange Clay sobre Dark — passa AA texto (5.90:1). Use para links inline em peças com fundo escuro."
+          "$description": "Kodak Red sobre Dark — passa AA texto (~5:1). Use para links inline em peças com fundo escuro."
         }
       },
       "border": {
@@ -338,14 +338,14 @@
         "accent": {
           "$type": "color",
           "$value": "{color.primary.warm}",
-          "$description": "Orange Clay no dark mode — mantém HEX canônico (5.67:1, AA). Comportamento Anthropic-aligned: orange é constante entre modes."
+          "$description": "Kodak Red no dark mode — mantém HEX canônico (~5:1, AA). Comportamento Anthropic-aligned: accent é constante entre modes."
         }
       },
       "accent": {
         "primary": {
           "$type": "color",
           "$value": "{color.primary.warm}",
-          "$description": "Orange Clay no dark mode (idem light)."
+          "$description": "Kodak Red no dark mode (idem light)."
         }
       },
       "border": {
@@ -376,7 +376,7 @@
       "wordmark-expressive-accent": {
         "$type": "color",
         "$value": "{color.primary.warm}",
-        "$description": "State Expressivo C.1: glifo l central em Orange Clay. Logo é elemento gráfico — isento de WCAG texto."
+        "$description": "State Default: glifo l central em Kodak Red. Logo é elemento gráfico — isento de WCAG texto."
       }
     },
 
@@ -406,7 +406,7 @@
       "tool-references": "Pantone matches via cross-reference HEX-to-PMS Solid Coated; daltonismo via simulação matricial padrão indústria"
     },
     "notes": [
-      "Orange Clay #d97757 falha WCAG sobre Bone (2.96:1) — comportamento intencional alinhado a Anthropic. Use Clay Deep #8c4a32 para texto laranja.",
+      "Kodak Red #ed1c24 falha WCAG sobre Bone (~4:1 normal) — comportamento intencional alinhado a Anthropic. Use Kodak Deep #a6192e para texto vermelho.",
       "Funcional (success/warning/error) sempre com ícone + label de texto — mitigação obrigatória de daltonismo.",
       "Light mode é estado primário sempre. Dark mode é alias secundário; nunca abrir produto/peça em dark por default.",
       "Gradientes proibidos por padrão; gradient.editorial-bone é a única exceção cravada (papel sob luz lateral, hero/capa premium)."

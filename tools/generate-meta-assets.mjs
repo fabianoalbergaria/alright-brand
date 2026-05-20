@@ -11,7 +11,7 @@ await fs.mkdir(OUT, { recursive: true });
 
 const DARK = '#141413';
 const BONE = '#faf9f5';
-const ORANGE = '#d97757';
+const ORANGE = '#ed1c24';
 
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ deviceScaleFactor: 2 });
@@ -63,7 +63,7 @@ await sharp(ogBuf).jpeg({ quality: 90, mozjpeg: true }).toFile(path.join(OUT, 'o
 console.log('✓ og-image.jpg');
 
 // ---------- Favicon ----------
-// Brand device with the central l in Orange Clay: (( l ))
+// Brand device with the central l in Kodak Red: (( l ))
 // In Bricolage Grotesque the lowercase l ascender is taller than the
 // cap-height of `(` and `)`. Left unchecked the l pokes above the
 // brackets. Compensation:

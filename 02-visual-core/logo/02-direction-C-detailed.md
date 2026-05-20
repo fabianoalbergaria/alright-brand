@@ -1,5 +1,9 @@
 # Alright — Direção C detalhada (logo system)
 
+> ## ⚠ ATUALIZAÇÃO 2026-05-20 — Paleta v2: Kodak Red
+>
+> Onde aparecer **Orange Clay `#d97757`** abaixo, leia **Kodak Red `#ed1c24`** (Pantone 185 C). Onde aparecer **Clay Deep `#8c4a32`**, leia **Kodak Deep `#a6192e`** (Pantone 187 C). Hierarquia do logo (Default `l Bold Kodak Red` · Mono fallback `l Bold Dark` · Reveal espaçado · Lockup) permanece intacta. Spec viva em `tokens/color.tokens.json` v2.0 e nas CSS vars `--kodak-red` / `--kodak-deep`.
+>
 > ## 🔄 ATUALIZAÇÃO 2026-05-14 — Hierarquia revisada
 >
 > **C.1 Expressivo foi promovido a Default. C.2 (Bold dark) virou Mono fallback.**

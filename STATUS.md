@@ -30,11 +30,11 @@
 - Direção C detalhada com 3 variações de accent: `02-visual-core/logo/02-direction-C-detailed.md`.
 - Sistema tipográfico cravado: `02-visual-core/typography/01-type-system.md`.
 - **Logo cravado**: **Direção C dual-state** *(hierarquia atualizada 2026-05-14)*:
-  - **Default (90% usos)**: `Alright` em Bricolage Regular 400, `l` central em **Bold 700 Orange Clay `#d97757`**. (Era C.1 Expressivo — promovido a default por codificar o uso real em portfolio/deck/site/OG/favicon.)
+  - **Default (90% usos)**: `Alright` em Bricolage Regular 400, `l` central em **Bold 700 Kodak Red `#ed1c24`**. (Era C.1 Expressivo — promovido a default por codificar o uso real em portfolio/deck/site/OG/favicon.)
   - **Mono fallback**: `l` central em Bold 700 Dark `#141413`. Reservado a reprodução B&W obrigatória (jornal, fax, bordado, gravação laser, co-branding com paleta conflitante). (Era C.2 Default.)
   - **Reveal `((A I r i g h t))`** espaçado: ato editorial deliberado, não default.
 - **Fonte primária cravada**: **Bricolage Grotesque** (Atelier Triay, OFL grátis) + **JetBrains Mono** companion (Apache 2.0).
-- **Override**: Bold 700 banido em uso editorial geral, exceção restrita ao **l central do logo** (sempre Orange Clay no default, dark no mono fallback).
+- **Override**: Bold 700 banido em uso editorial geral, exceção restrita ao **l central do logo** (sempre Kodak Red no default, dark no mono fallback).
 - **Decisões cravadas**:
   - "Alright Dings" → Fase 3+ futura (não agora)
   - Reveal `((A I r i g h t))` → ativo oficial codificado
@@ -47,7 +47,7 @@
 - Motion principles + tokens: `03-color-aihouse-motion/motion/01-motion-principles.md` (~3.300 palavras) + `tokens/motion.tokens.json`.
 
 **Decisões cravadas (auto mode)**:
-- HEX `#d97757` confirmado (revalidar contra PDF original do deck só quando produzir deck v2)
+- HEX `#ed1c24` confirmado (revalidar contra PDF original do deck só quando produzir deck v2)
 - Pantone `PMS 7578 C` ratificado pendente mostruário físico
 - LUT: começar com Kodak 2383 D55 comercial + budget custom Alright Q3
 - Prompts canônicos: publicar 3 dos 8 (#1, #4, #5)

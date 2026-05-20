@@ -28,7 +28,7 @@ const bold = loadFont('fonts/Bricolage-Bold.ttf');
 
 const DARK = '#141413';
 const BONE = '#faf9f5';
-const ORANGE = '#d97757';
+const ORANGE = '#ed1c24';
 
 const FONT_SIZE = 200;
 const PADDING = 60;
