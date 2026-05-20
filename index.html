@@ -1123,38 +1123,42 @@ article{margin:0;padding:0;display:block}
   }
 
   async function playReveal(){
-    if (!overlay || revealing) return;
+    if (revealing) return;
     revealing = true;
     hideHint();
+
+    // Brand evolution 2026-05-20: shake agora dispara o motion Brasa
+    // (Feel Alright) em vez do reel de 32s. Reusa o feel-overlay do menu
+    // com ?autoplay=1 (motion auto-toca, posta 'feel-alright-done' ao
+    // terminar, overlay fecha sozinho). Lock revealing libera após 12s
+    // — duração máxima esperada do motion (~6s) + buffer + safety.
+    if (typeof window.openFeel === 'function') {
+      window.openFeel('assets/motion/brasa-reveal.html');
+      setTimeout(function(){
+        revealing = false;
+        lastX = null; lastY = null; lastZ = null;
+        if (!seen) markSeen();
+      }, 12000);
+      return;
+    }
+
+    // Fallback: se feel-overlay não tiver carregado ainda, usa o
+    // sistema antigo (reel video) — garantia que shake sempre faz algo.
     var prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-
-    // 1. Slow fade to black
     overlay.classList.add('reveal-overlay--active');
     await wait(1100);
-
-    // 2. Play reel from start. iOS Safari may reject autoplay
-    //    triggered from a shake event (not a strict user gesture).
-    //    On reject: switch the skip pill to "(( tap to play ))"
-    //    and wait for an explicit tap (which is a user gesture).
     if (revealVideo) {
       try { revealVideo.currentTime = 0; } catch(_){}
-      try { revealVideo.muted = true; } catch(_){} // double-ensure mute
+      try { revealVideo.muted = true; } catch(_){}
       var played = false;
-      try {
-        await revealVideo.play();
-        played = true;
-      } catch(_) {
-        played = await waitForTapToPlay(revealVideo);
-      }
+      try { await revealVideo.play(); played = true; }
+      catch(_) { played = await waitForTapToPlay(revealVideo); }
       if (played) await playVideoToEnd(revealVideo);
       try { revealVideo.pause(); } catch(_){}
     }
-
-    // 3. Slow fade back to the site
     overlay.classList.remove('reveal-overlay--active');
     await wait(1100);
-
     document.body.style.overflow = prevOverflow;
     lastX = null; lastY = null; lastZ = null;
     if (!seen) markSeen();
@@ -1348,6 +1352,11 @@ article{margin:0;padding:0;display:block}
       openFeel(link.getAttribute('href'));
     });
   });
+
+  // Expor openFeel/closeFeel pro mundo — o handler de shake (em outro
+  // IIFE) chama window.openFeel pra reusar a mesma infra do menu
+  window.openFeel  = openFeel;
+  window.closeFeel = closeFeel;
 
   // bfcache restore guard
   window.addEventListener('pageshow', function(e){
