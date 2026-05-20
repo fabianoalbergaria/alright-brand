@@ -23,6 +23,7 @@ DIST="$ROOT/.kit-dist"
 echo "→ Limpando dist do kit…"
 rm -rf "$DIST"
 mkdir -p "$DIST/assets/social/instagram/psd"
+mkdir -p "$DIST/assets/logo/svg"
 
 echo "→ Copiando editor + assets…"
 cp "$ROOT/instagram-kit/index.html" "$DIST/index.html"
@@ -30,6 +31,9 @@ cp "$ROOT/assets/social/instagram/"*.png "$DIST/assets/social/instagram/"
 if [ -d "$ROOT/assets/social/instagram/psd" ]; then
   cp -R "$ROOT/assets/social/instagram/psd/." "$DIST/assets/social/instagram/psd/"
 fi
+# Logo SVGs referenciados pelo editor (brasa-square-transparent.svg etc).
+# Sem isso o <img src="../assets/logo/svg/..."> retorna 404 no kit deploy.
+cp "$ROOT/assets/logo/svg/"*.svg "$DIST/assets/logo/svg/"
 
 echo "→ Deploy Cloudflare Pages (wearealright-kit)…"
 wrangler pages deploy "$DIST" --project-name=wearealright-kit --branch=main --commit-dirty=true --commit-message="alright-kit deploy"

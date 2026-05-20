@@ -240,11 +240,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav a.nav__link--feel:hover{background:var(--kodak-red);color:var(--bone)}
 .nav a.nav__link--feel:hover::before{background:var(--bone);box-shadow:0 0 12px rgba(250,249,245,.6)}
 
-/* Feel Alright · in-page motion overlay */
-body.feel-alright-veiling{
-  opacity:0;
-  transition:opacity .9s cubic-bezier(0.16,1.0,0.3,1.0);
-}
+/* Feel Alright · in-page motion overlay
+   IMPORTANTE: NÃO setar opacity:0 no body — opacity em CSS cascateia pros
+   filhos, então fazer o body fade-out apagaria o overlay junto (o overlay
+   é filho do body), e o user veria tela branca com áudio tocando.
+   Em vez disso o overlay tem sua própria animação opacity 0→1 e o bg dele
+   (#0a0a09) gradualmente cobre o site enquanto fade-in acontece. */
 .feel-overlay{
   position:fixed;inset:0;
   background:#0a0a09;
@@ -271,7 +272,6 @@ body.feel-alright-veiling{
 .feel-overlay__close.is-visible{opacity:.7;pointer-events:auto}
 .feel-overlay__close:hover{opacity:1;background:rgba(250,249,245,0.08);border-color:var(--bone)}
 @media (prefers-reduced-motion: reduce){
-  body.feel-alright-veiling,
   .feel-overlay,
   .feel-overlay__close{transition:opacity .15s linear}
 }
@@ -1279,21 +1279,21 @@ article{margin:0;padding:0;display:block}
     isOpen = true;
 
     pauseHeroVideos();
-    document.body.classList.add('feel-alright-veiling');
 
-    // After site fades to black (~900ms), reveal the motion overlay and
-    // load the iframe. The iframe shows the "Feel Alright" start button —
-    // user clicks IT to ignite the motion (audio gesture requirement).
-    setTimeout(function(){
-      frame.src = url;
-      overlay.setAttribute('aria-hidden', 'false');
-      overlay.classList.add('feel-overlay--active');
-      // Show "back · esc" hint 2.4s after overlay appears (gives user
-      // time to focus on the motion CTA without UI noise)
-      hideHintTimer = setTimeout(function(){
-        closeBtn.classList.add('is-visible');
-      }, 2400);
-    }, 900);
+    // Load iframe + activate overlay together. The overlay's own opacity
+    // 0→1 transition (0.9s cinematic) provides the fade-out effect of the
+    // site visually — the dark bg progressively covers everything beneath
+    // while the iframe content (the brasa motion's "Feel Alright" CTA)
+    // fades in within it.
+    frame.src = url;
+    overlay.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('feel-overlay--active');
+
+    // Show "back · esc" hint 2.4s after overlay appears (gives user
+    // time to focus on the motion CTA without UI noise)
+    hideHintTimer = setTimeout(function(){
+      closeBtn.classList.add('is-visible');
+    }, 2400);
   }
 
   function closeFeel(){
@@ -1307,10 +1307,9 @@ article{margin:0;padding:0;display:block}
     overlay.classList.remove('feel-overlay--active');
     overlay.setAttribute('aria-hidden', 'true');
 
-    // After overlay fades out, unload iframe + restore site
+    // After overlay fades out (0.9s), unload iframe + restore site
     setTimeout(function(){
       frame.src = 'about:blank';
-      document.body.classList.remove('feel-alright-veiling');
       resumeHeroVideos();
     }, 900);
   }
@@ -1348,7 +1347,6 @@ article{margin:0;padding:0;display:block}
   // bfcache restore guard
   window.addEventListener('pageshow', function(e){
     if (e.persisted){
-      document.body.classList.remove('feel-alright-veiling');
       overlay.classList.remove('feel-overlay--active');
       closeBtn.classList.remove('is-visible');
       isOpen = false;
