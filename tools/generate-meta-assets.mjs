@@ -62,34 +62,49 @@ console.log('✓ og-image.png (1200×630)');
 await sharp(ogBuf).jpeg({ quality: 90, mozjpeg: true }).toFile(path.join(OUT, 'og-image.jpg'));
 console.log('✓ og-image.jpg');
 
-// ---------- Favicon ----------
-// Brand device with the central l in Kodak Red: (( l ))
-// In Bricolage Grotesque the lowercase l ascender is taller than the
-// cap-height of `(` and `)`. Left unchecked the l pokes above the
-// brackets. Compensation:
-//   - SVG: dy shifts only the l down ~10% font-size, then resets so
-//     the closing `))` lands back on the original baseline.
-//   - PNG (HTML template): same idea via a smaller font-size on the
-//     l + translateY to drop it visually.
+// ---------- Favicon (Brasa v2 · 2026-05-20) ----------
+// Substituiu o ((l)) anterior. Novo anchor: a brasa — ember Kodak Red +
+// halo radial (único gradiente permitido na marca) sobre Dark. Sem smoke
+// wisps no favicon — ficariam invisíveis nos 16/32px. Apenas o "ponto
+// quente" que dá nome à signature motion "Feel Alright" / "((Brasa))".
 const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&amp;display=block');text{font-family:'Bricolage Grotesque',sans-serif}</style></defs>
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="50%" r="45%">
+      <stop offset="0%"  stop-color="${ORANGE}" stop-opacity="0.70"/>
+      <stop offset="50%" stop-color="${ORANGE}" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="${ORANGE}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
   <rect width="64" height="64" fill="${DARK}"/>
-  <text x="32" y="46" text-anchor="middle" font-size="40" font-weight="400" letter-spacing="-0.04em" fill="${BONE}">((<tspan font-weight="700" fill="${ORANGE}" dy="4">l</tspan><tspan dy="-4">))</tspan></text>
+  <circle cx="32" cy="32" r="22" fill="url(#halo)" />
+  <circle cx="32" cy="32" r="5" fill="${ORANGE}" />
 </svg>`;
 await fs.writeFile(path.join(OUT, 'favicon.svg'), faviconSvg);
 console.log('✓ favicon.svg');
 
-// Render PNG variants via browser (so Bricolage renders correctly)
+// PNG variants — pure SVG rendering scales perfectly. For each target
+// size, embed the same SVG and screenshot.
 function faviconHtml(size){
-  const fs = Math.round(size * 0.62);
-  // l rendered ~88% of the bracket font size so its top sits below
-  // the bracket top, and nudged down ~6% to vertically center it.
+  const r = Math.round(size * 0.35);  // halo radius ~35% of canvas
+  const er = Math.max(2, Math.round(size * 0.08));  // ember radius ~8%
   return `<!DOCTYPE html><html><head>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=block" rel="stylesheet">
-<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:${size}px;height:${size}px;background:${DARK};font-family:'Bricolage Grotesque',sans-serif;overflow:hidden}
-.icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center;line-height:1;letter-spacing:-0.04em;color:${BONE};font-weight:400;font-size:${fs}px}
-.icon b{font-weight:700;color:${ORANGE};font-size:0.88em;display:inline-block;transform:translateY(0.07em);margin:0 -0.02em}
-</style></head><body><div class="icon">((<b>l</b>))</div></body></html>`;
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:${size}px;height:${size}px;background:${DARK};overflow:hidden}
+.icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center}
+svg{width:100%;height:100%;display:block}
+</style></head><body><div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}">
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="50%" r="45%">
+      <stop offset="0%"  stop-color="${ORANGE}" stop-opacity="0.70"/>
+      <stop offset="50%" stop-color="${ORANGE}" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="${ORANGE}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="${size}" height="${size}" fill="${DARK}"/>
+  <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="url(#halo)" />
+  <circle cx="${size/2}" cy="${size/2}" r="${er}" fill="${ORANGE}" />
+</svg>
+</div></body></html>`;
 }
 
 const sizes = [16, 32, 48, 64, 180, 192, 512];
