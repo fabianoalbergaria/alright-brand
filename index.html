@@ -225,6 +225,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav a.nav__link:hover{background:var(--dark);color:var(--bone)}
 .nav a.nav__link--accent{background:var(--kodak-red);color:var(--dark)}
 .nav a.nav__link--accent:hover{background:var(--dark);color:var(--bone)}
+/* Feel Alright link — Brasa ember visual, leads to motion experience */
+.nav a.nav__link--feel{color:var(--kodak-red);display:inline-flex;align-items:center;gap:8px}
+.nav a.nav__link--feel::before{
+  content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--kodak-red);
+  box-shadow:0 0 12px rgba(237,28,36,.6);
+  animation:feel-ember-pulse 2.4s cubic-bezier(0.16,1.0,0.3,1.0) infinite;
+}
+@keyframes feel-ember-pulse{
+  0%,100%{box-shadow:0 0 8px rgba(237,28,36,.45);opacity:1}
+  50%{box-shadow:0 0 16px rgba(237,28,36,.85);opacity:.85}
+}
+.nav a.nav__link--feel:hover{background:var(--kodak-red);color:var(--bone)}
+.nav a.nav__link--feel:hover::before{background:var(--bone);box-shadow:0 0 12px rgba(250,249,245,.6)}
+
+/* Feel Alright fade-out — cinematic transition to motion screen */
+body.feel-alright-fading{
+  opacity:0;
+  transition:opacity 1.2s cubic-bezier(0.16,1.0,0.3,1.0);
+}
 
 /* ---------- Stickers ---------- */
 .sticker{
@@ -575,6 +595,7 @@ article{margin:0;padding:0;display:block}
   </span>
   <div class="nav__links">
     <a class="nav__link" href="#cases">Cases</a>
+    <a class="nav__link nav__link--feel" href="assets/motion/brasa-reveal.html" data-feel-alright>Feel Alright</a>
     <a class="nav__link" href="#contato">Contato</a>
   </div>
 </nav>
@@ -1192,6 +1213,40 @@ article{margin:0;padding:0;display:block}
       }, 2500);
     }
   }
+})();
+</script>
+
+<!-- Feel Alright · fade-out cinemático → motion screen -->
+<script>
+(function(){
+  var links = document.querySelectorAll('[data-feel-alright]');
+  if (!links.length) return;
+
+  function fadeAndGo(url){
+    // Stop any background videos/audio so the silence frames the transition
+    document.querySelectorAll('video').forEach(function(v){
+      try { v.pause(); } catch(e){}
+    });
+    document.body.classList.add('feel-alright-fading');
+    // Wait the full transition before navigating — 1.2s matches the body
+    // opacity transition declared in CSS (.feel-alright-fading)
+    setTimeout(function(){ window.location.href = url; }, 1200);
+  }
+
+  links.forEach(function(link){
+    link.addEventListener('click', function(e){
+      // Allow Cmd/Ctrl-click + middle-click to open in new tab as usual
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      fadeAndGo(link.getAttribute('href'));
+    });
+  });
+
+  // If user lands on the page after a fade (bfcache restore), ensure
+  // they don't see a faded-out body
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) document.body.classList.remove('feel-alright-fading');
+  });
 })();
 </script>
 

@@ -33,13 +33,18 @@ async function shoot(width, height, html, file) {
   console.log(`✓ ${file}`);
 }
 
-// 1. Profile picture 1080×1080 — ((l)) brand mark, dark bg
-const profileHtml = `<!DOCTYPE html><html><head>${fonts}<style>
+// 1. Profile picture 1080×1080 — Brasa symbol (v2 paleta + signature motion)
+// Substituiu o ((l)) anterior. Geometria do motion canon × 1.4 wisp thickness
+// (mark scale). Ember Kodak Red + halo radial + 3 wisps Bone cruzando.
+// SVG inlinado pra evitar dep externa.
+import { readFileSync as _readSync } from 'node:fs';
+const BRASA_SQ = _readSync(path.join(ROOT, 'assets/logo/svg/brasa-square-transparent.svg'), 'utf8');
+const profileHtml = `<!DOCTYPE html><html><head><style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1080px;background:${DARK};font-family:'Bricolage Grotesque',sans-serif;overflow:hidden}
-.icon{width:1080px;height:1080px;display:flex;align-items:center;justify-content:center;line-height:1;letter-spacing:-0.04em;color:${BONE};font-weight:400;font-size:680px}
-.icon b{font-weight:700;color:${ORANGE};font-size:0.88em;display:inline-block;transform:translateY(0.07em);margin:0 -0.02em}
-</style></head><body><div class="icon">((<b>l</b>))</div></body></html>`;
+html,body{width:1080px;height:1080px;background:${DARK};overflow:hidden}
+.frame{width:1080px;height:1080px;background:${DARK};display:flex;align-items:center;justify-content:center}
+.frame svg{width:100%;height:100%;display:block}
+</style></head><body><div class="frame">${BRASA_SQ}</div></body></html>`;
 await shoot(1080, 1080, profileHtml, 'profile-1080.png');
 
 // 2. Post quote square 1080×1080 — ((Look again.))
