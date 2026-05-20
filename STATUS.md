@@ -47,8 +47,7 @@
 - Motion principles + tokens: `03-color-aihouse-motion/motion/01-motion-principles.md` (~3.300 palavras) + `tokens/motion.tokens.json`.
 
 **Decisões cravadas (auto mode)**:
-- HEX `#ed1c24` confirmado (revalidar contra PDF original do deck só quando produzir deck v2)
-- Pantone `PMS 7578 C` ratificado pendente mostruário físico
+- Accent primário **v2 (2026-05-20)**: Kodak Red HEX `#ed1c24` · Pantone **185 C**. Text-safe Kodak Deep `#a6192e` · Pantone **187 C**. Evoluiu da v1 cravada na Fase 3 (Orange Clay `#d97757` / PMS 7578 C, Anthropic-aligned). Mostruário físico para 185 C/187 C pendente.
 - LUT: começar com Kodak 2383 D55 comercial + budget custom Alright Q3
 - Prompts canônicos: publicar 3 dos 8 (#1, #4, #5)
 - Biblioteca de mood refs: local com CSV

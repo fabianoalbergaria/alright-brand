@@ -72,12 +72,32 @@ Avance com decisões secundárias usando recomendações dos subagentes. Comuniq
   - State **Mono fallback**: `Alright` (Bricolage Regular 400 com `l` central em Bold 700 Dark) — só pra reprodução B&W obrigatória (jornal, fax, bordado, gravação laser, co-branding com paleta conflitante).
   - State **Reveal**: `((A I r i g h t))` espaçado (ato editorial deliberado).
 
-### Paleta cravada
-- Kodak Red `#ed1c24` (accent — não use como texto sobre Bone, falha WCAG AA)
-- Bone `#faf9f5` (background light mode default)
-- Dark `#141413` (texto + wordmark)
-- Secundárias text-safe: Kodak Deep `#a6192e`, Stone `#3d3a35`, Slate-warm `#5b5750`
-- **Gradientes proibidos** (1 exceção: `gradient.editorial-bone` para hero)
+### Paleta cravada · v2 (2026-05-20)
+
+> **Brand evolution**: a paleta evoluiu de **v1 Orange Clay** (Anthropic-aligned warm clay) para **v2 Kodak Red** (cinematic film stock vibe — alinha com "Cada filme é um filme" e com o Kodak 2383 D55 LUT da operação). HEX e Pantone abaixo são v2 cravada. Spec viva em [`tokens/color.tokens.json`](tokens/color.tokens.json) (DTCG 2025.10 v2.0) + [`03-color-aihouse-motion/color/01-color-system.md`](03-color-aihouse-motion/color/01-color-system.md) (banner v2 no topo).
+
+**Primárias** (gesture · 5–10% por peça):
+- **Kodak Red `#ed1c24`** · Pantone 185 C · RGB `237,28,36` · CSS var `--kodak-red`
+  - Uso: accent canônico, `l` central do logo Default, brackets `((  ))` decorativos no hero/big idea, hover sobre Dark, key visual, capa de deck premium
+  - **Não usar para texto sobre Bone** (contrast ~4:1, falha WCAG AA normal text — use Kodak Deep)
+  - **Não usar para background dominante** (quebra a regra de 5–10% e vira "marca vermelha" cliché)
+  - Sobre Dark: passa AA (~5:1) — pode ser texto inline em peças dark mode
+- **Bone `#faf9f5`** · Pantone 9184 C · RGB `250,249,245` · CSS var `--bone`
+  - Background default light mode (60–70% por peça) · branco puro PROIBIDO
+- **Dark `#141413`** · Pantone Black 6 C · RGB `20,20,19` · CSS var `--dark`
+  - Texto default sobre Bone (AAA 17.5:1) · background dark mode canônico · preto puro PROIBIDO
+
+**Text-safe variants** (passam AA sobre Bone):
+- **Kodak Deep `#a6192e`** · Pantone 187 C · RGB `166,25,46` · CSS var `--kodak-deep`
+  - Único vermelho válido pra texto sobre Bone (~7:1, AA + AAA grandes) · links inline, citações editoriais, eyebrows accent
+  - **Não usar como accent do logo** (esse papel é sempre Kodak Red canônico)
+- **Stone `#3d3a35`** · CSS var `--stone` — sub-head density alta sobre Bone (AAA)
+- **Slate Warm `#5b5750`** · CSS var `--slate-warm` — metadados, captions, rules
+- **Mist `#ece8dc`** · CSS var `--mist` — surface secundária, divider sutil
+
+**Histórico v1 (deprecated)**: Orange Clay `#d97757` (PMS 7578 C, era accent primário) + Clay Deep `#8c4a32` (PMS 7595 C, text-safe). Substituídos integralmente — não usar em nenhum entregável novo. Refs em phase docs (`02-visual-core/`, `03-color-aihouse-motion/`) mantêm registro histórico com banner v2 no topo.
+
+**Gradientes proibidos** (1 exceção: `gradient.editorial-bone` para hero — flat-color como regra dura).
 
 ### Tipografia cravada
 - Primária: **Bricolage Grotesque** (variable, OFL).
