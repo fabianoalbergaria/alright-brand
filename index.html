@@ -1283,9 +1283,14 @@ article{margin:0;padding:0;display:block}
     // Load iframe + activate overlay together. The overlay's own opacity
     // 0→1 transition (0.9s cinematic) provides the fade-out effect of the
     // site visually — the dark bg progressively covers everything beneath
-    // while the iframe content (the brasa motion's "Feel Alright" CTA)
-    // fades in within it.
-    frame.src = url;
+    // while the iframe content (the brasa motion) fades in within it.
+    //
+    // ?autoplay=1 tells the motion to auto-begin: the menu link click IS
+    // the user gesture for audio, no need for an inner CTA button. If audio
+    // is blocked anyway, the motion has a virtual-clock fallback so the
+    // visual still plays.
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    frame.src = url + sep + 'autoplay=1';
     overlay.setAttribute('aria-hidden', 'false');
     overlay.classList.add('feel-overlay--active');
 

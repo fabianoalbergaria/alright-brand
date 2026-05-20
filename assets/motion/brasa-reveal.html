@@ -251,11 +251,12 @@
   }
 
   let started = false;
+  let startTimestamp = 0;
   let revealed = false;
   let doneNotified = false;
 
   function render() {
-    const t = started ? audio.currentTime : 0;
+    const t = started ? (audio.currentTime > 0 ? audio.currentTime : (Date.now() - startTimestamp) / 1000) : 0;
 
     ctx.fillStyle = COLORS.bg;
     ctx.fillRect(0, 0, LOGICAL_W, LOGICAL_H);
@@ -318,6 +319,7 @@
     revealed = false;
     doneNotified = false;
     audio.currentTime = 0;
+    startTimestamp = Date.now();
     audio.play().catch(() => {});
     started = true;
   }
@@ -331,6 +333,14 @@
     begin();
   });
   replay.addEventListener('click', begin);
+
+  // Autoplay quando aberto via parent ?autoplay=1 (clique no menu Feel Alright
+  // do portfolio já é o gesture de play — não precisa de botao interno).
+  if (new URLSearchParams(location.search).has('autoplay')) {
+    start.classList.add('hidden');
+    // Defer um tick pra DOM + audio context settle
+    setTimeout(begin, 60);
+  }
 })();
 </script>
 </body>
