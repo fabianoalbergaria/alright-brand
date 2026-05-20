@@ -1127,18 +1127,20 @@ article{margin:0;padding:0;display:block}
     revealing = true;
     hideHint();
 
-    // Brand evolution 2026-05-20: shake agora dispara o motion Brasa
-    // (Feel Alright) em vez do reel de 32s. Reusa o feel-overlay do menu
-    // com ?autoplay=1 (motion auto-toca, posta 'feel-alright-done' ao
-    // terminar, overlay fecha sozinho). Lock revealing libera após 12s
-    // — duração máxima esperada do motion (~6s) + buffer + safety.
+    // Brand evolution 2026-05-20: shake dispara o motion Brasa (Feel
+    // Alright). Reusa o feel-overlay do menu. autoplay=FALSE no shake
+    // porque o evento devicemotion não conta como user gesture estrito
+    // pra audio autoplay nas policies dos browsers mobile → motion abre
+    // com botão "Feel Alright" visível, user tapa, audio toca garantido.
+    // 1 tap extra mas entrega audio no mobile (owner: "muito importante").
+    // Lock revealing libera após 20s (tap + motion ~6s + buffer + safety).
     if (typeof window.openFeel === 'function') {
-      window.openFeel('assets/motion/brasa-reveal.html');
+      window.openFeel('assets/motion/brasa-reveal.html', { autoplay: false });
       setTimeout(function(){
         revealing = false;
         lastX = null; lastY = null; lastZ = null;
         if (!seen) markSeen();
-      }, 12000);
+      }, 20000);
       return;
     }
 
@@ -1278,23 +1280,25 @@ article{margin:0;padding:0;display:block}
     });
   }
 
-  function openFeel(url){
+  function openFeel(url, opts){
     if (isOpen) return;
     isOpen = true;
+    opts = opts || {};
 
     pauseHeroVideos();
 
-    // Load iframe + activate overlay together. The overlay's own opacity
-    // 0→1 transition (0.9s cinematic) provides the fade-out effect of the
-    // site visually — the dark bg progressively covers everything beneath
-    // while the iframe content (the brasa motion) fades in within it.
-    //
-    // ?autoplay=1 tells the motion to auto-begin: the menu link click IS
-    // the user gesture for audio, no need for an inner CTA button. If audio
-    // is blocked anyway, the motion has a virtual-clock fallback so the
-    // visual still plays.
-    var sep = url.indexOf('?') >= 0 ? '&' : '?';
-    frame.src = url + sep + 'autoplay=1';
+    // autoplay=true (default): click no menu = user gesture → motion auto-
+    // toca com audio. autoplay=false: shake mobile não conta como gesture
+    // estrito pra audio policy → motion abre com o botao "Feel Alright"
+    // visível, user tapa pra play com som garantido. 1 tap extra, mas
+    // entrega audio no mobile (o user pediu "muito importante").
+    var autoplay = opts.autoplay !== false;
+    var finalUrl = url;
+    if (autoplay) {
+      var sep = url.indexOf('?') >= 0 ? '&' : '?';
+      finalUrl = url + sep + 'autoplay=1';
+    }
+    frame.src = finalUrl;
     overlay.setAttribute('aria-hidden', 'false');
     overlay.classList.add('feel-overlay--active');
 
@@ -1343,18 +1347,19 @@ article{margin:0;padding:0;display:block}
   // Close button click
   closeBtn.addEventListener('click', closeFeel);
 
-  // Link handlers
+  // Link handlers · click = user gesture → audio autoplay funciona
   links.forEach(function(link){
     link.addEventListener('click', function(e){
       // Cmd/Ctrl/Shift/middle-click preserve nova-aba flow
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
       e.preventDefault();
-      openFeel(link.getAttribute('href'));
+      openFeel(link.getAttribute('href'), { autoplay: true });
     });
   });
 
-  // Expor openFeel/closeFeel pro mundo — o handler de shake (em outro
-  // IIFE) chama window.openFeel pra reusar a mesma infra do menu
+  // Expor openFeel/closeFeel pro mundo — handler de shake (IIFE separado)
+  // chama window.openFeel com { autoplay: false } pra mostrar start button
+  // (shake não é user gesture estrito → user precisa tapar pra audio)
   window.openFeel  = openFeel;
   window.closeFeel = closeFeel;
 
