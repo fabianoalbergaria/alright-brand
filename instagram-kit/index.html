@@ -374,46 +374,50 @@
      ════════════════════════════════════════════════════════════════ */
 
   /* Avatar A — Símbolo: (( l )) com l opticamente centralizado */
-  .avatar-symbol {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    font-family: var(--font-sans);
-    line-height: 1;
-  }
-  .avatar-symbol .glyph {
-    position: absolute;
-    top: 50%;
-    font-size: 820px;
-    font-weight: 300;
-    display: block;
-    color: var(--bone);
-  }
-  .avatar-symbol .brk-left  { left: 130px;  transform: translateY(-50%); }
-  .avatar-symbol .brk-right { right: 130px; transform: translateY(-50%); }
-  .avatar-symbol .el {
-    left: 50%;
-    color: var(--orange);
-    font-weight: 700;
-    /* nudge: bracket has descender extending below baseline, l minúsculo
-       doesn't — push l down so its optical center matches the brackets' */
-    transform: translate(-50%, calc(-50% + 56px));
-  }
-
-  /* Avatar B — Favicon style: "Al" gigante (A Bone + l Orange Bold) */
-  .avatar-favicon {
+  /* Avatar A — Brasa symbol (ember + halo + 3 wisps, geometria do motion canon) */
+  .avatar-brasa-mark {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 0;
   }
-  .avatar-favicon .wm {
-    font-size: 720px;
-    letter-spacing: -0.04em;
+  .avatar-brasa-mark img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
   }
-  .avatar-favicon .wm .a { color: var(--bone); font-weight: 400; }
-  .avatar-favicon .wm .l { color: var(--orange); font-weight: 700; }
+
+  /* Avatar B — Brasa lockup: símbolo em cima + Alright em baixo com l Bold */
+  .avatar-brasa-lockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 60px 80px;
+    gap: 24px;
+  }
+  .avatar-brasa-lockup img {
+    width: 560px;
+    height: 560px;
+    display: block;
+    object-fit: contain;
+  }
+  .avatar-brasa-lockup .wm {
+    font-size: 180px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    line-height: 1;
+  }
+  .avatar-brasa-lockup .wm b {
+    font-weight: 700;  /* l Bold — mais grosso · mono Bone (sem accent vermelho) */
+    font-style: normal;
+  }
 
   /* Avatar C — Wordmark Alright completo, sobre Dark */
   .avatar-wordmark {
@@ -1113,37 +1117,36 @@
 
     <div class="grid square">
 
-      <!-- Avatar A · Símbolo (( l )) sobre Dark -->
+      <!-- Avatar A · Brasa symbol sobre Dark -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-a">
-            <div class="avatar-symbol">
-              <span class="glyph brk-left">((</span>
-              <span class="glyph el">l</span>
-              <span class="glyph brk-right">))</span>
+            <div class="avatar-brasa-mark">
+              <img src="../assets/logo/svg/brasa-square-transparent.svg" alt="Brasa — ember + halo + 3 wisps" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">A · 1080 × 1080</span>
-          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">((l))</code></span>
-          <span class="desc">Brackets Bone enquadram o <em>l</em> Kodak Red opticamente centralizado. Símbolo abstrato puro — mais reconhecível em scale pequena.</span>
+          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Brasa</code></span>
+          <span class="desc">Ember Kodak Red + halo radial + 3 wisps de fumaça Bone que cruzam no meio — frozen frame do motion ((Brasa)). Símbolo puro pra reconhecimento em scale pequena.</span>
         </div>
       </div>
 
-      <!-- Avatar B · Favicon style "Al" sobre Dark -->
+      <!-- Avatar B · Brasa lockup (símbolo + Alright com l Bold) -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-b">
-            <div class="avatar-favicon">
-              <span class="wm"><span class="a">A</span><span class="l">l</span></span>
+            <div class="avatar-brasa-lockup">
+              <img src="../assets/logo/svg/brasa-square-transparent.svg" alt="Brasa" />
+              <span class="wm">A<b>l</b>right</span>
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">B · 1080 × 1080</span>
-          <span class="name">Favicon style <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Al</code></span>
-          <span class="desc">Pegada do favicon — primeiros dois caracteres do wordmark cheios no quadro. <em>A</em> Bone + <em>l</em> Bold Kodak Red. Já se lê como fragmento da palavra.</span>
+          <span class="name">Brasa lockup <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Brasa + Alright</code></span>
+          <span class="desc">Símbolo Brasa em cima + wordmark <em>Alright</em> abaixo com <em>l</em> Bold 700 (mono Bone, sem accent vermelho). Reveal moment do motion congelado em forma de logo.</span>
         </div>
       </div>
 

@@ -63,48 +63,101 @@ await sharp(ogBuf).jpeg({ quality: 90, mozjpeg: true }).toFile(path.join(OUT, 'o
 console.log('✓ og-image.jpg');
 
 // ---------- Favicon (Brasa v2 · 2026-05-20) ----------
-// Substituiu o ((l)) anterior. Novo anchor: a brasa — ember Kodak Red +
-// halo radial (único gradiente permitido na marca) sobre Dark. Sem smoke
-// wisps no favicon — ficariam invisíveis nos 16/32px. Apenas o "ponto
-// quente" que dá nome à signature motion "Feel Alright" / "((Brasa))".
-const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+// Responsive design: PNG icons at 16/32 use a thickened-wisp variant
+// (legível em telas onde o browser não consegue rasterizar wisps sub-pixel);
+// PNG icons ≥48 e o favicon.svg usam a espessura canon do motion (idêntica
+// às references e ao frame final do brasa-motion-reveal.html).
+//
+// Geometria reutilizada do tools/generate-brasa-logo.mjs (mesmas 3 cubic
+// Beziers, ember a 78% from top, halo tight). Aqui inlinada pra evitar
+// dependência cross-tool — se a geometria mudar lá, atualize aqui também.
+
+const BRASA_GEOMETRY = (() => {
+  // Square viewBox 600×600. Ember at 78% from top.
+  const SIZE = 600;
+  const CX_BR = SIZE / 2;
+  const EY_BR = SIZE * 0.78;
+  const CY_TILE_BR = 375;
+  const EY_ORIG = CY_TILE_BR + 165;
+  const DY = EY_BR - EY_ORIG;
+
+  const canon = [
+    { p0: [CX_BR, EY_ORIG - 12 + DY], p1: [CX_BR - 68, CY_TILE_BR + 30 + DY], p2: [CX_BR + 60, CY_TILE_BR - 68 + DY], p3: [CX_BR + 22, CY_TILE_BR - 195 + DY], baseW: 8.5, tipW: 0.8 },
+    { p0: [CX_BR, EY_ORIG - 12 + DY], p1: [CX_BR + 60, CY_TILE_BR + 22 + DY], p2: [CX_BR - 60, CY_TILE_BR - 52 + DY], p3: [CX_BR - 75, CY_TILE_BR - 150 + DY], baseW: 7.0, tipW: 0.8 },
+    { p0: [CX_BR, EY_ORIG - 12 + DY], p1: [CX_BR + 22, CY_TILE_BR + 45 + DY], p2: [CX_BR + 82, CY_TILE_BR - 22 + DY], p3: [CX_BR + 82, CY_TILE_BR - 120 + DY], baseW: 5.5, tipW: 0.8 },
+  ];
+
+  function bezierPoint(p0, p1, p2, p3, t) {
+    const omt = 1 - t;
+    return [
+      omt*omt*omt*p0[0] + 3*omt*omt*t*p1[0] + 3*omt*t*t*p2[0] + t*t*t*p3[0],
+      omt*omt*omt*p0[1] + 3*omt*omt*t*p1[1] + 3*omt*t*t*p2[1] + t*t*t*p3[1],
+    ];
+  }
+  function bezierTangent(p0, p1, p2, p3, t) {
+    const omt = 1 - t;
+    const x = 3*omt*omt*(p1[0]-p0[0]) + 6*omt*t*(p2[0]-p1[0]) + 3*t*t*(p3[0]-p2[0]);
+    const y = 3*omt*omt*(p1[1]-p0[1]) + 6*omt*t*(p2[1]-p1[1]) + 3*t*t*(p3[1]-p2[1]);
+    const len = Math.hypot(x, y) || 1;
+    return [x/len, y/len];
+  }
+  function ribbonPath(wisp, samples = 80) {
+    const { p0, p1, p2, p3, baseW, tipW } = wisp;
+    const left = [], right = [];
+    for (let i = 0; i <= samples; i++) {
+      const t = i / samples;
+      const [px, py] = bezierPoint(p0, p1, p2, p3, t);
+      const [tx, ty] = bezierTangent(p0, p1, p2, p3, t);
+      const nx = ty, ny = -tx;
+      const w = baseW + (tipW - baseW) * t;
+      const hw = w / 2;
+      left.push([px - nx * hw, py - ny * hw]);
+      right.push([px + nx * hw, py + ny * hw]);
+    }
+    const fmt = ([x, y]) => `${x.toFixed(2)} ${y.toFixed(2)}`;
+    let d = `M ${fmt(left[0])}`;
+    for (let i = 1; i < left.length; i++) d += ` L ${fmt(left[i])}`;
+    for (let i = right.length - 1; i >= 0; i--) d += ` L ${fmt(right[i])}`;
+    return d + ' Z';
+  }
+
+  function svg(wispScale = 1) {
+    const wisps = canon.map(w => ({ ...w, baseW: w.baseW * wispScale, tipW: w.tipW * wispScale }));
+    const emberR = 18;
+    const haloR = emberR * 3.0;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${SIZE} ${SIZE}">
   <defs>
-    <radialGradient id="halo" cx="50%" cy="50%" r="45%">
-      <stop offset="0%"  stop-color="${ORANGE}" stop-opacity="0.70"/>
-      <stop offset="50%" stop-color="${ORANGE}" stop-opacity="0.20"/>
+    <radialGradient id="halo" cx="${CX_BR}" cy="${EY_BR}" r="${haloR}" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"  stop-color="${ORANGE}" stop-opacity="0.55"/>
+      <stop offset="45%" stop-color="${ORANGE}" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="${ORANGE}" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="64" height="64" fill="${DARK}"/>
-  <circle cx="32" cy="32" r="22" fill="url(#halo)" />
-  <circle cx="32" cy="32" r="5" fill="${ORANGE}" />
+  <rect width="${SIZE}" height="${SIZE}" fill="${DARK}"/>
+  <circle cx="${CX_BR}" cy="${EY_BR}" r="${haloR}" fill="url(#halo)"/>
+  ${wisps.map(w => `<path d="${ribbonPath(w)}" fill="${BONE}"/>`).join('\n  ')}
+  <circle cx="${CX_BR}" cy="${EY_BR}" r="${emberR}" fill="${ORANGE}"/>
 </svg>`;
-await fs.writeFile(path.join(OUT, 'favicon.svg'), faviconSvg);
-console.log('✓ favicon.svg');
+  }
+  return { svg };
+})();
 
-// PNG variants — pure SVG rendering scales perfectly. For each target
-// size, embed the same SVG and screenshot.
+// favicon.svg = motion canon thickness (used by SVG-preferring browsers)
+const faviconSvg = BRASA_GEOMETRY.svg(1.0);
+await fs.writeFile(path.join(OUT, 'favicon.svg'), faviconSvg);
+console.log('✓ favicon.svg (canon)');
+
+// PNG variants — chunky for 16/32 (×3.5 wisp scale), canon for 48+
 function faviconHtml(size){
-  const r = Math.round(size * 0.35);  // halo radius ~35% of canvas
-  const er = Math.max(2, Math.round(size * 0.08));  // ember radius ~8%
+  // At 16/32px sub-pixel wisps disappear → use thicker scale.
+  // At 48+ rasterization preserves canon thickness cleanly.
+  const wispScale = size <= 32 ? 3.5 : 1.0;
+  const svg = BRASA_GEOMETRY.svg(wispScale);
   return `<!DOCTYPE html><html><head>
 <style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:${size}px;height:${size}px;background:${DARK};overflow:hidden}
 .icon{width:${size}px;height:${size}px;background:${DARK};display:flex;align-items:center;justify-content:center}
 svg{width:100%;height:100%;display:block}
-</style></head><body><div class="icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}">
-  <defs>
-    <radialGradient id="halo" cx="50%" cy="50%" r="45%">
-      <stop offset="0%"  stop-color="${ORANGE}" stop-opacity="0.70"/>
-      <stop offset="50%" stop-color="${ORANGE}" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="${ORANGE}" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="${size}" height="${size}" fill="${DARK}"/>
-  <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="url(#halo)" />
-  <circle cx="${size/2}" cy="${size/2}" r="${er}" fill="${ORANGE}" />
-</svg>
-</div></body></html>`;
+</style></head><body><div class="icon">${svg}</div></body></html>`;
 }
 
 const sizes = [16, 32, 48, 64, 180, 192, 512];
