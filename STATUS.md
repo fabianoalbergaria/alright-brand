@@ -1,7 +1,7 @@
 # Alright Brand Guide — Status do projeto
 
-> **Status atual**: ✅ **CONCLUÍDO** — 5/5 fases entregues.
-> **Concluído em**: 2026-05-11. **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
+> **Status atual**: ✅ **CONCLUÍDO + EVOLUÇÕES POST-FINAL** — 5/5 fases entregues + paleta v2 (Kodak Red) + Brasa motion + Feel Alright system cravados em 2026-05-20.
+> **Concluído em**: 2026-05-11. **Last major update**: 2026-05-20 (paleta v2 + Brasa). **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
 
 ---
 
@@ -73,6 +73,36 @@
 
 ---
 
+## ✅ Evoluções pós-conclusão (2026-05-20)
+
+> Mudanças cravadas pelo owner após a entrega das 5 fases. Tudo deployado em main + kit. Detalhes operacionais em `RESUME.md` seção "Mudanças recentes".
+
+### Paleta v2 · Kodak Red
+
+- Accent primário: Orange Clay `#d97757` (PMS 7578 C) → **Kodak Red `#ed1c24`** (Pantone 185 C)
+- Text-safe: Clay Deep `#8c4a32` (PMS 7595 C) → **Kodak Deep `#a6192e`** (Pantone 187 C)
+- Narrative: cinematic film stock (Kodak 2383 D55 LUT) substitui "Anthropic-aligned warm clay"
+- Refator cascateou em ~70 arquivos (tokens v2 + HTMLs + SVGs + 11 PSDs + favicons + zips + swatches `.aco`/`.ase`)
+- Docs: `tokens/color.tokens.json` v2.0 + banner v2 em `03-color-aihouse-motion/color/01-color-system.md` + `02-visual-core/logo/02-direction-C-detailed.md`
+
+### Brasa motion + companion mark
+
+- **Motion asset**: `assets/motion/brasa-reveal.html` (master em `02-visual-core/logo/studies/brasa-motion-reveal.html`). 530KB self-contained com Bricolage + audio em base64. Geometria: 3 cubic Beziers cruzando (ribbon outline), ember a 78% from top, halo radial.
+- **Companion logo**: Brasa = ember Kodak Red + halo + 3 wisps Bone cruzando. 7 variants em `assets/logo/svg/brasa-{mark,lockup,square,favicon}-*.svg`. **Wordmark = voz, Brasa = gesto.**
+- **Favicon**: trocado de `((l))` por Brasa. Responsive thickness (×3.5 nos 16/32, canon ×1.0 nos 48+).
+- **Brand book**: seção 04.1 "Brasa · símbolo motion" adicionada dentro de #logo.
+- **IG kit avatars**: A → Brasa symbol · B → Brasa + Alright lockup · C → wordmark com padding generoso.
+
+### Feel Alright system
+
+- Portfolio menu ganhou link "Feel Alright" (entre Cases e Contato, com ember pulsante)
+- Click → abre overlay in-page (`.feel-overlay` fixed inset:0) com iframe do motion + `?autoplay=1` (clique É user gesture pra audio)
+- Motion auto-toca → reveal → postMessage `feel-alright-done` → overlay fade-out → site volta no exato ponto
+- Mobile shake também dispara o motion (via `window.openFeel` exposto), com `autoplay: false` porque devicemotion não conta como gesture pra audio policy → user dá 1 tap pra audio
+- ESC ou botão "(( back )) · esc" também fecham
+
+---
+
 ## 📊 Métricas
 
 - **Fases concluídas**: 5 / 5 (100%)
@@ -118,4 +148,5 @@ alright-brand/
 
 ---
 
-*Última atualização: 2026-05-14. Owner: Alright. Orquestrador: Claude Code.*
+*Última atualização: 2026-05-20. Owner: Alright. Orquestrador: Claude Code.*
+*Paleta v2 cravada + Brasa motion/companion integrados + Feel Alright system funcional.*
