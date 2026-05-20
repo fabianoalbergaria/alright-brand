@@ -240,10 +240,40 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav a.nav__link--feel:hover{background:var(--kodak-red);color:var(--bone)}
 .nav a.nav__link--feel:hover::before{background:var(--bone);box-shadow:0 0 12px rgba(250,249,245,.6)}
 
-/* Feel Alright fade-out — cinematic transition to motion screen */
-body.feel-alright-fading{
+/* Feel Alright · in-page motion overlay */
+body.feel-alright-veiling{
   opacity:0;
-  transition:opacity 1.2s cubic-bezier(0.16,1.0,0.3,1.0);
+  transition:opacity .9s cubic-bezier(0.16,1.0,0.3,1.0);
+}
+.feel-overlay{
+  position:fixed;inset:0;
+  background:#0a0a09;
+  z-index:9999;
+  opacity:0;pointer-events:none;
+  transition:opacity .9s cubic-bezier(0.16,1.0,0.3,1.0);
+  display:flex;align-items:center;justify-content:center;
+}
+.feel-overlay--active{opacity:1;pointer-events:auto}
+.feel-overlay__iframe{
+  width:100%;height:100%;
+  border:0;display:block;
+  background:#0a0a09;
+}
+.feel-overlay__close{
+  position:absolute;top:24px;right:24px;
+  appearance:none;background:transparent;border:1px solid rgba(250,249,245,0.25);
+  color:var(--bone);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  padding:10px 18px;border-radius:999px;cursor:pointer;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s ease,background .25s ease,border-color .25s ease;
+}
+.feel-overlay__close.is-visible{opacity:.7;pointer-events:auto}
+.feel-overlay__close:hover{opacity:1;background:rgba(250,249,245,0.08);border-color:var(--bone)}
+@media (prefers-reduced-motion: reduce){
+  body.feel-alright-veiling,
+  .feel-overlay,
+  .feel-overlay__close{transition:opacity .15s linear}
 }
 
 /* ---------- Stickers ---------- */
@@ -1216,36 +1246,113 @@ article{margin:0;padding:0;display:block}
 })();
 </script>
 
-<!-- Feel Alright · fade-out cinemático → motion screen -->
+<!-- Feel Alright · motion overlay (mesma tab, auto-return ao fim) -->
+<div class="feel-overlay" id="feelOverlay" role="dialog" aria-hidden="true" aria-label="Feel Alright motion experience">
+  <iframe class="feel-overlay__iframe" id="feelOverlayFrame" title="((Brasa)) — Feel Alright motion" allow="autoplay" loading="lazy"></iframe>
+  <button class="feel-overlay__close" id="feelOverlayClose" type="button" aria-label="Fechar (ESC)">(( back )) · esc</button>
+</div>
+
 <script>
 (function(){
-  var links = document.querySelectorAll('[data-feel-alright]');
+  var links   = document.querySelectorAll('[data-feel-alright]');
   if (!links.length) return;
 
-  function fadeAndGo(url){
-    // Stop any background videos/audio so the silence frames the transition
-    document.querySelectorAll('video').forEach(function(v){
-      try { v.pause(); } catch(e){}
+  var overlay     = document.getElementById('feelOverlay');
+  var frame       = document.getElementById('feelOverlayFrame');
+  var closeBtn    = document.getElementById('feelOverlayClose');
+  var heroVideos  = document.querySelectorAll('video');
+  var isOpen      = false;
+  var closeTimer  = null;
+  var hideHintTimer = null;
+
+  function pauseHeroVideos(){
+    heroVideos.forEach(function(v){ try { v.pause(); } catch(e){} });
+  }
+  function resumeHeroVideos(){
+    heroVideos.forEach(function(v){
+      try { v.play().catch(function(){}); } catch(e){}
     });
-    document.body.classList.add('feel-alright-fading');
-    // Wait the full transition before navigating — 1.2s matches the body
-    // opacity transition declared in CSS (.feel-alright-fading)
-    setTimeout(function(){ window.location.href = url; }, 1200);
   }
 
+  function openFeel(url){
+    if (isOpen) return;
+    isOpen = true;
+
+    pauseHeroVideos();
+    document.body.classList.add('feel-alright-veiling');
+
+    // After site fades to black (~900ms), reveal the motion overlay and
+    // load the iframe. The iframe shows the "Feel Alright" start button —
+    // user clicks IT to ignite the motion (audio gesture requirement).
+    setTimeout(function(){
+      frame.src = url;
+      overlay.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('feel-overlay--active');
+      // Show "back · esc" hint 2.4s after overlay appears (gives user
+      // time to focus on the motion CTA without UI noise)
+      hideHintTimer = setTimeout(function(){
+        closeBtn.classList.add('is-visible');
+      }, 2400);
+    }, 900);
+  }
+
+  function closeFeel(){
+    if (!isOpen) return;
+    isOpen = false;
+
+    clearTimeout(hideHintTimer);
+    clearTimeout(closeTimer);
+
+    closeBtn.classList.remove('is-visible');
+    overlay.classList.remove('feel-overlay--active');
+    overlay.setAttribute('aria-hidden', 'true');
+
+    // After overlay fades out, unload iframe + restore site
+    setTimeout(function(){
+      frame.src = 'about:blank';
+      document.body.classList.remove('feel-alright-veiling');
+      resumeHeroVideos();
+    }, 900);
+  }
+
+  // Listen for motion → "I'm done" message from the iframe.
+  // brasa-reveal.html posts { type: 'feel-alright-done' } when the
+  // wordmark reveal has held for ~3s past full reveal.
+  window.addEventListener('message', function(e){
+    if (!e.data) return;
+    var data = (typeof e.data === 'object') ? e.data : null;
+    if (data && data.type === 'feel-alright-done') {
+      // Brief hold so the wordmark "lands" in viewer's perception
+      closeTimer = setTimeout(closeFeel, 400);
+    }
+  });
+
+  // ESC closes overlay
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && isOpen) closeFeel();
+  });
+
+  // Close button click
+  closeBtn.addEventListener('click', closeFeel);
+
+  // Link handlers
   links.forEach(function(link){
     link.addEventListener('click', function(e){
-      // Allow Cmd/Ctrl-click + middle-click to open in new tab as usual
+      // Cmd/Ctrl/Shift/middle-click preserve nova-aba flow
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
       e.preventDefault();
-      fadeAndGo(link.getAttribute('href'));
+      openFeel(link.getAttribute('href'));
     });
   });
 
-  // If user lands on the page after a fade (bfcache restore), ensure
-  // they don't see a faded-out body
+  // bfcache restore guard
   window.addEventListener('pageshow', function(e){
-    if (e.persisted) document.body.classList.remove('feel-alright-fading');
+    if (e.persisted){
+      document.body.classList.remove('feel-alright-veiling');
+      overlay.classList.remove('feel-overlay--active');
+      closeBtn.classList.remove('is-visible');
+      isOpen = false;
+    }
   });
 })();
 </script>
