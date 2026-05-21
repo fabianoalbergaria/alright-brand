@@ -1089,7 +1089,7 @@
   <div class="edit-bar" id="edit-bar">
     <button class="btn" id="toggle-edit" aria-pressed="false">Modo edição · OFF</button>
     <button class="btn" id="export-html" disabled>Exportar HTML editado ↓</button>
-    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com 3 camadas base separadas (<em>Background</em> só cor sólida · <em>Brand · wordmark</em> com logo + decorações canon sobre transparente · uma <em>text layer vetorial por elemento editável</em>) — assim você troca bg color sem mexer no wordmark, double-click pra editar texto. Pra regenerar: <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs</code>.</span>
+    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com <em>Background</em> só cor sólida + <em>Brand · decor</em> com decorações canon (brackets, accent bars) sobre transparente + uma <em>text layer vetorial por elemento editável</em>, incluindo o <em>wordmark Alright</em> dividido em <em>A · l · right</em> (o <em>l</em> em Bold com accent vermelho). Troque bg color sem afetar nada do resto · double-click pra editar texto. Pra regenerar: <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs</code>.</span>
   </div>
 
   <header class="page-header">
@@ -1634,7 +1634,7 @@
       // add one: drop the .psd in assets/social/instagram/psd/ and list its
       // FILENAMES key in PSD_AVAILABLE below.)
       if (PSD_AVAILABLE[filename]) {
-        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com 3 camadas base separadas (Background sólido · Brand wordmark+decorações sobre transparente · uma text layer vetorial por elemento editável). Troca bg color sem mexer no wordmark, double-click no Photoshop pra editar texto.">PSD · camadas <span class="arrow">↓</span></a>';
+        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com Background sólido + Brand · decor + text layers vetoriais (inclui o wordmark Alright dividido em 3 layers: A, l Bold accent, right). Troca bg color sem afetar wordmark/texto · double-click no Photoshop pra editar.">PSD · camadas <span class="arrow">↓</span></a>';
       }
       actions.innerHTML = html;
       label.appendChild(actions);

@@ -2,13 +2,24 @@
 // Generate Instagram kit PSDs from the live editor HTML.
 //
 // Each PSD bundles:
-//   - "Background"  : raster of the piece with editable text HIDDEN — preserves
-//                     bg color, wordmark, meta, brand-canon decorations
-//                     (brackets, accent bars, the orange dot in manifesto, etc.)
-//   - N text layers : one per element listed in EDITABLE_SELECTORS in the
-//                     editor — real vector text (double-click to edit in PS).
-//                     Inline colored spans within an editable element are
-//                     flattened to the element's dominant color.
+//   - "Background"        : solid bg color raster, swap freely without
+//                           touching anything else.
+//   - "Brand · decor"     : raster of non-text brand-canon decorations
+//                           (accent bars, brackets that aren't text, the
+//                           orange dot in manifesto, etc.) on a transparent
+//                           canvas. The Alright wordmark is NOT baked here —
+//                           it's its own vector text layers below so swapping
+//                           bg doesn't bleed alpha into the wordmark glyphs.
+//   - "Wordmark · A/l/right" : 3 vector text layers reconstructing the
+//                              `<span class="wm">A<span class="l">l</span>right</span>`
+//                              wordmark. The `l` carries its own bold weight
+//                              and accent color (Kodak Red on light pieces,
+//                              Bone on dark pieces).
+//   - N text layers       : one per element listed in EDITABLE_SELECTORS in
+//                           the editor — real vector text (double-click to
+//                           edit in PS). Inline colored spans within an
+//                           editable element are flattened to the element's
+//                           dominant color.
 //
 // For avatar pieces (no text), falls back to 2-layer Background+Content raster.
 // feed-01-case.psd is hand-crafted (text layers built by a different process)
@@ -68,12 +79,18 @@ function fontPostScriptName(cssFamily, cssWeight) {
 
 // Per-piece spec: size + bg recipe + editable text layer selectors.
 //
-// User rule: the Alright wordmark in the footer never changes — every OTHER
-// text element is editable. We translate that to:
-//   - Background layer = bg color + .wm (wordmark) + decorative SVG (accent
-//     bars, brand-canon brackets that aren't editable text on their own).
-//   - One vector text layer per .selector listed below — these are everything
-//     user-facing text except the wordmark.
+// Owner rule (updated 2026-05-21): the Alright wordmark is now a set of
+// vector text layers (one per styled run: `A`, `l` Bold accent, `right`) so
+// that swapping the Background color in Photoshop does NOT bleed alpha into
+// the wordmark glyphs (the old raster-with-alpha approach made the wordmark
+// "change color" when bg changed — anti-aliased edges picked up the new bg).
+//
+//   - Background layer = solid bg color (swap freely).
+//   - Brand · decor   = non-text brand-canon decorations only (brackets that
+//                       are part of headers, accent bars, etc.), transparent.
+//   - Wordmark · A/l/right = three vector text layers reconstructing `.wm`.
+//   - One vector text layer per .selector listed in `layers` — every OTHER
+//     user-facing text element.
 //
 // `layers: null` → fall back to 2-layer (Background + Content) raster, used
 // for avatars (pure symbol/wordmark, no text to expose).
@@ -190,12 +207,16 @@ async function setupFrame(page, piece, { hideEditable = false, bgTransparent = f
     document.body.style.background = 'transparent';
     document.documentElement.style.background = 'transparent';
 
-    // Optionally hide all editable text elements so we capture the
-    // "background" — wordmark, meta, brand-canon decorations only.
+    // Optionally hide all editable text elements + the wordmark so we capture
+    // the "brand decor" raster — just non-text canon decorations (brackets,
+    // accent bars). Wordmark is rebuilt as vector text layers below.
     window.__psdHiddenEditable = [];
-    if (hideEditable && layers) {
-      for (const layer of layers) {
-        for (const el of frame.querySelectorAll(layer.sel)) {
+    if (hideEditable) {
+      const toHide = [];
+      if (layers) for (const layer of layers) toHide.push(layer.sel);
+      toHide.push('.wm');
+      for (const sel of toHide) {
+        for (const el of frame.querySelectorAll(sel)) {
           window.__psdHiddenEditable.push({ el, visibility: el.style.visibility });
           el.style.visibility = 'hidden';
         }
@@ -326,6 +347,131 @@ async function extractTextLayers(page, piece) {
 }
 
 // ────────────────────────────────────────────────────────────────────────
+// Wordmark layer extraction — splits `.wm` (A<span class="l">l</span>right)
+// into 3 vector text layers so swapping bg never bleeds alpha into the
+// wordmark glyphs (the old raster-with-alpha behavior).
+// ────────────────────────────────────────────────────────────────────────
+
+async function extractWordmarkLayers(page, piece) {
+  return await page.evaluate(({ id }) => {
+    const frame = document.getElementById(id);
+    if (!frame) return [];
+    const wm = frame.querySelector('.wm');
+    if (!wm) return [];
+    const fr = frame.getBoundingClientRect();
+
+    function parseColor(rgb) {
+      const m = rgb.match(/rgba?\(([^)]+)\)/);
+      if (!m) return { r: 0, g: 0, b: 0 };
+      const [r, g, b] = m[1].split(',').map(s => parseFloat(s.trim()));
+      return { r, g, b };
+    }
+
+    // Walk .wm children and split into runs. Text nodes inherit the .wm style
+    // (regular weight, base color). Accent elements — <span class="l"> or <b>
+    // — bring their own bold weight + accent color.
+    const segments = [];
+    let pending = null; // accumulator for adjacent text nodes (one .wm run)
+
+    function flushNormal() {
+      if (!pending || pending.text.length === 0) return;
+      segments.push({
+        kind: 'normal',
+        text: pending.text,
+        element: wm,
+        startNode: pending.startNode,
+        startOffset: pending.startOffset,
+        endNode: pending.endNode,
+        endOffset: pending.endOffset,
+      });
+      pending = null;
+    }
+
+    for (const child of wm.childNodes) {
+      if (child.nodeType === 3) {
+        if (!pending) {
+          pending = {
+            text: child.textContent,
+            startNode: child, startOffset: 0,
+            endNode: child, endOffset: child.textContent.length,
+          };
+        } else {
+          pending.text += child.textContent;
+          pending.endNode = child;
+          pending.endOffset = child.textContent.length;
+        }
+      } else if (child.nodeType === 1) {
+        const isAccent = (child.tagName === 'B') ||
+                         (child.tagName === 'SPAN' && child.classList.contains('l'));
+        if (isAccent) {
+          flushNormal();
+          segments.push({
+            kind: 'accent',
+            text: child.textContent,
+            element: child,
+          });
+        }
+        // Unknown element children inside .wm — skip; current markup never
+        // hits this branch.
+      }
+    }
+    flushNormal();
+
+    const results = [];
+    let segIndex = 0;
+    for (const seg of segments) {
+      const range = document.createRange();
+      if (seg.kind === 'accent') {
+        range.selectNodeContents(seg.element);
+      } else {
+        range.setStart(seg.startNode, seg.startOffset);
+        range.setEnd(seg.endNode, seg.endOffset);
+      }
+      const rect = range.getBoundingClientRect();
+
+      const cs = getComputedStyle(seg.element);
+      const fontFamily = cs.fontFamily.replace(/["']/g, '').split(',')[0].trim();
+      const fontSize = parseFloat(cs.fontSize);
+      const fontWeight = parseInt(cs.fontWeight, 10);
+      const lhStr = cs.lineHeight;
+      const lineHeight = lhStr === 'normal' ? fontSize * 1.2 : parseFloat(lhStr);
+      const lsStr = cs.letterSpacing;
+      const letterSpacingPx = lsStr === 'normal' ? 0 : parseFloat(lsStr);
+      const tracking = Math.round(letterSpacingPx / fontSize * 1000);
+      const color = parseColor(cs.color);
+
+      const x = rect.left - fr.left;
+      const yTop = rect.top - fr.top;
+      const leadingGap = Math.max(0, (lineHeight - fontSize) / 2);
+      const baselineY = yTop + leadingGap + fontSize * 0.82;
+
+      let name;
+      if (seg.kind === 'accent') name = 'Wordmark · l';
+      else if (segIndex === 0) name = 'Wordmark · A';
+      else name = 'Wordmark · right';
+
+      results.push({
+        name,
+        text: seg.text,
+        fontFamily,
+        fontSize,
+        lineHeight,
+        fontWeight,
+        tracking,
+        color,
+        x,
+        yTop,
+        baselineY,
+        textAlign: 'left',
+      });
+      segIndex++;
+    }
+
+    return results;
+  }, { id: piece.id });
+}
+
+// ────────────────────────────────────────────────────────────────────────
 // Background builders
 // ────────────────────────────────────────────────────────────────────────
 
@@ -379,46 +525,8 @@ async function buildAvatarPsd(page, piece) {
   };
 }
 
-async function buildLayeredPsd(page, piece) {
-  const [w, h] = piece.size;
-
-  // Capture flat composite (everything visible) for psd.canvas — the preview
-  // shown by tools that don't compose layers.
-  await setupFrame(page, piece);
-  const flatPng = await shoot(page, w, h);
-  await restoreFrame(page);
-
-  // Capture the brand layer: wordmark + non-editable decorations (accent bars,
-  // canon brackets, etc.) on a transparent canvas. Editable text is hidden so
-  // it doesn't end up baked in alongside the wordmark.
-  await setupFrame(page, piece, { hideEditable: true, bgTransparent: true });
-  const brandPng = await shoot(page, w, h, { omitBackground: true });
-  // Text layers extracted from the same DOM state — but with editable elements
-  // still in layout (we didn't display:none, we set visibility:hidden), so
-  // getBoundingClientRect returns the real position.
-  await page.evaluate(() => {
-    for (const r of window.__psdHiddenEditable || []) {
-      r.el.style.visibility = r.visibility;
-    }
-    window.__psdHiddenEditable = [];
-  });
-  const textLayers = await extractTextLayers(page, piece);
-  await restoreFrame(page);
-
-  const flatImg = await loadImage(flatPng);
-  const flatCv = createCanvas(w, h);
-  flatCv.getContext('2d').drawImage(flatImg, 0, 0, w, h);
-
-  const brandImg = await loadImage(brandPng);
-  const brandCv = createCanvas(w, h);
-  brandCv.getContext('2d').drawImage(brandImg, 0, 0, w, h);
-
-  // Background is a separate, solid layer below the brand — lets you swap
-  // bg colors without touching the wordmark or decorations.
-  const bgCv = buildSolidBackground(piece);
-
-  // Build text layer children
-  const textChildren = textLayers.map(t => ({
+function buildTextChild(t, w, h) {
+  return {
     name: t.name,
     text: {
       text: t.text.replace(/\n/g, '\r'),
@@ -453,15 +561,59 @@ async function buildLayeredPsd(page, piece) {
     top: Math.max(0, Math.round(t.yTop)),
     right: w,
     bottom: Math.min(h, Math.round(t.yTop + t.lineHeight * Math.max(1, t.text.split('\n').length))),
-  }));
+  };
+}
+
+async function buildLayeredPsd(page, piece) {
+  const [w, h] = piece.size;
+
+  // Capture flat composite (everything visible) for psd.canvas — the preview
+  // shown by tools that don't compose layers.
+  await setupFrame(page, piece);
+  const flatPng = await shoot(page, w, h);
+  await restoreFrame(page);
+
+  // Capture the brand-decor layer: non-text canon decorations only (brackets
+  // that are part of headers, accent bars, etc.). The wordmark + editable
+  // text are hidden so nothing gets double-rendered when we composite with
+  // the vector text layers below.
+  await setupFrame(page, piece, { hideEditable: true, bgTransparent: true });
+  const brandPng = await shoot(page, w, h, { omitBackground: true });
+  // Restore visibility before extracting text-layer geometry (we need real
+  // bounding boxes from the laid-out DOM).
+  await page.evaluate(() => {
+    for (const r of window.__psdHiddenEditable || []) {
+      r.el.style.visibility = r.visibility;
+    }
+    window.__psdHiddenEditable = [];
+  });
+  const textLayers = await extractTextLayers(page, piece);
+  const wordmarkLayers = await extractWordmarkLayers(page, piece);
+  await restoreFrame(page);
+
+  const flatImg = await loadImage(flatPng);
+  const flatCv = createCanvas(w, h);
+  flatCv.getContext('2d').drawImage(flatImg, 0, 0, w, h);
+
+  const brandImg = await loadImage(brandPng);
+  const brandCv = createCanvas(w, h);
+  brandCv.getContext('2d').drawImage(brandImg, 0, 0, w, h);
+
+  // Background is a separate, solid layer below — swap freely without
+  // touching wordmark, decor, or editable text.
+  const bgCv = buildSolidBackground(piece);
+
+  const textChildren = textLayers.map(t => buildTextChild(t, w, h));
+  const wordmarkChildren = wordmarkLayers.map(t => buildTextChild(t, w, h));
 
   return {
     width: w, height: h,
     canvas: flatCv,
     children: [
-      { name: 'Background',         canvas: bgCv,    left: 0, top: 0, right: w, bottom: h },
-      { name: 'Brand · wordmark',   canvas: brandCv, left: 0, top: 0, right: w, bottom: h },
+      { name: 'Background',    canvas: bgCv,    left: 0, top: 0, right: w, bottom: h },
+      { name: 'Brand · decor', canvas: brandCv, left: 0, top: 0, right: w, bottom: h },
       ...textChildren,
+      ...wordmarkChildren,
     ],
   };
 }
