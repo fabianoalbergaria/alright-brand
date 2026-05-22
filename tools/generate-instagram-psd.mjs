@@ -159,6 +159,21 @@ const PIECES = [
     { sel: '.attrib',                      name: 'Attrib' },
     { sel: '.meta',                        name: 'Meta' },
   ]},
+  // Making-of landscape: the still gradient IS the bg, so we pass the
+  // gradient recipe to the background builder.
+  { id: 'feed-h-making', file: 'feed-12-h-making-of', size: [1080, 608], bg: 'making-still-gradient', layers: [
+    { sel: '.eyebrow',   name: 'Eyebrow' },
+    { sel: '.ref',       name: 'Ref' },
+    { sel: '.title',     name: 'Title' },
+    { sel: '.frame-tag', name: 'Frame tag' },
+    { sel: '.meta',      name: 'Meta' },
+  ]},
+  { id: 'feed-h-split', file: 'feed-13-h-split', size: [1080, 608], bg: 'split-lateral-55-bone-dark', layers: [
+    { sel: '.pane-left .eyebrow',  name: 'Eyebrow' },
+    { sel: '.pane-left .headline', name: 'Headline' },
+    { sel: '.pane-right .lead',    name: 'Lead' },
+    { sel: '.pane-right .meta',    name: 'Meta' },
+  ]},
   { id: 'vert-reels', file: 'vertical-07-reels-cover', size: [1080, 1920], bg: BONE, layers: [
     { sel: '.eyebrow', name: 'Eyebrow' },
     { sel: '.ref',     name: 'Ref' },
@@ -508,6 +523,40 @@ function buildSolidBackground(piece) {
     ctx.fillRect(0, 0, w, topH);
     ctx.fillStyle = DARK;
     ctx.fillRect(0, topH, w, h - topH);
+  } else if (piece.bg === 'split-lateral-55-bone-dark') {
+    const leftW = Math.round(w * 0.55);
+    ctx.fillStyle = BONE;
+    ctx.fillRect(0, 0, leftW, h);
+    ctx.fillStyle = DARK;
+    ctx.fillRect(leftW, 0, w - leftW, h);
+  } else if (piece.bg === 'making-still-gradient') {
+    // Cinematic still placeholder: two diagonal gradients stacked + radial
+    // highlights to mimic the CSS recipe in the editor (.cover-h-making bg).
+    // Base diagonal: stone → kodak-deep → dark
+    const baseGrad = ctx.createLinearGradient(0, 0, w, h);
+    baseGrad.addColorStop(0,    '#3d3a35'); // stone
+    baseGrad.addColorStop(0.5,  '#a6192e'); // kodak-deep
+    baseGrad.addColorStop(1,    '#141413'); // dark
+    ctx.fillStyle = baseGrad;
+    ctx.fillRect(0, 0, w, h);
+    // Overlay: red→dark diagonal at 135deg
+    const overlay = ctx.createLinearGradient(0, 0, w, h);
+    overlay.addColorStop(0,    'rgba(237, 28, 36, 0.45)');
+    overlay.addColorStop(0.6,  'rgba(20, 20, 19, 0.85)');
+    overlay.addColorStop(1,    'rgba(20, 20, 19, 0.95)');
+    ctx.fillStyle = overlay;
+    ctx.fillRect(0, 0, w, h);
+    // Radial highlights — bone at top-left, red at bottom-right
+    const r1 = ctx.createRadialGradient(w * 0.25, h * 0.30, 0, w * 0.25, h * 0.30, Math.max(w, h) * 0.55);
+    r1.addColorStop(0, 'rgba(250, 249, 245, 0.18)');
+    r1.addColorStop(1, 'rgba(250, 249, 245, 0)');
+    ctx.fillStyle = r1;
+    ctx.fillRect(0, 0, w, h);
+    const r2 = ctx.createRadialGradient(w * 0.78, h * 0.70, 0, w * 0.78, h * 0.70, Math.max(w, h) * 0.50);
+    r2.addColorStop(0, 'rgba(237, 28, 36, 0.32)');
+    r2.addColorStop(1, 'rgba(237, 28, 36, 0)');
+    ctx.fillStyle = r2;
+    ctx.fillRect(0, 0, w, h);
   } else {
     ctx.fillStyle = piece.bg;
     ctx.fillRect(0, 0, w, h);

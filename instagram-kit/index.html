@@ -950,6 +950,157 @@
     text-align: right;
   }
 
+  /* Capa landscape · Making-of (still ocupando full bg, texto overlay) */
+  .cover-h-making {
+    width: 100%; height: 100%;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(237, 28, 36, 0.45) 0%, rgba(20, 20, 19, 0.85) 60%, rgba(20, 20, 19, 0.95) 100%),
+      linear-gradient(45deg, var(--stone) 0%, var(--kodak-deep) 50%, var(--dark) 100%);
+  }
+  .cover-h-making::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 25% 30%, rgba(250, 249, 245, 0.18), transparent 55%),
+      radial-gradient(ellipse at 78% 70%, rgba(237, 28, 36, 0.32), transparent 50%);
+    pointer-events: none;
+  }
+  .cover-h-making .layer {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-h-making .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .cover-h-making .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .cover-h-making .ref {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: rgba(250, 249, 245, 0.7);
+  }
+  .cover-h-making .frame-tag {
+    position: absolute;
+    bottom: 88px;
+    left: 80px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.65);
+    z-index: 3;
+  }
+  .cover-h-making .title {
+    font-size: 76px;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    max-width: 720px;
+  }
+  .cover-h-making .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-making .bottom .wm { font-size: 44px; color: var(--bone); }
+  .cover-h-making .bottom .wm .l { color: var(--orange); }
+  .cover-h-making .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
+  /* Capa landscape · Split anúncio (lateral 55/45 bone/dark) */
+  .cover-h-split {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+  .cover-h-split .pane-left {
+    width: 55%;
+    background: var(--bone);
+    padding: 52px 56px 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-h-split .pane-right {
+    width: 45%;
+    background: var(--dark);
+    padding: 52px 80px 52px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-h-split .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .cover-h-split .headline {
+    font-size: 76px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+    margin-bottom: 8px;
+    max-width: 560px;
+  }
+  .cover-h-split .headline .brk { color: var(--orange); font-weight: 300; }
+  .cover-h-split .pane-right .lead {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    color: var(--bone);
+    max-width: 100%;
+  }
+  .cover-h-split .pane-right .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-split .pane-right .wm { font-size: 36px; color: var(--bone); }
+  .cover-h-split .pane-right .wm .l { color: var(--orange); }
+  .cover-h-split .pane-right .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
   /* Capa landscape · Quote */
   .cover-h-quote {
     width: 100%; height: 100%;
@@ -1675,6 +1826,33 @@
         </div>
       </div>
 
+      <!-- Capa H · Making-of -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape" id="feed-h-making">
+            <div class="cover-h-making">
+              <div class="layer">
+                <div class="header">
+                  <span class="eyebrow">Making-of · PUMA</span>
+                  <span class="ref">FRAME 048 / 240</span>
+                </div>
+                <div class="title">Sem câmera. Sem set.<br />Só craft.</div>
+                <div class="bottom">
+                  <span class="wm on-dark">A<span class="l">l</span>right</span>
+                  <span class="meta">Carrossel · arraste →</span>
+                </div>
+              </div>
+              <span class="frame-tag">Take 12 · interior · 16:9</span>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">12 · 1080 × 608</span>
+          <span class="name">Capa H · Making-of</span>
+          <span class="desc">Versão landscape do making-of. Still ocupa o bg inteiro (16:9 dentro de 16:9 = fits perfeito) com texto overlay. Pra abrir carrosséis de bastidores com vídeos 16:9.</span>
+        </div>
+      </div>
+
       <!-- Capa H · Quote -->
       <div class="piece">
         <div class="piece-frame-wrap landscape">
@@ -1699,6 +1877,33 @@
           <span class="kicker">11 · 1080 × 608</span>
           <span class="name">Capa H · Quote</span>
           <span class="desc">Pensamento canônico em landscape — abre carrosséis editoriais com vídeos horizontais. Body à esquerda, attrib bullet Kodak Red abaixo.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Split anúncio -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape" id="feed-h-split">
+            <div class="cover-h-split">
+              <div class="pane-left">
+                <span class="eyebrow">Lançamento · 2026</span>
+                <div class="headline"><span class="brk">((</span>Novo<span class="brk">))</span><br />Caso<br />PUMA</div>
+                <span style="font-family:var(--font-mono);font-size:14px;letter-spacing:0.22em;text-transform:uppercase;color:var(--slate-warm);">02 · Jul · 2026</span>
+              </div>
+              <div class="pane-right">
+                <div class="lead">A.I. fez o set inteiro.<br />Você só vê o filme.</div>
+                <div class="bottom-row">
+                  <span class="wm on-dark">A<span class="l">l</span>right</span>
+                  <span class="meta">Saiba mais →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">13 · 1080 × 608</span>
+          <span class="name">Capa H · Anúncio split</span>
+          <span class="desc">Split lateral 55/45 Bone/Dark — versão widescreen do anúncio de lançamento. Headline à esquerda em Bone, lead + CTA à direita em Dark. Funciona como capa standalone ou cover de carrossel com vídeos 16:9.</span>
         </div>
       </div>
 
@@ -1793,6 +1998,8 @@
     'feed-h-case':    'feed-09-h-case',
     'feed-h-bigidea': 'feed-10-h-bigidea',
     'feed-h-quote':   'feed-11-h-quote',
+    'feed-h-making':  'feed-12-h-making-of',
+    'feed-h-split':   'feed-13-h-split',
     'vert-reels':     'vertical-07-reels-cover',
     'vert-stories':   'vertical-08-stories'
   };
@@ -1812,6 +2019,8 @@
     'feed-09-h-case':          true,
     'feed-10-h-bigidea':       true,
     'feed-11-h-quote':         true,
+    'feed-12-h-making-of':     true,
+    'feed-13-h-split':         true,
     'vertical-07-reels-cover': true,
     'vertical-08-stories':     true
   };
@@ -1998,6 +2207,10 @@
     '#feed-h-bigidea .kicker', '#feed-h-bigidea .phrase', '#feed-h-bigidea .tag',
     // Landscape · Quote
     '#feed-h-quote .kicker', '#feed-h-quote .body', '#feed-h-quote .attrib', '#feed-h-quote .meta',
+    // Landscape · Making-of
+    '#feed-h-making .eyebrow', '#feed-h-making .ref', '#feed-h-making .title', '#feed-h-making .frame-tag', '#feed-h-making .meta',
+    // Landscape · Split
+    '#feed-h-split .eyebrow', '#feed-h-split .headline', '#feed-h-split .lead', '#feed-h-split .meta',
     // Reels
     '#vert-reels .eyebrow', '#vert-reels .ref', '#vert-reels .title',
     // Stories
