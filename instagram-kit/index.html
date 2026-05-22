@@ -25,6 +25,7 @@
     --scale-square: 0.30;
     --scale-portrait: 0.28;
     --scale-vertical: 0.22;
+    --scale-landscape: 0.40;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -140,6 +141,7 @@
   }
   .grid.square    { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
   .grid.portrait  { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .grid.landscape { grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); }
   .grid.vertical  { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 
   .piece {
@@ -163,10 +165,12 @@
   .frame.square    { width: 1080px; height: 1080px; transform: scale(var(--scale-square)); }
   .frame.portrait  { width: 1080px; height: 1350px; transform: scale(var(--scale-portrait)); }
   .frame.vertical  { width: 1080px; height: 1920px; transform: scale(var(--scale-vertical)); }
+  .frame.landscape { width: 1080px; height: 608px;  transform: scale(var(--scale-landscape)); }
 
-  .piece-frame-wrap.square   { width: calc(1080px * var(--scale-square));   height: calc(1080px * var(--scale-square)); }
-  .piece-frame-wrap.portrait { width: calc(1080px * var(--scale-portrait)); height: calc(1350px * var(--scale-portrait)); }
-  .piece-frame-wrap.vertical { width: calc(1080px * var(--scale-vertical)); height: calc(1920px * var(--scale-vertical)); }
+  .piece-frame-wrap.square    { width: calc(1080px * var(--scale-square));    height: calc(1080px * var(--scale-square)); }
+  .piece-frame-wrap.portrait  { width: calc(1080px * var(--scale-portrait));  height: calc(1350px * var(--scale-portrait)); }
+  .piece-frame-wrap.vertical  { width: calc(1080px * var(--scale-vertical));  height: calc(1920px * var(--scale-vertical)); }
+  .piece-frame-wrap.landscape { width: calc(1080px * var(--scale-landscape)); height: calc(608px  * var(--scale-landscape)); }
 
   /* ─────────── Scale test (real IG circle sizes) ─────────── */
 
@@ -823,6 +827,201 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
+     FEED LANDSCAPE (1080×608) — 16:9
+     Padding mais compacto que portrait (608 ≪ 1350). Same canon:
+     wordmark bottom-left, meta/tag bottom-right, kickers top, hero centro.
+     ════════════════════════════════════════════════════════════════ */
+
+  /* Capa landscape · Case */
+  .cover-h-case {
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-h-case .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-h-case .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    line-height: 1.4;
+  }
+  .cover-h-case .index {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--orange);
+  }
+  .cover-h-case .title-block { display: flex; flex-direction: column; gap: 18px; max-width: 820px; }
+  .cover-h-case .title {
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+  }
+  .cover-h-case .title .accent { color: var(--orange); font-weight: 700; }
+  .cover-h-case .accent-bar {
+    width: 140px;
+    height: 3px;
+    background: var(--orange);
+  }
+  .cover-h-case .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-case .bottom .wm { font-size: 44px; }
+  .cover-h-case .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* Capa landscape · Big idea */
+  .cover-h-bigidea {
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-h-bigidea .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-h-bigidea .kicker {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-h-bigidea .center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover-h-bigidea .phrase {
+    font-size: 148px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: var(--dark);
+    white-space: nowrap;
+  }
+  .cover-h-bigidea .phrase .brk {
+    color: var(--orange);
+    font-weight: 300;
+    margin: 0 0.05em;
+    letter-spacing: 0;
+  }
+  .cover-h-bigidea .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-bigidea .bottom .wm { font-size: 44px; }
+  .cover-h-bigidea .bottom .tag {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+  }
+
+  /* Capa landscape · Quote */
+  .cover-h-quote {
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-h-quote .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-h-quote .kicker {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-h-quote .center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    max-width: 820px;
+  }
+  .cover-h-quote .body {
+    font-size: 84px;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+  }
+  .cover-h-quote .body .em { color: var(--orange); font-weight: 700; }
+  .cover-h-quote .attrib {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover-h-quote .attrib .bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .cover-h-quote .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-quote .bottom .wm { font-size: 44px; }
+  .cover-h-quote .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
      VERTICAL COVERS (1080×1920)
      ════════════════════════════════════════════════════════════════ */
 
@@ -1405,6 +1604,108 @@
   </section>
 
   <!-- ════════════════════════════════════════════════════════════════
+       2.1 — FEED LANDSCAPE (16:9)
+       Carrossel-friendly capas pra abrir séries com vídeos 16:9.
+       O IG trava o aspect ratio da capa em todos os cards do carrossel,
+       então mistura de portrait + 16:9 corta os videos. Capa landscape
+       fix.
+       ════════════════════════════════════════════════════════════════ -->
+
+  <section class="section" id="feed-h">
+    <div class="section-head">
+      <span class="num">02.1 / Feed · Landscape</span>
+      <h2>Capas · 16:9 (1080 × 608)</h2>
+    </div>
+    <p class="section-sub">
+      Aspect <strong>1080 × 608 (16:9)</strong> — para abrir carrosséis que carregam vídeos 16:9. O Instagram trava o aspect ratio da capa nos cards seguintes, então capa portrait (4:5) cropa videos horizontais e vice-versa. Use estas capas quando o carrossel for de cinema/filme.
+    </p>
+
+    <div class="grid landscape">
+
+      <!-- Capa H · Case -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape bg-bone" id="feed-h-case">
+            <div class="cover-h-case">
+              <div class="top">
+                <span class="eyebrow">PUMA · 2026</span>
+                <span class="index">09 / 12</span>
+              </div>
+              <div class="title-block">
+                <div class="title">Como criamos<br /><span class="accent">Portugal Lions</span></div>
+                <div class="accent-bar"></div>
+              </div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="meta">A.I. first<br />Production Co.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">09 · 1080 × 608</span>
+          <span class="name">Capa H · Case</span>
+          <span class="desc">Versão landscape do case opener. Use quando o carrossel tem vídeos 16:9 ou stills cinematográficos no formato — capa portrait cortaria as laterais.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Big idea -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape bg-bone" id="feed-h-bigidea">
+            <div class="cover-h-bigidea">
+              <div class="top">
+                <div class="kicker">Alright · Big idea</div>
+                <div class="kicker">EP · 10</div>
+              </div>
+              <div class="center">
+                <div class="phrase"><span class="brk">((</span>Look again.<span class="brk">))</span></div>
+              </div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="tag">A.I. first · Production Co.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">10 · 1080 × 608</span>
+          <span class="name">Capa H · Big idea</span>
+          <span class="desc">Big idea em 1 linha (formato widescreen permite tipografia maior horizontal). Para abrir carrosséis de reveal/série.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Quote -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape bg-bone" id="feed-h-quote">
+            <div class="cover-h-quote">
+              <div class="top">
+                <div class="kicker">Pensamento · 11</div>
+                <div class="kicker" style="color:var(--orange)">((  ))</div>
+              </div>
+              <div class="center">
+                <div class="body">Não filmamos.<br /><span class="em">Imaginamos</span>.</div>
+                <div class="attrib"><span class="bullet"></span>Diário Alright · 2026</div>
+              </div>
+              <div class="bottom">
+                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="meta">Carrossel · arraste →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">11 · 1080 × 608</span>
+          <span class="name">Capa H · Quote</span>
+          <span class="desc">Pensamento canônico em landscape — abre carrosséis editoriais com vídeos horizontais. Body à esquerda, attrib bullet Kodak Red abaixo.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
        3 — VERTICAL COVERS
        ════════════════════════════════════════════════════════════════ -->
 
@@ -1489,6 +1790,9 @@
     'feed-making':    'feed-04-making-of',
     'feed-quote':     'feed-05-quote',
     'feed-split':     'feed-06-split',
+    'feed-h-case':    'feed-09-h-case',
+    'feed-h-bigidea': 'feed-10-h-bigidea',
+    'feed-h-quote':   'feed-11-h-quote',
     'vert-reels':     'vertical-07-reels-cover',
     'vert-stories':   'vertical-08-stories'
   };
@@ -1505,14 +1809,18 @@
     'feed-04-making-of':       true,
     'feed-05-quote':           true,
     'feed-06-split':           true,
+    'feed-09-h-case':          true,
+    'feed-10-h-bigidea':       true,
+    'feed-11-h-quote':         true,
     'vertical-07-reels-cover': true,
     'vertical-08-stories':     true
   };
 
   function pieceSize(frame) {
-    if (frame.classList.contains('square'))   return [1080, 1080];
-    if (frame.classList.contains('portrait')) return [1080, 1350];
-    if (frame.classList.contains('vertical')) return [1080, 1920];
+    if (frame.classList.contains('square'))    return [1080, 1080];
+    if (frame.classList.contains('portrait'))  return [1080, 1350];
+    if (frame.classList.contains('vertical'))  return [1080, 1920];
+    if (frame.classList.contains('landscape')) return [1080, 608];
     return [1080, 1080];
   }
 
@@ -1684,6 +1992,12 @@
     '#feed-quote .kicker', '#feed-quote .body', '#feed-quote .attrib', '#feed-quote .meta',
     // Split
     '#feed-split .eyebrow', '#feed-split .headline', '#feed-split .lead', '#feed-split .meta',
+    // Landscape · Case
+    '#feed-h-case .eyebrow', '#feed-h-case .index', '#feed-h-case .title', '#feed-h-case .meta',
+    // Landscape · Big idea
+    '#feed-h-bigidea .kicker', '#feed-h-bigidea .phrase', '#feed-h-bigidea .tag',
+    // Landscape · Quote
+    '#feed-h-quote .kicker', '#feed-h-quote .body', '#feed-h-quote .attrib', '#feed-h-quote .meta',
     // Reels
     '#vert-reels .eyebrow', '#vert-reels .ref', '#vert-reels .title',
     // Stories

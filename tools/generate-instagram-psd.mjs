@@ -136,6 +136,29 @@ const PIECES = [
     { sel: '.pane-bottom .lead',     name: 'Lead' },
     { sel: '.pane-bottom .meta',     name: 'Meta' },
   ]},
+  // ─── Landscape covers (1080×608, 16:9) ────────────────────────────────
+  // Use these to open carrousels that contain 16:9 videos. Instagram locks
+  // the carousel aspect ratio to the cover, so portrait covers crop landscape
+  // videos and vice versa.
+  { id: 'feed-h-case', file: 'feed-09-h-case', size: [1080, 608], bg: BONE, layers: [
+    { sel: '.eyebrow', name: 'Eyebrow' },
+    { sel: '.index',   name: 'Index' },
+    { sel: '.title',   name: 'Title' },
+    { sel: '.meta',    name: 'Meta' },
+  ]},
+  { id: 'feed-h-bigidea', file: 'feed-10-h-bigidea', size: [1080, 608], bg: BONE, layers: [
+    { sel: '.top .kicker:nth-of-type(1)', name: 'Kicker · Big idea' },
+    { sel: '.top .kicker:nth-of-type(2)', name: 'Kicker · EP' },
+    { sel: '.phrase',                     name: 'Phrase · ((Look again.))' },
+    { sel: '.tag',                        name: 'Tag' },
+  ]},
+  { id: 'feed-h-quote', file: 'feed-11-h-quote', size: [1080, 608], bg: BONE, layers: [
+    { sel: '.top .kicker:nth-of-type(1)', name: 'Kicker · Pensamento' },
+    { sel: '.top .kicker:nth-of-type(2)', name: 'Kicker · Brackets' },
+    { sel: '.body',                        name: 'Body' },
+    { sel: '.attrib',                      name: 'Attrib' },
+    { sel: '.meta',                        name: 'Meta' },
+  ]},
   { id: 'vert-reels', file: 'vertical-07-reels-cover', size: [1080, 1920], bg: BONE, layers: [
     { sel: '.eyebrow', name: 'Eyebrow' },
     { sel: '.ref',     name: 'Ref' },
