@@ -343,19 +343,21 @@
   .frame.bg-dark { background: var(--dark); color: var(--bone); }
   .frame.bg-mist { background: var(--mist); color: var(--dark); }
 
-  /* Wordmark inside frames */
+  /* Wordmark v3 inside frames — "alright" lowercase rounded heavy em Orange.
+     Fonte do logo: Neue Haas Display Black 900 com letter-spacing tighter
+     pra aproximar do design do PNG do logo. Owner pode refinar a fonte
+     exata depois (Monument Bold é alternativa). */
   .wm {
-    font-family: var(--font-sans);
-    font-weight: 400;
-    letter-spacing: -0.025em;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-style: normal;
+    letter-spacing: -0.04em;
     line-height: 1;
+    color: var(--orange);
     display: inline-block;
   }
-  .wm .l { font-weight: 700; color: var(--orange); }
-  .wm.on-dark { color: var(--bone); }
-  .wm.on-dark .l { color: var(--orange); }
+  .wm.on-dark { color: var(--orange); }
   .wm.mono { color: inherit; }
-  .wm.mono .l { font-weight: 700; color: inherit; }
 
   /* Brackets — universal device */
   .brk {
@@ -1602,7 +1604,7 @@
                 <div class="title">Corre.<br />Filme sem<br />câmera.</div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="meta">wearealright.cc<br />A.I. first prod. co.</span>
               </div>
             </div>
@@ -1628,7 +1630,7 @@
                 <div class="quote">Craft.<br />Craft.<br />And. More.<br />Craft<span class="dot">.</span></div>
               </div>
               <div class="bottom">
-                <span class="wm on-dark">A<span class="l">l</span>right</span>
+                <span class="wm on-dark">alright</span>
                 <span class="tag">2026 · São Paulo</span>
               </div>
             </div>
@@ -1654,7 +1656,7 @@
                 <div class="phrase"><span class="brk">((</span>Look<br />again.<span class="brk">))</span></div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="tag">A.I. first<br />Production Co.</span>
               </div>
             </div>
@@ -1681,7 +1683,7 @@
               </div>
               <div class="title">Sem câmera. Sem set.<br />Só craft.</div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="meta">Carrossel · arraste →</span>
               </div>
             </div>
@@ -1711,7 +1713,7 @@
                 </div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="meta">((Look again.))</span>
               </div>
             </div>
@@ -1736,7 +1738,7 @@
               <div class="pane-bottom">
                 <p class="lead">Quatro filmes. Um universo. Zero câmeras.</p>
                 <div class="bottom-row">
-                  <span class="wm">A<span class="l">l</span>right</span>
+                  <span class="wm">alright</span>
                   <span class="meta">Link na bio →</span>
                 </div>
               </div>
@@ -1786,7 +1788,7 @@
                 <div class="accent-bar"></div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="meta">A.I. first<br />Production Co.</span>
               </div>
             </div>
@@ -1812,7 +1814,7 @@
                 <div class="phrase"><span class="brk">((</span>Look again.<span class="brk">))</span></div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="tag">A.I. first · Production Co.</span>
               </div>
             </div>
@@ -1837,7 +1839,7 @@
                 </div>
                 <div class="title">Sem câmera. Sem set.<br />Só craft.</div>
                 <div class="bottom">
-                  <span class="wm on-dark">A<span class="l">l</span>right</span>
+                  <span class="wm on-dark">alright</span>
                   <span class="meta">Carrossel · arraste →</span>
                 </div>
               </div>
@@ -1866,7 +1868,7 @@
                 <div class="attrib"><span class="bullet"></span>Diário Alright · 2026</div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="meta">Carrossel · arraste →</span>
               </div>
             </div>
@@ -1892,7 +1894,7 @@
               <div class="pane-right">
                 <div class="lead">A.I. fez o set inteiro.<br />Você só vê o filme.</div>
                 <div class="bottom-row">
-                  <span class="wm on-dark">A<span class="l">l</span>right</span>
+                  <span class="wm on-dark">alright</span>
                   <span class="meta">Saiba mais →</span>
                 </div>
               </div>
@@ -1936,7 +1938,7 @@
               <div class="title"><span class="brk">((</span>Corre 5<span class="brk">))</span></div>
               <div class="still"></div>
               <div class="footer">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
               </div>
             </div>
           </div>
@@ -1954,7 +1956,7 @@
           <div class="frame vertical" id="vert-stories">
             <div class="stories-swipe">
               <div class="top">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <span class="wm">alright</span>
                 <span class="index">2026<br />05 · 15</span>
               </div>
               <div class="center">

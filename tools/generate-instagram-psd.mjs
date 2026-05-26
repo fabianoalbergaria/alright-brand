@@ -496,9 +496,17 @@ async function extractWordmarkLayers(page, piece) {
       const baselineY = yTop + leadingGap + fontSize * 0.82;
 
       let name;
-      if (seg.kind === 'accent') name = 'Wordmark · l';
-      else if (segIndex === 0) name = 'Wordmark · A';
-      else name = 'Wordmark · right';
+      if (segments.length === 1) {
+        // Single text node (e.g. v3 markup `<span class="wm">alright</span>`)
+        // — collapse into one editable "Wordmark" layer instead of A/l/right.
+        name = 'Wordmark';
+      } else if (seg.kind === 'accent') {
+        name = 'Wordmark · l';
+      } else if (segIndex === 0) {
+        name = 'Wordmark · A';
+      } else {
+        name = 'Wordmark · right';
+      }
 
       results.push({
         name,
