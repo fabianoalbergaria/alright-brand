@@ -65,45 +65,62 @@ Avance com decisões secundárias usando recomendações dos subagentes. Comuniq
 - `No camera or set. No high costs.`
 - `((Look again.))` (Big idea cravada — Fase 1)
 
-### Brand device
-- `(( ))` com espaçamento — sempre.
-- Variantes oficiais (cravadas em `02-visual-core/logo/02-direction-C-detailed.md`):
-  - State **Default** (90% usos, atualizado 2026-05-14): `Alright` (Bricolage Regular 400 com `l` central em **Bold 700 Kodak Red `#ed1c24`**).
-  - State **Mono fallback**: `Alright` (Bricolage Regular 400 com `l` central em Bold 700 Dark) — só pra reprodução B&W obrigatória (jornal, fax, bordado, gravação laser, co-branding com paleta conflitante).
-  - State **Reveal**: `((A I r i g h t))` espaçado (ato editorial deliberado).
+### Logo system · v3 (2026-05-26) — REBRAND COMPLETO
 
-### Paleta cravada · v2 (2026-05-20)
+> **Decisão cravada pelo owner em 2026-05-26**: rebrand completo. Novo logo + símbolo + fontes + paleta. Sistema Brasa (companion mark + motion reveal) **arquivado**.
 
-> **Brand evolution**: a paleta evoluiu de **v1 Orange Clay** (Anthropic-aligned warm clay) para **v2 Kodak Red** (cinematic film stock vibe — alinha com "Cada filme é um filme" e com o Kodak 2383 D55 LUT da operação). HEX e Pantone abaixo são v2 cravada. Spec viva em [`tokens/color.tokens.json`](tokens/color.tokens.json) (DTCG 2025.10 v2.0) + [`03-color-aihouse-motion/color/01-color-system.md`](03-color-aihouse-motion/color/01-color-system.md) (banner v2 no topo).
+- **Wordmark v3**: `alright` em **lowercase**, fonte rounded heavy (Monument Grotesk Bold ou Neue Haas Display Black — confirmar com owner), com `®` register mark. Cor canônica **Orange Alright `#FF5D36`**. NÃO HÁ MAIS letra accent central — wordmark é flat color.
+- **Símbolo v3**: 3 figuras humanas correndo carregando laptops, dispostas em círculo orgânico/blob, estilo monocromático. Substitui Brasa (ember + halo + wisps). 3 variantes oficiais: Orange / Black (mono sobre Bone) / White (mono sobre Black).
+- **Lockup oficial**: símbolo em cima + wordmark embaixo. Assets em `assets/logo/v3/Logo_{Black,Orange,White}.png` + `assets/logo/v3/Wordmark_{Black,Orange,White}.png` + `assets/logo/v3/symbol/Symbol_{Black,Orange,White}.png`.
 
-**Primárias** (gesture · 5–10% por peça):
-- **Kodak Red `#ed1c24`** · Pantone 185 C · RGB `237,28,36` · CSS var `--kodak-red`
-  - Uso: accent canônico, `l` central do logo Default, brackets `((  ))` decorativos no hero/big idea, hover sobre Dark, key visual, capa de deck premium
-  - **Não usar para texto sobre Bone** (contrast ~4:1, falha WCAG AA normal text — use Kodak Deep)
-  - **Não usar para background dominante** (quebra a regra de 5–10% e vira "marca vermelha" cliché)
-  - Sobre Dark: passa AA (~5:1) — pode ser texto inline em peças dark mode
-- **Bone `#faf9f5`** · Pantone 9184 C · RGB `250,249,245` · CSS var `--bone`
+### Brand device (auxiliar)
+- `(( ))` com espaçamento — permanece como elemento editorial **auxiliar** (não no logo).
+- Uso restrito: brackets em manifestos canon, big idea `((Look again.))`, hero editorial.
+- Big idea `((Look again.))` — cravada, permanece v3.
+
+### Paleta cravada · v3 (2026-05-26)
+
+> **Brand evolution**: v1 Orange Clay (Anthropic-aligned warm clay, 2026-05-09) → v2 Kodak Red (cinematic film stock vibe, 2026-05-20) → **v3 Orange Alright** (laranja-coral vibrante + green-lime accent + black puro, 2026-05-26). HEX/RGB abaixo são v3 cravada. Spec viva em [`tokens/color.tokens.json`](tokens/color.tokens.json) v3.0. Token v2 preservado em [`tokens/legacy/color.tokens.v2.json`](tokens/legacy/color.tokens.v2.json).
+
+**Primárias**:
+- **Orange Alright `#FF5D36`** · RGB `255, 93, 54` · CSS var `--alright-orange`
+  - Uso: wordmark + símbolo principal, CTAs primários, key visual, capa de deck
+  - **Não usar para texto sobre Bone** (~3:1, falha WCAG — use Orange-deep)
+  - **Regra de proporção**: 10–20% por peça (maior presença que v2)
+- **Green-lime `#EAEE59`** · RGB `234, 238, 89` · CSS var `--alright-green` — **ACCENT SECUNDÁRIO NOVO v3**
+  - Uso: botões secundários, highlights editoriais pontuais, brand stickers
+  - **Não usar para texto** (ambos contrastes falham — surface flat color only)
+  - **Regra de proporção**: 3–8% por peça (signature highlight, não dominante)
+- **Bone `#faf9f5`** · RGB `250, 249, 245` · CSS var `--bone` — **PERMANECE de v2** (única cor inalterada)
   - Background default light mode (60–70% por peça) · branco puro PROIBIDO
-- **Dark `#141413`** · Pantone Black 6 C · RGB `20,20,19` · CSS var `--dark`
-  - Texto default sobre Bone (AAA 17.5:1) · background dark mode canônico · preto puro PROIBIDO
+- **Black `#000000`** · RGB `0, 0, 0` · CSS var `--black`
+  - Texto default sobre Bone (AAA 21:1) · background dark mode canônico
+  - **PRETO PURO AGORA PERMITIDO** (v3 quebra a regra de v2 que proibia)
 
 **Text-safe variants** (passam AA sobre Bone):
-- **Kodak Deep `#a6192e`** · Pantone 187 C · RGB `166,25,46` · CSS var `--kodak-deep`
-  - Único vermelho válido pra texto sobre Bone (~7:1, AA + AAA grandes) · links inline, citações editoriais, eyebrows accent
-  - **Não usar como accent do logo** (esse papel é sempre Kodak Red canônico)
-- **Stone `#3d3a35`** · CSS var `--stone` — sub-head density alta sobre Bone (AAA)
+- **Orange-deep `#C44818`** · CSS var `--alright-orange-deep` — único laranja válido pra texto sobre Bone (~5:1)
+- **Stone `#3d3a35`** · CSS var `--stone` — sub-head density alta sobre Bone (AAA, preserva warmth)
 - **Slate Warm `#5b5750`** · CSS var `--slate-warm` — metadados, captions, rules
 - **Mist `#ece8dc`** · CSS var `--mist` — surface secundária, divider sutil
 
-**Histórico v1 (deprecated)**: Orange Clay `#d97757` (PMS 7578 C, era accent primário) + Clay Deep `#8c4a32` (PMS 7595 C, text-safe). Substituídos integralmente — não usar em nenhum entregável novo. Refs em phase docs (`02-visual-core/`, `03-color-aihouse-motion/`) mantêm registro histórico com banner v2 no topo.
+**Histórico v1+v2 (deprecated)**: refs em phase docs mantêm registro histórico. v1 `#d97757` (Orange Clay) + v2 `#ed1c24` (Kodak Red) — não usar em entregáveis novos.
 
 **Gradientes proibidos** (1 exceção: `gradient.editorial-bone` para hero — flat-color como regra dura).
 
-### Tipografia cravada
-- Primária: **Bricolage Grotesque** (variable, OFL).
-- Companion mono: **JetBrains Mono** (Apache 2.0).
-- Bold 700 banido em uso editorial — exceção restrita ao `l` central do logo (Kodak Red no default, Dark no mono fallback).
-- Italic ausente — usar Regular + indent (até Bricolage upstream lançar Italic).
+### Tipografia cravada · v3 (2026-05-26)
+
+> **REBRAND**: Bricolage Grotesque + JetBrains Mono saem. Monument Grotesk + Neue Haas Display entram.
+
+- **Primária editorial**: **Monument Grotesk** (8 weights: Regular, Medium, Bold + italics; Mono + Semi-Mono companion). Comercial — owner adquiriu licença. Path repo: `assets/fonts/v3/monument-grotesk/`.
+- **Primária display**: **Neue Haas Grotesk Display Pro** (15+ weights: XXThin → Black + italics). Comercial — owner adquiriu licença. Path repo: `assets/fonts/v3/neue-haas-display/`.
+- **Wordmark fonte**: Monument Grotesk Bold ou Neue Haas Black com curvas rounded — confirmar com owner qual exata (PNGs do logo em `assets/logo/v3/`).
+- **Mono companion**: Monument Grotesk Mono (substitui JetBrains Mono).
+- **Histórico (deprecated)**: Bricolage Grotesque (OFL) + JetBrains Mono (Apache 2.0) — não usar em entregáveis novos.
+
+### Elementos novos da marca · v3 (2026-05-26)
+
+- **21 Illustrations** "The X" em `assets/illustrations/` (PNGs): The Call, The Couch, The Direction, The Dog, The Dude, The File, The Flash, The Flow, The Game, The Mind, The Noise, The Plot, The Professional, The Promise, The Reader, The Screenplay, The Shot, The Soundtrack, The Sweat, The Workers, The Wrap. Vocabulário visual completo da marca.
+- **4 Buttons** em `assets/buttons/` (PNGs): Black, Orange, Green, Green Accent. UI components.
 
 ### Anti-modelos visuais (não usar nunca)
 - Gradientes SaaS roxo-azul.
