@@ -4,22 +4,33 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Alright · Instagram Kit</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <style>
+  /* ───────── Fontes v3: Monument Grotesk + Neue Haas Display ───────── */
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Italic.otf") format("opentype");font-weight:400;font-style:italic;font-display:swap}
+  @font-face{font-family:"Monument Grotesk Mono";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Mono.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayRoman.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayMediu.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBlack.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayLight.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+
   :root {
     --bone: #faf9f5;
-    --dark: #141413;
-    --orange: #ed1c24;
-    --kodak-deep: #a6192e;
+    --dark: #000000;
+    --orange: #FF5D36;
+    --kodak-deep: #C44818;
+    --alright-green: #EAEE59;
     --stone: #3d3a35;
     --slate-warm: #5b5750;
     --mist: #ece8dc;
-    --font-sans: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --font-sans: "Monument Grotesk", system-ui, -apple-system, sans-serif;
+    --font-display: "Neue Haas Display", system-ui, -apple-system, sans-serif;
+    --font-mono: "Monument Grotesk Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --ease-cinematic: cubic-bezier(0.16, 1.0, 0.3, 1.0);
 
     --scale-square: 0.30;
@@ -374,70 +385,59 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
-     AVATAR FRAMES (1080×1080) — all Dark bg + l Kodak Red
+     AVATAR FRAMES (1080×1080) — all Dark bg + l Orange Alright
      ════════════════════════════════════════════════════════════════ */
 
-  /* Avatar A — Símbolo: (( l )) com l opticamente centralizado */
-  /* Avatar A — Brasa symbol (ember + halo + 3 wisps, geometria do motion canon) */
-  .avatar-brasa-mark {
+  /* Avatar A — Símbolo v3 (3 figuras correndo com laptops) sobre Dark */
+  .avatar-symbol-v3 {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0;
+    padding: 120px;  /* respiro generoso pro símbolo se destacar no círculo */
   }
-  .avatar-brasa-mark img {
+  .avatar-symbol-v3 img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: contain;
   }
 
-  /* Avatar B — Brasa lockup: símbolo em cima + Alright em baixo com l Bold */
-  .avatar-brasa-lockup {
+  /* Avatar B — Lockup completo (símbolo + wordmark "alright") sobre Dark */
+  .avatar-lockup-v3 {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 60px 80px;
-    gap: 24px;
+    padding: 120px 100px;
   }
-  .avatar-brasa-lockup img {
-    width: 560px;
-    height: 560px;
+  .avatar-lockup-v3 img {
+    width: 100%;
+    height: 100%;
     display: block;
     object-fit: contain;
   }
-  .avatar-brasa-lockup .wm {
-    font-size: 180px;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--bone);
-    line-height: 1;
-  }
-  .avatar-brasa-lockup .wm b {
-    font-weight: 700;  /* l Bold — mais grosso · mono Bone (sem accent vermelho) */
-    font-style: normal;
-  }
 
-  /* Avatar C — Wordmark Alright completo, sobre Dark */
-  .avatar-wordmark {
+  /* Avatar C — Wordmark v3 (só "alright") sobre Dark */
+  .avatar-wordmark-v3 {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 80px 100px;  /* dá respiro nas bordas (era colado antes) */
+    padding: 200px 100px;
   }
-  .avatar-wordmark .wm {
-    font-size: 260px;
-    color: var(--bone);
-    letter-spacing: -0.02em;
+  .avatar-wordmark-v3 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
   }
-  .avatar-wordmark .wm .l { color: var(--orange); font-weight: 700; }
+
+  /* (.avatar-wordmark legacy removido no rebrand v3 — substituído por
+      .avatar-wordmark-v3 que usa Wordmark_Orange.png) */
 
   /* ════════════════════════════════════════════════════════════════
      FEED COVERS (1080×1350) — 4:5 portrait
@@ -1451,7 +1451,7 @@
   </header>
 
   <p class="intro">
-    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Bricolage Grotesque, paleta Bone / Dark / Kodak Red, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
+    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Monument Grotesk, paleta Bone / Dark / Orange Alright, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
   </p>
 
   <!-- ════════════════════════════════════════════════════════════════
@@ -1469,52 +1469,51 @@
 
     <div class="grid square">
 
-      <!-- Avatar A · Brasa symbol sobre Dark -->
+      <!-- Avatar A · Símbolo v3 sobre Dark -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-a">
-            <div class="avatar-brasa-mark">
-              <img src="../assets/logo/svg/brasa-square-transparent.svg?v=brasa1" alt="Brasa — ember + halo + 3 wisps" />
+            <div class="avatar-symbol-v3">
+              <img src="../assets/logo/v3/symbol/Symbol_Orange.png?v=v3" alt="Símbolo — 3 figuras correndo com laptops" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">A · 1080 × 1080</span>
-          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Brasa</code></span>
-          <span class="desc">Ember Kodak Red + halo radial + 3 wisps de fumaça Bone que cruzam no meio — frozen frame do motion ((Brasa)). Símbolo puro pra reconhecimento em scale pequena.</span>
+          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Alright</code></span>
+          <span class="desc">3 figuras humanas correndo com laptops em círculo orgânico — símbolo canônico v3 em Orange sobre Dark. Reconhecimento em scale pequena (32px / 44px / 56px).</span>
         </div>
       </div>
 
-      <!-- Avatar B · Brasa lockup (símbolo + Alright com l Bold) -->
+      <!-- Avatar B · Lockup completo (símbolo + wordmark) -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-b">
-            <div class="avatar-brasa-lockup">
-              <img src="../assets/logo/svg/brasa-square-transparent.svg?v=brasa1" alt="Brasa" />
-              <span class="wm">A<b>l</b>right</span>
+            <div class="avatar-lockup-v3">
+              <img src="../assets/logo/v3/Logo_Orange.png?v=v3" alt="Lockup — símbolo + alright" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">B · 1080 × 1080</span>
-          <span class="name">Brasa lockup <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Brasa + Alright</code></span>
-          <span class="desc">Símbolo Brasa em cima + wordmark <em>Alright</em> abaixo com <em>l</em> Bold 700 (mono Bone, sem accent vermelho). Reveal moment do motion congelado em forma de logo.</span>
+          <span class="name">Lockup <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Símbolo + alright</code></span>
+          <span class="desc">Símbolo em cima + wordmark <em>alright</em> embaixo, ambos em Orange sobre Dark. Versão completa para superfícies maiores (110px+).</span>
         </div>
       </div>
 
-      <!-- Avatar C · Wordmark Alright completo sobre Dark -->
+      <!-- Avatar C · Wordmark only sobre Dark -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-c">
-            <div class="avatar-wordmark">
-              <span class="wm">A<span class="l">l</span>right</span>
+            <div class="avatar-wordmark-v3">
+              <img src="../assets/logo/v3/Wordmark_Orange.png?v=v3" alt="Wordmark — alright" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">C · 1080 × 1080</span>
-          <span class="name">Wordmark <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Alright</code></span>
-          <span class="desc">Logo Default completo sobre Dark. Reconhecimento total (palavra inteira) ao custo de menor escala efetiva no círculo do perfil.</span>
+          <span class="name">Wordmark <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">alright</code></span>
+          <span class="desc">Wordmark <em>alright</em> sozinho (sem símbolo) em Orange sobre Dark. Reconhecimento total da palavra inteira em scale média.</span>
         </div>
       </div>
 
@@ -1584,7 +1583,7 @@
       <h2>Capas de post</h2>
     </div>
     <p class="section-sub">
-      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Bricolage Grotesque; accent Kodak Red sempre ≤ 10% da peça.
+      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Monument Grotesk; accent Orange Alright sempre ≤ 10% da peça.
     </p>
 
     <div class="grid portrait">
@@ -1664,7 +1663,7 @@
         <div class="piece-label">
           <span class="kicker">03 · 1080 × 1350</span>
           <span class="name">Capa · Big idea</span>
-          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Kodak Red como heroes. Para abrir séries ou marcar reveals.</span>
+          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Orange Alright como heroes. Para abrir séries ou marcar reveals.</span>
         </div>
       </div>
 
@@ -1721,7 +1720,7 @@
         <div class="piece-label">
           <span class="kicker">05 · 1080 × 1350</span>
           <span class="name">Capa · Pensamento</span>
-          <span class="desc">Citação editorial autoral. Uma palavra em Kodak Red como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
+          <span class="desc">Citação editorial autoral. Uma palavra em Orange Alright como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
         </div>
       </div>
 
@@ -1876,7 +1875,7 @@
         <div class="piece-label">
           <span class="kicker">11 · 1080 × 608</span>
           <span class="name">Capa H · Quote</span>
-          <span class="desc">Pensamento canônico em landscape — abre carrosséis editoriais com vídeos horizontais. Body à esquerda, attrib bullet Kodak Red abaixo.</span>
+          <span class="desc">Pensamento canônico em landscape — abre carrosséis editoriais com vídeos horizontais. Body à esquerda, attrib bullet Orange Alright abaixo.</span>
         </div>
       </div>
 

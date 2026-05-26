@@ -51,8 +51,8 @@ const DARK = '#141413';
 
 // Photoshop matches text layer fonts by PostScript name in the layer's
 // FontSet, NOT by the CSS family name. Map CSS family + computed weight to
-// the PostScript IDs that Google Fonts ships for Bricolage Grotesque and
-// JetBrains Mono. Falls back to "Family-Regular" for unknown weights and to
+// the PostScript IDs that the v3 fonts ship (Monument Grotesk + Neue Haas
+// Display Pro). Falls back to "Family-Regular" for unknown weights and to
 // the raw family for unknown families.
 const POSTSCRIPT_WEIGHT_SUFFIX = {
   100: 'Thin',
@@ -66,15 +66,27 @@ const POSTSCRIPT_WEIGHT_SUFFIX = {
   900: 'Black',
 };
 const KNOWN_FONT_BASES = {
-  'Bricolage Grotesque': 'BricolageGrotesque',
-  'JetBrains Mono':      'JetBrainsMono',
+  'Monument Grotesk':      'MonumentGrotesk',
+  'Monument Grotesk Mono': 'MonumentGrotesk',  // Mono é apenas Regular weight via PostScript "MonumentGrotesk-Mono"
+  'Neue Haas Display':     'NeueHaasDisplay',
+};
+
+// Some PostScript names don't follow the simple Family-Weight pattern.
+// Override here.
+const POSTSCRIPT_OVERRIDES = {
+  'Monument Grotesk Mono-Regular': 'MonumentGrotesk-Mono',
+  'NeueHaasDisplay-Regular':       'NeueHaasDisplay-Roman',  // Roman = Regular pra Neue Haas
 };
 function fontPostScriptName(cssFamily, cssWeight) {
   const base = KNOWN_FONT_BASES[cssFamily];
   if (!base) return cssFamily;  // unknown family — ship as-is
   const w = Math.round(cssWeight / 100) * 100;
   const suffix = POSTSCRIPT_WEIGHT_SUFFIX[w] || 'Regular';
-  return `${base}-${suffix}`;
+  const candidate = `${cssFamily}-${suffix}`;
+  if (POSTSCRIPT_OVERRIDES[candidate]) return POSTSCRIPT_OVERRIDES[candidate];
+  const builtin = `${base}-${suffix}`;
+  if (POSTSCRIPT_OVERRIDES[builtin]) return POSTSCRIPT_OVERRIDES[builtin];
+  return builtin;
 }
 
 // Per-piece spec: size + bg recipe + editable text layer selectors.
@@ -532,29 +544,29 @@ function buildSolidBackground(piece) {
   } else if (piece.bg === 'making-still-gradient') {
     // Cinematic still placeholder: two diagonal gradients stacked + radial
     // highlights to mimic the CSS recipe in the editor (.cover-h-making bg).
-    // Base diagonal: stone → kodak-deep → dark
+    // Base diagonal: stone → orange-deep → black (v3 palette)
     const baseGrad = ctx.createLinearGradient(0, 0, w, h);
     baseGrad.addColorStop(0,    '#3d3a35'); // stone
-    baseGrad.addColorStop(0.5,  '#a6192e'); // kodak-deep
-    baseGrad.addColorStop(1,    '#141413'); // dark
+    baseGrad.addColorStop(0.5,  '#C44818'); // orange-deep (was kodak-deep)
+    baseGrad.addColorStop(1,    '#000000'); // black (was dark warm)
     ctx.fillStyle = baseGrad;
     ctx.fillRect(0, 0, w, h);
-    // Overlay: red→dark diagonal at 135deg
+    // Overlay: orange→black diagonal at 135deg
     const overlay = ctx.createLinearGradient(0, 0, w, h);
-    overlay.addColorStop(0,    'rgba(237, 28, 36, 0.45)');
-    overlay.addColorStop(0.6,  'rgba(20, 20, 19, 0.85)');
-    overlay.addColorStop(1,    'rgba(20, 20, 19, 0.95)');
+    overlay.addColorStop(0,    'rgba(255, 93, 54, 0.45)');
+    overlay.addColorStop(0.6,  'rgba(0, 0, 0, 0.85)');
+    overlay.addColorStop(1,    'rgba(0, 0, 0, 0.95)');
     ctx.fillStyle = overlay;
     ctx.fillRect(0, 0, w, h);
-    // Radial highlights — bone at top-left, red at bottom-right
+    // Radial highlights — bone at top-left, orange at bottom-right
     const r1 = ctx.createRadialGradient(w * 0.25, h * 0.30, 0, w * 0.25, h * 0.30, Math.max(w, h) * 0.55);
     r1.addColorStop(0, 'rgba(250, 249, 245, 0.18)');
     r1.addColorStop(1, 'rgba(250, 249, 245, 0)');
     ctx.fillStyle = r1;
     ctx.fillRect(0, 0, w, h);
     const r2 = ctx.createRadialGradient(w * 0.78, h * 0.70, 0, w * 0.78, h * 0.70, Math.max(w, h) * 0.50);
-    r2.addColorStop(0, 'rgba(237, 28, 36, 0.32)');
-    r2.addColorStop(1, 'rgba(237, 28, 36, 0)');
+    r2.addColorStop(0, 'rgba(255, 93, 54, 0.32)');
+    r2.addColorStop(1, 'rgba(255, 93, 54, 0)');
     ctx.fillStyle = r2;
     ctx.fillRect(0, 0, w, h);
   } else {
