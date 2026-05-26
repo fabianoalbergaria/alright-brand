@@ -141,11 +141,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   color:var(--slate-warm);
 }
 .h-mega{
+  font-family:var(--font-display);
   font-size:clamp(80px,12vw,280px);
   font-weight:300;line-height:.92;letter-spacing:-0.025em;
   margin:0;
 }
 .h-xl{
+  font-family:var(--font-display);
   font-size:clamp(48px,6vw,96px);
   font-weight:400;line-height:1.0;letter-spacing:-0.02em;
   margin:0;
@@ -249,9 +251,11 @@ section{position:relative}
 .hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,20,19,0.55) 0%, rgba(20,20,19,0.30) 35%, rgba(20,20,19,0.70) 100%)}
 .hero__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:26px clamp(20px,4vw,72px) clamp(40px,5vw,72px)}
 .hero__center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;width:100%}
-.hero__title{font-size:clamp(80px,15vw,260px);font-weight:200;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
+.hero__title{font-family:var(--font-display);font-size:clamp(80px,15vw,260px);font-weight:300;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
 .hero__title--logo{display:flex;justify-content:center;line-height:1}
-.hero__title--logo img{width:min(720px,80vw);height:auto;display:block}
+/* Logo PNG nativo: 299×350. Cap em 360px (1.2× upscale) pra não pixelar.
+   Owner pode fornecer SVG depois pra qualidade vector + crescer livremente. */
+.hero__title--logo img{width:min(360px,50vw);height:auto;display:block;image-rendering:auto}
 .nav__brand img{height:18px;width:auto;display:block}
 .hero__title .paren{color:var(--alright-orange);font-weight:300}
 .hero__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.82)}
@@ -318,7 +322,7 @@ section{position:relative}
   gap:clamp(20px,2vw,32px);
 }
 .case__eyebrow{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm)}
-.case__title{font-size:clamp(56px,9vw,160px);font-weight:300;line-height:.94;letter-spacing:-0.025em;margin:0}
+.case__title{font-family:var(--font-display);font-size:clamp(56px,9vw,160px);font-weight:300;line-height:.94;letter-spacing:-0.025em;margin:0}
 .case__copy{font-size:clamp(16px,1.25vw,19.5px);line-height:1.55;margin:0;max-width:46ch;color:var(--stone)}
 .case__stickers{display:flex;gap:8px;flex-wrap:wrap}
 article{margin:0;padding:0;display:block}
@@ -428,7 +432,7 @@ article{margin:0;padding:0;display:block}
 .bb-cta{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center;background:var(--dark);color:var(--bone);position:relative;overflow:hidden}
 .bb-cta__inner{position:relative;z-index:2;max-width:920px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:clamp(28px,3vw,48px)}
 .bb-cta__eyebrow{color:#a59f93}
-.bb-cta__hd{font-size:clamp(40px,5.5vw,88px);font-weight:300;line-height:1;letter-spacing:-0.02em;margin:0;color:var(--bone)}
+.bb-cta__hd{font-family:var(--font-display);font-size:clamp(40px,5.5vw,88px);font-weight:300;line-height:1;letter-spacing:-0.02em;margin:0;color:var(--bone)}
 .bb-cta__lockup img{max-width:min(680px,80vw);width:100%;height:auto;display:block}
 .bb-cta__button{
   display:inline-flex;align-items:center;gap:14px;
@@ -443,7 +447,7 @@ article{margin:0;padding:0;display:block}
 
 /* ---------- Contact ---------- */
 .contact{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center;background:var(--bone);color:var(--dark);position:relative}
-.contact__reprise{font-size:clamp(64px,10vw,180px);font-weight:200;line-height:.95;letter-spacing:-0.03em;margin:0 0 clamp(32px,4vw,56px) 0}
+.contact__reprise{font-family:var(--font-display);font-size:clamp(64px,10vw,180px);font-weight:300;line-height:.95;letter-spacing:-0.03em;margin:0 0 clamp(32px,4vw,56px) 0}
 .contact__reprise .paren{color:var(--alright-orange);font-weight:300}
 .contact__cta{
   display:inline-flex;align-items:center;gap:14px;
@@ -462,7 +466,7 @@ article{margin:0;padding:0;display:block}
 /* ---------- Footer ---------- */
 .footer{padding:clamp(80px,9vw,140px) clamp(20px,4vw,72px) 56px;text-align:center;background:var(--dark);color:var(--bone)}
 .footer__lockup{display:flex;justify-content:center}
-.footer__lockup img{max-width:min(720px,80vw);height:auto}
+.footer__lockup img{max-width:min(320px,55vw);height:auto}
 .footer__meta{margin-top:clamp(40px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:18px}
 .footer__row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9d978a}
 .footer__row span{display:inline-flex;align-items:center;gap:8px}
@@ -548,7 +552,7 @@ article{margin:0;padding:0;display:block}
 <!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav" aria-label="Navegação principal">
   <span class="nav__brand">
-    <img src="assets/logo/v3/Wordmark_Orange.png" alt="Alright" />
+    <img src="assets/logo/v3/Wordmark_Orange.png?v=v3" alt="Alright" />
   </span>
   <div class="nav__links">
     <a class="nav__link" href="#cases">Cases</a>
@@ -576,7 +580,7 @@ article{margin:0;padding:0;display:block}
     </div>
     <div class="hero__center">
       <h1 class="hero__title hero__title--logo" aria-label="Alright">
-        <img src="assets/logo/v3/Logo_Orange.png" alt="Alright — A.I. first Production Co." />
+        <img src="assets/logo/v3/Logo_Orange.png?v=v3" alt="Alright — A.I. first Production Co." />
       </h1>
       <span class="hero__sub">A.I. First Production Company.</span>
     </div>
@@ -772,7 +776,7 @@ article{margin:0;padding:0;display:block}
 <footer class="footer" aria-labelledby="footer-title">
   <span id="footer-title" style="position:absolute;left:-9999px">((We Are Alright))</span>
   <div class="footer__lockup reveal">
-    <img src="assets/logo/v3/Logo_White.png" alt="((We Are Alright))" />
+    <img src="assets/logo/v3/Logo_Orange.png?v=v3" alt="((We Are Alright))" />
   </div>
 
   <div class="footer__meta">
