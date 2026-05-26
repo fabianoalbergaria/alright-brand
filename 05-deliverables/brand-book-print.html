@@ -2,33 +2,89 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
-<title>Alright — Brand Book 2026 · Print v2.0</title>
-<meta name="description" content="Alright Brand Book 2026 — versão print A4. ((Look again.))" />
-<link rel="icon" type="image/svg+xml" href="../assets/meta/favicon.svg?v=5" />
-<link rel="icon" type="image/png" sizes="32x32" href="../assets/meta/icon-32.png?v=5" />
-<link rel="icon" type="image/png" sizes="16x16" href="../assets/meta/icon-16.png?v=5" />
-<link rel="apple-touch-icon" sizes="180x180" href="../assets/meta/apple-touch-icon.png?v=5" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<title>Alright — Brand Book 2026 · Print v3.0</title>
+<meta name="description" content="Alright Brand Book 2026 — versão print A4 · v3. ((Look again.))" />
+<link rel="icon" type="image/svg+xml" href="../assets/meta/favicon.svg?v=v3" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/meta/icon-32.png?v=v3" />
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/meta/icon-16.png?v=v3" />
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/meta/apple-touch-icon.png?v=v3" />
 <style>
 /* ============================================================
-   ALRIGHT · BRAND BOOK 2026 · PRINT EDITION v2.0
+   ALRIGHT · BRAND BOOK 2026 · PRINT EDITION v3.0
    A4 portrait — designed for Cmd+P → Save as PDF
    ============================================================ */
 
-/* ---------- Tokens ---------- */
+/* ---------- Fontes Monument Grotesk + Neue Haas Display (v3) ---------- */
+@font-face{
+  font-family:"Monument Grotesk";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Regular.otf") format("opentype");
+  font-weight:400;font-style:normal;
+}
+@font-face{
+  font-family:"Monument Grotesk";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Medium.otf") format("opentype");
+  font-weight:500;font-style:normal;
+}
+@font-face{
+  font-family:"Monument Grotesk";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Bold.otf") format("opentype");
+  font-weight:700;font-style:normal;
+}
+@font-face{
+  font-family:"Monument Grotesk Mono";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Mono.otf") format("opentype");
+  font-weight:400;font-style:normal;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayRoman.ttf") format("truetype");
+  font-weight:400;font-style:normal;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayMediu.ttf") format("truetype");
+  font-weight:500;font-style:normal;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBold.ttf") format("truetype");
+  font-weight:700;font-style:normal;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBlack.ttf") format("truetype");
+  font-weight:900;font-style:normal;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayLight.ttf") format("truetype");
+  font-weight:300;font-style:normal;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayThin.ttf") format("truetype");
+  font-weight:200;font-style:normal;
+}
+
+/* ---------- Tokens v3 (2026-05-26) ---------- */
 :root{
-  --kodak-red:#ed1c24;
-  --kodak-deep:#a6192e;
+  --alright-orange:#FF5D36;
+  --alright-orange-deep:#C44818;
+  --alright-green:#EAEE59;
   --bone:#faf9f5;
   --mist:#ece8dc;
-  --dark:#141413;
+  --black:#000000;
+  --dark:#000000; /* alias compat */
   --stone:#3d3a35;
   --slate-warm:#5b5750;
 
-  --font-sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* v2 legacy aliases — preserva CSS classes existentes */
+  --kodak-red:#FF5D36;
+  --kodak-deep:#C44818;
+
+  --font-sans:"Neue Haas Display", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display:"Neue Haas Display", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"Monument Grotesk Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 /* ---------- Page setup ---------- */
@@ -161,12 +217,12 @@ img { max-width: 100%; display: block; }
 .page--clay .eyebrow { color: rgba(250,249,245,0.65); }
 .page--orange .eyebrow { color: rgba(20,20,19,0.7); }
 
-.h-mega   { font-size: 96pt; font-weight: 200; line-height: 0.92; letter-spacing: -0.03em; margin: 0; }
-.h-display{ font-size: 64pt; font-weight: 300; line-height: 0.95; letter-spacing: -0.025em; margin: 0; }
-.h-xl     { font-size: 48pt; font-weight: 400; line-height: 1.0;  letter-spacing: -0.02em; margin: 0; }
-.h-lg     { font-size: 36pt; font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; margin: 0; }
-.h-md     { font-size: 22pt; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
-.h-sm     { font-size: 14pt; font-weight: 500; line-height: 1.25; letter-spacing: -0.005em; margin: 0; }
+.h-mega   { font-family:var(--font-display); font-size: 96pt; font-weight: 700; line-height: 0.92; letter-spacing: -0.03em; margin: 0; }
+.h-display{ font-family:var(--font-display); font-size: 64pt; font-weight: 700; line-height: 0.95; letter-spacing: -0.025em; margin: 0; }
+.h-xl     { font-family:var(--font-display); font-size: 48pt; font-weight: 700; line-height: 1.0;  letter-spacing: -0.02em; margin: 0; }
+.h-lg     { font-family:var(--font-display); font-size: 36pt; font-weight: 700; line-height: 1.05; letter-spacing: -0.015em; margin: 0; }
+.h-md     { font-family:var(--font-display); font-size: 22pt; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
+.h-sm     { font-family:var(--font-display); font-size: 14pt; font-weight: 700; line-height: 1.25; letter-spacing: -0.005em; margin: 0; }
 
 .body {
   font-size: 11pt;
@@ -191,7 +247,7 @@ img { max-width: 100%; display: block; }
 .page--stone .caption,
 .page--clay .caption { color: rgba(250,249,245,0.65); }
 
-.paren { color: var(--kodak-red); font-weight: 300; }
+.paren { color: var(--alright-orange); font-weight: 700; }
 em { font-style: italic; }
 
 /* ---------- Stickers (static badges) ---------- */
@@ -444,7 +500,7 @@ em { font-style: italic; }
   letter-spacing: -0.035em;
   color: var(--bone);
 }
-.bigidea-page__title .paren { color: var(--kodak-red); font-weight: 300; }
+.bigidea-page__title .paren { color: var(--alright-orange); font-weight: 700; }
 .bigidea-page__copy {
   margin-top: 14mm;
   max-width: 130mm;
@@ -1079,12 +1135,17 @@ em { font-style: italic; }
 <section class="page page--dark page--bleed">
   <div class="cover">
     <div class="cover__top">
-      <span class="cover__top-mark">A<b>l</b>right</span>
-      <span>Brand Book · 2026 · v2.0</span>
+      <span class="cover__top-mark" style="display:flex;align-items:center;gap:3mm">
+        <img src="../assets/logo/v3/Wordmark_White.png?v=v3" alt="alright" style="height:7mm;width:auto;display:block" />
+      </span>
+      <span>Brand Book · 2026 · v3.0</span>
     </div>
     <div class="cover__center">
-      <img class="cover__lockup" src="../assets/logo/svg/lockup-we-are-alright-bone-transparent.svg?v=v2" alt="((We Are Alright))" />
-      <span class="sticker" style="background:transparent;color:var(--kodak-red);border:0.5pt solid var(--kodak-red)">(( look again ))</span>
+      <img class="cover__lockup" src="../assets/logo/v3/Logo_White.png?v=v3" alt="Alright lockup v3 — símbolo + wordmark" style="max-width:110mm;height:auto;margin-bottom:8mm" />
+      <p style="font-family:var(--font-display);font-weight:700;font-size:28pt;letter-spacing:-0.02em;line-height:1;margin:8mm 0 0;color:var(--bone);text-align:center">
+        <span style="color:var(--alright-orange)">((</span>&nbsp;We&nbsp;Are&nbsp;Alright&nbsp;<span style="color:var(--alright-orange)">))</span>
+      </p>
+      <span class="sticker" style="background:transparent;color:var(--alright-orange);border:0.5pt solid var(--alright-orange);margin-top:6mm">(( look again ))</span>
     </div>
     <div class="cover__bottom">
       <span>Produtora audiovisual · A.I. first · São Paulo / BR</span>
@@ -1119,17 +1180,17 @@ em { font-style: italic; }
       </li>
       <li class="toc__item">
         <span class="toc__num">03</span>
-        <span class="toc__label">Sistema de logo <em>default · mono · reveal · lockup</em></span>
+        <span class="toc__label">Sistema de logo <em>lockup · símbolo · brand device</em></span>
         <span class="toc__page">09</span>
       </li>
       <li class="toc__item">
         <span class="toc__num">04</span>
-        <span class="toc__label">Tipografia <em>Bricolage Grotesque · JetBrains Mono</em></span>
+        <span class="toc__label">Tipografia <em>Neue Haas Display · Monument Grotesk</em></span>
         <span class="toc__page">15</span>
       </li>
       <li class="toc__item">
         <span class="toc__num">05</span>
-        <span class="toc__label">Paleta <em>sete tons editorial</em></span>
+        <span class="toc__label">Paleta v3 <em>bone · preto · orange · green-lime</em></span>
         <span class="toc__page">18</span>
       </li>
       <li class="toc__item">
@@ -1139,7 +1200,7 @@ em { font-style: italic; }
       </li>
       <li class="toc__item">
         <span class="toc__num">07</span>
-        <span class="toc__label">Aplicações <em>cartão · assinatura</em></span>
+        <span class="toc__label">Aplicações <em>cartão · assinatura · favicon</em></span>
         <span class="toc__page">24</span>
       </li>
       <li class="toc__item">
@@ -1150,11 +1211,11 @@ em { font-style: italic; }
     </ul>
     <div class="toc__brand">
       <span>Owner: Alright</span>
-      <span>v2.0 · 14.05.2026</span>
+      <span>v3.0 · 26.05.2026</span>
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
+    <span>Alright · Brand Book 2026 · v3</span>
     <span>Sumário</span>
     <span>02 / 25</span>
   </footer>
@@ -1340,7 +1401,7 @@ em { font-style: italic; }
 </section>
 
 <!-- ============================================================
-     PAGE 09 · DIVIDER — LOGO SYSTEM
+     PAGE 09 · DIVIDER — LOGO SYSTEM (v3)
      ============================================================ -->
 <section class="page page--bone page--bleed">
   <div class="divider">
@@ -1349,183 +1410,193 @@ em { font-style: italic; }
       <span class="divider__num" style="color:var(--slate-warm)">09 / 25</span>
     </div>
     <div>
-      <div class="divider__num" style="color:var(--kodak-red);margin-bottom:6mm">02</div>
+      <div class="divider__num" style="color:var(--alright-orange);margin-bottom:6mm">02</div>
       <h1 class="divider__title">Sistema<br/>de logo</h1>
-      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">O <em>l</em> carrega a marca. Bricolage Grotesque · Regular 400 em todas as letras · Bold 700 só no l central · Reveal espaçado é ato editorial — não default.</p>
+      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">Símbolo (3 figuras correndo com laptops) em cima · wordmark <em>alright</em> lowercase rounded heavy embaixo · register <code style="font-family:var(--font-mono);font-size:11pt">®</code>. Padrão é bone/preto — laranja só accent.</p>
     </div>
     <div class="divider__bottom" style="color:var(--slate-warm)">
-      <span>Alright · Brand Book 2026</span>
+      <span>Alright · Brand Book 2026 · v3</span>
       <span>02 · Sistema de logo</span>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     PAGE 10 · LOGO DEFAULT
+     PAGE 10 · LOCKUP PRINCIPAL (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>02 · Sistema de logo</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
-        <span class="eyebrow">10 / Default</span>
-        <h2 class="h-lg">90% dos casos.</h2>
-        <p class="body">Wordmark Bricolage Regular 400 — l central em Bold 700 <strong>Kodak Red <code style="font-family:var(--font-mono);font-size:10pt">#ed1c24</code></strong>. O <em>l</em> carrega a marca em cor.</p>
+        <span class="eyebrow">10 / Lockup principal</span>
+        <h2 class="h-lg">Símbolo em cima.<br/>Wordmark embaixo.</h2>
+        <p class="body">Lockup oficial Alright v3. Símbolo (3 figuras humanas correndo carregando laptops em círculo orgânico) acima · wordmark <em>alright</em> lowercase rounded heavy abaixo, com <code style="font-family:var(--font-mono);font-size:10pt;color:var(--alright-orange-deep)">®</code>.</p>
       </div>
-      <span class="sticker sticker--mist rot-2">(( default ))</span>
+      <span class="sticker sticker--mist rot-2">(( v3 default ))</span>
     </div>
 
     <div class="logo-showcase" style="flex:1;min-height:90mm">
-      <img src="../assets/logo/svg/alright-expressivo-dark-transparent.svg?v=v2" alt="Logo Alright default — l em Kodak Red" style="max-height:60mm" />
-      <span class="logo-showcase__caption">Default · l em Kodak Red sobre Bone</span>
+      <img src="../assets/logo/v3/Logo_Black.png?v=v3" alt="Lockup Alright v3 — símbolo + wordmark preto sobre Bone" style="max-height:80mm" />
+      <span class="logo-showcase__caption">Default · preto sobre Bone</span>
     </div>
 
     <dl class="logo-info" style="margin-top:6mm">
       <div>
-        <dt>Espec tipográfica</dt>
-        <dd>Bricolage Grotesque · 400 (corpo) + 700 Kodak Red (l central)</dd>
+        <dt>Símbolo</dt>
+        <dd>3 figuras humanas correndo com laptops, em círculo orgânico/blob. Mono color. Variantes: Black / White / Orange.</dd>
       </div>
       <div>
-        <dt>Quando usar</dt>
-        <dd>Sempre. Capa, hero, deck, UI, footer, signature, brand book. O <em>l</em> em Kodak Red é a assinatura visual da marca.</dd>
+        <dt>Wordmark</dt>
+        <dd>"alright" lowercase, lettering custom rounded heavy (não é fonte). Inclui <code style="font-family:var(--font-mono);font-size:9pt">®</code> register mark.</dd>
       </div>
       <div>
         <dt>Cor padrão</dt>
-        <dd>Letras Dark <code style="font-family:var(--font-mono);font-size:9pt">#141413</code> + l Kodak Red <code style="font-family:var(--font-mono);font-size:9pt">#ed1c24</code> sobre Bone — ou Bone + l Kodak Red sobre Dark (reverse).</dd>
+        <dd>Black sobre Bone (light mode) ou White sobre Black (dark mode). Variante Orange só accent.</dd>
       </div>
       <div>
-        <dt>Não usar</dt>
-        <dd>Bold em todo o wordmark. Kodak Red em qualquer outra letra além do l central.</dd>
+        <dt>Versões oficiais</dt>
+        <dd>Logo_Black.png · Logo_White.png · Logo_Orange.png em <code style="font-family:var(--font-mono);font-size:9pt">assets/logo/v3/</code>.</dd>
       </div>
     </dl>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
-    <span>Logo · Default</span>
+    <span>Alright · Brand Book 2026 · v3</span>
+    <span>Logo · Lockup</span>
     <span>10 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 11 · LOGO MONO FALLBACK
+     PAGE 11 · SÍMBOLO · 3 FIGURAS (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>02 · Sistema de logo</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
-        <span class="eyebrow">11 / Mono fallback</span>
-        <h2 class="h-lg">Quando a cor falha.</h2>
-        <p class="body">Mesma estrutura — l central em Bold 700 Dark <code style="font-family:var(--font-mono);font-size:10pt">#141413</code> em vez de Kodak Red. Usado <strong>apenas</strong> quando Kodak Red não reproduz: B&W print, fax, bordado mono, gravação a laser, ou co-branding com cliente cuja paleta conflita com Kodak Red.</p>
+        <span class="eyebrow">11 / Símbolo · 3 figuras</span>
+        <h2 class="h-lg">Três figuras correndo.<br/>Carregando laptops.</h2>
+        <p class="body">Símbolo signature da marca. Alegoria do trabalho boutique, escala máquina. Usado <strong>isolado</strong> quando a marca precisa caber em quadrado (avatar IG, favicon, perfil) ou onde o lockup completo é demais.</p>
       </div>
-      <span class="sticker rot2">(( B&W only ))</span>
+      <span class="sticker rot2">(( signature ))</span>
     </div>
 
-    <div class="logo-showcase" style="flex:1;min-height:90mm">
-      <img src="../assets/logo/svg/alright-default-dark-transparent.svg?v=v2" alt="Logo Alright mono — l Bold 700 Dark" style="max-height:60mm" />
-      <span class="logo-showcase__caption">Mono fallback · l Bold 700 Dark sobre Bone</span>
+    <div class="logo-pair" style="flex:1">
+      <div class="logo-showcase">
+        <img src="../assets/logo/v3/symbol/Symbol_Black.png?v=v3" alt="Símbolo Black sobre Bone — default" style="max-width:80%;max-height:50mm" />
+        <span class="logo-showcase__caption">Default · Black sobre Bone</span>
+      </div>
+      <div class="logo-showcase logo-showcase--dark">
+        <img src="../assets/logo/v3/symbol/Symbol_White.png?v=v3" alt="Símbolo White sobre Black — reverse" style="max-width:80%;max-height:50mm" />
+        <span class="logo-showcase__caption">Reverse · White sobre Black</span>
+      </div>
     </div>
 
     <dl class="logo-info" style="margin-top:6mm">
       <div>
-        <dt>Espec tipográfica</dt>
-        <dd>Bricolage Grotesque · 400 (corpo) + 700 (l central) — diferenciação por peso, não cor.</dd>
-      </div>
-      <div>
         <dt>Quando usar</dt>
-        <dd>Reprodução monocromática obrigatória — jornal B&W, fax, bordado, embossing, gravação laser, co-branding com paleta conflitante.</dd>
+        <dd>Avatar IG, favicon, perfil, app icon — onde a marca precisa caber em quadrado e o wordmark seria ilegível.</dd>
       </div>
       <div>
-        <dt>Cor padrão</dt>
-        <dd>Dark sobre Bone — ou Bone sobre Dark (reverse).</dd>
+        <dt>Variante Orange</dt>
+        <dd>Só accent — play sobre vídeo, CTA primário, brackets editoriais. <strong>Nunca como default.</strong></dd>
       </div>
       <div>
-        <dt>Não usar</dt>
-        <dd>Como default. Sempre que houver opção de cor, usar o default Kodak Red.</dd>
+        <dt>Não substituir</dt>
+        <dd>Símbolo não substitui o lockup quando há espaço pra ambos — eles são companion, não permuta.</dd>
+      </div>
+      <div>
+        <dt>Assets</dt>
+        <dd>Symbol_Black.png · Symbol_White.png · Symbol_Orange.png em <code style="font-family:var(--font-mono);font-size:9pt">assets/logo/v3/symbol/</code>.</dd>
       </div>
     </dl>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
-    <span>Logo · Mono fallback</span>
+    <span>Alright · Brand Book 2026 · v3</span>
+    <span>Logo · Símbolo</span>
     <span>11 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 12 · REVEAL + LOCKUP
+     PAGE 12 · BRAND DEVICE (( )) + LOCKUP EN (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>02 · Sistema de logo</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
-        <span class="eyebrow">12 / Reveal + Lockup</span>
-        <h2 class="h-lg">Atos editoriais.</h2>
-        <p class="body">Reveal <em>((A I r i g h t))</em> e Lockup <em>((We Are Alright))</em> — usos cerimoniais. Não default. Não em UI cotidiana.</p>
+        <span class="eyebrow">12 / Brand device + Lockup EN</span>
+        <h2 class="h-lg">(( )) e ((We Are Alright))</h2>
+        <p class="body">Brackets <code style="font-family:var(--font-mono);font-size:10pt">(( ))</code> com espaçamento — elemento editorial <strong>auxiliar</strong>. Não faz parte do logo. Envolve manifestos, big idea <em>((Look again.))</em>, lockup <em>((We Are Alright))</em>.</p>
       </div>
     </div>
 
     <div class="logo-pair" style="flex:1">
-      <div class="logo-showcase logo-showcase--dark">
-        <img src="../assets/logo/png/alright-reveal-bone@2x.png?v=v2" alt="Reveal ((A I r i g h t)) espaçado" style="max-width:88%;max-height:30mm" />
-        <span class="logo-showcase__caption">Reveal · espaçado · ato editorial</span>
+      <div class="logo-showcase logo-showcase--mist">
+        <p style="font-family:var(--font-display);font-weight:700;font-size:42pt;letter-spacing:-0.025em;line-height:1;margin:0;color:var(--black)">
+          <span class="paren">((</span>&nbsp;Look&nbsp;again.&nbsp;<span class="paren">))</span>
+        </p>
+        <span class="logo-showcase__caption">Big idea · brackets em Orange Alright</span>
       </div>
-      <div class="logo-showcase">
-        <img src="../assets/logo/svg/lockup-we-are-alright-dark-transparent.svg?v=v2" alt="Lockup ((We Are Alright))" style="max-width:88%;max-height:30mm" />
-        <span class="logo-showcase__caption">Lockup · assinatura formal · sempre EN</span>
+      <div class="logo-showcase logo-showcase--dark">
+        <p style="font-family:var(--font-display);font-weight:700;font-size:32pt;letter-spacing:-0.02em;line-height:1;margin:0;color:var(--bone)">
+          <span style="color:var(--alright-orange)">((</span>&nbsp;We&nbsp;Are&nbsp;Alright&nbsp;<span style="color:var(--alright-orange)">))</span>
+        </p>
+        <span class="logo-showcase__caption">Lockup EN · sempre em inglês</span>
       </div>
     </div>
 
     <dl class="logo-info" style="margin-top:6mm">
       <div>
-        <dt>Reveal — quando usar</dt>
-        <dd>Sequência de abertura de filme, primeira página de proposal, capa de governance.</dd>
+        <dt>Quando usar (( ))</dt>
+        <dd>Manifestos canon, stickers, big idea, hero editorial. Sempre com espaço respiratório — nunca colado.</dd>
       </div>
       <div>
-        <dt>Lockup — quando usar</dt>
-        <dd>Footer institucional, capa de brand book, contratos. Sempre em inglês.</dd>
+        <dt>((We Are Alright))</dt>
+        <dd>Lockup formal · footer institucional · capa brand book · contratos. Sempre EN, nunca traduzir.</dd>
       </div>
       <div>
-        <dt>Espaçamento <code style="font-family:var(--font-mono);font-size:9pt">(( ))</code></dt>
-        <dd>Brand device com espaço respiratório. Nunca colado às letras.</dd>
+        <dt>Cor</dt>
+        <dd>Brackets em Orange Alright sobre Bone/Black — ou Bone sobre Orange. Texto interno mantém cor do contexto.</dd>
       </div>
       <div>
-        <dt>Tradução</dt>
-        <dd><strong>Nunca</strong> traduzir o lockup. We Are Alright é canon.</dd>
+        <dt>Não usar</dt>
+        <dd>(( )) como ornamento decorativo. Sempre envolvendo conteúdo canon.</dd>
       </div>
     </dl>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
-    <span>Logo · Reveal + Lockup</span>
+    <span>Alright · Brand Book 2026 · v3</span>
+    <span>Brand device + Lockup EN</span>
     <span>12 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 13 · DO / DON'T
+     PAGE 13 · DO / DON'T (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>02 · Sistema de logo</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
         <span class="eyebrow">13 / Do &amp; Don't</span>
         <h2 class="h-lg">Onde a marca trava.</h2>
-        <p class="body">As regras existem para que o logo nunca compita com o conteúdo. Bone-first, l protegido, sem efeitos.</p>
+        <p class="body">As regras existem para que o logo nunca compita com o conteúdo. Padrão é bone/preto — laranja só accent.</p>
       </div>
     </div>
 
@@ -1536,14 +1607,14 @@ em { font-style: italic; }
           <span class="dodont__label">Do</span>
         </div>
         <ul class="dodont__list">
-          <li>Use o <strong>default</strong> (l Kodak Red) em 90% dos casos.</li>
-          <li>Mantenha o <strong>l</strong> em Bold 700 sempre.</li>
-          <li>Kodak Red <strong>só</strong> no <strong>l</strong> central — nunca em outra letra.</li>
-          <li>Mono dark = fallback de B&W. Não usar como default.</li>
-          <li>Use o reveal com intenção editorial.</li>
-          <li>Lockup em inglês — sempre.</li>
-          <li>Preserve clear space mínimo (altura do l).</li>
-          <li>Use Bone como background default.</li>
+          <li>Padrão é <strong>bone</strong> ou <strong>preto</strong> — laranja só accent.</li>
+          <li>Use o lockup completo (símbolo + wordmark) em 80% dos casos.</li>
+          <li>Laranja entra: CTA primário, brackets editoriais, plays sobre vídeo.</li>
+          <li>Símbolo isolado em peças square (avatar, favicon, perfil).</li>
+          <li>Wordmark sozinho quando o lockup não cabe (nav, signature, email).</li>
+          <li>Preserve o <code style="font-family:var(--font-mono);font-size:9pt">®</code> register em peças oficiais.</li>
+          <li>Lockup ((We Are Alright)) sempre em inglês.</li>
+          <li>Preserve clear space mínimo (altura do símbolo).</li>
         </ul>
       </div>
       <div class="dodont__col dodont__col--dont">
@@ -1552,140 +1623,142 @@ em { font-style: italic; }
           <span class="dodont__label">Don't</span>
         </div>
         <ul class="dodont__list">
-          <li>Não <strong>rotacione, distorça</strong> ou aplique sombra.</li>
-          <li>Não troque a fonte — Bricolage é trava.</li>
-          <li>Não use o reveal como default ou em UI.</li>
+          <li>Não use a versão laranja como default — ela é accent.</li>
+          <li>Não rotacione, distorça ou aplique sombra no lockup.</li>
+          <li>Não recrie o wordmark com fonte — é lettering custom.</li>
+          <li>Não use Green-lime no logo. Verde só em UI.</li>
+          <li>Não substitua o símbolo por outro mark — 3 figuras é canon.</li>
+          <li>Não traduza ((We Are Alright)).</li>
           <li>Não coloque o logo sobre imagem ruidosa sem scrim.</li>
-          <li>Não traduza We Are Alright.</li>
-          <li>Não use Bold em todo o wordmark.</li>
-          <li>Não troque Kodak Red por outro tom no l.</li>
+          <li>Não combine Brasa antiga com elementos v3 — Brasa foi arquivada.</li>
         </ul>
       </div>
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
+    <span>Alright · Brand Book 2026 · v3</span>
     <span>Logo · Do &amp; Don't</span>
     <span>13 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 14 · CLEAR SPACE + MIN SIZE
+     PAGE 14 · CLEAR SPACE + MIN SIZE (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>02 · Sistema de logo</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
         <span class="eyebrow">14 / Clear space &amp; min size</span>
         <h2 class="h-lg">Respiração e legibilidade.</h2>
-        <p class="body">Margem mínima ao redor do logo: altura do <em>l</em> em todos os lados. Tamanho mínimo: 14pt em print, 24px em tela.</p>
+        <p class="body">Margem mínima ao redor do lockup: altura do símbolo em todos os lados. Tamanho mínimo: 24pt em print pra lockup completo, 14pt em print pro wordmark sozinho.</p>
       </div>
     </div>
 
     <div class="clearspace" style="flex:1;align-content:start">
       <div class="clearspace__diagram">
         <div class="clearspace__inner">
-          <img src="../assets/logo/svg/alright-default-dark-transparent.svg?v=v2" alt="Logo com clear space" />
-          <span class="clearspace__mark tl">l-height</span>
-          <span class="clearspace__mark tr">l-height</span>
-          <span class="clearspace__mark bl">l-height</span>
-          <span class="clearspace__mark br">l-height</span>
+          <img src="../assets/logo/v3/Logo_Black.png?v=v3" alt="Lockup com clear space" />
+          <span class="clearspace__mark tl">sym-h</span>
+          <span class="clearspace__mark tr">sym-h</span>
+          <span class="clearspace__mark bl">sym-h</span>
+          <span class="clearspace__mark br">sym-h</span>
         </div>
       </div>
       <div class="minsize">
         <div class="minsize__row">
-          <span class="minsize__sample s24">A<b>l</b>right</span>
+          <span class="minsize__sample" style="font-family:var(--font-display);font-weight:700;font-size:24pt;line-height:1;letter-spacing:-0.02em">alright</span>
           <span class="minsize__meta">Display<br/><strong>24pt+</strong> · headers</span>
         </div>
         <div class="minsize__row">
-          <span class="minsize__sample s14">A<b>l</b>right</span>
+          <span class="minsize__sample" style="font-family:var(--font-display);font-weight:700;font-size:14pt;line-height:1;letter-spacing:-0.02em">alright</span>
           <span class="minsize__meta">Print mínimo<br/><strong>14pt</strong> · doc body</span>
         </div>
         <div class="minsize__row">
-          <span class="minsize__sample s8">A<b>l</b>right</span>
+          <span class="minsize__sample" style="font-family:var(--font-display);font-weight:700;font-size:8pt;line-height:1;letter-spacing:-0.01em">alright</span>
           <span class="minsize__meta">Footer absoluto<br/><strong>8pt</strong> · não menor</span>
         </div>
       </div>
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
+    <span>Alright · Brand Book 2026 · v3</span>
     <span>Logo · Clear space</span>
     <span>14 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 15 · BRICOLAGE GROTESQUE SPECIMEN
+     PAGE 15 · NEUE HAAS DISPLAY SPECIMEN (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>03 · Tipografia</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
-        <span class="eyebrow">15 / Primária · variable</span>
-        <h2 class="h-lg">Bricolage Grotesque</h2>
-        <p class="body">Família variable (OFL) — opsz 12-96, peso 200-800. É o sistema inteiro. Display, body, eyebrow, lockup. Sem fallback estilístico.</p>
+        <span class="eyebrow">15 / Primária · display</span>
+        <h2 class="h-lg">Neue Haas Display</h2>
+        <p class="body">Neue Haas Grotesk Display Pro — comercial · 15+ weights (XXThin → Black + italics). Ancora títulos, display, body. <strong>Bold 700 é o default</strong> em todo o sistema editorial.</p>
       </div>
-      <span class="sticker sticker--mist rot-2">(( OFL ))</span>
+      <span class="sticker sticker--mist rot-2">(( commercial ))</span>
     </div>
 
     <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
-      <p class="specimen__name">Aa Ll <span class="paren">((</span> A<b>l</b>right <span class="paren">))</span></p>
-      <div class="specimen__weights">
-        <span><span class="meta">200</span><span class="w200">Thin · Look again at the frame.</span></span>
-        <span><span class="meta">300</span><span class="w300">Light · Look again at the frame.</span></span>
-        <span><span class="meta">400</span><span class="w400">Regular · Look again at the frame.</span></span>
-        <span><span class="meta">500</span><span class="w500">Medium · Look again at the frame.</span></span>
-        <span><span class="meta">600</span><span class="w600">SemiBold · Look again at the frame.</span></span>
-        <span><span class="meta">700</span><span class="w700">Bold · banido em uso editorial.</span></span>
-        <span><span class="meta">800</span><span class="w800">ExtraBold · banido em uso editorial.</span></span>
-        <span style="margin-top:3mm"><span class="meta">L+B</span><span class="w-l">A<b>l</b>right — Regular 400 com <b>l</b> Bold 700</span></span>
+      <p class="specimen__name" style="font-family:var(--font-display);font-weight:700">Aa Ll <span class="paren">((</span>&nbsp;alright<sup style="font-size:0.4em;vertical-align:super;color:var(--alright-orange-deep)">®</sup>&nbsp;<span class="paren">))</span></p>
+      <div class="specimen__weights" style="font-family:var(--font-display)">
+        <span><span class="meta">200</span><span style="font-weight:200">XThin · Look again at the frame.</span></span>
+        <span><span class="meta">300</span><span style="font-weight:300">Light · Look again at the frame.</span></span>
+        <span><span class="meta">400</span><span style="font-weight:400">Roman · Look again at the frame.</span></span>
+        <span><span class="meta">500</span><span style="font-weight:500">Medium · Look again at the frame.</span></span>
+        <span><span class="meta">700</span><span style="font-weight:700">Bold · default editorial · headings.</span></span>
+        <span><span class="meta">900</span><span style="font-weight:900">Black · Look again at the frame.</span></span>
+        <span style="margin-top:3mm"><span class="meta">v3</span><span style="font-weight:700">Bold 700 ancora títulos · v3 quebra v2.</span></span>
       </div>
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
-    <span>Tipografia · Bricolage Grotesque</span>
+    <span>Alright · Brand Book 2026 · v3</span>
+    <span>Tipografia · Neue Haas Display</span>
     <span>15 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 16 · JETBRAINS MONO
+     PAGE 16 · MONUMENT GROTESK (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>03 · Tipografia</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
-        <span class="eyebrow">16 / Companion · mono</span>
-        <h2 class="h-lg">JetBrains Mono</h2>
-        <p class="body">Companion técnica (Apache 2.0). Eyebrows, captions, tokens, code labels, footer chrome. Nunca como body de texto longo.</p>
+        <span class="eyebrow">16 / Companion · mono + sans</span>
+        <h2 class="h-lg">Monument Grotesk</h2>
+        <p class="body">Companion técnica + alternativa sans (comercial). <strong>Monument Mono</strong> em eyebrows, captions, tokens, code labels, footer chrome. <strong>Monument Grotesk</strong> sans pra metadados densos. Nunca como body de texto longo.</p>
       </div>
-      <span class="sticker sticker--mist rot1">(( Apache 2.0 ))</span>
+      <span class="sticker sticker--mist rot1">(( commercial ))</span>
     </div>
 
     <div style="flex:1;display:flex;flex-direction:column;gap:6mm">
       <div>
-        <span class="mono-specimen-label">Token specimen</span>
+        <span class="mono-specimen-label">Token specimen · v3</span>
         <div class="mono-specimen">
-          <div><span class="c">--kodak-red:</span> <span class="v">#ed1c24;</span></div>
-          <div><span class="c">--bone:</span>        <span class="v">#faf9f5;</span></div>
-          <div><span class="c">--dark:</span>        <span class="v">#141413;</span></div>
-          <div><span class="c">--font-sans:</span>   <span class="v">"Bricolage Grotesque";</span></div>
-          <div><span class="c">--ease-cine:</span>   <span class="v">cubic-bezier(.16, 1, .3, 1);</span></div>
+          <div><span class="c">--alright-orange:</span>      <span class="v">#FF5D36;</span></div>
+          <div><span class="c">--alright-orange-deep:</span> <span class="v">#C44818;</span></div>
+          <div><span class="c">--alright-green:</span>       <span class="v">#EAEE59;</span></div>
+          <div><span class="c">--bone:</span>                 <span class="v">#faf9f5;</span></div>
+          <div><span class="c">--black:</span>                <span class="v">#000000;</span></div>
+          <div><span class="c">--font-display:</span>         <span class="v">"Neue Haas Display";</span></div>
+          <div><span class="c">--font-mono:</span>            <span class="v">"Monument Grotesk Mono";</span></div>
         </div>
       </div>
 
@@ -1704,26 +1777,26 @@ em { font-style: italic; }
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
-    <span>Tipografia · JetBrains Mono</span>
+    <span>Alright · Brand Book 2026 · v3</span>
+    <span>Tipografia · Monument Grotesk</span>
     <span>16 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 17 · TYPE USAGE RULES
+     PAGE 17 · TYPE USAGE RULES (v3)
      ============================================================ -->
 <section class="page page--bone">
   <header class="page__header">
     <span>03 · Tipografia</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
         <span class="eyebrow">17 / Hierarquia &amp; regras</span>
         <h2 class="h-lg">Duas famílias. Uma trava.</h2>
-        <p class="body">Hierarquia simples: tudo em Bricolage exceto eyebrows / chrome / código. Nada acima de Medium em corrido — Bold é banido em uso editorial.</p>
+        <p class="body">Hierarquia simples: Neue Haas Display Bold 700 ancora títulos · Monument Grotesk Mono em eyebrows / chrome / código. Bold 700 é o default editorial em v3 (v2 baniu, v3 promove).</p>
       </div>
     </div>
 
@@ -1734,80 +1807,80 @@ em { font-style: italic; }
       <tbody>
         <tr>
           <td class="role">H1 mega</td>
-          <td>Bricolage</td>
-          <td class="mono">200–300</td>
+          <td>Neue Haas Display</td>
+          <td class="mono">700</td>
           <td class="mono">80–120pt</td>
           <td class="mono">0.92</td>
-          <td><span class="sample s32">Look again.</span></td>
+          <td><span style="font-family:var(--font-display);font-weight:700;font-size:24pt;line-height:1">Look again.</span></td>
         </tr>
         <tr>
           <td class="role">H1 section</td>
-          <td>Bricolage</td>
-          <td class="mono">300–400</td>
+          <td>Neue Haas Display</td>
+          <td class="mono">700</td>
           <td class="mono">48–64pt</td>
           <td class="mono">0.95</td>
-          <td><span class="sample s32">Sistema</span></td>
+          <td><span style="font-family:var(--font-display);font-weight:700;font-size:22pt">Sistema</span></td>
         </tr>
         <tr>
           <td class="role">H2</td>
-          <td>Bricolage</td>
-          <td class="mono">400–500</td>
+          <td>Neue Haas Display</td>
+          <td class="mono">700</td>
           <td class="mono">32–40pt</td>
           <td class="mono">1.05</td>
-          <td><span class="sample s18">Sumário</span></td>
+          <td><span style="font-family:var(--font-display);font-weight:700;font-size:18pt">Sumário</span></td>
         </tr>
         <tr>
           <td class="role">H3</td>
-          <td>Bricolage</td>
-          <td class="mono">500</td>
+          <td>Neue Haas Display</td>
+          <td class="mono">500–700</td>
           <td class="mono">20–24pt</td>
           <td class="mono">1.15</td>
-          <td><span class="sample s18">Como pensamos</span></td>
+          <td><span style="font-family:var(--font-display);font-weight:500;font-size:14pt">Como pensamos</span></td>
         </tr>
         <tr>
           <td class="role">Body</td>
-          <td>Bricolage</td>
+          <td>Neue Haas Display</td>
           <td class="mono">400</td>
           <td class="mono">11pt</td>
-          <td class="mono">1.45</td>
-          <td><span class="sample s11">Cada filme é um filme.</span></td>
+          <td class="mono">1.5</td>
+          <td><span style="font-family:var(--font-display);font-weight:400;font-size:11pt">Cada filme é um filme.</span></td>
         </tr>
         <tr>
           <td class="role">Caption</td>
-          <td>JetBrains Mono</td>
-          <td class="mono">500</td>
+          <td>Monument Mono</td>
+          <td class="mono">400</td>
           <td class="mono">8–9pt</td>
           <td class="mono">1.4</td>
           <td><span style="font-family:var(--font-mono);font-size:9pt;letter-spacing:0.14em;text-transform:uppercase">(( quiet tech ))</span></td>
         </tr>
         <tr>
           <td class="role">Eyebrow</td>
-          <td>JetBrains Mono</td>
-          <td class="mono">500</td>
+          <td>Monument Mono</td>
+          <td class="mono">400</td>
           <td class="mono">8pt</td>
           <td class="mono">1</td>
           <td><span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.16em;text-transform:uppercase">01 — Capítulo</span></td>
         </tr>
         <tr>
           <td class="role">Italic</td>
-          <td>Bricolage</td>
-          <td class="mono">—</td>
+          <td>Neue Haas Display</td>
+          <td class="mono">italic</td>
           <td class="mono">inherit</td>
           <td class="mono">inherit</td>
-          <td><em style="color:var(--kodak-red)">simulado com indent</em></td>
+          <td><em style="color:var(--alright-orange-deep)">simulado com indent</em></td>
         </tr>
       </tbody>
     </table>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
+    <span>Alright · Brand Book 2026 · v3</span>
     <span>Tipografia · Hierarquia</span>
     <span>17 / 25</span>
   </footer>
 </section>
 
 <!-- ============================================================
-     PAGE 18 · DIVIDER — COLOR
+     PAGE 18 · DIVIDER — COLOR (v3)
      ============================================================ -->
 <section class="page page--bone page--bleed">
   <div class="divider">
@@ -1816,12 +1889,12 @@ em { font-style: italic; }
       <span class="divider__num" style="color:var(--slate-warm)">18 / 25</span>
     </div>
     <div>
-      <div class="divider__num" style="color:var(--kodak-red);margin-bottom:6mm">04</div>
-      <h1 class="divider__title">Paleta</h1>
-      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">Sete tons. Light e dark coexistem como linguagem. Sem gradientes — uma exceção: gradient.editorial-bone para hero.</p>
+      <div class="divider__num" style="color:var(--alright-orange);margin-bottom:6mm">04</div>
+      <h1 class="divider__title">Paleta v3</h1>
+      <p class="divider__sub" style="color:var(--stone);margin-top:8mm">Bone e preto seguram. Laranja e verde acendem. Orange Alright + Green-lime são accents — pontuais, intensos, nunca dominantes. v3 quebra v2: preto puro permitido.</p>
     </div>
     <div class="divider__bottom" style="color:var(--slate-warm)">
-      <span>Alright · Brand Book 2026</span>
+      <span>Alright · Brand Book 2026 · v3</span>
       <span>04 · Paleta</span>
     </div>
   </div>
@@ -1862,28 +1935,28 @@ em { font-style: italic; }
 </section>
 
 <!-- ============================================================
-     PAGE 20 · SWATCH SPLIT — DARK + STONE + SLATE
+     PAGE 20 · SWATCH SPLIT — BLACK + STONE + SLATE (v3)
      ============================================================ -->
 <section class="page page--dark page--bleed">
   <div class="split" style="grid-template-rows: 1.2fr 0.9fr 0.9fr">
     <div class="swatch swatch--dark">
       <div>
-        <span class="swatch__eyebrow">03 / Texto + reverse</span>
-        <h3 class="swatch__name">Dark</h3>
-        <p class="swatch__hex">#141413 · quase-preto</p>
-        <p class="swatch__desc">Texto. Wordmark. Background dark mode. Nunca puro #000.</p>
+        <span class="swatch__eyebrow">03 / Dark mode canônico</span>
+        <h3 class="swatch__name">Black</h3>
+        <p class="swatch__hex">#000000 · preto puro</p>
+        <p class="swatch__desc">Texto sobre Bone (AAA 21:1). Background dark mode canônico. v3 permite preto puro — v2 proibia.</p>
         <div class="swatch__tokens">
-          <code>--dark</code>
+          <code>--black</code>
           <code>color/text/default</code>
         </div>
       </div>
-      <div class="swatch__pagemark">20 / 25 · Dark · text + reverse surface</div>
+      <div class="swatch__pagemark">20 / 25 · Black · v3 quebra v2</div>
     </div>
     <div class="swatch swatch--stone" style="padding:12mm 18mm">
       <div>
         <span class="swatch__eyebrow">04 / Body text-safe</span>
         <h3 class="swatch__name" style="font-size:36pt;margin:2mm 0">Stone · #3D3A35</h3>
-        <p class="swatch__desc" style="margin-bottom:2mm">Body copy padrão. Contraste WCAG AA sobre Bone confirmado.</p>
+        <p class="swatch__desc" style="margin-bottom:2mm">Body copy padrão sobre Bone. WCAG AAA. Preserva warmth.</p>
         <div class="swatch__tokens">
           <code>--stone</code>
           <code>color/text/body</code>
@@ -1905,38 +1978,49 @@ em { font-style: italic; }
 </section>
 
 <!-- ============================================================
-     PAGE 21 · SWATCH SPLIT — ORANGE CLAY + CLAY DEEP
+     PAGE 21 · SWATCH — ORANGE ALRIGHT + ORANGE-DEEP + GREEN-LIME (v3)
      ============================================================ -->
 <section class="page page--orange page--bleed">
-  <div class="split">
+  <div class="split" style="grid-template-rows: 1.1fr 0.7fr 1.2fr">
     <div class="swatch swatch--orange">
       <div>
-        <span class="swatch__eyebrow">06 / Accent único</span>
-        <h3 class="swatch__name">Orange<br/>Clay</h3>
-        <p class="swatch__hex">#ed1c24</p>
-        <p class="swatch__desc">Accent. Wordmark expressivo. Stickers. Nada além disso.</p>
+        <span class="swatch__eyebrow">06 / Accent primário</span>
+        <h3 class="swatch__name">Orange<br/>Alright</h3>
+        <p class="swatch__hex">#FF5D36 · RGB 255, 93, 54</p>
+        <p class="swatch__desc">Accent primário. Wordmark variant. CTAs primários. Plays sobre vídeo.</p>
         <div class="swatch__tokens">
-          <code>--kodak-red</code>
-          <code>color/accent</code>
+          <code>--alright-orange</code>
+          <code>color/accent/primary</code>
         </div>
         <div class="swatch__warning">
-          <strong>Atenção:</strong> nunca como body text sobre Bone — falha WCAG AA. Para texto, use Kodak Deep.
+          <strong>Atenção:</strong> nunca como body text sobre Bone — falha WCAG (~3:1). Para texto, use Orange-deep.
         </div>
       </div>
-      <div class="swatch__pagemark">21 / 25 · Kodak Red · accent único</div>
+      <div class="swatch__pagemark">21 / 25 · Orange Alright · accent primário</div>
     </div>
-    <div class="swatch swatch--clay">
+    <div class="swatch swatch--clay" style="padding:10mm 18mm">
       <div>
-        <span class="swatch__eyebrow">07 / Orange text-safe</span>
-        <h3 class="swatch__name">Clay<br/>Deep</h3>
-        <p class="swatch__hex">#a6192e</p>
-        <p class="swatch__desc">Versão escurecida do accent. Usada quando precisa de Orange como texto sobre Bone.</p>
+        <span class="swatch__eyebrow" style="color:#f6dccd">07 / Orange text-safe</span>
+        <h3 class="swatch__name" style="font-size:32pt;margin:2mm 0;color:var(--bone)">Orange-deep · #C44818</h3>
+        <p class="swatch__desc" style="margin-bottom:2mm;color:rgba(250,249,245,0.82)">Versão escurecida do accent (~5:1 sobre Bone). Único laranja válido pra texto sobre Bone.</p>
         <div class="swatch__tokens">
-          <code>--kodak-deep</code>
+          <code>--alright-orange-deep</code>
           <code>color/accent/text-safe</code>
         </div>
       </div>
-      <div class="swatch__pagemark">04 · Paleta · Kodak Deep · accent text-safe</div>
+    </div>
+    <div class="swatch" style="background:var(--alright-green);color:var(--black);padding:14mm 18mm;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <span class="swatch__eyebrow" style="color:var(--black)">08 / Accent secundário · NOVO v3</span>
+        <h3 class="swatch__name" style="color:var(--black)">Green-lime</h3>
+        <p class="swatch__hex" style="color:var(--black)">#EAEE59 · RGB 234, 238, 89</p>
+        <p class="swatch__desc" style="color:var(--black)">Accent secundário. Botões secundários, highlights editoriais, brand stickers. Surface flat color only — nunca como texto.</p>
+        <div class="swatch__tokens">
+          <code style="background:rgba(0,0,0,0.08);color:var(--black)">--alright-green</code>
+          <code style="background:rgba(0,0,0,0.08);color:var(--black)">color/accent/secondary</code>
+        </div>
+      </div>
+      <div class="swatch__pagemark" style="color:var(--black)">04 · Paleta · Green-lime · 3-8% por peça</div>
     </div>
   </div>
 </section>
@@ -1951,12 +2035,12 @@ em { font-style: italic; }
       <span class="divider__num" style="color:var(--slate-warm)">22 / 25</span>
     </div>
     <div>
-      <div class="divider__num" style="color:var(--kodak-red);margin-bottom:6mm">05</div>
-      <h1 class="divider__title">House look<br/><span style="font-style:italic;font-weight:300;color:var(--kodak-red)">Tátil. Editorial.</span></h1>
+      <div class="divider__num" style="color:var(--alright-orange);margin-bottom:6mm">05</div>
+      <h1 class="divider__title">House look<br/><span style="font-style:italic;font-weight:400;color:var(--alright-orange)">Tátil. Editorial.</span></h1>
       <p class="divider__sub" style="color:var(--stone);margin-top:8mm">Bone-first com profundidade fotográfica — pele, têxtil, materiais reais. AI invisível, output cinema.</p>
     </div>
     <div class="divider__bottom" style="color:var(--slate-warm)">
-      <span>Alright · Brand Book 2026</span>
+      <span>Alright · Brand Book 2026 · v3</span>
       <span>05 · House look</span>
     </div>
   </div>
@@ -2022,14 +2106,14 @@ em { font-style: italic; }
 <section class="page page--bone">
   <header class="page__header">
     <span>06 · Aplicações</span>
-    <span>Alright Brand Book 2026</span>
+    <span>Alright Brand Book 2026 · v3</span>
   </header>
   <div class="content">
     <div class="section-head">
       <div class="section-head__title-block">
         <span class="eyebrow">24 / Aplicações</span>
-        <h2 class="h-lg">Como ((Alright)) vive no mundo.</h2>
-        <p class="body">Cartão e assinatura. Tudo Bone-first, mono no chrome, Bricolage no nome.</p>
+        <h2 class="h-lg">Como ((alright)) vive no mundo.</h2>
+        <p class="body">Cartão e assinatura. Tudo Bone-first, mono no chrome, Neue Haas Display no nome.</p>
       </div>
     </div>
 
@@ -2037,7 +2121,7 @@ em { font-style: italic; }
       <div class="app-card">
         <span class="app-card__label">Cartão de visita · 55×85 mm</span>
         <div>
-          <div class="app-card__wordmark">A<b>l</b>right</div>
+          <img src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright wordmark" style="height:10mm;width:auto;display:block" />
           <div class="app-card__meta" style="margin-top:6mm">
             Fabiano Albergaria · Founder<br/>
             albergaria@wearealright.cc<br/>
@@ -2046,7 +2130,7 @@ em { font-style: italic; }
             São Paulo · BR
           </div>
         </div>
-        <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-warm)">Default · l Kodak Red sobre Bone</span>
+        <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-warm)">Default · wordmark preto sobre Bone</span>
       </div>
 
       <div class="app-card app-card--mist">
@@ -2060,7 +2144,7 @@ em { font-style: italic; }
             www.wearealright.cc · @wearealright.cc
           </div>
         </div>
-        <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-warm)">Bricolage no nome · Mono no chrome</span>
+        <span style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-warm)">Neue Haas no nome · Mono no chrome</span>
       </div>
 
       <div class="app-card app-card--dark" style="grid-column:span 2">
@@ -2068,7 +2152,7 @@ em { font-style: italic; }
           <span class="app-card__label">((Look again.))</span>
           <h3 class="h-md" style="color:var(--bone);margin-top:4mm">Brand device em uso</h3>
           <p class="body body--on-dark" style="margin-top:4mm;max-width:140mm;font-size:10pt">
-            <code style="font-family:var(--font-mono);color:var(--kodak-red);font-size:10pt">(( ))</code> sempre com <strong style="color:var(--bone)">um espaço</strong> antes do conteúdo e <strong style="color:var(--bone)">um espaço</strong> depois — nunca colado às letras. Aplica-se a stickers, captions, social copy, eyebrow editorial. É o respiro visual da marca.
+            <code style="font-family:var(--font-mono);color:var(--alright-orange);font-size:10pt">(( ))</code> sempre com <strong style="color:var(--bone)">um espaço</strong> antes do conteúdo e <strong style="color:var(--bone)">um espaço</strong> depois — nunca colado às letras. Aplica-se a stickers, captions, social copy, eyebrow editorial. É o respiro visual da marca.
           </p>
         </div>
         <div class="row" style="gap:3mm;flex-wrap:wrap">
@@ -2080,19 +2164,19 @@ em { font-style: italic; }
 
       <div class="app-card" style="grid-column:span 2;padding:6mm;display:flex;gap:6mm;align-items:center;min-height:30mm">
         <span class="app-card__label" style="white-space:nowrap;flex:none">Favicon · tab icon</span>
-        <div style="background:var(--dark);width:22mm;height:22mm;border-radius:3mm;display:flex;align-items:center;justify-content:center;flex:none">
-          <img src="../assets/meta/icon-192.png?v=5" alt="Favicon Alright — (( l )) com l Kodak Red" style="width:18mm;height:18mm" />
+        <div style="background:var(--black);width:22mm;height:22mm;border-radius:3mm;display:flex;align-items:center;justify-content:center;flex:none">
+          <img src="../assets/meta/icon-192.png?v=v3" alt="Favicon Alright — símbolo 3 figuras bone sobre Black" style="width:18mm;height:18mm" />
         </div>
         <div style="flex:1;min-width:0">
-          <div style="font-family:var(--font-sans);font-size:14pt;color:var(--dark);font-weight:400;line-height:1;letter-spacing:-0.02em">((&nbsp;<strong style="color:var(--kodak-red);font-weight:700;font-size:0.88em;display:inline-block;transform:translateY(0.07em)">l</strong>&nbsp;))</div>
-          <div style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.12em;text-transform:uppercase;color:var(--slate-warm);margin-top:2mm">l Kodak Red sobre Dark · 16 / 32 / 48 / 64 / 180 / 192 / 512 px</div>
+          <img src="../assets/logo/v3/symbol/Symbol_Black.png?v=v3" alt="Símbolo Alright" style="height:8mm;width:auto;display:block" />
+          <div style="font-family:var(--font-mono);font-size:8pt;letter-spacing:0.12em;text-transform:uppercase;color:var(--slate-warm);margin-top:2mm">Símbolo bone sobre Black · 16 / 32 / 48 / 64 / 180 / 192 / 512 px</div>
         </div>
       </div>
 
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
+    <span>Alright · Brand Book 2026 · v3</span>
     <span>Aplicações</span>
     <span>24 / 25</span>
   </footer>
@@ -2119,8 +2203,8 @@ em { font-style: italic; }
       <div class="colophon__rows">
         <div class="colophon__row">
           <span><strong>Owner</strong> · Alright</span>
-          <span><strong>Versão</strong> · 2.0</span>
-          <span><strong>Data</strong> · 14.05.2026</span>
+          <span><strong>Versão</strong> · 3.0</span>
+          <span><strong>Data</strong> · 26.05.2026</span>
         </div>
         <div class="colophon__row">
           <span><strong>Revisão</strong> · semestral</span>
@@ -2155,15 +2239,17 @@ em { font-style: italic; }
 
       <p class="colophon__quote">((  We Are Alright  ))</p>
 
-      <div style="display:flex;justify-content:center;width:100%">
-        <img src="../assets/logo/svg/lockup-we-are-alright-dark-transparent.svg?v=v2" alt="((We Are Alright))" style="max-width:120mm;height:auto" />
+      <div style="display:flex;justify-content:center;width:100%;margin-top:8mm">
+        <p style="font-family:var(--font-display);font-weight:700;font-size:36pt;letter-spacing:-0.025em;line-height:1;margin:0;color:var(--black);text-align:center">
+          <span style="color:var(--alright-orange)">((</span>&nbsp;We&nbsp;Are&nbsp;Alright&nbsp;<span style="color:var(--alright-orange)">))</span>
+        </p>
       </div>
 
-      <p class="colophon__year" style="margin-top:4mm">© 2026 · wearealright.cc · Brand Book v2.0</p>
+      <p class="colophon__year" style="margin-top:6mm">© 2026 · wearealright.cc · Brand Book v3.0</p>
     </div>
   </div>
   <footer class="page__footer">
-    <span>Alright · Brand Book 2026</span>
+    <span>Alright · Brand Book 2026 · v3</span>
     <span>Governance · Colophon</span>
     <span>25 / 25</span>
   </footer>

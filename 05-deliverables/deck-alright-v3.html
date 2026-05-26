@@ -3,34 +3,91 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Alright — Company Deck · ((Look again.))</title>
+<title>Alright — Company Deck · v3 · ((Look again.))</title>
 <meta name="description" content="Alright — A.I. first Production Company. Cinema sem câmera. Sem set. Puro craft. ((Look again.))" />
-<link rel="icon" type="image/svg+xml" href="../assets/meta/favicon.svg?v=5" />
-<link rel="icon" type="image/png" sizes="32x32" href="../assets/meta/icon-32.png?v=5" />
-<link rel="icon" type="image/png" sizes="16x16" href="../assets/meta/icon-16.png?v=5" />
-<link rel="apple-touch-icon" sizes="180x180" href="../assets/meta/apple-touch-icon.png?v=5" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="icon" type="image/svg+xml" href="../assets/meta/favicon.svg?v=v3" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/meta/icon-32.png?v=v3" />
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/meta/icon-16.png?v=v3" />
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/meta/apple-touch-icon.png?v=v3" />
 <link rel="preconnect" href="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
-   Alright — Company Deck v3
+   Alright — Company Deck v3 (2026-05-26 rebrand)
    Same DNA as brand-book.html & portfolio/index.html
    ============================================================ */
 
-/* ---------- Tokens ---------- */
+/* ---------- Fontes Monument Grotesk + Neue Haas Display (v3) ---------- */
+@font-face{
+  font-family:"Monument Grotesk";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Regular.otf") format("opentype");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Monument Grotesk";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Medium.otf") format("opentype");
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Monument Grotesk";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Bold.otf") format("opentype");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Monument Grotesk Mono";
+  src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Mono.otf") format("opentype");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayRoman.ttf") format("truetype");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayMediu.ttf") format("truetype");
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBold.ttf") format("truetype");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBlack.ttf") format("truetype");
+  font-weight:900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayLight.ttf") format("truetype");
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Neue Haas Display";
+  src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayThin.ttf") format("truetype");
+  font-weight:200;font-style:normal;font-display:swap;
+}
+
+/* ---------- Tokens v3 ---------- */
 :root{
-  --kodak-red:#ed1c24;
-  --kodak-deep:#a6192e;
+  --alright-orange:#FF5D36;
+  --alright-orange-deep:#C44818;
+  --alright-green:#EAEE59;
   --bone:#faf9f5;
   --mist:#ece8dc;
-  --dark:#141413;
+  --black:#000000;
+  --dark:#000000; /* alias compat — Black puro substitui Dark warm em v3 */
   --stone:#3d3a35;
   --slate-warm:#5b5750;
+
+  /* v2 legacy aliases */
+  --kodak-red:#FF5D36;
+  --kodak-deep:#C44818;
+
   --ease-cine:cubic-bezier(0.16,1.0,0.3,1.0);
-  --font-sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans:"Neue Haas Display", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display:"Neue Haas Display", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"Monument Grotesk Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --radius-card:20px;
   --radius-pill:999px;
 }
@@ -48,10 +105,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mono{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em}
 .mono-caps{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 
-.h-mega{font-size:clamp(80px,12vw,280px);font-weight:300;line-height:.92;letter-spacing:-0.025em;margin:0}
-.h-xl{font-size:clamp(48px,6vw,96px);font-weight:400;line-height:1.0;letter-spacing:-0.02em;margin:0}
-.h-lg{font-size:clamp(32px,4vw,64px);font-weight:500;line-height:1.05;letter-spacing:-0.015em;margin:0}
-.h-md{font-size:clamp(22px,2.2vw,32px);font-weight:500;line-height:1.15;letter-spacing:-0.01em;margin:0}
+.h-mega{font-family:var(--font-display);font-size:clamp(80px,12vw,280px);font-weight:700;line-height:.92;letter-spacing:-0.025em;margin:0}
+.h-xl{font-family:var(--font-display);font-size:clamp(48px,6vw,96px);font-weight:700;line-height:1.0;letter-spacing:-0.02em;margin:0}
+.h-lg{font-family:var(--font-display);font-size:clamp(32px,4vw,64px);font-weight:700;line-height:1.05;letter-spacing:-0.015em;margin:0}
+.h-md{font-family:var(--font-display);font-size:clamp(22px,2.2vw,32px);font-weight:700;line-height:1.15;letter-spacing:-0.01em;margin:0}
 .body{font-size:clamp(16px,1.2vw,19px);line-height:1.55;color:var(--stone);font-weight:400}
 .body-on-dark{color:#cfcbc1}
 
@@ -120,7 +177,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .s-cover__chip .dot{width:6px;height:6px;border-radius:50%;background:var(--kodak-red)}
 .s-cover__center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;padding:0 clamp(32px,4vw,80px);display:flex;flex-direction:column;align-items:center;gap:24px}
 .s-cover__title{font-size:clamp(72px,14vw,260px);font-weight:200;line-height:.92;letter-spacing:-0.035em;color:var(--bone);margin:0}
-.s-cover__title .paren{color:var(--kodak-red);font-weight:300}
+.s-cover__title .paren{color:var(--alright-orange);font-weight:700}
 .s-cover__logo{display:flex;justify-content:center;line-height:1;margin:0}
 .s-cover__logo img{width:min(720px,80vw);height:auto;display:block}
 .s-cover__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.82)}
@@ -135,7 +192,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .s-bigidea{position:relative}
 .s-bigidea__inner{position:relative;width:100%;height:100%;padding:clamp(64px,6vw,96px) clamp(32px,4vw,80px);display:grid;grid-template-rows:auto 1fr auto;gap:clamp(24px,3vw,48px)}
 .s-bigidea__title{font-size:clamp(80px,16vw,320px);font-weight:200;line-height:.9;letter-spacing:-0.035em;margin:0;text-align:center;color:var(--bone)}
-.s-bigidea__title .paren{color:var(--kodak-red);font-weight:300}
+.s-bigidea__title .paren{color:var(--alright-orange);font-weight:700}
 .s-bigidea__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,72px);align-items:center}
 .s-bigidea__copy{display:flex;flex-direction:column;gap:18px;max-width:46ch}
 .s-bigidea__copy p{color:#cfcbc1;font-size:clamp(17px,1.4vw,22px);line-height:1.55;margin:0}
@@ -244,7 +301,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .s-cta__inner{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(72px,8vw,120px) clamp(32px,4vw,80px);gap:clamp(20px,2.4vw,40px);text-align:center}
 .s-cta__lockup{max-width:min(620px,72vw);width:100%;height:auto;display:block}
 .s-cta__title{font-size:clamp(56px,9vw,160px);font-weight:200;line-height:.95;letter-spacing:-0.035em;margin:0;color:var(--bone)}
-.s-cta__title .paren{color:var(--kodak-red);font-weight:300}
+.s-cta__title .paren{color:var(--alright-orange);font-weight:700}
 .s-cta__btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-sans);font-weight:500;font-size:clamp(16px,1.3vw,20px);letter-spacing:-0.01em;background:var(--kodak-red);color:var(--dark);padding:18px 28px;border-radius:var(--radius-pill);transition:transform .4s var(--ease-cine), background .4s var(--ease-cine);box-shadow:0 1px 0 rgba(20,20,19,0.08)}
 .s-cta__btn:hover{transform:translateY(-2px);background:#e58a6c}
 .s-cta__btn::after{content:"→";font-family:var(--font-mono);font-weight:500}
@@ -414,7 +471,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       </div>
       <div class="s-cover__center">
         <h1 class="s-cover__logo" aria-label="Alright">
-          <img src="../assets/logo/svg/alright-expressivo-bone-transparent.svg?v=v2" alt="Alright — l em Kodak Red" />
+          <img src="../assets/logo/v3/Logo_White.png?v=v3" alt="Alright — lockup v3" style="max-width:min(620px,72vw)" />
         </h1>
         <span class="s-cover__sub">A.I. First Production Company.</span>
       </div>
@@ -727,7 +784,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
        ============================================================ -->
   <section class="slide slide--dark s-cta" data-index="13" data-tone="dark" aria-label="Contato">
     <div class="s-cta__inner">
-      <img class="s-cta__lockup" src="../assets/logo/svg/lockup-we-are-alright-bone-transparent.svg?v=v2" alt="((We Are Alright))" />
+      <p class="s-cta__lockup" style="font-family:var(--font-display);font-weight:700;font-size:clamp(36px,5vw,72px);letter-spacing:-0.025em;line-height:1;margin:0;color:var(--bone);text-align:center">
+        <span style="color:var(--alright-orange)">((</span>&nbsp;We&nbsp;Are&nbsp;Alright&nbsp;<span style="color:var(--alright-orange)">))</span>
+      </p>
       <h2 class="s-cta__title"><span class="paren">((</span>Look again.<span class="paren">))</span></h2>
       <a class="s-cta__btn" href="mailto:albergaria@wearealright.cc">Falar com a Alright</a>
       <div class="s-cta__rows">
@@ -739,8 +798,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
     <span class="s-cta__foot">© 2026 · Alright</span>
     <div class="s-cta__favicon" aria-label="Favicon Alright" style="position:absolute;bottom:32px;left:48px;display:flex;align-items:center;gap:10px;opacity:0.55">
-      <img src="../assets/meta/icon-64.png?v=5" alt="Favicon — (( l )) com l Kodak Red sobre Dark" style="width:24px;height:24px;display:block" />
-      <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,249,245,0.7)">favicon · (( l ))</span>
+      <img src="../assets/meta/icon-64.png?v=v3" alt="Favicon — símbolo 3 figuras bone sobre Black" style="width:24px;height:24px;display:block" />
+      <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,249,245,0.7)">favicon · símbolo v3</span>
     </div>
   </section>
 
@@ -749,7 +808,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <!-- ===== Persistent HUD ===== -->
 <div class="hud" aria-hidden="false">
   <a class="hud__brand" href="#" id="hudBrand" aria-label="Voltar à capa">
-    <img id="hudLogo" src="../assets/logo/svg/alright-expressivo-bone-transparent.svg?v=v2" alt="Alright" />
+    <img id="hudLogo" src="../assets/logo/v3/Wordmark_White.png?v=v3" alt="Alright" />
   </a>
   <span class="hud__counter" id="hudCounter">01 / 14</span>
   <span class="hud__hint" id="hudHint">← → · page · esc</span>
@@ -776,8 +835,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   let current = 0;
 
   // Logo swap per tone
-  const LOGO_BONE = '../assets/logo/svg/alright-expressivo-bone-transparent.svg?v=v2';
-  const LOGO_DARK = '../assets/logo/svg/alright-expressivo-dark-transparent.svg?v=v2';
+  const LOGO_BONE = '../assets/logo/v3/Wordmark_White.png?v=v3';
+  const LOGO_DARK = '../assets/logo/v3/Wordmark_Black.png?v=v3';
 
   // Build dot indicators
   for(let i=0;i<total;i++){

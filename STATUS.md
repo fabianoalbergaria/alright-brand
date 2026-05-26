@@ -1,7 +1,7 @@
 # Alright Brand Guide — Status do projeto
 
-> **Status atual**: ✅ **CONCLUÍDO + REBRAND v3** — 5/5 fases entregues + 3 evoluções pós-final (Brasa+v2 em 2026-05-20 → rebrand v3 completo em 2026-05-26).
-> **Concluído em**: 2026-05-11. **Last major update**: 2026-05-26 (rebrand v3 — logo novo, paleta nova, fontes novas, Brasa arquivado). **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
+> **Status atual**: ✅ **CONCLUÍDO + REBRAND v3 COMPLETO** — 5/5 fases entregues + rebrand v3 100% propagado em portfolio, IG kit, **brand book HTML/print** e **deck v3** (2026-05-26).
+> **Concluído em**: 2026-05-11. **Last major update**: 2026-05-26 (rebrand v3 — logo novo, paleta nova, fontes novas, Brasa arquivado, **brand book + deck refeitos**). **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
 
 ---
 
@@ -22,8 +22,10 @@ Owner cravou rebrand completo. Mudanças fundamentais:
 - **Tokens** `tokens/color.tokens.json` v3.0 + legacy v2 preservado em `tokens/legacy/`
 - **Meta assets** (OG image + favicons): símbolo bone sobre Black puro, fontes Neue Haas + Monument Mono
 
-### Pendente Fase 3 (Brand book) + Fase 5 (Deck v3)
-Brand book HTML + brand-book-print.html + deck-alright-v3.html ainda em v2 (Kodak Red + Bricolage + refs Brasa). Próxima sessão.
+### Fase 3 (Brand book) + Fase 5 (Deck) — ✅ CONCLUÍDOS em 2026-05-26
+- **brand-book.html** (web) refeito em v3: nav com Wordmark_Black img · sections logo/type/color completamente reescritas · 2 sections novas (Illustrations 21 PNGs + Buttons 4 variants) · Brasa 04.1 removido · Brasa 08.1 motion removido · favicons em símbolo bone sobre Black · downloads/footer atualizados
+- **brand-book-print.html** (A4 25 páginas) refeito em v3: tokens + fonts + type scale · cover com Logo_White v3 · TOC com refs v3 · pages 09-13 Logo (lockup principal + símbolo + brand device + Do/Don't) · pages 14-17 Type (Neue Haas Display + Monument Mono) · pages 18-21 Color (8 swatches incluindo Green-lime novo) · page 24 Apps (wordmark img v3) · page 25 Colophon v3.0
+- **deck-alright-v3.html** (14 slides) refeito em v3: tokens + fonts + type scale · cover com Logo_White v3 · HUD wordmark v3 · CTA com lockup ((We Are Alright)) em texto display Bold · favicon section atualizado
 
 ---
 
@@ -170,5 +172,5 @@ alright-brand/
 
 ---
 
-*Última atualização: 2026-05-20. Owner: Alright. Orquestrador: Claude Code.*
-*Paleta v2 cravada + Brasa motion/companion integrados + Feel Alright system funcional.*
+*Última atualização: 2026-05-26. Owner: Alright. Orquestrador: Claude Code.*
+*Rebrand v3 100% propagado · brand book HTML+print + deck refeitos · zero refs legacy v2 nesses 3 entregáveis.*
