@@ -24,6 +24,8 @@ echo "→ Limpando dist do kit…"
 rm -rf "$DIST"
 mkdir -p "$DIST/assets/social/instagram/psd"
 mkdir -p "$DIST/assets/logo/svg"
+mkdir -p "$DIST/assets/logo/v3/symbol"
+mkdir -p "$DIST/assets/fonts/v3"
 
 echo "→ Copiando editor + assets…"
 cp "$ROOT/instagram-kit/index.html" "$DIST/index.html"
@@ -31,9 +33,15 @@ cp "$ROOT/assets/social/instagram/"*.png "$DIST/assets/social/instagram/"
 if [ -d "$ROOT/assets/social/instagram/psd" ]; then
   cp -R "$ROOT/assets/social/instagram/psd/." "$DIST/assets/social/instagram/psd/"
 fi
-# Logo SVGs referenciados pelo editor (brasa-square-transparent.svg etc).
-# Sem isso o <img src="../assets/logo/svg/..."> retorna 404 no kit deploy.
+# Logo SVGs (v1/v2) — referenciados por refs históricas.
 cp "$ROOT/assets/logo/svg/"*.svg "$DIST/assets/logo/svg/"
+# Logo v3 PNGs (Symbol_Orange + Logo_Orange + Wordmark_Orange etc).
+# Avatars do editor usam estes paths — sem isso 404 e avatars não renderizam.
+cp "$ROOT/assets/logo/v3/"*.png "$DIST/assets/logo/v3/"
+cp "$ROOT/assets/logo/v3/symbol/"*.png "$DIST/assets/logo/v3/symbol/"
+# Fontes v3 (Monument Grotesk + Neue Haas Display) — necessárias pras
+# @font-face do editor. Sem isso o browser cai em system-ui fallback.
+cp -R "$ROOT/assets/fonts/v3/." "$DIST/assets/fonts/v3/"
 
 echo "→ Deploy Cloudflare Pages (wearealright-kit)…"
 wrangler pages deploy "$DIST" --project-name=wearealright-kit --branch=main --commit-dirty=true --commit-message="alright-kit deploy"
