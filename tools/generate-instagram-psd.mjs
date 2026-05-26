@@ -397,10 +397,38 @@ async function extractTextLayers(page, piece) {
 }
 
 // ────────────────────────────────────────────────────────────────────────
-// Wordmark layer extraction — splits `.wm` (A<span class="l">l</span>right)
-// into 3 vector text layers so swapping bg never bleeds alpha into the
-// wordmark glyphs (the old raster-with-alpha behavior).
+// Wordmark extraction.
+//
+// V3 (2026-05-26+): o lettering "alright" do logo foi feito na mão, sem
+// fonte real disponível. O editor usa `<img class="wm" src="Wordmark_X.png">`
+// pra render. Aqui detectamos a img e retornamos info de geometria.
+// O PSD recebe 3 image layers stacked (Dark + Bone + Orange), 1 visible
+// por default + 2 hidden — owner toggle no Photoshop pra trocar.
+//
+// V2 (legacy): mantemos suporte ao markup antigo `<span class="wm">A<span
+// class="l">l</span>right</span>` caso owner reverta — extrai como text
+// layers vetoriais (1-3 layers dependendo da estrutura).
 // ────────────────────────────────────────────────────────────────────────
+
+async function extractWordmarkInfo(page, piece) {
+  return await page.evaluate(({ id }) => {
+    const frame = document.getElementById(id);
+    if (!frame) return null;
+    const wm = frame.querySelector('.wm');
+    if (!wm) return null;
+    const fr = frame.getBoundingClientRect();
+    const wr = wm.getBoundingClientRect();
+    const x = wr.left - fr.left;
+    const y = wr.top - fr.top;
+    return {
+      kind: wm.tagName === 'IMG' ? 'image' : 'text',
+      onDark: wm.classList.contains('on-dark'),
+      x, y,
+      width: wr.width,
+      height: wr.height,
+    };
+  }, { id: piece.id });
+}
 
 async function extractWordmarkLayers(page, piece) {
   return await page.evaluate(({ id }) => {
@@ -408,6 +436,9 @@ async function extractWordmarkLayers(page, piece) {
     if (!frame) return [];
     const wm = frame.querySelector('.wm');
     if (!wm) return [];
+    // V3: img wordmark — não é extraído como text, retorna [] aqui
+    // (buildWordmarkImageChildren cuida disso).
+    if (wm.tagName === 'IMG') return [];
     const fr = frame.getBoundingClientRect();
 
     function parseColor(rgb) {
@@ -680,7 +711,8 @@ async function buildLayeredPsd(page, piece) {
     window.__psdHiddenEditable = [];
   });
   const textLayers = await extractTextLayers(page, piece);
-  const wordmarkLayers = await extractWordmarkLayers(page, piece);
+  const wordmarkLayers = await extractWordmarkLayers(page, piece);  // empty if img wordmark
+  const wordmarkInfo = await extractWordmarkInfo(page, piece);
   await restoreFrame(page);
 
   const flatImg = await loadImage(flatPng);
@@ -696,7 +728,10 @@ async function buildLayeredPsd(page, piece) {
   const bgCv = buildSolidBackground(piece);
 
   const textChildren = textLayers.map(t => buildTextChild(t, w, h));
-  const wordmarkChildren = wordmarkLayers.map(t => buildTextChild(t, w, h));
+  const wordmarkTextChildren = wordmarkLayers.map(t => buildTextChild(t, w, h));
+  const wordmarkImageChildren = wordmarkInfo && wordmarkInfo.kind === 'image'
+    ? await buildWordmarkImageChildren(wordmarkInfo, w, h)
+    : [];
 
   return {
     width: w, height: h,
@@ -705,9 +740,42 @@ async function buildLayeredPsd(page, piece) {
       { name: 'Background',    canvas: bgCv,    left: 0, top: 0, right: w, bottom: h },
       { name: 'Brand · decor', canvas: brandCv, left: 0, top: 0, right: w, bottom: h },
       ...textChildren,
-      ...wordmarkChildren,
+      ...wordmarkTextChildren,
+      ...wordmarkImageChildren,
     ],
   };
+}
+
+// ────────────────────────────────────────────────────────────────────────
+// Wordmark image layers — 3 stacked variants (Dark / Bone / Orange).
+// Owner toggles visibility no Photoshop pra trocar a cor sem precisar
+// reabrir o editor + regenerar. 1 visible por default conforme bg da peça.
+// ────────────────────────────────────────────────────────────────────────
+
+async function buildWordmarkImageChildren(info, w, h) {
+  const variants = [
+    { name: 'Wordmark · Dark',   path: 'assets/logo/v3/Wordmark_Black.png',  visibleOnBone: true,  visibleOnDark: false },
+    { name: 'Wordmark · Bone',   path: 'assets/logo/v3/Wordmark_White.png',  visibleOnBone: false, visibleOnDark: true  },
+    { name: 'Wordmark · Orange', path: 'assets/logo/v3/Wordmark_Orange.png', visibleOnBone: false, visibleOnDark: false },
+  ];
+  const children = [];
+  for (const v of variants) {
+    const img = await loadImage(resolve(REPO_ROOT, v.path));
+    // Scale to match the rendered .wm dimensions in the DOM (which the
+    // CSS height:Npx + width:auto already constrained correctly).
+    const renderW = Math.round(info.width);
+    const renderH = Math.round(info.height);
+    const cv = createCanvas(w, h);
+    const ctx = cv.getContext('2d');
+    ctx.drawImage(img, Math.round(info.x), Math.round(info.y), renderW, renderH);
+    children.push({
+      name: v.name,
+      canvas: cv,
+      left: 0, top: 0, right: w, bottom: h,
+      hidden: info.onDark ? !v.visibleOnDark : !v.visibleOnBone,
+    });
+  }
+  return children;
 }
 
 // ────────────────────────────────────────────────────────────────────────
