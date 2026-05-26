@@ -1,6 +1,60 @@
-# Resume — onde paramos (2026-05-20 · sessão Brasa+v2 cravada)
+# Resume — onde paramos (2026-05-26 · sessão Rebrand v3)
 
-> Hand-off pra próxima sessão. Leia este arquivo + `CLAUDE.md` + `STATUS.md` antes de começar. Owner pediu sair daqui porque a janela de contexto da sessão atual encheu — este resume captura tudo que rolou.
+> Hand-off pra próxima sessão. Leia este arquivo + `CLAUDE.md` + `STATUS.md` antes de começar.
+
+## 🔥 Sessão atual: REBRAND v3 (2026-05-26)
+
+Owner cravou rebrand completo. Mudanças aplicadas:
+
+**Identidade visual:**
+- **Logo**: wordmark "alright" lowercase rounded heavy (lettering feito na mão, sem fonte real) + `®` register · Cor canônica **Orange Alright `#FF5D36`**
+- **Símbolo**: 3 figuras humanas correndo com laptops em círculo orgânico (substitui Brasa) · 3 variantes Black/Orange/White
+- **Paleta v3**: Orange Alright + Green-lime `#EAEE59` (novo!) + Bone (mantido) + Black puro `#000000` (substitui Dark warm) + Orange-deep `#C44818` (text-safe sobre bone)
+- **Fontes**: Monument Grotesk (sans + mono) + Neue Haas Display (display Bold em titles) · Bricolage + JetBrains saem
+- **21 Illustrations** "The X" em `assets/illustrations/` (PNGs)
+- **4 Buttons** em `assets/buttons/` (PNGs)
+- Brand device `(( ))` PERMANECE como elemento editorial auxiliar (não no logo)
+- Big idea `((Look again.))` PERMANECE
+- Manifestos canon PERMANECEM ("We are alright", "Craft Craft", "Cada filme é um filme", "No camera or set") — só muda fonte de render
+
+**Regra cravada (importante!):**
+> "Padrão é bone e preto. Laranja só quando tiver imagem no fundo (plays dos vídeos, brackets editoriais)."
+
+Aplicada em: portfolio (logo bone sobre vídeo skate), IG kit avatars (bone sobre Black), favicons + OG image (símbolo bone sobre Black). Laranja restrito a: CTAs primários, brackets `((  ))` em manifestos/big idea, plays sobre vídeos.
+
+**Status por área:**
+- ✅ Portfolio (`index.html`) live em https://wearealright.cc — logo bone, Neue Haas Bold display, Brasa fora
+- ✅ IG kit (`instagram-kit/index.html` + 16 PSDs) live em https://kit.wearealright.cc — wordmark = imagem 3-layers (Dark/Bone/Orange stacked), display Neue Haas Bold, avatars bone
+- ✅ Tokens v3 (`tokens/color.tokens.json`) + legacy v2 preservada
+- ✅ CLAUDE.md atualizado com decisões v3
+- ✅ Favicons + OG image regerados (símbolo bone, fontes Neue Haas + Monument Mono)
+- ✅ Photoshop swatches v3 instalados (`.aco` em 4 versões PS) + 2 folders Alright antigos deletados via computer-use
+- ✅ Sistema Brasa ARQUIVADO em `assets/archive/v2-brasa/` (motion + 7 SVGs + 30 PNGs)
+- ⏭ **Pendente**: brand book HTML/print (Fase 3) + deck v3 (Fase 5)
+
+**Commits desta sessão** (branch `claude/happy-chatelet-34b11d`):
+- `a0ba682` Fase 1 Foundation: assets v3 + tokens + CLAUDE.md
+- `2f2b515` Fase 2 Portfolio rebrand
+- `53669d6` + `412bdb0` Portfolio fixes (logo size + Neue Haas + footer)
+- `e068615` Portfolio logos bone/preto default
+- `70b9c9a` Site Neue Haas Display Bold default
+- `b669726` Fase 4 IG kit: 16 PSDs + editor + avatars regerados
+- `77ff526` Swatches Photoshop v3
+- `b3ccb05` deploy-kit.sh fix (copiar assets/logo/v3 + assets/fonts/v3)
+- `f86642c` Wordmark vetorial NeueHaasDisplay-Black
+- `544b360` Wordmark + display em Monument
+- `a5b3adb` Wordmark vira imagem (3 layers) + display Neue Haas Bold
+- `2933f54` Avatars bone (regra v3)
+- `b46b0ca` Fase 6 Favicons + OG bone sobre Black
+- [próximo commit] Fase 7 Archive Brasa + memory/STATUS/RESUME sync
+
+**Pra retomar:** leia este resume + `CLAUDE.md` (regras + decisões cravadas) + `STATUS.md` (estado das fases). Próxima ação esperada: brand book HTML refactor (Fase 3) — refazer sections logo/paleta/fonts/símbolo, adicionar Illustrations + Buttons como novos elementos, remover Brasa 04.1. Ou deck (Fase 5): 14 slides atualizar logo + fontes + paleta.
+
+---
+
+## Resume anterior (2026-05-20 · sessão Brasa+v2 cravada)
+
+> Hand-off da sessão anterior — preservado pra referência histórica do estado v2.
 
 ---
 

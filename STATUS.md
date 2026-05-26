@@ -1,7 +1,29 @@
 # Alright Brand Guide — Status do projeto
 
-> **Status atual**: ✅ **CONCLUÍDO + EVOLUÇÕES POST-FINAL** — 5/5 fases entregues + paleta v2 (Kodak Red) + Brasa motion + Feel Alright system cravados em 2026-05-20.
-> **Concluído em**: 2026-05-11. **Last major update**: 2026-05-20 (paleta v2 + Brasa). **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
+> **Status atual**: ✅ **CONCLUÍDO + REBRAND v3** — 5/5 fases entregues + 3 evoluções pós-final (Brasa+v2 em 2026-05-20 → rebrand v3 completo em 2026-05-26).
+> **Concluído em**: 2026-05-11. **Last major update**: 2026-05-26 (rebrand v3 — logo novo, paleta nova, fontes novas, Brasa arquivado). **Owner atual**: Alright (histórico de ownership em `CLAUDE.md`).
+
+---
+
+## 🔥 Rebrand v3 (2026-05-26)
+
+Owner cravou rebrand completo. Mudanças fundamentais:
+
+- **Logo**: Direção C dual-state (Alright + l Bold) → wordmark **"alright" lowercase** rounded heavy (lettering feito na mão, sem fonte real) + `®` register
+- **Símbolo**: Brasa (ember + halo + 3 wisps) → **3 figuras humanas correndo com laptops** em círculo orgânico/blob
+- **Paleta**: Kodak Red `#ed1c24` → **Orange Alright `#FF5D36`** (laranja-coral vibrante) + NOVO **Green-lime `#EAEE59`** accent + Dark `#141413` → **Black puro `#000000`** + Bone mantido
+- **Fontes**: Bricolage Grotesque + JetBrains Mono → **Monument Grotesk** (sans/mono) + **Neue Haas Display** (display Bold em titles)
+- **Sistema Brasa**: ARQUIVADO em `assets/archive/v2-brasa/` (motion HTML + 7 SVGs + 24 PNGs). Feel Alright menu/overlay + shake mobile removidos do portfolio.
+- **Regra cravada**: bone/preto padrão · laranja só pra accents pontuais (CTAs, plays sobre vídeos, brackets `(( ))` editoriais)
+
+### Live em produção (após rebrand v3)
+- **Portfolio** https://wearealright.cc — logo bone sobre vídeo, Neue Haas Bold display, sem Brasa
+- **IG kit** https://kit.wearealright.cc — 16 PSDs v3 (wordmark = 3 image layers stacked Dark/Bone/Orange), avatars bone, swatches Photoshop atualizados
+- **Tokens** `tokens/color.tokens.json` v3.0 + legacy v2 preservado em `tokens/legacy/`
+- **Meta assets** (OG image + favicons): símbolo bone sobre Black puro, fontes Neue Haas + Monument Mono
+
+### Pendente Fase 3 (Brand book) + Fase 5 (Deck v3)
+Brand book HTML + brand-book-print.html + deck-alright-v3.html ainda em v2 (Kodak Red + Bricolage + refs Brasa). Próxima sessão.
 
 ---
 

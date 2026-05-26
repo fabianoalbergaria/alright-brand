@@ -15,14 +15,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = resolve(__dirname, '..', 'assets', 'downloads');
 mkdirSync(OUT_DIR, { recursive: true });
 
+// Paleta v3 (2026-05-26): Orange Alright substitui Kodak Red, Green-lime
+// é accent secundário novo, Black puro substitui Dark warm.
 const COLORS = [
-  { name: 'Alright · Kodak Red',   hex: 'ed1c24' },
-  { name: 'Alright · Bone',        hex: 'faf9f5' },
-  { name: 'Alright · Dark',        hex: '141413' },
-  { name: 'Alright · Stone',       hex: '3d3a35' },
-  { name: 'Alright · Slate Warm',  hex: '5b5750' },
-  { name: 'Alright · Mist',        hex: 'ece8dc' },
-  { name: 'Alright · Kodak Deep',  hex: 'a6192e' },
+  { name: 'Alright · Orange',       hex: 'FF5D36' },
+  { name: 'Alright · Green',        hex: 'EAEE59' },
+  { name: 'Alright · Bone',         hex: 'faf9f5' },
+  { name: 'Alright · Black',        hex: '000000' },
+  { name: 'Alright · Stone',        hex: '3d3a35' },
+  { name: 'Alright · Slate Warm',   hex: '5b5750' },
+  { name: 'Alright · Mist',         hex: 'ece8dc' },
+  { name: 'Alright · Orange Deep',  hex: 'C44818' },
 ];
 
 function rgbFromHex(hex) {

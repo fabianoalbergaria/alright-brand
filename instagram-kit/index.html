@@ -4,27 +4,46 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Alright · Instagram Kit</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <style>
+  /* ───────── Fontes v3: Monument Grotesk + Neue Haas Display ───────── */
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:"Monument Grotesk";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Italic.otf") format("opentype");font-weight:400;font-style:italic;font-display:swap}
+  @font-face{font-family:"Monument Grotesk Mono";src:url("../assets/fonts/v3/monument-grotesk/MonumentGrotesk-Mono.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayRoman.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayMediu.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayBlack.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+  @font-face{font-family:"Neue Haas Display";src:url("../assets/fonts/v3/neue-haas-display/NeueHaasDisplayLight.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+
   :root {
     --bone: #faf9f5;
-    --dark: #141413;
-    --orange: #ed1c24;
-    --kodak-deep: #a6192e;
+    --dark: #000000;
+    --orange: #FF5D36;
+    --kodak-deep: #C44818;
+    --alright-green: #EAEE59;
     --stone: #3d3a35;
     --slate-warm: #5b5750;
     --mist: #ece8dc;
-    --font-sans: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    /* v3 typography system:
+       --font-sans / --font-display: Neue Haas Display — textos grandes
+         centrais em Bold 700 (igual site portfolio).
+       --font-mono: Monument Grotesk Mono — textos pequenos das bordas
+         (kicker, tag, meta, eyebrow).
+       Wordmark "alright" NÃO é texto — é imagem PNG (Wordmark_X.png).
+       O lettering do logo foi feito na mão, sem fonte real disponível. */
+    --font-sans: "Neue Haas Display", system-ui, -apple-system, sans-serif;
+    --font-display: "Neue Haas Display", system-ui, -apple-system, sans-serif;
+    --font-mono: "Monument Grotesk Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --ease-cinematic: cubic-bezier(0.16, 1.0, 0.3, 1.0);
 
     --scale-square: 0.30;
     --scale-portrait: 0.28;
     --scale-vertical: 0.22;
+    --scale-landscape: 0.40;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -140,6 +159,7 @@
   }
   .grid.square    { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
   .grid.portrait  { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .grid.landscape { grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); }
   .grid.vertical  { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 
   .piece {
@@ -163,10 +183,12 @@
   .frame.square    { width: 1080px; height: 1080px; transform: scale(var(--scale-square)); }
   .frame.portrait  { width: 1080px; height: 1350px; transform: scale(var(--scale-portrait)); }
   .frame.vertical  { width: 1080px; height: 1920px; transform: scale(var(--scale-vertical)); }
+  .frame.landscape { width: 1080px; height: 608px;  transform: scale(var(--scale-landscape)); }
 
-  .piece-frame-wrap.square   { width: calc(1080px * var(--scale-square));   height: calc(1080px * var(--scale-square)); }
-  .piece-frame-wrap.portrait { width: calc(1080px * var(--scale-portrait)); height: calc(1350px * var(--scale-portrait)); }
-  .piece-frame-wrap.vertical { width: calc(1080px * var(--scale-vertical)); height: calc(1920px * var(--scale-vertical)); }
+  .piece-frame-wrap.square    { width: calc(1080px * var(--scale-square));    height: calc(1080px * var(--scale-square)); }
+  .piece-frame-wrap.portrait  { width: calc(1080px * var(--scale-portrait));  height: calc(1350px * var(--scale-portrait)); }
+  .piece-frame-wrap.vertical  { width: calc(1080px * var(--scale-vertical));  height: calc(1920px * var(--scale-vertical)); }
+  .piece-frame-wrap.landscape { width: calc(1080px * var(--scale-landscape)); height: calc(608px  * var(--scale-landscape)); }
 
   /* ─────────── Scale test (real IG circle sizes) ─────────── */
 
@@ -328,19 +350,17 @@
   .frame.bg-dark { background: var(--dark); color: var(--bone); }
   .frame.bg-mist { background: var(--mist); color: var(--dark); }
 
-  /* Wordmark inside frames */
+  /* Wordmark v3 = IMAGEM (não-fonte). O lettering "alright" foi feito na
+     mão — sem fonte real disponível. Cada peça usa <img class="wm"> com
+     PNG apropriado (Wordmark_Black sobre bone, Wordmark_White sobre dark,
+     Wordmark_Orange como variante accent). No PSD gerado teremos 3 layers
+     stacked (Dark/Bone/Orange) — 1 visible, 2 hidden — pra owner trocar
+     no Photoshop via toggle de visibility. */
   .wm {
-    font-family: var(--font-sans);
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    line-height: 1;
-    display: inline-block;
+    display: block;
+    width: auto;
+    height: 56px;  /* default; sobrescrito por contexto abaixo */
   }
-  .wm .l { font-weight: 700; color: var(--orange); }
-  .wm.on-dark { color: var(--bone); }
-  .wm.on-dark .l { color: var(--orange); }
-  .wm.mono { color: inherit; }
-  .wm.mono .l { font-weight: 700; color: inherit; }
 
   /* Brackets — universal device */
   .brk {
@@ -370,70 +390,59 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
-     AVATAR FRAMES (1080×1080) — all Dark bg + l Kodak Red
+     AVATAR FRAMES (1080×1080) — all Dark bg + l Orange Alright
      ════════════════════════════════════════════════════════════════ */
 
-  /* Avatar A — Símbolo: (( l )) com l opticamente centralizado */
-  /* Avatar A — Brasa symbol (ember + halo + 3 wisps, geometria do motion canon) */
-  .avatar-brasa-mark {
+  /* Avatar A — Símbolo v3 (3 figuras correndo com laptops) sobre Dark */
+  .avatar-symbol-v3 {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0;
+    padding: 120px;  /* respiro generoso pro símbolo se destacar no círculo */
   }
-  .avatar-brasa-mark img {
+  .avatar-symbol-v3 img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: contain;
   }
 
-  /* Avatar B — Brasa lockup: símbolo em cima + Alright em baixo com l Bold */
-  .avatar-brasa-lockup {
+  /* Avatar B — Lockup completo (símbolo + wordmark "alright") sobre Dark */
+  .avatar-lockup-v3 {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 60px 80px;
-    gap: 24px;
+    padding: 120px 100px;
   }
-  .avatar-brasa-lockup img {
-    width: 560px;
-    height: 560px;
+  .avatar-lockup-v3 img {
+    width: 100%;
+    height: 100%;
     display: block;
     object-fit: contain;
   }
-  .avatar-brasa-lockup .wm {
-    font-size: 180px;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--bone);
-    line-height: 1;
-  }
-  .avatar-brasa-lockup .wm b {
-    font-weight: 700;  /* l Bold — mais grosso · mono Bone (sem accent vermelho) */
-    font-style: normal;
-  }
 
-  /* Avatar C — Wordmark Alright completo, sobre Dark */
-  .avatar-wordmark {
+  /* Avatar C — Wordmark v3 (só "alright") sobre Dark */
+  .avatar-wordmark-v3 {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 80px 100px;  /* dá respiro nas bordas (era colado antes) */
+    padding: 200px 100px;
   }
-  .avatar-wordmark .wm {
-    font-size: 260px;
-    color: var(--bone);
-    letter-spacing: -0.02em;
+  .avatar-wordmark-v3 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
   }
-  .avatar-wordmark .wm .l { color: var(--orange); font-weight: 700; }
+
+  /* (.avatar-wordmark legacy removido no rebrand v3 — substituído por
+      .avatar-wordmark-v3 que usa Wordmark_Orange.png) */
 
   /* ════════════════════════════════════════════════════════════════
      FEED COVERS (1080×1350) — 4:5 portrait
@@ -472,7 +481,7 @@
   .cover-case .title-block { display: flex; flex-direction: column; gap: 28px; }
   .cover-case .title {
     font-size: 140px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0.96;
     letter-spacing: -0.035em;
     color: var(--dark);
@@ -488,7 +497,7 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-  .cover-case .bottom .wm { font-size: 56px; }
+  .cover-case .bottom .wm { height: 56px; width: auto; }
   .cover-case .bottom .meta {
     font-family: var(--font-mono);
     font-size: 18px;
@@ -530,7 +539,7 @@
   }
   .cover-manifesto .quote {
     font-size: 128px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.0;
     letter-spacing: -0.03em;
     color: var(--bone);
@@ -541,7 +550,7 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-  .cover-manifesto .bottom .wm { font-size: 56px; }
+  .cover-manifesto .bottom .wm { height: 56px; width: auto; }
   .cover-manifesto .bottom .tag {
     font-family: var(--font-mono);
     font-size: 18px;
@@ -582,7 +591,7 @@
   }
   .cover-bigidea .phrase {
     font-size: 196px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0.96;
     letter-spacing: -0.04em;
     color: var(--dark);
@@ -598,7 +607,7 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-  .cover-bigidea .bottom .wm { font-size: 56px; }
+  .cover-bigidea .bottom .wm { height: 56px; width: auto; }
   .cover-bigidea .bottom .tag {
     font-family: var(--font-mono);
     font-size: 18px;
@@ -668,7 +677,7 @@
   }
   .cover-making .title {
     font-size: 96px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.0;
     letter-spacing: -0.03em;
     color: var(--dark);
@@ -682,7 +691,7 @@
     align-items: flex-end;
     margin-top: 32px;
   }
-  .cover-making .bottom .wm { font-size: 56px; }
+  .cover-making .bottom .wm { height: 56px; width: auto; }
   .cover-making .bottom .meta {
     font-family: var(--font-mono);
     font-size: 18px;
@@ -748,7 +757,7 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-  .cover-quote .bottom .wm { font-size: 56px; }
+  .cover-quote .bottom .wm { height: 56px; width: auto; }
   .cover-quote .bottom .meta {
     font-family: var(--font-mono);
     font-size: 18px;
@@ -791,7 +800,7 @@
   }
   .cover-split .headline {
     font-size: 132px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0.96;
     letter-spacing: -0.035em;
     color: var(--dark);
@@ -800,7 +809,7 @@
   .cover-split .headline .brk { color: var(--orange); font-weight: 300; }
   .cover-split .pane-bottom .lead {
     font-size: 44px;
-    font-weight: 300;
+    font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
     color: var(--bone);
@@ -811,14 +820,357 @@
     justify-content: space-between;
     align-items: flex-end;
   }
-  .cover-split .pane-bottom .wm { font-size: 48px; color: var(--bone); }
-  .cover-split .pane-bottom .wm .l { color: var(--orange); }
+  .cover-split .pane-bottom .wm { height: 48px; width: auto; }
   .cover-split .pane-bottom .meta {
     font-family: var(--font-mono);
     font-size: 18px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     FEED LANDSCAPE (1080×608) — 16:9
+     Padding mais compacto que portrait (608 ≪ 1350). Same canon:
+     wordmark bottom-left, meta/tag bottom-right, kickers top, hero centro.
+     ════════════════════════════════════════════════════════════════ */
+
+  /* Capa landscape · Case */
+  .cover-h-case {
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-h-case .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-h-case .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    line-height: 1.4;
+  }
+  .cover-h-case .index {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--orange);
+  }
+  .cover-h-case .title-block { display: flex; flex-direction: column; gap: 18px; max-width: 820px; }
+  .cover-h-case .title {
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+  }
+  .cover-h-case .title .accent { color: var(--orange); font-weight: 700; }
+  .cover-h-case .accent-bar {
+    width: 140px;
+    height: 3px;
+    background: var(--orange);
+  }
+  .cover-h-case .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-case .bottom .wm { height: 44px; width: auto; }
+  .cover-h-case .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* Capa landscape · Big idea */
+  .cover-h-bigidea {
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-h-bigidea .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-h-bigidea .kicker {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-h-bigidea .center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover-h-bigidea .phrase {
+    font-size: 148px;
+    font-weight: 700;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: var(--dark);
+    white-space: nowrap;
+  }
+  .cover-h-bigidea .phrase .brk {
+    color: var(--orange);
+    font-weight: 300;
+    margin: 0 0.05em;
+    letter-spacing: 0;
+  }
+  .cover-h-bigidea .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-bigidea .bottom .wm { height: 44px; width: auto; }
+  .cover-h-bigidea .bottom .tag {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    text-align: right;
+  }
+
+  /* Capa landscape · Making-of (still ocupando full bg, texto overlay) */
+  .cover-h-making {
+    width: 100%; height: 100%;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(237, 28, 36, 0.45) 0%, rgba(20, 20, 19, 0.85) 60%, rgba(20, 20, 19, 0.95) 100%),
+      linear-gradient(45deg, var(--stone) 0%, var(--kodak-deep) 50%, var(--dark) 100%);
+  }
+  .cover-h-making::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 25% 30%, rgba(250, 249, 245, 0.18), transparent 55%),
+      radial-gradient(ellipse at 78% 70%, rgba(237, 28, 36, 0.32), transparent 50%);
+    pointer-events: none;
+  }
+  .cover-h-making .layer {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-h-making .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .cover-h-making .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .cover-h-making .ref {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: rgba(250, 249, 245, 0.7);
+  }
+  .cover-h-making .frame-tag {
+    position: absolute;
+    bottom: 88px;
+    left: 80px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.65);
+    z-index: 3;
+  }
+  .cover-h-making .title {
+    font-size: 76px;
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    max-width: 720px;
+  }
+  .cover-h-making .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-making .bottom .wm { height: 44px; width: auto; }
+  .cover-h-making .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
+  /* Capa landscape · Split anúncio (lateral 55/45 bone/dark) */
+  .cover-h-split {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+  .cover-h-split .pane-left {
+    width: 55%;
+    background: var(--bone);
+    padding: 52px 56px 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-h-split .pane-right {
+    width: 45%;
+    background: var(--dark);
+    padding: 52px 80px 52px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-h-split .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .cover-h-split .headline {
+    font-size: 76px;
+    font-weight: 700;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dark);
+    margin-bottom: 8px;
+    max-width: 560px;
+  }
+  .cover-h-split .headline .brk { color: var(--orange); font-weight: 300; }
+  .cover-h-split .pane-right .lead {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    color: var(--bone);
+    max-width: 100%;
+  }
+  .cover-h-split .pane-right .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-split .pane-right .wm { height: 36px; width: auto; }
+  .cover-h-split .pane-right .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 245, 0.55);
+    text-align: right;
+  }
+
+  /* Capa landscape · Quote */
+  .cover-h-quote {
+    width: 100%; height: 100%;
+    padding: 52px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-h-quote .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-h-quote .kicker {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+  }
+  .cover-h-quote .center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    max-width: 820px;
+  }
+  .cover-h-quote .body {
+    font-size: 84px;
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+  }
+  .cover-h-quote .body .em { color: var(--orange); font-weight: 700; }
+  .cover-h-quote .attrib {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover-h-quote .attrib .bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .cover-h-quote .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-h-quote .bottom .wm { height: 44px; width: auto; }
+  .cover-h-quote .bottom .meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate-warm);
     text-align: right;
   }
 
@@ -858,7 +1210,7 @@
   }
   .reels-edit .title {
     font-size: 152px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0.96;
     letter-spacing: -0.035em;
     color: var(--dark);
@@ -887,7 +1239,7 @@
     justify-content: center;
     margin-top: 56px;
   }
-  .reels-edit .footer .wm { font-size: 64px; }
+  .reels-edit .footer .wm { height: 64px; width: auto; }
 
   /* Stories template — dark, swipe */
   .stories-swipe {
@@ -904,8 +1256,7 @@
     justify-content: space-between;
     align-items: flex-start;
   }
-  .stories-swipe .wm { font-size: 48px; color: var(--bone); }
-  .stories-swipe .wm .l { color: var(--orange); }
+  .stories-swipe .wm { height: 48px; width: auto; }
   .stories-swipe .index {
     font-family: var(--font-mono);
     font-size: 18px;
@@ -923,7 +1274,7 @@
   }
   .stories-swipe .headline {
     font-size: 184px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0.96;
     letter-spacing: -0.035em;
     color: var(--bone);
@@ -1089,7 +1440,7 @@
   <div class="edit-bar" id="edit-bar">
     <button class="btn" id="toggle-edit" aria-pressed="false">Modo edição · OFF</button>
     <button class="btn" id="export-html" disabled>Exportar HTML editado ↓</button>
-    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com 3 camadas base separadas (<em>Background</em> só cor sólida · <em>Brand · wordmark</em> com logo + decorações canon sobre transparente · uma <em>text layer vetorial por elemento editável</em>) — assim você troca bg color sem mexer no wordmark, double-click pra editar texto. Pra regenerar: <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs</code>.</span>
+    <span class="hint">Edição inline → <b>PNG/PDF</b> capturam o estado atual (com suas edições). <b>PSD</b> é o master com <em>Background</em> só cor sólida + <em>Brand · decor</em> com decorações canon (brackets, accent bars) sobre transparente + uma <em>text layer vetorial por elemento editável</em>, incluindo o <em>wordmark Alright</em> dividido em <em>A · l · right</em> (o <em>l</em> em Bold com accent vermelho). Troque bg color sem afetar nada do resto · double-click pra editar texto. Pra regenerar: <code style="font-family:var(--font-mono);color:var(--orange)">node tools/generate-instagram-psd.mjs</code>.</span>
   </div>
 
   <header class="page-header">
@@ -1101,7 +1452,7 @@
   </header>
 
   <p class="intro">
-    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Bricolage Grotesque, paleta Bone / Dark / Kodak Red, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
+    Sistema visual de presença no <strong>Instagram</strong> — avatar de perfil, capas de Feed (formato dominante <strong>1080×1350</strong>, 4:5) e capas verticais para Reels/Stories (<strong>1080×1920</strong>). Tudo construído sobre as decisões já cravadas: Monument Grotesk, paleta Bone / Dark / Orange Alright, brand device <code>(( ))</code>. Cada template é renderizado abaixo em escala reduzida; o markup interno está em <strong>resolução nativa</strong>, o que permite exportação direta para PNG via Playwright.
   </p>
 
   <!-- ════════════════════════════════════════════════════════════════
@@ -1119,52 +1470,51 @@
 
     <div class="grid square">
 
-      <!-- Avatar A · Brasa symbol sobre Dark -->
+      <!-- Avatar A · Símbolo v3 sobre Dark -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-a">
-            <div class="avatar-brasa-mark">
-              <img src="../assets/logo/svg/brasa-square-transparent.svg?v=brasa1" alt="Brasa — ember + halo + 3 wisps" />
+            <div class="avatar-symbol-v3">
+              <img src="../assets/logo/v3/symbol/Symbol_White.png?v=v3bone" alt="Símbolo — 3 figuras correndo com laptops" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">A · 1080 × 1080</span>
-          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Brasa</code></span>
-          <span class="desc">Ember Kodak Red + halo radial + 3 wisps de fumaça Bone que cruzam no meio — frozen frame do motion ((Brasa)). Símbolo puro pra reconhecimento em scale pequena.</span>
+          <span class="name">Símbolo <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Alright</code></span>
+          <span class="desc">3 figuras humanas correndo com laptops em círculo orgânico — símbolo canônico v3 em Bone sobre Dark. Reconhecimento em scale pequena (32px / 44px / 56px).</span>
         </div>
       </div>
 
-      <!-- Avatar B · Brasa lockup (símbolo + Alright com l Bold) -->
+      <!-- Avatar B · Lockup completo (símbolo + wordmark) -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-b">
-            <div class="avatar-brasa-lockup">
-              <img src="../assets/logo/svg/brasa-square-transparent.svg?v=brasa1" alt="Brasa" />
-              <span class="wm">A<b>l</b>right</span>
+            <div class="avatar-lockup-v3">
+              <img src="../assets/logo/v3/Logo_White.png?v=v3bone" alt="Lockup — símbolo + alright" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">B · 1080 × 1080</span>
-          <span class="name">Brasa lockup <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Brasa + Alright</code></span>
-          <span class="desc">Símbolo Brasa em cima + wordmark <em>Alright</em> abaixo com <em>l</em> Bold 700 (mono Bone, sem accent vermelho). Reveal moment do motion congelado em forma de logo.</span>
+          <span class="name">Lockup <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Símbolo + alright</code></span>
+          <span class="desc">Símbolo em cima + wordmark <em>alright</em> embaixo, ambos em Bone sobre Dark. Versão completa para superfícies maiores (110px+).</span>
         </div>
       </div>
 
-      <!-- Avatar C · Wordmark Alright completo sobre Dark -->
+      <!-- Avatar C · Wordmark only sobre Dark -->
       <div class="piece">
         <div class="piece-frame-wrap square avatar-preview">
           <div class="frame square bg-dark" id="avatar-c">
-            <div class="avatar-wordmark">
-              <span class="wm">A<span class="l">l</span>right</span>
+            <div class="avatar-wordmark-v3">
+              <img src="../assets/logo/v3/Wordmark_White.png?v=v3bone" alt="Wordmark — alright" />
             </div>
           </div>
         </div>
         <div class="piece-label">
           <span class="kicker">C · 1080 × 1080</span>
-          <span class="name">Wordmark <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">Alright</code></span>
-          <span class="desc">Logo Default completo sobre Dark. Reconhecimento total (palavra inteira) ao custo de menor escala efetiva no círculo do perfil.</span>
+          <span class="name">Wordmark <code style="font-family:var(--font-mono);font-size:14px;color:var(--orange)">alright</code></span>
+          <span class="desc">Wordmark <em>alright</em> sozinho (sem símbolo) em Bone sobre Dark. Reconhecimento total da palavra inteira em scale média.</span>
         </div>
       </div>
 
@@ -1234,7 +1584,7 @@
       <h2>Capas de post</h2>
     </div>
     <p class="section-sub">
-      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Bricolage Grotesque; accent Kodak Red sempre ≤ 10% da peça.
+      Formato <strong>4:5 retrato (1080×1350)</strong>, dominante no Instagram desde 2020. Seis templates cobrem os contextos editoriais previstos: case, manifesto, big idea, making-of, citação e anúncio. Tipografia Monument Grotesk; accent Orange Alright sempre ≤ 10% da peça.
     </p>
 
     <div class="grid portrait">
@@ -1253,7 +1603,7 @@
                 <div class="title">Corre.<br />Filme sem<br />câmera.</div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
                 <span class="meta">wearealright.cc<br />A.I. first prod. co.</span>
               </div>
             </div>
@@ -1279,7 +1629,7 @@
                 <div class="quote">Craft.<br />Craft.<br />And. More.<br />Craft<span class="dot">.</span></div>
               </div>
               <div class="bottom">
-                <span class="wm on-dark">A<span class="l">l</span>right</span>
+                <img class="wm on-dark" src="../assets/logo/v3/Wordmark_White.png?v=v3" alt="alright" />
                 <span class="tag">2026 · São Paulo</span>
               </div>
             </div>
@@ -1305,7 +1655,7 @@
                 <div class="phrase"><span class="brk">((</span>Look<br />again.<span class="brk">))</span></div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
                 <span class="tag">A.I. first<br />Production Co.</span>
               </div>
             </div>
@@ -1314,7 +1664,7 @@
         <div class="piece-label">
           <span class="kicker">03 · 1080 × 1350</span>
           <span class="name">Capa · Big idea</span>
-          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Kodak Red como heroes. Para abrir séries ou marcar reveals.</span>
+          <span class="desc">Big idea cravada (<code>((Look again.))</code>) com brackets Orange Alright como heroes. Para abrir séries ou marcar reveals.</span>
         </div>
       </div>
 
@@ -1332,7 +1682,7 @@
               </div>
               <div class="title">Sem câmera. Sem set.<br />Só craft.</div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
                 <span class="meta">Carrossel · arraste →</span>
               </div>
             </div>
@@ -1362,7 +1712,7 @@
                 </div>
               </div>
               <div class="bottom">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
                 <span class="meta">((Look again.))</span>
               </div>
             </div>
@@ -1371,7 +1721,7 @@
         <div class="piece-label">
           <span class="kicker">05 · 1080 × 1350</span>
           <span class="name">Capa · Pensamento</span>
-          <span class="desc">Citação editorial autoral. Uma palavra em Kodak Red como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
+          <span class="desc">Citação editorial autoral. Uma palavra em Orange Alright como ênfase (proporção ≤10%). Atribuição em mono caps.</span>
         </div>
       </div>
 
@@ -1387,7 +1737,7 @@
               <div class="pane-bottom">
                 <p class="lead">Quatro filmes. Um universo. Zero câmeras.</p>
                 <div class="bottom-row">
-                  <span class="wm">A<span class="l">l</span>right</span>
+                  <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
                   <span class="meta">Link na bio →</span>
                 </div>
               </div>
@@ -1398,6 +1748,162 @@
           <span class="kicker">06 · 1080 × 1350</span>
           <span class="name">Capa · Anúncio split</span>
           <span class="desc">Composição split Bone/Dark 62/38 para anúncios de lançamento, com lead em Bone sobre Dark + CTA. Funciona como capa standalone ou cover de carrossel.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       2.1 — FEED LANDSCAPE (16:9)
+       Carrossel-friendly capas pra abrir séries com vídeos 16:9.
+       O IG trava o aspect ratio da capa em todos os cards do carrossel,
+       então mistura de portrait + 16:9 corta os videos. Capa landscape
+       fix.
+       ════════════════════════════════════════════════════════════════ -->
+
+  <section class="section" id="feed-h">
+    <div class="section-head">
+      <span class="num">02.1 / Feed · Landscape</span>
+      <h2>Capas · 16:9 (1080 × 608)</h2>
+    </div>
+    <p class="section-sub">
+      Aspect <strong>1080 × 608 (16:9)</strong> — para abrir carrosséis que carregam vídeos 16:9. O Instagram trava o aspect ratio da capa nos cards seguintes, então capa portrait (4:5) cropa videos horizontais e vice-versa. Use estas capas quando o carrossel for de cinema/filme.
+    </p>
+
+    <div class="grid landscape">
+
+      <!-- Capa H · Case -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape bg-bone" id="feed-h-case">
+            <div class="cover-h-case">
+              <div class="top">
+                <span class="eyebrow">PUMA · 2026</span>
+                <span class="index">09 / 12</span>
+              </div>
+              <div class="title-block">
+                <div class="title">Como criamos<br /><span class="accent">Portugal Lions</span></div>
+                <div class="accent-bar"></div>
+              </div>
+              <div class="bottom">
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
+                <span class="meta">A.I. first<br />Production Co.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">09 · 1080 × 608</span>
+          <span class="name">Capa H · Case</span>
+          <span class="desc">Versão landscape do case opener. Use quando o carrossel tem vídeos 16:9 ou stills cinematográficos no formato — capa portrait cortaria as laterais.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Big idea -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape bg-bone" id="feed-h-bigidea">
+            <div class="cover-h-bigidea">
+              <div class="top">
+                <div class="kicker">Alright · Big idea</div>
+                <div class="kicker">EP · 10</div>
+              </div>
+              <div class="center">
+                <div class="phrase"><span class="brk">((</span>Look again.<span class="brk">))</span></div>
+              </div>
+              <div class="bottom">
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
+                <span class="tag">A.I. first · Production Co.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">10 · 1080 × 608</span>
+          <span class="name">Capa H · Big idea</span>
+          <span class="desc">Big idea em 1 linha (formato widescreen permite tipografia maior horizontal). Para abrir carrosséis de reveal/série.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Making-of -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape" id="feed-h-making">
+            <div class="cover-h-making">
+              <div class="layer">
+                <div class="header">
+                  <span class="eyebrow">Making-of · PUMA</span>
+                  <span class="ref">FRAME 048 / 240</span>
+                </div>
+                <div class="title">Sem câmera. Sem set.<br />Só craft.</div>
+                <div class="bottom">
+                  <img class="wm on-dark" src="../assets/logo/v3/Wordmark_White.png?v=v3" alt="alright" />
+                  <span class="meta">Carrossel · arraste →</span>
+                </div>
+              </div>
+              <span class="frame-tag">Take 12 · interior · 16:9</span>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">12 · 1080 × 608</span>
+          <span class="name">Capa H · Making-of</span>
+          <span class="desc">Versão landscape do making-of. Still ocupa o bg inteiro (16:9 dentro de 16:9 = fits perfeito) com texto overlay. Pra abrir carrosséis de bastidores com vídeos 16:9.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Quote -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape bg-bone" id="feed-h-quote">
+            <div class="cover-h-quote">
+              <div class="top">
+                <div class="kicker">Pensamento · 11</div>
+                <div class="kicker" style="color:var(--orange)">((  ))</div>
+              </div>
+              <div class="center">
+                <div class="body">Não filmamos.<br /><span class="em">Imaginamos</span>.</div>
+                <div class="attrib"><span class="bullet"></span>Diário Alright · 2026</div>
+              </div>
+              <div class="bottom">
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
+                <span class="meta">Carrossel · arraste →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">11 · 1080 × 608</span>
+          <span class="name">Capa H · Quote</span>
+          <span class="desc">Pensamento canônico em landscape — abre carrosséis editoriais com vídeos horizontais. Body à esquerda, attrib bullet Orange Alright abaixo.</span>
+        </div>
+      </div>
+
+      <!-- Capa H · Split anúncio -->
+      <div class="piece">
+        <div class="piece-frame-wrap landscape">
+          <div class="frame landscape" id="feed-h-split">
+            <div class="cover-h-split">
+              <div class="pane-left">
+                <span class="eyebrow">Lançamento · 2026</span>
+                <div class="headline"><span class="brk">((</span>Novo<span class="brk">))</span><br />Caso<br />PUMA</div>
+                <span style="font-family:var(--font-mono);font-size:14px;letter-spacing:0.22em;text-transform:uppercase;color:var(--slate-warm);">02 · Jul · 2026</span>
+              </div>
+              <div class="pane-right">
+                <div class="lead">A.I. fez o set inteiro.<br />Você só vê o filme.</div>
+                <div class="bottom-row">
+                  <img class="wm on-dark" src="../assets/logo/v3/Wordmark_White.png?v=v3" alt="alright" />
+                  <span class="meta">Saiba mais →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="piece-label">
+          <span class="kicker">13 · 1080 × 608</span>
+          <span class="name">Capa H · Anúncio split</span>
+          <span class="desc">Split lateral 55/45 Bone/Dark — versão widescreen do anúncio de lançamento. Headline à esquerda em Bone, lead + CTA à direita em Dark. Funciona como capa standalone ou cover de carrossel com vídeos 16:9.</span>
         </div>
       </div>
 
@@ -1431,7 +1937,7 @@
               <div class="title"><span class="brk">((</span>Corre 5<span class="brk">))</span></div>
               <div class="still"></div>
               <div class="footer">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
               </div>
             </div>
           </div>
@@ -1449,7 +1955,7 @@
           <div class="frame vertical" id="vert-stories">
             <div class="stories-swipe">
               <div class="top">
-                <span class="wm">A<span class="l">l</span>right</span>
+                <img class="wm" src="../assets/logo/v3/Wordmark_Black.png?v=v3" alt="alright" />
                 <span class="index">2026<br />05 · 15</span>
               </div>
               <div class="center">
@@ -1489,6 +1995,11 @@
     'feed-making':    'feed-04-making-of',
     'feed-quote':     'feed-05-quote',
     'feed-split':     'feed-06-split',
+    'feed-h-case':    'feed-09-h-case',
+    'feed-h-bigidea': 'feed-10-h-bigidea',
+    'feed-h-quote':   'feed-11-h-quote',
+    'feed-h-making':  'feed-12-h-making-of',
+    'feed-h-split':   'feed-13-h-split',
     'vert-reels':     'vertical-07-reels-cover',
     'vert-stories':   'vertical-08-stories'
   };
@@ -1505,14 +2016,20 @@
     'feed-04-making-of':       true,
     'feed-05-quote':           true,
     'feed-06-split':           true,
+    'feed-09-h-case':          true,
+    'feed-10-h-bigidea':       true,
+    'feed-11-h-quote':         true,
+    'feed-12-h-making-of':     true,
+    'feed-13-h-split':         true,
     'vertical-07-reels-cover': true,
     'vertical-08-stories':     true
   };
 
   function pieceSize(frame) {
-    if (frame.classList.contains('square'))   return [1080, 1080];
-    if (frame.classList.contains('portrait')) return [1080, 1350];
-    if (frame.classList.contains('vertical')) return [1080, 1920];
+    if (frame.classList.contains('square'))    return [1080, 1080];
+    if (frame.classList.contains('portrait'))  return [1080, 1350];
+    if (frame.classList.contains('vertical'))  return [1080, 1920];
+    if (frame.classList.contains('landscape')) return [1080, 608];
     return [1080, 1080];
   }
 
@@ -1634,7 +2151,7 @@
       // add one: drop the .psd in assets/social/instagram/psd/ and list its
       // FILENAMES key in PSD_AVAILABLE below.)
       if (PSD_AVAILABLE[filename]) {
-        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com 3 camadas base separadas (Background sólido · Brand wordmark+decorações sobre transparente · uma text layer vetorial por elemento editável). Troca bg color sem mexer no wordmark, double-click no Photoshop pra editar texto.">PSD · camadas <span class="arrow">↓</span></a>';
+        html += '<a class="piece-btn piece-btn--static" href="../assets/social/instagram/psd/' + filename + '.psd" download title="PSD com Background sólido + Brand · decor + text layers vetoriais (inclui o wordmark Alright dividido em 3 layers: A, l Bold accent, right). Troca bg color sem afetar wordmark/texto · double-click no Photoshop pra editar.">PSD · camadas <span class="arrow">↓</span></a>';
       }
       actions.innerHTML = html;
       label.appendChild(actions);
@@ -1684,6 +2201,16 @@
     '#feed-quote .kicker', '#feed-quote .body', '#feed-quote .attrib', '#feed-quote .meta',
     // Split
     '#feed-split .eyebrow', '#feed-split .headline', '#feed-split .lead', '#feed-split .meta',
+    // Landscape · Case
+    '#feed-h-case .eyebrow', '#feed-h-case .index', '#feed-h-case .title', '#feed-h-case .meta',
+    // Landscape · Big idea
+    '#feed-h-bigidea .kicker', '#feed-h-bigidea .phrase', '#feed-h-bigidea .tag',
+    // Landscape · Quote
+    '#feed-h-quote .kicker', '#feed-h-quote .body', '#feed-h-quote .attrib', '#feed-h-quote .meta',
+    // Landscape · Making-of
+    '#feed-h-making .eyebrow', '#feed-h-making .ref', '#feed-h-making .title', '#feed-h-making .frame-tag', '#feed-h-making .meta',
+    // Landscape · Split
+    '#feed-h-split .eyebrow', '#feed-h-split .headline', '#feed-h-split .lead', '#feed-h-split .meta',
     // Reels
     '#vert-reels .eyebrow', '#vert-reels .ref', '#vert-reels .title',
     // Stories
