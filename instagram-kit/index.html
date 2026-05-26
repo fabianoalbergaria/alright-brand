@@ -28,8 +28,14 @@
     --stone: #3d3a35;
     --slate-warm: #5b5750;
     --mist: #ece8dc;
+    /* v3 typography system:
+       --font-sans / --font-display: Monument Grotesk — uma fonte só pro
+         wordmark (.wm Bold 700) e pros textos grandes centrais (display).
+         Cria coerência logo↔hero copy.
+       --font-mono: Monument Grotesk Mono pros textos pequenos das bordas
+         (kicker, tag, meta, eyebrow). */
     --font-sans: "Monument Grotesk", system-ui, -apple-system, sans-serif;
-    --font-display: "Neue Haas Display", system-ui, -apple-system, sans-serif;
+    --font-display: "Monument Grotesk", system-ui, -apple-system, sans-serif;
     --font-mono: "Monument Grotesk Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --ease-cinematic: cubic-bezier(0.16, 1.0, 0.3, 1.0);
 
@@ -343,13 +349,13 @@
   .frame.bg-dark { background: var(--dark); color: var(--bone); }
   .frame.bg-mist { background: var(--mist); color: var(--dark); }
 
-  /* Wordmark v3 inside frames — "alright" lowercase rounded heavy em Orange.
-     Fonte do logo: Neue Haas Display Black 900 com letter-spacing tighter
-     pra aproximar do design do PNG do logo. Owner pode refinar a fonte
-     exata depois (Monument Bold é alternativa). */
+  /* Wordmark v3 inside frames — "alright" lowercase em Monument Grotesk
+     Bold (geometric semi-rounded, mais próximo do desenho do logo PNG).
+     A mesma fonte é usada nos textos grandes centrais (phrase/body/quote)
+     pra criar coerência logo↔hero copy. */
   .wm {
-    font-family: var(--font-display);
-    font-weight: 900;
+    font-family: var(--font-sans); /* Monument Grotesk */
+    font-weight: 700; /* Bold */
     font-style: normal;
     letter-spacing: -0.04em;
     line-height: 1;
