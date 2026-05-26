@@ -1,8 +1,46 @@
-# Resume — onde paramos (2026-05-26 · sessão Rebrand v3)
+# Resume — onde paramos (2026-05-26 · sessão Rebrand v3 + Brand Book + Deck)
 
 > Hand-off pra próxima sessão. Leia este arquivo + `CLAUDE.md` + `STATUS.md` antes de começar.
 
-## 🔥 Sessão atual: REBRAND v3 (2026-05-26)
+## 🔥 Sessão atual: REBRAND v3 — BRAND BOOK + DECK (continuação 2026-05-26)
+
+**Continuamos a sessão anterior do rebrand v3**. Faltavam Fase 3 (brand book HTML/print) + Fase 5 (deck v3). Hoje cravados:
+
+- ✅ **brand-book.html** (web) — refeito v3
+  - Tokens + fonts swap: Bricolage/JetBrains → Monument Grotesk + Neue Haas Display Bold (com @font-face local)
+  - Paleta nova: Orange Alright (#FF5D36) + Green-lime (#EAEE59) + Black puro + Bone (legacy aliases preservam código v2)
+  - Nav: wordmark img v3 + Feel Alright link removido + links Illustrations + Buttons adicionados
+  - Section logo refeita: lockup principal (Logo_Black/White/Orange) + símbolo 3 figuras (Symbol_Black/White/Orange) + brand device `(( ))` + Do/Don't v3 (sem "l Bold Kodak Red")
+  - Section type refeita: Neue Haas Display 6 weights (200/300/400/500/700/900) + Monument Grotesk Mono + Monument sans
+  - Section color: 8 swatches (Bone, Mist, Black, Stone, Slate, Orange Alright, Orange-deep, **Green-lime NOVO**)
+  - **2 sections NOVAS**: Illustrations (21 PNGs "The X") + Buttons (4 variants Black/Orange/Green/Green Accent)
+  - Brasa 04.1 (logo) + 08.1 (motion) removidos
+  - Favicon section apps: símbolo bone sobre Black puro
+  - Footer: lockup ((We Are Alright)) em texto Display Bold + Wordmark_White
+
+- ✅ **brand-book-print.html** (A4 25 páginas) — refeito v3
+  - Cover: Logo_White v3 + lockup ((We Are Alright)) em display Bold
+  - TOC: refs v3 + version v3.0 · 26.05.2026
+  - PAGE 09-13 Logo: lockup principal · símbolo 3 figuras · brand device + lockup EN · Do/Don't v3 · clear space com wordmark v3
+  - PAGE 15-17 Type: Neue Haas Display + Monument Grotesk + Hierarchy table v3
+  - PAGE 18-21 Color: divider v3 + Bone/Mist + Black/Stone/Slate + **Orange Alright + Orange-deep + Green-lime NOVO** (3-row split)
+  - PAGE 24 Apps: wordmark img v3 no business card + favicon símbolo
+  - PAGE 25 Colophon v3.0 · 26.05.2026
+
+- ✅ **deck-alright-v3.html** (14 slides) — refeito v3
+  - Tokens + fonts atualizados (@font-face local Monument/Neue Haas)
+  - Type scale com font-display + bold 700
+  - Cover: Logo_White v3 (lockup completo) substitui alright-expressivo
+  - HUD wordmark v3 (LOGO_BONE = Wordmark_White, LOGO_DARK = Wordmark_Black)
+  - CTA lockup: texto display Bold com ((We Are Alright)) em Orange
+  - Favicon section: símbolo bone sobre Black
+  - Zero refs legacy (alright-expressivo, lockup-we-are-alright SVG, brasa-*)
+
+**Estratégia técnica usada**: Legacy aliases nos tokens (`--kodak-red:#FF5D36`, `--kodak-deep:#C44818`, `--dark:#000000`) preservam ~80 refs CSS antigas funcionando, evitando mudanças extensas em código legacy. Type scale e refs visíveis foram modernizadas direto.
+
+---
+
+## Sessão anterior: REBRAND v3 (2026-05-26 início)
 
 Owner cravou rebrand completo. Mudanças aplicadas:
 
