@@ -1,8 +1,107 @@
-# Resume — onde paramos (2026-05-26 · sessão Rebrand v3 + Brand Book + Deck)
+# Resume — onde paramos (2026-05-28 · sessão polish v3 + IG kit deep-dive)
 
-> Hand-off pra próxima sessão. Leia este arquivo + `CLAUDE.md` + `STATUS.md` antes de começar.
+> Hand-off pra próxima sessão (mesmo dev, outra conta Claude, ou outro dev). Leia este arquivo + `CLAUDE.md` + `STATUS.md` antes de começar.
 
-## 🔥 Sessão atual: REBRAND v3 — BRAND BOOK + DECK (continuação 2026-05-26)
+## 🚀 Como continuar essa sessão em OUTRA conta Claude
+
+### Pré-requisitos na máquina destino
+
+1. **Repo clonado** em `/Users/<user>/Desktop/alright-brand/` (ou ajuste paths)
+   ```bash
+   git clone https://github.com/fabianoalbergaria/alright-brand.git
+   cd alright-brand
+   ```
+2. **Cloudflare API token** (Pages Edit + R2 Edit + Account Read + User Read) — recriar em https://dash.cloudflare.com/profile/api-tokens. Owner Alright tem.
+3. **Fontes comerciais v3** em `~/Library/Fonts/` (necessário pra Photoshop renderizar text layers dos PSDs corretamente):
+   - Monument Grotesk (`assets/fonts/v3/monument-grotesk/*.otf`)
+   - Neue Haas Display (`assets/fonts/v3/neue-haas-display/*.ttf`)
+   - Copiar com: `cp assets/fonts/v3/monument-grotesk/*.otf assets/fonts/v3/neue-haas-display/*.ttf ~/Library/Fonts/`
+4. **Node 20+** + `npm install` em `tools/` (pra rodar generators de PSD/swatches/etc)
+5. **Photoshop 2024+** se for editar PSDs do IG kit (text layers via ag-psd precisam de PS recente)
+
+### Hand-off prompt pra colar no Claude novo
+
+```
+Leia RESUME.md, CLAUDE.md e STATUS.md pra entender onde paramos. Auto mode ativo.
+Projeto Alright brand guide — rebrand v3 completo + live em wearealright.cc.
+Última sessão: polish v3 + IG kit deep-dive.
+Pendência aberta: 3 capas IG (Making-of, Pensamento, Anúncio split) fora do padrão da capa-case — owner pausou antes de definir o tipo de ajuste.
+```
+
+### Memória local (~/.claude/projects/...)
+
+Os memory files ficam por **conta/máquina** local, não no repo. Em outra conta você não vai ter:
+- `project_owner_change.md` (histórico Bera→Zuza→Alright)
+- `feedback_brand_book_strict.md` (regra: seguir brand book exato)
+- `rebrand_v3.md` (decisões cravadas do v3)
+
+Tudo IMPORTANTE desses memories já está duplicado em `CLAUDE.md`. Memory é só conveniência pra você. Se quiser portar, copia manualmente os arquivos pra `~/.claude/projects/-Users-<user>-Desktop-alright-brand/memory/`.
+
+### Quick start na nova conta
+
+```bash
+cd alright-brand
+git status                          # confirma main limpo
+git log --oneline -10               # últimos commits
+# se quiser deploy:
+CLOUDFLARE_API_TOKEN=<token> ./deploy.sh         # main project (portfolio + brand book + deck)
+CLOUDFLARE_API_TOKEN=<token> ./deploy-kit.sh     # kit project (IG editor)
+```
+
+---
+
+## 🔥 Sessão atual: POLISH v3 + IG KIT DEEP-DIVE (2026-05-28)
+
+11 PRs merged + 7 deploys em 1 dia. Pendência aberta no fim. Resumo:
+
+### Polish brand book / deck v3
+
+- **PR #4** `v3-bold-titles` — title selectors específicos (s-cover, s-bigidea, hero, divider, manifesto, swatch__name, etc) estavam em weight 200-400 sem font-display. Atualizados todos pra `font-family:var(--font-display); font-weight:700`. 26 selectors corrigidos.
+- **PR #5** `illustrations-bg-black` — section Illustrations no brand book com bg-bone, mas as 21 PNGs são bone com fundo transparente → invisíveis. Trocado pra `bg-black` + tiles com bg sutil bone 4% + caption bone 60%.
+- **PR #6** `title-overflow-fix` — `((Look again.))` em Bold 700 saindo da tela. Reduzido `clamp(96,20vw,440px)` → `clamp(72,13vw,220px)` no `.bigidea__title`, ajustes similares em `.hero__title`, `.s-bigidea__title`, `.s-cta__title` + responsive overrides. `max-width:100%` adicionado.
+
+### Downloads
+
+- **PR #7** `illustrations-kit-download` — owner pediu pra ter as 21 ilustrações downloadáveis. Criado `assets/downloads/alright-illustrations-kit.zip` (81KB · 21 PNGs) + card col-12 bg-black na section Downloads com preview thumbnail trio (Flow · Workers · Mind) e lista completa dos nomes.
+
+### Nav UX
+
+- **PR #8** `nav-compact` — owner reportou que nav scrollava lateralmente com 10 links. Compactado: font 11.5→10.5, letter-spacing .1→.07em, padding 8/12→6/9, gap 2→1, brand img 18→16. Economia ~270px na largura total.
+
+### IG kit zip refresh (loop de 3 PRs)
+
+- **PR #9** `ig-kit-psds-download` — bug crítico descoberto: `alright-instagram-kit.zip` continha só 6 PNGs do v2, **zero PSDs**. Auditoria via `inspect-psd.mjs` confirmou que TODOS os 16 PSDs em `assets/social/instagram/psd/` já tinham text layers vetoriais (igual à capa-case) — só não estavam no zip de download. Regenerado zip com 16 PSDs + 3 avatars PNG + README v3.
+- **PR #10** `ig-kit-zip-clean` — `zip -r` adicionou ao zip existente em vez de substituir; sobraram PNGs v2 residuais. Recriado do zero.
+- **PR #11** `kit-cache-bust` — cache-bust `?v=v3-may28` nos PSD download links no editor `kit.wearealright.cc` + deploy do `wearealright-kit` project pra forçar browser fetch fresh.
+
+### Deploys executados (Cloudflare Pages)
+
+| Project | Tipo | URL |
+|---|---|---|
+| `wearealright` (main) | `./deploy.sh` | https://wearealright.cc/ |
+| `wearealright-kit` (editor) | `./deploy-kit.sh` | https://kit.wearealright.cc/ (Cloudflare Access gated) |
+
+7 deploys totais nesta sessão: 3× wearealright + 2× wearealright-kit + 2× consolidando.
+
+### ⏭ PENDÊNCIA ABERTA (esta sessão)
+
+**3 capas IG fora do padrão da capa-case**, owner reportou:
+- `feed-04-making-of` (Capa · Making-of) — tem `.still` 16:9 image no meio que quebra o layout simples
+- `feed-05-quote` (Capa · Pensamento) — usa `.top.kicker x2` em vez de `.eyebrow + .index`
+- `feed-06-split` (Capa · Anúncio split) — layout split bone/dark completamente diferente
+
+Owner pausou antes de definir o tipo de ajuste. **AskUserQuestion foi feita com 4 opções (refazer iguais ao template, ajustar só wordmark, ajustar spacing, outro) mas dismissed pelo owner**. Próxima sessão: re-perguntar ou owner já vai chegar com direção.
+
+Arquivos a tocar quando definido:
+- `instagram-kit/index.html` (markup + CSS de cada `.cover-X` ~ linhas 1671-1752)
+- `tools/generate-instagram-psd.mjs` (definição `PIECES` ~ linhas 109-200, `layers` selectors)
+- Depois: `node tools/generate-instagram-psd.mjs --only=feed-making,feed-quote,feed-split`
+- Atualizar `alright-instagram-kit.zip` (rm + zip from scratch) — atenção: `zip -r` ADICIONA, não substitui
+- Deploy ambos projects: `./deploy.sh` (zip download via brand book) + `./deploy-kit.sh` (editor)
+
+---
+
+## 🔥 Sessão anterior: REBRAND v3 — BRAND BOOK + DECK (2026-05-26)
 
 **Continuamos a sessão anterior do rebrand v3**. Faltavam Fase 3 (brand book HTML/print) + Fase 5 (deck v3). Hoje cravados:
 
