@@ -2,48 +2,41 @@
 
 > Hand-off pra próxima sessão (mesmo dev, outra conta Claude, ou outro dev). Leia este arquivo + `CLAUDE.md` + `STATUS.md` antes de começar.
 
-## 🚀 Como continuar essa sessão em OUTRA conta Claude
+## 🚀 Como continuar essa sessão em OUTRA conta Claude (mesma máquina)
 
-### Pré-requisitos na máquina destino
+Setup já está pronto (mesma máquina + mesmo macOS user = mesmo `~/.claude/`). É só:
 
-1. **Repo clonado** em `/Users/<user>/Desktop/alright-brand/` (ou ajuste paths)
-   ```bash
-   git clone https://github.com/fabianoalbergaria/alright-brand.git
-   cd alright-brand
+1. **Abre o Claude na nova conta** e faz `cd /Users/fabianoalbergaria/Desktop/alright-brand/` (ou no worktree atual `.claude/worktrees/magical-curie-149c0c/` se quiser continuar nele).
+
+2. **Cola esse prompt:**
    ```
-2. **Cloudflare API token** (Pages Edit + R2 Edit + Account Read + User Read) — recriar em https://dash.cloudflare.com/profile/api-tokens. Owner Alright tem.
-3. **Fontes comerciais v3** em `~/Library/Fonts/` (necessário pra Photoshop renderizar text layers dos PSDs corretamente):
-   - Monument Grotesk (`assets/fonts/v3/monument-grotesk/*.otf`)
-   - Neue Haas Display (`assets/fonts/v3/neue-haas-display/*.ttf`)
-   - Copiar com: `cp assets/fonts/v3/monument-grotesk/*.otf assets/fonts/v3/neue-haas-display/*.ttf ~/Library/Fonts/`
-4. **Node 20+** + `npm install` em `tools/` (pra rodar generators de PSD/swatches/etc)
-5. **Photoshop 2024+** se for editar PSDs do IG kit (text layers via ag-psd precisam de PS recente)
+   Leia RESUME.md, CLAUDE.md e STATUS.md pra entender onde paramos. Auto mode ativo.
+   Projeto Alright brand guide — rebrand v3 live em wearealright.cc.
+   Última sessão (2026-05-28): polish v3 + IG kit deep-dive (12 PRs · 7 deploys).
+   Pendência aberta: 3 capas IG (Making-of, Pensamento, Anúncio split) fora do padrão
+   da capa-case — owner pausou antes de definir o tipo de ajuste. Re-pergunta.
+   ```
 
-### Hand-off prompt pra colar no Claude novo
+3. **Token Cloudflare** — owner Alright tem em local seguro. Cola quando precisar de deploy.
 
-```
-Leia RESUME.md, CLAUDE.md e STATUS.md pra entender onde paramos. Auto mode ativo.
-Projeto Alright brand guide — rebrand v3 completo + live em wearealright.cc.
-Última sessão: polish v3 + IG kit deep-dive.
-Pendência aberta: 3 capas IG (Making-of, Pensamento, Anúncio split) fora do padrão da capa-case — owner pausou antes de definir o tipo de ajuste.
-```
+### O que já está configurado nessa máquina
 
-### Memória local (~/.claude/projects/...)
+- ✅ Repo em `/Users/fabianoalbergaria/Desktop/alright-brand/` + worktrees em `.claude/worktrees/`
+- ✅ Memory files em `~/.claude/projects/-Users-fabianoalbergaria-Desktop-alright-brand/memory/` (compartilhados entre contas Claude porque dependem do macOS user + projeto path, não da conta Claude)
+  - `project_owner_change.md`, `feedback_brand_book_strict.md`, `rebrand_v3.md`
+- ✅ Fontes v3 em `~/Library/Fonts/` (Monument Grotesk + Neue Haas Display, todos pesos)
+- ✅ Photoshop swatches v3 instalados em todas as versões de PS
+- ✅ Node 20+ + `tools/node_modules/` instalado (ag-psd, canvas, playwright)
+- ✅ Playwright browsers instalados
 
-Os memory files ficam por **conta/máquina** local, não no repo. Em outra conta você não vai ter:
-- `project_owner_change.md` (histórico Bera→Zuza→Alright)
-- `feedback_brand_book_strict.md` (regra: seguir brand book exato)
-- `rebrand_v3.md` (decisões cravadas do v3)
-
-Tudo IMPORTANTE desses memories já está duplicado em `CLAUDE.md`. Memory é só conveniência pra você. Se quiser portar, copia manualmente os arquivos pra `~/.claude/projects/-Users-<user>-Desktop-alright-brand/memory/`.
-
-### Quick start na nova conta
+### Quick start
 
 ```bash
-cd alright-brand
-git status                          # confirma main limpo
-git log --oneline -10               # últimos commits
-# se quiser deploy:
+cd /Users/fabianoalbergaria/Desktop/alright-brand
+git status                                       # confirma main limpo
+git log --oneline -10                            # últimos commits
+git fetch origin && git pull origin main         # sincroniza
+# deploy se precisar:
 CLOUDFLARE_API_TOKEN=<token> ./deploy.sh         # main project (portfolio + brand book + deck)
 CLOUDFLARE_API_TOKEN=<token> ./deploy-kit.sh     # kit project (IG editor)
 ```
