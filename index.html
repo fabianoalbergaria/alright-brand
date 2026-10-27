@@ -185,7 +185,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border:1px solid rgba(20,20,19,0.08);
   border-radius:var(--radius-pill);
   transition:transform .6s var(--ease-cine), padding .4s var(--ease-cine), background .4s var(--ease-cine);
-  max-width:calc(100vw - 24px);
+  width:max-content;max-width:calc(100vw - 24px);
 }
 .nav.is-scrolled{padding:6px 6px 6px 12px;background:rgba(250,249,245,0.92)}
 .nav__brand{
@@ -326,6 +326,8 @@ section{position:relative}
 }
 .case__eyebrow{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm)}
 .case__title{font-family:var(--font-display);font-size:clamp(56px,9vw,160px);font-weight:700;line-height:.94;letter-spacing:-0.025em;margin:0}
+/* Palavra longa (Olympikus, Lollapalooza): no layout de 2 colunas o título encolhe até caber (--fit por título) */
+@media (min-width:1025px){.case__title--fit{font-size:min(var(--fit),160px)}}
 .case__copy{font-size:clamp(16px,1.25vw,19.5px);line-height:1.55;margin:0;max-width:46ch;color:var(--stone)}
 .case__stickers{display:flex;gap:8px;flex-wrap:wrap}
 article{margin:0;padding:0;display:block}
@@ -430,6 +432,45 @@ article{margin:0;padding:0;display:block}
 .series-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;position:absolute;inset:0}
 .series-grid > div{position:relative;overflow:hidden;background:#000}
 .series-grid video,.series-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Variantes: 1+2 (Caixa) · vertical+2 (ENEM) · 3+2 (Fruittella) · filme+3+2 (Santa) */
+.series-grid--1-2 > :first-child{grid-column:1 / -1}
+.series-grid--v-2{grid-template-columns:2fr 3fr}
+.series-grid--v-2 > :first-child{grid-row:1 / -1}
+.series-grid--3-2{grid-template-columns:repeat(6,1fr)}
+.series-grid--3-2 > *{grid-column:span 2}
+.series-grid--3-2 > :nth-child(n+4){grid-column:span 3}
+.series-grid--1-3-2{grid-template-columns:repeat(6,1fr);grid-template-rows:2fr 1fr 1fr}
+.series-grid--1-3-2 > *{grid-column:span 2}
+.series-grid--1-3-2 > :first-child{grid-column:1 / -1}
+.series-grid--1-3-2 > :nth-child(n+5){grid-column:span 3}
+
+/* ---------- Stills (galeria só de imagem, por cliente) ---------- */
+.stills{padding:var(--pad-section) clamp(20px,4vw,72px)}
+.stills__head{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px);margin-bottom:clamp(48px,6vw,96px)}
+.stills__head .eyebrow{color:#a59f93}
+.stills__title{font-family:var(--font-display);font-size:clamp(56px,9vw,160px);font-weight:700;line-height:.94;letter-spacing:-0.025em;margin:0}
+.stills__group + .stills__group{margin-top:clamp(56px,6vw,112px)}
+.stills__client{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:clamp(16px,1.6vw,24px);padding-bottom:14px;border-bottom:1px solid rgba(250,249,245,0.16)}
+.stills__name{font-family:var(--font-display);font-size:clamp(32px,4vw,64px);font-weight:700;line-height:1;letter-spacing:-0.02em;margin:0}
+.stills__count{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a59f93}
+/* Linhas justificadas: cada foto cresce na proporção do próprio aspect ratio (--r = w/h), sem corte */
+.stills__grid{--row:clamp(180px,19vw,300px);display:flex;flex-wrap:wrap;gap:clamp(6px,.6vw,10px)}
+.stills__grid::after{content:'';flex-grow:999999}
+.still{position:relative;flex-grow:var(--r);flex-basis:calc(var(--row) * var(--r));aspect-ratio:var(--r);overflow:hidden;background:#141413;cursor:zoom-in;padding:0}
+.still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-cine)}
+.still:hover img{transform:scale(1.03)}
+.still:focus-visible{outline:2px solid var(--alright-orange);outline-offset:3px}
+
+/* Lightbox das stills */
+.stills-modal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:clamp(56px,6vw,96px) clamp(16px,6vw,112px)}
+.stills-modal[aria-hidden="false"]{display:flex}
+.stills-modal__figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:100%;max-height:100%}
+.stills-modal__figure img{max-width:100%;max-height:calc(100vh - 160px);width:auto;height:auto;object-fit:contain;display:block}
+.stills-modal__caption{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a59f93}
+.stills-modal__nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:999px;background:rgba(250,249,245,0.12);color:var(--bone);font-family:var(--font-mono);font-size:20px;display:flex;align-items:center;justify-content:center;transition:background .3s var(--ease-cine), color .3s var(--ease-cine);z-index:10000}
+.stills-modal__nav:hover{background:var(--alright-orange);color:var(--dark)}
+.stills-modal__nav--prev{left:clamp(8px,2vw,32px)}
+.stills-modal__nav--next{right:clamp(8px,2vw,32px)}
 
 /* ---------- Brand book CTA ---------- */
 .bb-cta{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center;background:var(--dark);color:var(--bone);position:relative;overflow:hidden}
@@ -506,7 +547,9 @@ article{margin:0;padding:0;display:block}
   .hero__title{font-size:clamp(56px,17vw,120px)}
   .hero__sub{font-size:11px}
   .hero__eyebrow{font-size:10.5px;text-align:right;max-width:200px}
-  .section-pad,.cases-banner{padding-left:20px;padding-right:20px}
+  .section-pad,.cases-banner,.stills{padding-left:20px;padding-right:20px}
+  .stills__grid{--row:150px}
+  .stills-modal__nav{top:auto;bottom:20px;transform:none}
   .case__title{font-size:clamp(44px,11vw,84px)}
   .case__media{min-height:54vh}
   .case__text{padding:64px 24px;gap:18px}
@@ -559,6 +602,7 @@ article{margin:0;padding:0;display:block}
   </span>
   <div class="nav__links">
     <a class="nav__link" href="#cases">Cases</a>
+    <a class="nav__link" href="#stills">Stills</a>
     <a class="nav__link" href="#contato">Contato</a>
   </div>
 </nav>
@@ -595,8 +639,23 @@ article{margin:0;padding:0;display:block}
 
 <a id="cases"></a>
 
-<!-- ===================== CASE 01 · CHUPA CHUPS · SURREALISM SERIES ===================== -->
-<article class="case bg-orange reveal" aria-labelledby="case-chupa">
+<!-- ===================== CASE 01 · PUMA · PORTUGAL ===================== -->
+<article class="case bg-mist reveal" aria-labelledby="case-puma">
+  <div class="case__text">
+    <h3 id="case-puma" class="case__title">PUMA<br/>Portugal.</h3>
+    <p class="case__copy">Lançamento da nova camisa da seleção de Portugal.</p>
+  </div>
+  <div class="case__media" data-vimeo-id="1191599038" data-vimeo-title="PUMA Portugal" role="button" tabindex="0">
+    <video autoplay muted loop playsinline preload="metadata"
+      poster="assets/work/web/puma-portugal-poster.jpg"
+      aria-label="PUMA Portugal">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4?v=full" type="video/mp4" />
+    </video>
+  </div>
+</article>
+
+<!-- ===================== CASE 02 · CHUPA CHUPS · SURREALISM SERIES ===================== -->
+<article class="case case--flip bg-orange reveal" aria-labelledby="case-chupa">
   <div class="case__text">
     <h3 id="case-chupa" class="case__title">Chupa Chups.<br/>Forever Fun.</h3>
     <p class="case__copy">Série de vídeos. VFX.</p>
@@ -635,10 +694,10 @@ article{margin:0;padding:0;display:block}
   </div>
 </article>
 
-<!-- ===================== CASE 02 · OLYMPIKUS ===================== -->
-<article class="case case--flip bg-bone reveal" aria-labelledby="case-olympikus">
+<!-- ===================== CASE 03 · OLYMPIKUS ===================== -->
+<article class="case bg-bone reveal" aria-labelledby="case-olympikus">
   <div class="case__text">
-    <h3 id="case-olympikus" class="case__title">Olympikus.<br/>Corre 5.</h3>
+    <h3 id="case-olympikus" class="case__title case__title--fit" style="--fit:7.5vw">Olympikus.<br/>Corre 5.</h3>
     <p class="case__copy">Lançamento do novo modelo Corre 5.</p>
   </div>
   <div class="case__media" data-vimeo-id="1192635125" data-vimeo-title="Olympikus · Corre 5" role="button" tabindex="0">
@@ -650,52 +709,163 @@ article{margin:0;padding:0;display:block}
   </div>
 </article>
 
-<!-- ===================== CASE 03 · PUMA · PORTUGAL ===================== -->
-<article class="case bg-mist reveal" aria-labelledby="case-puma">
+<!-- ===================== CASE 04 · MIZUNO · BOTAFOGO ===================== -->
+<article class="case case--flip bg-dark reveal" aria-labelledby="case-mizuno">
   <div class="case__text">
-    <h3 id="case-puma" class="case__title">PUMA<br/>Portugal.</h3>
-    <p class="case__copy">Lançamento da nova camisa da seleção de Portugal.</p>
+    <h3 id="case-mizuno" class="case__title">Mizuno x<br/>Botafogo.</h3>
+    <p class="case__copy">Lançamento da Collab com o Botafogo F.R.</p>
   </div>
-  <div class="case__media" data-vimeo-id="1191599038" data-vimeo-title="PUMA Portugal" role="button" tabindex="0">
+  <div class="case__media" data-vimeo-id="1191597286" data-vimeo-title="Mizuno x Botafogo" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/puma-portugal-poster.jpg"
-      aria-label="PUMA Portugal">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4?v=full" type="video/mp4" />
+      poster="assets/work/web/mizuno-botafogo-poster.jpg"
+      aria-label="Mizuno x Botafogo">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mizuno-botafogo.mp4?v=landscape" type="video/mp4" />
     </video>
   </div>
 </article>
 
-<!-- ===================== CASE 04 · HBO MAX · PAULISTÃO ===================== -->
-<article class="case case--flip bg-dark reveal" aria-labelledby="case-hbomax">
+<!-- ===================== CASE 05 · AZUL · OUTUBRO ROSA ===================== -->
+<article class="case bg-bone reveal" aria-labelledby="case-azul">
   <div class="case__text">
-    <h3 id="case-hbomax" class="case__title">HBO Max.<br/>Paulistão.</h3>
-    <p class="case__copy">Comercial para HBO Max.</p>
+    <h3 id="case-azul" class="case__title">Azul.<br/>Outubro Rosa.</h3>
+    <p class="case__copy">Filme para a campanha Outubro Rosa.</p>
   </div>
-  <div class="case__media" data-vimeo-id="1193297749" data-vimeo-title="HBO Max · Paulistão" role="button" tabindex="0">
+  <div class="case__media" data-vimeo-id="1239992137" data-vimeo-title="Azul · Outubro Rosa" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/hbo-max-paulistao-poster.jpg"
-      aria-label="HBO Max Paulistão">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/hbo-max-paulistao.mp4" type="video/mp4" />
+      poster="assets/work/web/azul-outubro-rosa-poster.jpg"
+      aria-label="Azul · Outubro Rosa">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/azul-outubro-rosa.mp4" type="video/mp4" />
     </video>
   </div>
 </article>
 
-<!-- ===================== CASE 05 · INSTITUTO CALDEIRA ===================== -->
-<article class="case bg-bone reveal" aria-labelledby="case-caldeira">
+<!-- ===================== CASE 06 · ENEM ===================== -->
+<article class="case case--flip bg-dark reveal" aria-labelledby="case-enem">
   <div class="case__text">
-    <h3 id="case-caldeira" class="case__title">Instituto<br/>Caldeira.</h3>
-    <p class="case__copy">Every entrepreneur should surf.</p>
+    <h3 id="case-enem" class="case__title">ENEM.</h3>
+    <p class="case__copy">Campanha para TV e digital.</p>
   </div>
-  <div class="case__media" data-vimeo-id="1193297752" data-vimeo-title="Instituto Caldeira" role="button" tabindex="0">
+  <div class="case__media">
+    <div class="series-grid series-grid--v-2" aria-label="ENEM · campanha">
+      <div data-vimeo-id="1239991906" data-vimeo-title="ENEM · Digital" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/enem-digital-poster.jpg"
+          aria-label="ENEM · Digital">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/enem-digital.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991895" data-vimeo-title="ENEM · TV" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/enem-tv-poster.jpg"
+          aria-label="ENEM · TV">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/enem-tv.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991836" data-vimeo-title="ENEM · Monstro" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/enem-monstro-poster.jpg"
+          aria-label="ENEM · Monstro">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/enem-monstro.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== CASE 07 · FIES ===================== -->
+<article class="case bg-mist reveal" aria-labelledby="case-fies">
+  <div class="case__text">
+    <h3 id="case-fies" class="case__title">FIES.</h3>
+    <p class="case__copy">Filme para o FIES.</p>
+  </div>
+  <div class="case__media" data-vimeo-id="1239992136" data-vimeo-title="FIES" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/instituto-caldeira-poster.jpg"
-      aria-label="Instituto Caldeira">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/instituto-caldeira.mp4" type="video/mp4" />
+      poster="assets/work/web/fies-poster.jpg"
+      aria-label="FIES">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fies.mp4" type="video/mp4" />
     </video>
   </div>
 </article>
 
-<!-- ===================== CASE 06 · BK · VISUALS ===================== -->
+<!-- ===================== CASE 08 · MEC LIVROS ===================== -->
+<article class="case case--flip bg-bone reveal" aria-labelledby="case-mec-livros">
+  <div class="case__text">
+    <h3 id="case-mec-livros" class="case__title">MEC<br/>Livros.</h3>
+    <p class="case__copy">Filme para o MEC Livros.</p>
+  </div>
+  <div class="case__media" data-vimeo-id="1239991818" data-vimeo-title="MEC Livros" role="button" tabindex="0">
+    <video autoplay muted loop playsinline preload="metadata"
+      poster="assets/work/web/mec-livros-poster.jpg"
+      aria-label="MEC Livros">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mec-livros.mp4" type="video/mp4" />
+    </video>
+  </div>
+</article>
+
+<!-- ===================== CASE 09 · CAIXA ===================== -->
+<article class="case bg-dark reveal" aria-labelledby="case-caixa">
+  <div class="case__text">
+    <h3 id="case-caixa" class="case__title">Caixa.</h3>
+    <p class="case__copy">Série de filmes: taekwondo, ginástica e tênis de mesa.</p>
+  </div>
+  <div class="case__media">
+    <div class="series-grid series-grid--1-2" aria-label="Caixa · série">
+      <div data-vimeo-id="1239992138" data-vimeo-title="Caixa · Taekwondo" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/caixa-taekwondo-poster.jpg"
+          aria-label="Caixa · Taekwondo">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/caixa-taekwondo.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239992223" data-vimeo-title="Caixa · Ginástica" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/caixa-ginastica-poster.jpg"
+          aria-label="Caixa · Ginástica">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/caixa-ginastica.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239992159" data-vimeo-title="Caixa · Tênis de mesa" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/caixa-tenis-de-mesa-poster.jpg"
+          aria-label="Caixa · Tênis de mesa">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/caixa-tenis-de-mesa.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== CASE 10 · BRIME ===================== -->
+<article class="case case--flip bg-bone reveal" aria-labelledby="case-brime">
+  <div class="case__text">
+    <h3 id="case-brime" class="case__title">Brime.<br/>Tem uma sexta<br/>na minha quarta.</h3>
+    <p class="case__copy">Clipe com Febem, Fllezus e Cesrv.</p>
+  </div>
+  <div class="case__media" data-vimeo-id="1192047832" data-vimeo-title="Brime · Tem uma sexta na minha quarta" role="button" tabindex="0">
+    <video autoplay muted loop playsinline preload="metadata"
+      poster="assets/work/web/brime-sexta-na-quarta-poster.jpg"
+      aria-label="Brime · Tem uma sexta na minha quarta">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/brime-sexta-na-quarta.mp4" type="video/mp4" />
+    </video>
+  </div>
+</article>
+
+<!-- ===================== CASE 11 · NEGRA LI ===================== -->
+<article class="case bg-dark reveal" aria-labelledby="case-negra-li">
+  <div class="case__text">
+    <h3 id="case-negra-li" class="case__title case__title--fit" style="--fit:6.4vw">Negra Li<br/>Lollapalooza.</h3>
+    <p class="case__copy">Série de visuais para comemoração de 20 anos de carreira no Lollapalooza 2026.</p>
+  </div>
+  <div class="case__media" data-vimeo-id="1192041713" data-vimeo-title="Negra Li · Lollapalooza" role="button" tabindex="0">
+    <video autoplay muted loop playsinline preload="metadata"
+      poster="assets/work/web/negra-li-visual-poster.jpg"
+      aria-label="Negra Li">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-visual.mp4?v=corte" type="video/mp4" />
+    </video>
+  </div>
+</article>
+
+<!-- ===================== CASE 12 · BK · VISUALS ===================== -->
 <article class="case case--flip bg-mist reveal" aria-labelledby="case-bk">
   <div class="case__text">
     <h3 id="case-bk" class="case__title">BK.<br/>Visuals.</h3>
@@ -710,50 +880,347 @@ article{margin:0;padding:0;display:block}
   </div>
 </article>
 
-<!-- ===================== CASE 07 · MIZUNO · BOTAFOGO ===================== -->
-<article class="case bg-dark reveal" aria-labelledby="case-mizuno">
+<!-- ===================== CASE 13 · FRUITTELLA ===================== -->
+<article class="case bg-orange reveal" aria-labelledby="case-fruittella">
   <div class="case__text">
-    <h3 id="case-mizuno" class="case__title">Mizuno x<br/>Botafogo.</h3>
-    <p class="case__copy">Lançamento da Collab com o Botafogo F.R.</p>
+    <h3 id="case-fruittella" class="case__title">Fruittella.</h3>
+    <p class="case__copy">Série de vídeos verticais.</p>
   </div>
-  <div class="case__media" data-vimeo-id="1191597286" data-vimeo-title="Mizuno x Botafogo" role="button" tabindex="0">
+  <div class="case__media">
+    <div class="series-grid series-grid--3-2" aria-label="Fruittella · série">
+      <div data-vimeo-id="1239992349" data-vimeo-title="Fruittella · Jenga" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/fruittella-jenga-poster.jpg"
+          aria-label="Fruittella · Jenga">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-jenga.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239992320" data-vimeo-title="Fruittella · Melancia" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/fruittella-melancia-poster.jpg"
+          aria-label="Fruittella · Melancia">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-melancia.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239992240" data-vimeo-title="Fruittella · Boia" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/fruittella-boia-poster.jpg"
+          aria-label="Fruittella · Boia">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-boia.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239992285" data-vimeo-title="Fruittella · Cara a cara" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/fruittella-cara-a-cara-poster.jpg"
+          aria-label="Fruittella · Cara a cara">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-cara-a-cara.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239992291" data-vimeo-title="Fruittella · Feira" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/fruittella-feira-poster.jpg"
+          aria-label="Fruittella · Feira">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-feira.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== CASE 14 · SANTA · FILME + LENDAS ===================== -->
+<article class="case case--flip bg-bone reveal" aria-labelledby="case-santa">
+  <div class="case__text">
+    <h3 id="case-santa" class="case__title">Santa.</h3>
+    <p class="case__copy">Filme e série de animações.</p>
+  </div>
+  <div class="case__media">
+    <div class="series-grid series-grid--1-3-2" aria-label="Santa · filme e animações">
+      <div data-vimeo-id="1239991466" data-vimeo-title="Santa" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/santa-poster.jpg"
+          aria-label="Santa">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991624" data-vimeo-title="Santa · Lenda 1" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/santa-lenda-1-poster.jpg"
+          aria-label="Santa · Lenda 1">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991620" data-vimeo-title="Santa · Lenda 2" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/santa-lenda-2-poster.jpg"
+          aria-label="Santa · Lenda 2">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991619" data-vimeo-title="Santa · Lenda 3" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/santa-lenda-3-poster.jpg"
+          aria-label="Santa · Lenda 3">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-3.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991622" data-vimeo-title="Santa · Lenda 4" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/santa-lenda-4-poster.jpg"
+          aria-label="Santa · Lenda 4">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-4.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div data-vimeo-id="1239991722" data-vimeo-title="Santa · Lenda 5" role="button" tabindex="0">
+        <video autoplay muted loop playsinline preload="metadata"
+          poster="assets/work/web/santa-lenda-5-poster.jpg"
+          aria-label="Santa · Lenda 5">
+          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-5.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== CASE 15 · HBO MAX · PAULISTÃO ===================== -->
+<article class="case bg-dark reveal" aria-labelledby="case-hbomax">
+  <div class="case__text">
+    <h3 id="case-hbomax" class="case__title">HBO Max.<br/>Paulistão.</h3>
+    <p class="case__copy">Comercial para HBO Max.</p>
+  </div>
+  <div class="case__media" data-vimeo-id="1193297749" data-vimeo-title="HBO Max · Paulistão" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/mizuno-botafogo-poster.jpg"
-      aria-label="Mizuno x Botafogo">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mizuno-botafogo.mp4?v=landscape" type="video/mp4" />
+      poster="assets/work/web/hbo-max-paulistao-poster.jpg"
+      aria-label="HBO Max Paulistão">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/hbo-max-paulistao.mp4" type="video/mp4" />
     </video>
   </div>
 </article>
 
-<!-- ===================== CASE 08 · NEGRA LI ===================== -->
-<article class="case case--flip bg-dark reveal" aria-labelledby="case-negra-li">
+<!-- ===================== CASE 16 · INSTITUTO CALDEIRA ===================== -->
+<article class="case case--flip bg-bone reveal" aria-labelledby="case-caldeira">
   <div class="case__text">
-    <h3 id="case-negra-li" class="case__title">Negra Li<br/>Lollapalooza.</h3>
-    <p class="case__copy">Série de visuais para comemoração de 20 anos de carreira no Lollapalooza 2026.</p>
+    <h3 id="case-caldeira" class="case__title">Instituto<br/>Caldeira.</h3>
+    <p class="case__copy">Every entrepreneur should surf.</p>
   </div>
-  <div class="case__media" data-vimeo-id="1192041713" data-vimeo-title="Negra Li · Lollapalooza" role="button" tabindex="0">
+  <div class="case__media" data-vimeo-id="1193297752" data-vimeo-title="Instituto Caldeira" role="button" tabindex="0">
     <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/negra-li-visual-poster.jpg"
-      aria-label="Negra Li">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-visual.mp4?v=corte" type="video/mp4" />
+      poster="assets/work/web/instituto-caldeira-poster.jpg"
+      aria-label="Instituto Caldeira">
+      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/instituto-caldeira.mp4" type="video/mp4" />
     </video>
   </div>
 </article>
 
-<!-- ===================== CASE 09 · BRIME ===================== -->
-<article class="case bg-bone reveal" aria-labelledby="case-brime">
-  <div class="case__text">
-    <h3 id="case-brime" class="case__title">Brime.<br/>Tem uma sexta<br/>na minha quarta.</h3>
-    <p class="case__copy">Clipe com Febem, Fllezus e Cesrv.</p>
+<!-- ===================== STILLS · SÓ IMAGEM, POR CLIENTE ===================== -->
+<a id="stills"></a>
+<section class="stills bg-dark" aria-labelledby="stills-title">
+  <div class="stills__head reveal">
+    <span class="eyebrow">Fotografia · Key visuals</span>
+    <h2 id="stills-title" class="stills__title">Stills.</h2>
   </div>
-  <div class="case__media" data-vimeo-id="1192047832" data-vimeo-title="Brime · Tem uma sexta na minha quarta" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/brime-sexta-na-quarta-poster.jpg"
-      aria-label="Brime · Tem uma sexta na minha quarta">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/brime-sexta-na-quarta.mp4" type="video/mp4" />
-    </video>
+
+
+  <div class="stills__group" aria-labelledby="stills-vivo">
+    <div class="stills__client reveal">
+      <h3 id="stills-vivo" class="stills__name">Vivo.</h3>
+      <span class="stills__count">12 imagens</span>
+    </div>
+    <div class="stills__grid">
+      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-01-1800.jpg" aria-label="Vivo · imagem 1 de 12">
+        <img src="assets/work/web/stills/vivo-01-900.jpg" srcset="assets/work/web/stills/vivo-01-900.jpg 900w, assets/work/web/stills/vivo-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 01" />
+      </button>
+      <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-02-1800.jpg" aria-label="Vivo · imagem 2 de 12">
+        <img src="assets/work/web/stills/vivo-02-900.jpg" srcset="assets/work/web/stills/vivo-02-900.jpg 900w, assets/work/web/stills/vivo-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 02" />
+      </button>
+      <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-03-1800.jpg" aria-label="Vivo · imagem 3 de 12">
+        <img src="assets/work/web/stills/vivo-03-900.jpg" srcset="assets/work/web/stills/vivo-03-900.jpg 900w, assets/work/web/stills/vivo-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 03" />
+      </button>
+      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-04-1800.jpg" aria-label="Vivo · imagem 4 de 12">
+        <img src="assets/work/web/stills/vivo-04-900.jpg" srcset="assets/work/web/stills/vivo-04-900.jpg 900w, assets/work/web/stills/vivo-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 04" />
+      </button>
+      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-05-1800.jpg" aria-label="Vivo · imagem 5 de 12">
+        <img src="assets/work/web/stills/vivo-05-900.jpg" srcset="assets/work/web/stills/vivo-05-900.jpg 900w, assets/work/web/stills/vivo-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 05" />
+      </button>
+      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-06-1800.jpg" aria-label="Vivo · imagem 6 de 12">
+        <img src="assets/work/web/stills/vivo-06-900.jpg" srcset="assets/work/web/stills/vivo-06-900.jpg 900w, assets/work/web/stills/vivo-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 06" />
+      </button>
+      <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-07-1800.jpg" aria-label="Vivo · imagem 7 de 12">
+        <img src="assets/work/web/stills/vivo-07-900.jpg" srcset="assets/work/web/stills/vivo-07-900.jpg 900w, assets/work/web/stills/vivo-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 07" />
+      </button>
+      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-08-1800.jpg" aria-label="Vivo · imagem 8 de 12">
+        <img src="assets/work/web/stills/vivo-08-900.jpg" srcset="assets/work/web/stills/vivo-08-900.jpg 900w, assets/work/web/stills/vivo-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 08" />
+      </button>
+      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-09-1800.jpg" aria-label="Vivo · imagem 9 de 12">
+        <img src="assets/work/web/stills/vivo-09-900.jpg" srcset="assets/work/web/stills/vivo-09-900.jpg 900w, assets/work/web/stills/vivo-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 09" />
+      </button>
+      <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-10-1800.jpg" aria-label="Vivo · imagem 10 de 12">
+        <img src="assets/work/web/stills/vivo-10-900.jpg" srcset="assets/work/web/stills/vivo-10-900.jpg 900w, assets/work/web/stills/vivo-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 10" />
+      </button>
+      <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-11-1800.jpg" aria-label="Vivo · imagem 11 de 12">
+        <img src="assets/work/web/stills/vivo-11-900.jpg" srcset="assets/work/web/stills/vivo-11-900.jpg 900w, assets/work/web/stills/vivo-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 11" />
+      </button>
+      <button class="still" type="button" style="--r:1.4888" data-full="assets/work/web/stills/vivo-12-1800.jpg" aria-label="Vivo · imagem 12 de 12">
+        <img src="assets/work/web/stills/vivo-12-900.jpg" srcset="assets/work/web/stills/vivo-12-900.jpg 900w, assets/work/web/stills/vivo-12-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1209" loading="lazy" decoding="async" alt="Vivo · still 12" />
+      </button>
+    </div>
   </div>
-</article>
+
+  <div class="stills__group" aria-labelledby="stills-seda">
+    <div class="stills__client reveal">
+      <h3 id="stills-seda" class="stills__name">Seda.</h3>
+      <span class="stills__count">11 imagens</span>
+    </div>
+    <div class="stills__grid">
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-01-1800.jpg" aria-label="Seda · imagem 1 de 11">
+        <img src="assets/work/web/stills/seda-01-900.jpg" srcset="assets/work/web/stills/seda-01-900.jpg 900w, assets/work/web/stills/seda-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 01" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-02-1800.jpg" aria-label="Seda · imagem 2 de 11">
+        <img src="assets/work/web/stills/seda-02-900.jpg" srcset="assets/work/web/stills/seda-02-900.jpg 900w, assets/work/web/stills/seda-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 02" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-03-1800.jpg" aria-label="Seda · imagem 3 de 11">
+        <img src="assets/work/web/stills/seda-03-900.jpg" srcset="assets/work/web/stills/seda-03-900.jpg 900w, assets/work/web/stills/seda-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 03" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-04-1800.jpg" aria-label="Seda · imagem 4 de 11">
+        <img src="assets/work/web/stills/seda-04-900.jpg" srcset="assets/work/web/stills/seda-04-900.jpg 900w, assets/work/web/stills/seda-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 04" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-05-1800.jpg" aria-label="Seda · imagem 5 de 11">
+        <img src="assets/work/web/stills/seda-05-900.jpg" srcset="assets/work/web/stills/seda-05-900.jpg 900w, assets/work/web/stills/seda-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 05" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-06-1800.jpg" aria-label="Seda · imagem 6 de 11">
+        <img src="assets/work/web/stills/seda-06-900.jpg" srcset="assets/work/web/stills/seda-06-900.jpg 900w, assets/work/web/stills/seda-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 06" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-07-1800.jpg" aria-label="Seda · imagem 7 de 11">
+        <img src="assets/work/web/stills/seda-07-900.jpg" srcset="assets/work/web/stills/seda-07-900.jpg 900w, assets/work/web/stills/seda-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 07" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-08-1800.jpg" aria-label="Seda · imagem 8 de 11">
+        <img src="assets/work/web/stills/seda-08-900.jpg" srcset="assets/work/web/stills/seda-08-900.jpg 900w, assets/work/web/stills/seda-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 08" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-09-1800.jpg" aria-label="Seda · imagem 9 de 11">
+        <img src="assets/work/web/stills/seda-09-900.jpg" srcset="assets/work/web/stills/seda-09-900.jpg 900w, assets/work/web/stills/seda-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 09" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-10-1800.jpg" aria-label="Seda · imagem 10 de 11">
+        <img src="assets/work/web/stills/seda-10-900.jpg" srcset="assets/work/web/stills/seda-10-900.jpg 900w, assets/work/web/stills/seda-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 10" />
+      </button>
+      <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-11-1800.jpg" aria-label="Seda · imagem 11 de 11">
+        <img src="assets/work/web/stills/seda-11-900.jpg" srcset="assets/work/web/stills/seda-11-900.jpg 900w, assets/work/web/stills/seda-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 11" />
+      </button>
+    </div>
+  </div>
+
+  <div class="stills__group" aria-labelledby="stills-santa">
+    <div class="stills__client reveal">
+      <h3 id="stills-santa" class="stills__name">Santa.</h3>
+      <span class="stills__count">09 imagens</span>
+    </div>
+    <div class="stills__grid">
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-01-1800.jpg" aria-label="Santa · imagem 1 de 9">
+        <img src="assets/work/web/stills/santa-01-900.jpg" srcset="assets/work/web/stills/santa-01-900.jpg 900w, assets/work/web/stills/santa-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 01" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-02-1800.jpg" aria-label="Santa · imagem 2 de 9">
+        <img src="assets/work/web/stills/santa-02-900.jpg" srcset="assets/work/web/stills/santa-02-900.jpg 900w, assets/work/web/stills/santa-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 02" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-03-1800.jpg" aria-label="Santa · imagem 3 de 9">
+        <img src="assets/work/web/stills/santa-03-900.jpg" srcset="assets/work/web/stills/santa-03-900.jpg 900w, assets/work/web/stills/santa-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 03" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-04-1800.jpg" aria-label="Santa · imagem 4 de 9">
+        <img src="assets/work/web/stills/santa-04-900.jpg" srcset="assets/work/web/stills/santa-04-900.jpg 900w, assets/work/web/stills/santa-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 04" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-05-1800.jpg" aria-label="Santa · imagem 5 de 9">
+        <img src="assets/work/web/stills/santa-05-900.jpg" srcset="assets/work/web/stills/santa-05-900.jpg 900w, assets/work/web/stills/santa-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 05" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-06-1800.jpg" aria-label="Santa · imagem 6 de 9">
+        <img src="assets/work/web/stills/santa-06-900.jpg" srcset="assets/work/web/stills/santa-06-900.jpg 900w, assets/work/web/stills/santa-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 06" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-07-1800.jpg" aria-label="Santa · imagem 7 de 9">
+        <img src="assets/work/web/stills/santa-07-900.jpg" srcset="assets/work/web/stills/santa-07-900.jpg 900w, assets/work/web/stills/santa-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 07" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-08-1800.jpg" aria-label="Santa · imagem 8 de 9">
+        <img src="assets/work/web/stills/santa-08-900.jpg" srcset="assets/work/web/stills/santa-08-900.jpg 900w, assets/work/web/stills/santa-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 08" />
+      </button>
+      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-09-1800.jpg" aria-label="Santa · imagem 9 de 9">
+        <img src="assets/work/web/stills/santa-09-900.jpg" srcset="assets/work/web/stills/santa-09-900.jpg 900w, assets/work/web/stills/santa-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 09" />
+      </button>
+    </div>
+  </div>
+
+  <div class="stills__group" aria-labelledby="stills-ca">
+    <div class="stills__client reveal">
+      <h3 id="stills-ca" class="stills__name">C&amp;A.</h3>
+      <span class="stills__count">12 imagens</span>
+    </div>
+    <div class="stills__grid">
+      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-01-1800.jpg" aria-label="C&amp;A · imagem 1 de 12">
+        <img src="assets/work/web/stills/ca-01-900.jpg" srcset="assets/work/web/stills/ca-01-900.jpg 900w, assets/work/web/stills/ca-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 01" />
+      </button>
+      <button class="still" type="button" style="--r:0.6672" data-full="assets/work/web/stills/ca-02-1800.jpg" aria-label="C&amp;A · imagem 2 de 12">
+        <img src="assets/work/web/stills/ca-02-900.jpg" srcset="assets/work/web/stills/ca-02-900.jpg 900w, assets/work/web/stills/ca-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 02" />
+      </button>
+      <button class="still" type="button" style="--r:0.6672" data-full="assets/work/web/stills/ca-03-1800.jpg" aria-label="C&amp;A · imagem 3 de 12">
+        <img src="assets/work/web/stills/ca-03-900.jpg" srcset="assets/work/web/stills/ca-03-900.jpg 900w, assets/work/web/stills/ca-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 03" />
+      </button>
+      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-04-1800.jpg" aria-label="C&amp;A · imagem 4 de 12">
+        <img src="assets/work/web/stills/ca-04-900.jpg" srcset="assets/work/web/stills/ca-04-900.jpg 900w, assets/work/web/stills/ca-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 04" />
+      </button>
+      <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/ca-05-1800.jpg" aria-label="C&amp;A · imagem 5 de 12">
+        <img src="assets/work/web/stills/ca-05-900.jpg" srcset="assets/work/web/stills/ca-05-900.jpg 900w, assets/work/web/stills/ca-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 05" />
+      </button>
+      <button class="still" type="button" style="--r:0.6672" data-full="assets/work/web/stills/ca-06-1800.jpg" aria-label="C&amp;A · imagem 6 de 12">
+        <img src="assets/work/web/stills/ca-06-900.jpg" srcset="assets/work/web/stills/ca-06-900.jpg 900w, assets/work/web/stills/ca-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 06" />
+      </button>
+      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-07-1800.jpg" aria-label="C&amp;A · imagem 7 de 12">
+        <img src="assets/work/web/stills/ca-07-900.jpg" srcset="assets/work/web/stills/ca-07-900.jpg 900w, assets/work/web/stills/ca-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 07" />
+      </button>
+      <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/ca-08-1800.jpg" aria-label="C&amp;A · imagem 8 de 12">
+        <img src="assets/work/web/stills/ca-08-900.jpg" srcset="assets/work/web/stills/ca-08-900.jpg 900w, assets/work/web/stills/ca-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 08" />
+      </button>
+      <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/ca-09-1800.jpg" aria-label="C&amp;A · imagem 9 de 12">
+        <img src="assets/work/web/stills/ca-09-900.jpg" srcset="assets/work/web/stills/ca-09-900.jpg 900w, assets/work/web/stills/ca-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 09" />
+      </button>
+      <button class="still" type="button" style="--r:0.6878" data-full="assets/work/web/stills/ca-10-1800.jpg" aria-label="C&amp;A · imagem 10 de 12">
+        <img src="assets/work/web/stills/ca-10-900.jpg" srcset="assets/work/web/stills/ca-10-900.jpg 900w, assets/work/web/stills/ca-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1238" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 10" />
+      </button>
+      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-11-1800.jpg" aria-label="C&amp;A · imagem 11 de 12">
+        <img src="assets/work/web/stills/ca-11-900.jpg" srcset="assets/work/web/stills/ca-11-900.jpg 900w, assets/work/web/stills/ca-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 11" />
+      </button>
+      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-12-1800.jpg" aria-label="C&amp;A · imagem 12 de 12">
+        <img src="assets/work/web/stills/ca-12-900.jpg" srcset="assets/work/web/stills/ca-12-900.jpg 900w, assets/work/web/stills/ca-12-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 12" />
+      </button>
+    </div>
+  </div>
+
+  <div class="stills__group" aria-labelledby="stills-batavo">
+    <div class="stills__client reveal">
+      <h3 id="stills-batavo" class="stills__name">Batavo.</h3>
+      <span class="stills__count">03 imagens</span>
+    </div>
+    <div class="stills__grid">
+      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/batavo-01-1800.jpg" aria-label="Batavo · imagem 1 de 3">
+        <img src="assets/work/web/stills/batavo-01-900.jpg" srcset="assets/work/web/stills/batavo-01-900.jpg 900w, assets/work/web/stills/batavo-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="Batavo · still 01" />
+      </button>
+      <button class="still" type="button" style="--r:1.7769" data-full="assets/work/web/stills/batavo-02-1800.jpg" aria-label="Batavo · imagem 2 de 3">
+        <img src="assets/work/web/stills/batavo-02-900.jpg" srcset="assets/work/web/stills/batavo-02-900.jpg 900w, assets/work/web/stills/batavo-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1013" loading="lazy" decoding="async" alt="Batavo · still 02" />
+      </button>
+      <button class="still" type="button" style="--r:1.7769" data-full="assets/work/web/stills/batavo-03-1800.jpg" aria-label="Batavo · imagem 3 de 3">
+        <img src="assets/work/web/stills/batavo-03-900.jpg" srcset="assets/work/web/stills/batavo-03-900.jpg 900w, assets/work/web/stills/batavo-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1013" loading="lazy" decoding="async" alt="Batavo · still 03" />
+      </button>
+    </div>
+  </div>
+
+  <div class="stills__group" aria-labelledby="stills-dove">
+    <div class="stills__client reveal">
+      <h3 id="stills-dove" class="stills__name">Dove.</h3>
+      <span class="stills__count">02 imagens</span>
+    </div>
+    <div class="stills__grid">
+      <button class="still" type="button" style="--r:0.6667" data-full="assets/work/web/stills/dove-01-1800.jpg" aria-label="Dove · imagem 1 de 2">
+        <img src="assets/work/web/stills/dove-01-900.jpg" srcset="assets/work/web/stills/dove-01-900.jpg 900w, assets/work/web/stills/dove-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1200" height="1800" loading="lazy" decoding="async" alt="Dove · still 01" />
+      </button>
+      <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/dove-02-1800.jpg" aria-label="Dove · imagem 2 de 2">
+        <img src="assets/work/web/stills/dove-02-900.jpg" srcset="assets/work/web/stills/dove-02-900.jpg 900w, assets/work/web/stills/dove-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="Dove · still 02" />
+      </button>
+    </div>
+  </div>
+</section>
 
 <!-- ===================== CONTATO ===================== -->
 <section id="contato" class="contact" aria-labelledby="contato-title">
@@ -804,6 +1271,17 @@ article{margin:0;padding:0;display:block}
   <div class="vimeo-modal__inner">
     <div class="vimeo-modal__frame" id="vimeoFrame"></div>
   </div>
+</div>
+
+<!-- ===================== STILLS LIGHTBOX ===================== -->
+<div id="stillsModal" class="stills-modal" aria-hidden="true" role="dialog" aria-label="Visualizador de imagens">
+  <button class="vimeo-modal__close" type="button" aria-label="Fechar imagem">×</button>
+  <button class="stills-modal__nav stills-modal__nav--prev" type="button" aria-label="Imagem anterior">←</button>
+  <figure class="stills-modal__figure">
+    <img id="stillsImg" alt="" />
+    <figcaption id="stillsCaption" class="stills-modal__caption"></figcaption>
+  </figure>
+  <button class="stills-modal__nav stills-modal__nav--next" type="button" aria-label="Próxima imagem">→</button>
 </div>
 
 <script>
@@ -926,6 +1404,59 @@ article{margin:0;padding:0;display:block}
     el.addEventListener('keydown', function(e){
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el); }
     });
+  });
+})();
+
+// Stills lightbox — navega dentro do grupo do cliente
+(function(){
+  var modal = document.getElementById('stillsModal');
+  if (!modal) return;
+  var img = document.getElementById('stillsImg');
+  var caption = document.getElementById('stillsCaption');
+  var closeBtn = modal.querySelector('.vimeo-modal__close');
+  var group = [], index = 0, lastFocus = null, touchX = null;
+
+  function show(i){
+    index = (i + group.length) % group.length;
+    var btn = group[index];
+    img.src = btn.getAttribute('data-full');
+    img.alt = btn.querySelector('img').alt;
+    caption.textContent = btn.getAttribute('aria-label');
+  }
+  function open(btn){
+    lastFocus = btn;
+    group = Array.prototype.slice.call(btn.closest('.stills__grid').querySelectorAll('.still'));
+    show(group.indexOf(btn));
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close(){
+    modal.setAttribute('aria-hidden', 'true');
+    img.removeAttribute('src');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.still').forEach(function(btn){
+    btn.addEventListener('click', function(){ open(btn); });
+  });
+  closeBtn.addEventListener('click', close);
+  modal.querySelector('.stills-modal__nav--prev').addEventListener('click', function(){ show(index - 1); });
+  modal.querySelector('.stills-modal__nav--next').addEventListener('click', function(){ show(index + 1); });
+  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+  document.addEventListener('keydown', function(e){
+    if (modal.getAttribute('aria-hidden') !== 'false') return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(index - 1);
+    else if (e.key === 'ArrowRight') show(index + 1);
+  });
+  modal.addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, {passive:true});
+  modal.addEventListener('touchend', function(e){
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+    touchX = null;
   });
 })();
 </script>
