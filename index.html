@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Alright — A.I. first Production Company · ((Look again.))</title>
-<meta name="description" content="((Look again.))" />
-<meta property="og:title" content="Alright — A.I. first Production Company" />
+<title>Alright — A.I. Done Right · ((Look again.))</title>
+<meta name="description" content="Alright — A.I. Done Right. São Paulo / BR. ((Look again.))" />
+<link rel="canonical" href="https://wearealright.cc/" />
+<meta property="og:title" content="Alright — A.I. Done Right" />
 <meta property="og:description" content="((Look again.))" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://wearealright.cc" />
 <meta property="og:image" content="https://wearealright.cc/assets/meta/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Alright — A.I. first Production Co. · ((Look again.))" />
+<meta property="og:image:alt" content="Alright — A.I. Done Right · ((Look again.))" />
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:site_name" content="Alright" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Alright — A.I. first Production Company" />
+<meta name="twitter:title" content="Alright — A.I. Done Right" />
 <meta name="twitter:description" content="((Look again.))" />
 <meta name="twitter:image" content="https://wearealright.cc/assets/meta/og-image.jpg" />
 <meta name="theme-color" content="#000000" />
@@ -26,6 +27,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/apple-touch-icon.png?v=v3" />
 <link rel="manifest" href="assets/meta/manifest.webmanifest" />
 <link rel="preconnect" href="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev" crossorigin />
+<link rel="preconnect" href="https://player.vimeo.com" />
+<!-- Gerado por tools/build-site.mjs a partir de tools/site/template.html + tools/site/content.mjs. Não editar à mão. -->
 <style>
 /* ---------- Fontes Monument Grotesk + Neue Haas Display (v3 rebrand) ---------- */
 @font-face{
@@ -87,1386 +90,1573 @@
   --bone:#faf9f5;
   --mist:#ece8dc;
   --black:#000000;
-  --dark:#000000;  /* alias compat — Black puro substitui Dark warm em v3 */
   --stone:#3d3a35;
   --slate-warm:#5b5750;
 
   --ease-cine:cubic-bezier(0.16,1.0,0.3,1.0);
 
-  /* v3: Neue Haas Display Bold como default em todo o site.
-     Wordmark + display + body em uma só family.
-     Monument Grotesk Mono fica reservada pra metadados/kickers/eyebrows. */
   --font-sans:"Neue Haas Display", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display:"Neue Haas Display", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono:"Monument Grotesk Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --radius-card:20px;
-  --radius-pill:999px;
-
-  --pad-section:clamp(48px,7vw,128px);
-  --gap-card:clamp(16px,1.4vw,28px);
+  /* Layout v4 (2026-11 · estrutura Phono Filmes, identidade Alright) — fundo preto da marca (#000), texto Bone */
+  --bg:var(--black);
+  --ink:var(--bone);
+  --ink-2:#cfcbc1;
+  --ink-3:#a59f93;
+  --hair:rgba(250,249,245,.14);
+  --tile:#111;
+  --gap:8px;      /* entre vídeos e margem externa da grade */
+  --gut:22px;     /* margem de textos e barras */
+  --head:64px;
 }
 
-/* (Brasa shake reveal + shake-hint removidos no rebrand v3 2026-05-26) */
-
-/* ---------- Reset ---------- */
+/* ---------- Base ---------- */
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--font-sans);
-  background:var(--bone);
-  color:var(--dark);
-  font-weight:400;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-img,video{max-width:100%;display:block}
+html{-webkit-text-size-adjust:100%;overflow-x:clip;scroll-padding-top:var(--head)}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button{font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;padding:0;cursor:pointer}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+:focus-visible{outline:2px solid var(--alright-orange);outline-offset:3px}
+[tabindex="-1"]:focus{outline:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;top:8px;left:8px;z-index:9999;background:var(--bone);color:var(--black);padding:10px 16px;border-radius:999px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;transform:translateY(-200%);transition:transform .3s var(--ease-cine)}
+.skip:focus{transform:none}
+.mono{font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+.paren{color:var(--alright-orange)}
 
-/* ---------- Skip link ---------- */
-.skip{
-  position:fixed;top:8px;left:8px;z-index:9999;
-  background:var(--dark);color:var(--bone);
-  padding:10px 16px;border-radius:var(--radius-pill);
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-  transform:translateY(-200%);transition:transform .4s var(--ease-cine);
-}
-.skip:focus{transform:translateY(0)}
+/* ---------- Topo (como na Phono: sem barra; só o logo e o menu acompanham a rolagem) ---------- */
+.head{position:fixed;inset:0 0 auto 0;height:0;z-index:60}
+.logo{position:fixed;left:50%;top:14px;transform:translateX(-50%);display:block}
+.logo img{height:36px;width:auto;filter:drop-shadow(0 1px 8px rgba(0,0,0,.35))}
+.pills.menu{position:fixed;top:14px;right:var(--gut);background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 0 0 1px rgba(250,249,245,.12)}
 
-/* ---------- Type scale ---------- */
-.eyebrow{
-  font-family:var(--font-mono);
-  font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--slate-warm);
-}
-.h-mega{
-  font-family:var(--font-display);
-  font-size:clamp(80px,12vw,280px);
-  font-weight:700;line-height:.92;letter-spacing:-0.025em;
-  margin:0;
-}
-.h-xl{
-  font-family:var(--font-display);
-  font-size:clamp(48px,6vw,96px);
-  font-weight:400;line-height:1.0;letter-spacing:-0.02em;
-  margin:0;
-}
-.h-lg{
-  font-size:clamp(32px,4vw,64px);
-  font-weight:500;line-height:1.05;letter-spacing:-0.015em;
-  margin:0;
-}
-.h-md{
-  font-size:clamp(22px,2.2vw,32px);
-  font-weight:500;line-height:1.15;letter-spacing:-0.01em;
-  margin:0;
-}
-.body{
-  font-size:clamp(16px,1.2vw,19px);
-  line-height:1.55;color:var(--stone);font-weight:400;
-}
-.body-on-dark{color:#cfcbc1}
-.mono{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em}
-.mono-caps{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+/* Pílulas (topo e rodapé) — aba ativa preenchida, entre (( )); o espaço dos (( )) é reservado, a barra não pula */
+.pills{display:flex;gap:2px;padding:4px;border-radius:100px;background:rgba(250,249,245,.06)}
+.pill{position:relative;display:inline-flex;align-items:center;padding:7px 29px;border-radius:100px;color:var(--ink-2);white-space:nowrap;transition:background .25s,color .25s}
+.pill:hover{background:rgba(250,249,245,.1);color:var(--ink)}
+.pill[aria-current="page"]{background:var(--bone);color:var(--black)}
+.pill[aria-current="page"]::before,.pill[aria-current="page"]::after{position:absolute;top:50%;transform:translateY(-50%);color:var(--alright-orange)}
+.pill[aria-current="page"]::before{content:"((";content:"((" / "";left:9px}
+.pill[aria-current="page"]::after{content:"))";content:"))" / "";right:9px}
 
-/* ---------- Nav pill ---------- */
-.nav{
-  position:fixed;top:18px;left:50%;transform:translateX(-50%);
-  z-index:1000;
-  display:flex;align-items:center;gap:6px;
-  padding:8px 8px 8px 14px;
-  background:rgba(250,249,245,0.72);
-  backdrop-filter:blur(14px) saturate(140%);
-  -webkit-backdrop-filter:blur(14px) saturate(140%);
-  border:1px solid rgba(20,20,19,0.08);
-  border-radius:var(--radius-pill);
-  transition:transform .6s var(--ease-cine), padding .4s var(--ease-cine), background .4s var(--ease-cine);
-  width:max-content;max-width:calc(100vw - 24px);
-}
-.nav.is-scrolled{padding:6px 6px 6px 12px;background:rgba(250,249,245,0.92)}
-.nav__brand{
-  display:flex;align-items:center;gap:8px;
-  font-family:var(--font-sans);font-weight:400;font-size:15px;letter-spacing:-0.01em;color:var(--dark);
-  margin-right:8px;
-}
-.nav__brand img{height:18px;width:auto;display:block}
-.nav__links{display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-.nav__links::-webkit-scrollbar{display:none}
-.nav a.nav__link{
-  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--stone);
-  padding:8px 12px;border-radius:var(--radius-pill);
-  white-space:nowrap;
-  transition:background .3s var(--ease-cine), color .3s var(--ease-cine);
-}
-.nav a.nav__link:hover{background:var(--dark);color:var(--bone)}
-.nav a.nav__link--accent{background:var(--alright-orange);color:var(--dark)}
-.nav a.nav__link--accent:hover{background:var(--dark);color:var(--bone)}
-/* (Feel Alright menu link + overlay removidos no rebrand v3 2026-05-26) */
+main{min-height:70vh}
+.view:not([data-view="home"]){padding-top:var(--head)}
 
-/* ---------- Stickers ---------- */
-.sticker{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  padding:7px 12px;border-radius:var(--radius-pill);
-  background:var(--alright-orange);color:var(--dark);
-  white-space:nowrap;
-  box-shadow:0 1px 0 rgba(20,20,19,0.06);
-}
-.sticker--mist{background:var(--mist);color:var(--stone)}
-.sticker--dark{background:var(--dark);color:var(--bone)}
-.sticker--bone{background:var(--bone);color:var(--dark);border:1px solid rgba(20,20,19,0.12)}
-.sticker--alright-orange-deep{background:var(--alright-orange-deep);color:var(--bone)}
-.sticker--ghost-bone{background:transparent;border:1px solid rgba(250,249,245,0.4);color:var(--bone)}
-.sticker--ghost-dark{background:transparent;border:1px solid rgba(20,20,19,0.25);color:var(--dark)}
-.rot-3{transform:rotate(-3deg)}
-.rot3{transform:rotate(3deg)}
-.rot-2{transform:rotate(-2deg)}
-.rot2{transform:rotate(2deg)}
-.rot-1{transform:rotate(-1.5deg)}
-.rot1{transform:rotate(1.5deg)}
+/* ---------- Telas (roteamento por #) ---------- */
+.view{display:none}
+.view.is-active{display:block;animation:viewIn .35s var(--ease-cine)}
+@keyframes viewIn{from{opacity:0}to{opacity:1}}
 
-/* ---------- Sections ---------- */
-section{position:relative}
-.section-pad{padding:var(--pad-section) clamp(20px,4vw,72px)}
-.bg-bone{background:var(--bone);color:var(--dark)}
-.bg-mist{background:var(--mist);color:var(--dark)}
-.bg-dark{background:var(--dark);color:var(--bone)}
-.bg-stone{background:var(--stone);color:var(--bone)}
-.bg-slate{background:var(--slate-warm);color:var(--bone)}
-.bg-orange{background:var(--alright-orange);color:var(--dark)}
-.bg-orange-deep{background:var(--alright-orange-deep);color:var(--bone)}
+/* ---------- Mosaico de vídeos (home e autorais) ---------- */
+.mosaic{display:flex;flex-direction:column;gap:var(--gap);padding:var(--gap)}
+.mrow{display:flex;gap:var(--gap)}
+.mcol{display:flex;flex-direction:column;gap:var(--gap);flex:var(--g) 1 0%;min-width:0}
+.mosaic.is-laid .mcol{flex:none}
+.cell{position:relative;min-width:0}
+.tile{position:relative;display:block;width:100%;aspect-ratio:var(--r);overflow:hidden;background:var(--tile)}
+.tile img,.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile video{opacity:0;transition:opacity .6s var(--ease-cine)}
+.tile video.is-playing{opacity:1}
+.tile img{transition:transform 6s var(--ease-cine)}
+.cell:hover .tile img{transform:scale(1.02)}
+/* Vídeos sem trecho próprio: tocam mudos direto do Vimeo/YouTube, por cima da capa */
+.live{position:absolute;left:0;top:0;z-index:1;width:100%;aspect-ratio:var(--r);overflow:hidden;pointer-events:none}
+.live iframe{position:absolute;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity .6s var(--ease-cine)}
+.live iframe.is-playing{opacity:1}
+/* Legenda: sobre o vídeo (aparece no hover) */
+.cap{position:absolute;left:12px;bottom:12px;z-index:3;display:inline-flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px;max-width:calc(100% - 24px);padding:7px 11px 6px;background:var(--black);color:var(--bone);pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s var(--ease-cine)}
+.cap::before{content:"";align-self:center;width:0;height:0;border-left:7px solid var(--alright-orange);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.cap b{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:uppercase;min-width:0}
+.cap span{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#cfcbc1;min-width:0}
+.cell:hover .cap,.cell:focus-within .cap{opacity:1;transform:none}
+@media (hover:none){.cap{opacity:1;transform:none}}
 
-.section-head{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
-  margin-bottom:clamp(32px,4vw,64px);flex-wrap:wrap;
-}
-.section-head__title{max-width:820px}
-.section-head__title .h-lg{margin-top:14px}
+/* Dois mosaicos: um para computador e outro, mais compacto, para tablet e celular */
+.mosaic--t{display:none}
+@media (max-width:899px){.mosaic--d{display:none}.mosaic--t{display:flex}}
 
-/* ---------- HERO ---------- */
-.hero{position:relative;height:100vh;min-height:640px;width:100%;overflow:hidden;background:var(--dark);color:var(--bone)}
-.hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) contrast(1.02)}
-.hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,20,19,0.55) 0%, rgba(20,20,19,0.30) 35%, rgba(20,20,19,0.70) 100%)}
-.hero__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:26px clamp(20px,4vw,72px) clamp(40px,5vw,72px)}
-.hero__center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px;width:100%}
-.hero__title{font-family:var(--font-display);font-size:clamp(80px,15vw,260px);font-weight:700;line-height:.95;letter-spacing:-0.03em;color:var(--bone);margin:0}
-.hero__title--logo{display:flex;justify-content:center;line-height:1}
-/* Logo PNG nativo: 299×350. Cap em 360px (1.2× upscale) pra não pixelar.
-   Owner pode fornecer SVG depois pra qualidade vector + crescer livremente. */
-.hero__title--logo img{width:min(360px,50vw);height:auto;display:block;image-rendering:auto}
-.nav__brand img{height:18px;width:auto;display:block}
-.hero__title .paren{color:var(--alright-orange);font-weight:700}
-.hero__sub{font-family:var(--font-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.82)}
-.hero__cue{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.7)}
-.hero__cue .dot{width:6px;height:6px;border-radius:50%;background:var(--alright-orange);animation:pulse 2.4s var(--ease-cine) infinite}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
-.hero__topbar{display:flex;justify-content:space-between;align-items:flex-start;width:100%;gap:16px;flex-wrap:wrap}
-.hero__chips{display:flex;gap:8px;flex-wrap:wrap}
-.hero__eyebrow{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,249,245,0.9);text-align:right;max-width:280px;line-height:1.7}
+/* Celular: sequência simples, verticais em pares, legenda embaixo */
+@media (max-width:599px){
+  .mosaic{flex-direction:row;flex-wrap:wrap}
+  .mrow,.mcol{display:contents}
+  .cell{flex:1 1 100%;order:var(--mo)}
+  .cell--v{flex:1 1 calc(50% - var(--gap) / 2)}
+  .cap{position:static;display:flex;flex-wrap:wrap;column-gap:10px;row-gap:0;max-width:100%;opacity:1;transform:none;background:none;color:var(--ink);padding:8px 2px 4px}
+  .cell--v .cap{flex-direction:column;row-gap:2px}
+  .cap::before{display:none}
+  .cap span{color:var(--ink-3)}
+}
 
-/* ---------- Bento (intro section) ---------- */
-.bento{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:minmax(160px,auto);
-  gap:var(--gap-card);
-}
-.card{
-  position:relative;
-  background:var(--bone);
-  border-radius:var(--radius-card);
-  padding:clamp(24px,2.4vw,44px);
-  overflow:hidden;
-  transition:transform .6s var(--ease-cine), box-shadow .6s var(--ease-cine);
-  border:1px solid rgba(20,20,19,0.06);
-}
-.card:hover{transform:translateY(-6px);box-shadow:0 14px 40px -20px rgba(20,20,19,0.25)}
-.card--dark{background:var(--dark);color:var(--bone);border-color:rgba(250,249,245,0.08)}
-.card--mist{background:var(--mist);border-color:rgba(20,20,19,0.05)}
-.card--stone{background:var(--stone);color:var(--bone);border-color:rgba(250,249,245,0.05)}
-.card--orange{background:var(--alright-orange);color:var(--dark);border-color:transparent}
-.card--clay{background:var(--alright-orange-deep);color:var(--bone);border-color:transparent}
-.card--media{padding:0}
-.card__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.card__media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,19,0) 40%, rgba(20,20,19,0.55) 100%)}
-.card__sticker{position:absolute;z-index:2}
-.card__sticker.tl{top:18px;left:18px}
-.card__sticker.tr{top:18px;right:18px}
-.card__sticker.bl{bottom:18px;left:18px}
-.card__sticker.br{bottom:18px;right:18px}
-.card__label{position:absolute;bottom:18px;left:22px;color:var(--bone);font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;z-index:2}
-.card__big{font-size:clamp(36px,5.5vw,84px);font-weight:700;line-height:.98;letter-spacing:-0.02em;margin:0}
-.card__small{font-size:clamp(15px,1.1vw,17px);line-height:1.55;color:var(--stone)}
-.card--dark .card__small,.card--stone .card__small,.card--clay .card__small{color:#cfcbc1}
+/* ---------- Blocos de texto (estrutura Phono: container 1500, margem 22) ---------- */
+.wrap{max-width:1500px;margin:0 auto;padding:12px var(--gut) 0}
+.label{display:block;font-family:var(--font-mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3)}
+.back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:8px 15px;border-radius:100px;border:1px solid var(--hair);transition:background .25s,border-color .25s}
+.back:hover{background:rgba(250,249,245,.08);border-color:rgba(250,249,245,.4)}
+.vhead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:56px var(--gut) 22px;max-width:1500px;margin:0 auto}
+.vtitle{font-family:var(--font-display);font-weight:700;font-size:clamp(44px,6vw,88px);line-height:.95;letter-spacing:-.025em}
+.more{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;transition:color .25s}
+.more:hover{color:var(--ink)}
 
-.col-3{grid-column:span 3}
-.col-4{grid-column:span 4}
-.col-5{grid-column:span 5}
-.col-6{grid-column:span 6}
-.col-7{grid-column:span 7}
-.col-8{grid-column:span 8}
-.col-9{grid-column:span 9}
-.col-12{grid-column:span 12}
-.row-2{grid-row:span 2}
-.row-3{grid-row:span 3}
+/* ---------- Projetos: lista em texto ---------- */
+.plist{list-style:none;padding:0;margin-top:30px;border-top:1px solid var(--hair)}
+.plist a{display:grid;grid-template-columns:60px 1fr 1fr 90px;gap:20px;align-items:center;padding:26px 8px;border-bottom:1px solid var(--hair);transition:padding .3s var(--ease-cine),background .3s}
+.plist__n,.plist__k{font-family:var(--font-mono);font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.plist__k{text-align:right;letter-spacing:.08em;text-transform:uppercase}
+.plist__c{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.6vw,54px);line-height:1;letter-spacing:-.015em;transition:opacity .3s}
+.plist__t{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.plist:hover .plist__c{opacity:.3}
+.plist a:hover .plist__c{opacity:1}
+.plist a:hover{padding-left:24px;background:rgba(250,249,245,.03)}
+.pcursor{position:fixed;left:0;top:0;z-index:60;width:58px;height:auto;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .25s,transform .25s}
+.pcursor.is-on{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
-/* ---------- Cases — full-bleed split ---------- */
-.case{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:85vh;
-}
-.case__text{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(40px,6vw,112px);position:relative;
-  gap:clamp(20px,2vw,32px);
-}
-.case__eyebrow{font-family:var(--font-mono);font-size:12.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-warm)}
-.case__title{font-family:var(--font-display);font-size:clamp(56px,9vw,160px);font-weight:700;line-height:.94;letter-spacing:-0.025em;margin:0}
-/* Palavra longa (Olympikus, Lollapalooza): no layout de 2 colunas o título encolhe até caber (--fit por título) */
-@media (min-width:1025px){.case__title--fit{font-size:min(var(--fit),160px)}}
-.case__copy{font-size:clamp(16px,1.25vw,19.5px);line-height:1.55;margin:0;max-width:46ch;color:var(--stone)}
-.case__stickers{display:flex;gap:8px;flex-wrap:wrap}
-article{margin:0;padding:0;display:block}
-.case>*{min-width:0}
-.case__media{position:relative;overflow:hidden;min-height:380px;background:#000;width:100%;height:100%}
+/* ---------- Página de projeto ---------- */
+.pplayer{position:relative;margin:22px auto 0;width:min(100%, calc((100vh - var(--head) - 92px) * var(--r)));width:min(100%, calc((100svh - var(--head) - 92px) * var(--r)));aspect-ratio:var(--r);background:#000;overflow:hidden}
+.pplayer img,.pplayer video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pplayer video{opacity:0;transition:opacity .6s var(--ease-cine)}
+.pplayer video.is-playing{opacity:1}
+.pplayer__open{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center}
+.pplayer__open::before{content:"";width:84px;height:84px;border-radius:50%;background:var(--alright-orange) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M12 8l13 8-13 8z' fill='%23000'/></svg>") center/34px no-repeat;transition:transform .4s var(--ease-cine)}
+.pplayer__open:hover::before{transform:scale(1.07)}
+.pplayer__nav{position:absolute;top:50%;z-index:3;width:46px;height:68px;margin-top:-34px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);color:var(--bone);font-family:var(--font-mono);font-size:26px;transition:background .25s}
+.pplayer__nav:hover{background:var(--bone);color:var(--black)}
+.pplayer__nav--prev{left:14px}
+.pplayer__nav--next{right:14px}
+.pplayer__count{position:absolute;bottom:14px;left:50%;z-index:3;transform:translateX(-50%);padding:5px 11px;border-radius:40px;background:rgba(0,0,0,.55);color:var(--bone)}
+.dhead{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end;margin-top:36px}
+.ptitle{font-family:var(--font-display);font-weight:700;font-size:clamp(40px,6vw,88px);line-height:.95;letter-spacing:-.025em}
+.psub{margin-top:12px;font-family:var(--font-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.pcopy{font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--ink-2);max-width:46ch}
+.pall{display:inline-block;margin-top:44px;font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);transition:color .25s}
+.pall:hover{color:var(--ink)}
 
-/* ---------- Clickable video (lightbox trigger) ---------- */
-[data-vimeo-id],[data-video-src]{cursor:pointer;position:relative}
-[data-vimeo-id]::after,[data-video-src]::after{
-  content:'';
-  position:absolute;inset:0;z-index:3;
-  background:rgba(20,20,19,0);
-  transition:background .35s var(--ease-cine);
-  pointer-events:none;
-}
-[data-vimeo-id]::before,[data-video-src]::before{
-  content:'';
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.7);
-  width:88px;height:88px;border-radius:50%;
-  background:var(--alright-orange);
-  z-index:4;
-  opacity:0;
-  transition:opacity .35s var(--ease-cine), transform .6s var(--ease-cine);
-  pointer-events:none;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23141413'><path d='M11 8l14 8-14 8z'/></svg>");
-  background-repeat:no-repeat;background-position:center;background-size:36px 36px;
-}
-[data-vimeo-id]:hover::after,[data-video-src]:hover::after{background:rgba(20,20,19,0.32)}
-[data-vimeo-id]:hover::before,[data-video-src]:hover::before{opacity:1;transform:translate(-50%,-50%) scale(1)}
-
-/* ---------- Vimeo modal ---------- */
-.vimeo-modal{
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(20,20,19,0.96);
-  display:none;
-  align-items:center;justify-content:center;
-  padding:clamp(20px,5vw,80px);
-  opacity:0;
-  transition:opacity .35s var(--ease-cine);
-}
-.vimeo-modal[aria-hidden="false"]{display:flex;opacity:1}
-.vimeo-modal__inner{
-  position:relative;width:100%;max-width:1400px;
-  aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,0.5);
-}
-.vimeo-modal__frame{position:absolute;inset:0;background:#000}
-.vimeo-modal__frame iframe{width:100%;height:100%;border:0;display:block}
-.vimeo-modal__close{
-  position:fixed;top:24px;right:24px;
-  width:48px;height:48px;border-radius:999px;
-  background:var(--bone);color:var(--dark);
-  border:0;cursor:pointer;
-  font-family:var(--font-mono);font-size:24px;font-weight:300;line-height:1;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .3s var(--ease-cine), transform .3s var(--ease-cine);
-  z-index:10000;
-}
-.vimeo-modal__close:hover{background:var(--alright-orange);transform:rotate(90deg)}
-.case__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.case__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.case__media .case__sticker{position:absolute;top:32px;right:32px;z-index:2}
-.case__media .case__corner{position:absolute;bottom:24px;left:24px;z-index:2}
-.case--flip .case__text{order:2}
-.case--flip .case__media{order:1}
-
-/* Case body-on-dark overrides */
-.case.bg-dark .case__eyebrow{color:#a59f93}
-.case.bg-dark .case__title{color:var(--bone)}
-.case.bg-dark .case__copy{color:#cfcbc1}
-.case.bg-stone .case__eyebrow{color:#cfcbc1}
-.case.bg-stone .case__title{color:var(--bone)}
-.case.bg-stone .case__copy{color:#cfcbc1}
-.case.bg-orange-deep .case__eyebrow{color:#f6dccd}
-.case.bg-orange-deep .case__title{color:var(--bone)}
-.case.bg-orange-deep .case__copy{color:#f6dccd}
-.case.bg-orange .case__eyebrow{color:var(--alright-orange-deep)}
-.case.bg-orange .case__title{color:var(--dark)}
-.case.bg-orange .case__copy{color:var(--dark)}
-
-/* Cases banner / section-head */
-.cases-banner{padding:var(--pad-section) clamp(20px,4vw,72px) clamp(32px,3vw,56px)}
-
-/* ---------- Manifesto ---------- */
-.manifesto{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:62vh;
-}
-.manifesto__text{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(40px,6vw,96px);position:relative;
-}
-.manifesto__text .h-mega{font-size:clamp(56px,9vw,160px)}
-.manifesto__media{position:relative;overflow:hidden;min-height:380px;background:#000}
-.manifesto__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.manifesto__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
-.manifesto--flip .manifesto__text{order:2}
-.manifesto--flip .manifesto__media{order:1}
-.manifesto__caption{position:absolute;bottom:24px;left:24px}
-.manifesto__sticker{position:absolute;top:32px;right:32px;z-index:2}
-
-/* ---------- Series grid (Chupa Chups 2x2) ---------- */
-.series-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;position:absolute;inset:0}
-.series-grid > div{position:relative;overflow:hidden;background:#000}
-.series-grid video,.series-grid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* Variantes: 1+2 (Caixa) · vertical+2 (ENEM) · 3+2 (Fruittella) · filme+3+2 (Santa) */
-.series-grid--1-2 > :first-child{grid-column:1 / -1}
-.series-grid--v-2{grid-template-columns:2fr 3fr}
-.series-grid--v-2 > :first-child{grid-row:1 / -1}
-.series-grid--3-2{grid-template-columns:repeat(6,1fr)}
-.series-grid--3-2 > *{grid-column:span 2}
-.series-grid--3-2 > :nth-child(n+4){grid-column:span 3}
-.series-grid--1-3-2{grid-template-columns:repeat(6,1fr);grid-template-rows:2fr 1fr 1fr}
-.series-grid--1-3-2 > *{grid-column:span 2}
-.series-grid--1-3-2 > :first-child{grid-column:1 / -1}
-.series-grid--1-3-2 > :nth-child(n+5){grid-column:span 3}
-
-/* ---------- Stills (galeria só de imagem, por cliente) ---------- */
-.stills{padding:var(--pad-section) clamp(20px,4vw,72px)}
-.stills__head{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px);margin-bottom:clamp(48px,6vw,96px)}
-.stills__head .eyebrow{color:#a59f93}
-.stills__title{font-family:var(--font-display);font-size:clamp(56px,9vw,160px);font-weight:700;line-height:.94;letter-spacing:-0.025em;margin:0}
-.stills__group + .stills__group{margin-top:clamp(56px,6vw,112px)}
-.stills__client{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:clamp(16px,1.6vw,24px);padding-bottom:14px;border-bottom:1px solid rgba(250,249,245,0.16)}
-.stills__name{font-family:var(--font-display);font-size:clamp(32px,4vw,64px);font-weight:700;line-height:1;letter-spacing:-0.02em;margin:0}
-.stills__count{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a59f93}
-/* Linhas justificadas: cada foto cresce na proporção do próprio aspect ratio (--r = w/h), sem corte */
-.stills__grid{--row:clamp(180px,19vw,300px);display:flex;flex-wrap:wrap;gap:clamp(6px,.6vw,10px)}
-.stills__grid::after{content:'';flex-grow:999999}
-.still{position:relative;flex-grow:var(--r);flex-basis:calc(var(--row) * var(--r));aspect-ratio:var(--r);overflow:hidden;background:#141413;cursor:zoom-in;padding:0}
+/* ---------- Stills: linhas justificadas, cada foto na proporção original ---------- */
+.stills{padding:0 var(--gut);max-width:1500px;margin:0 auto}
+.stills__group + .stills__group{margin-top:clamp(48px,5vw,88px)}
+.stills__client{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
+.stills__name{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2vw,30px);line-height:1;letter-spacing:-.015em}
+.stills__count{color:var(--ink-3)}
+/* Sem JS: linhas justificadas em CSS. Com JS (layoutStills): linhas balanceadas que fecham na largura, sem foto órfã */
+.stills__grid{--row:clamp(170px,19vw,300px);display:flex;flex-wrap:wrap;gap:var(--gap)}
+.stills__grid::after{content:"";flex-grow:999999}
+.stills__grid.is-laid::after{content:none}
+.still{position:relative;flex-grow:var(--r);flex-basis:calc(var(--row) * var(--r));aspect-ratio:var(--r);overflow:hidden;background:var(--tile);cursor:zoom-in}
+.stills__grid.is-laid .still{flex:none}
 .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-cine)}
 .still:hover img{transform:scale(1.03)}
-.still:focus-visible{outline:2px solid var(--alright-orange);outline-offset:3px}
+@media (max-width:768px){.stills__grid{--row:150px}}
 
-/* Lightbox das stills */
-.stills-modal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:clamp(56px,6vw,96px) clamp(16px,6vw,112px)}
-.stills-modal[aria-hidden="false"]{display:flex}
-.stills-modal__figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:100%;max-height:100%}
-.stills-modal__figure img{max-width:100%;max-height:calc(100vh - 160px);width:auto;height:auto;object-fit:contain;display:block}
-.stills-modal__caption{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a59f93}
-.stills-modal__nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:999px;background:rgba(250,249,245,0.12);color:var(--bone);font-family:var(--font-mono);font-size:20px;display:flex;align-items:center;justify-content:center;transition:background .3s var(--ease-cine), color .3s var(--ease-cine);z-index:10000}
-.stills-modal__nav:hover{background:var(--alright-orange);color:var(--dark)}
-.stills-modal__nav--prev{left:clamp(8px,2vw,32px)}
-.stills-modal__nav--next{right:clamp(8px,2vw,32px)}
+/* ---------- Autorais e Contato ---------- */
+.lead{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end;padding-top:64px}
+.lead__sub{margin-top:14px;font-family:var(--font-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.lead__aside{display:flex;flex-direction:column;gap:8px}
+.lead__aside .mono{color:var(--ink-3)}
+.lead__aside a{font-size:clamp(17px,1.4vw,21px);width:max-content;max-width:100%;border-bottom:1px solid transparent;transition:border-color .25s}
+.lead__aside a:hover{border-color:currentColor}
+.canon{font-size:clamp(17px,1.4vw,21px);color:var(--ink-2)}
+.autorais .mosaic{max-width:1500px;margin:40px auto 0;padding:0 var(--gut)}
+.reprise{margin-top:clamp(72px,9vw,140px);font-family:var(--font-display);font-weight:700;font-size:min(14vw, clamp(52px,10vw,180px));line-height:.95;letter-spacing:-.03em;text-align:center}
 
-/* ---------- Brand book CTA ---------- */
-.bb-cta{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center;background:var(--dark);color:var(--bone);position:relative;overflow:hidden}
-.bb-cta__inner{position:relative;z-index:2;max-width:920px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:clamp(28px,3vw,48px)}
-.bb-cta__eyebrow{color:#a59f93}
-.bb-cta__hd{font-family:var(--font-display);font-size:clamp(40px,5.5vw,88px);font-weight:700;line-height:1;letter-spacing:-0.02em;margin:0;color:var(--bone)}
-.bb-cta__lockup img{max-width:min(680px,80vw);width:100%;height:auto;display:block}
-.bb-cta__button{
-  display:inline-flex;align-items:center;gap:14px;
-  padding:18px 28px;border-radius:var(--radius-pill);
-  background:var(--alright-orange);color:var(--dark);
-  font-family:var(--font-sans);font-size:clamp(17px,1.4vw,22px);font-weight:500;letter-spacing:-0.005em;
-  transition:transform .6s var(--ease-cine), background .4s var(--ease-cine);
+/* ---------- Rodapé ---------- */
+.foot{margin-top:96px;border-top:1px solid var(--hair);padding:46px var(--gut) 34px}
+.foot__bar{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;max-width:1500px;margin:0 auto}
+.foot__about{max-width:340px;font-size:13px;line-height:1.5;color:var(--ink-3)}
+.foot__mid{display:flex;flex-direction:column;align-items:center;gap:18px}
+.foot__logo img{height:84px;width:auto}
+.foot__links{justify-self:end;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px 20px;color:var(--ink-3)}
+.foot__links a,.foot__links button{transition:color .25s}
+.foot__links a:hover,.foot__links button:hover{color:var(--ink)}
+.foot__sign{margin-top:34px;text-align:center;color:var(--ink-3)}
+
+/* ---------- Janela do filme (tela cheia, dentro do site) ---------- */
+.film{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;padding:70px var(--gut) 24px;background:#000;color:var(--bone)}
+.film.is-open{display:flex}
+.film__frame{position:relative;width:min(100%, calc((100vh - 130px) * var(--r)));aspect-ratio:var(--r);background:#000}
+.film__frame iframe,.film__frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.film__meta{margin-top:14px;color:#cfcbc1;text-align:center}
+.film__btn{position:fixed;top:20px;z-index:3;padding:9px 16px;border-radius:100px;color:var(--bone);background:rgba(250,249,245,.12);border:1px solid rgba(250,249,245,.4);transition:background .25s,color .25s}
+.film__btn:hover{background:var(--bone);color:var(--black)}
+.film__btn--back{left:20px}
+.film__btn--proj{right:20px}
+.film__btn[hidden]{display:none}
+
+/* ---------- Ampliação das fotos ---------- */
+.lbox{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:clamp(56px,6vw,96px) max(clamp(16px,6vw,112px), calc(clamp(8px,2vw,32px) + 60px));background:rgba(0,0,0,.96)}
+.lbox.is-open{display:flex}
+.lbox figure{display:flex;flex-direction:column;align-items:center;gap:16px;max-width:100%;max-height:100%}
+.lbox img{max-width:100%;max-height:calc(100vh - 160px);width:auto;height:auto;object-fit:contain}
+.lbox figcaption{color:#a59f93}
+.lbox__nav{position:fixed;top:50%;z-index:3;width:48px;height:48px;margin-top:-24px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(250,249,245,.12);color:var(--bone);font-family:var(--font-mono);font-size:20px;transition:background .25s,color .25s}
+.lbox__nav:hover{background:var(--bone);color:var(--black)}
+.lbox__nav--prev{left:clamp(8px,2vw,32px)}
+.lbox__nav--next{right:clamp(8px,2vw,32px)}
+
+/* ---------- Responsivo ---------- */
+/* Até 1199px o menu desce e flutua embaixo, centralizado (o logo fica no topo) */
+@media (max-width:1199px){
+  .pills.menu{top:auto;right:auto;bottom:14px;left:50%;transform:translateX(-50%)}
+  .foot{padding-bottom:96px}
+  .foot__mid .pills{display:none}
 }
-.bb-cta__button:hover{transform:translateY(-3px);background:var(--bone)}
-.bb-cta__button .arrow{font-family:var(--font-mono);font-weight:400}
-.bb-cta__sticker{margin-top:8px}
-
-/* ---------- Contact ---------- */
-.contact{padding:var(--pad-section) clamp(20px,4vw,72px);text-align:center;background:var(--bone);color:var(--dark);position:relative}
-.contact__reprise{font-family:var(--font-display);font-size:clamp(64px,10vw,180px);font-weight:700;line-height:.95;letter-spacing:-0.03em;margin:0 0 clamp(32px,4vw,56px) 0}
-.contact__reprise .paren{color:var(--alright-orange);font-weight:700}
-.contact__cta{
-  display:inline-flex;align-items:center;gap:14px;
-  padding:20px 32px;border-radius:var(--radius-pill);
-  background:var(--dark);color:var(--bone);
-  font-family:var(--font-sans);font-size:clamp(18px,1.6vw,24px);font-weight:500;letter-spacing:-0.01em;
-  transition:transform .6s var(--ease-cine), background .4s var(--ease-cine);
+@media (max-width:899px){
+  .logo{top:12px}
+  .logo img{height:28px}
+  .dhead,.lead{grid-template-columns:1fr;gap:18px}
+  .lead{padding-top:36px}
+  .vhead{padding-top:40px}
+  .label{letter-spacing:.18em}
+  .plist a{grid-template-columns:36px 1fr;padding:20px 4px;gap:12px}
+  .plist__t,.plist__k{display:none}
+  .pcursor{display:none}
+  .pplayer{width:min(100%, calc((100vh - 200px) * var(--r)));width:min(100%, calc((100svh - 200px) * var(--r)))}
+  .pplayer__open::before{width:56px;height:56px;background-size:22px}
+  .pplayer__nav{width:34px;height:50px;margin-top:-25px;font-size:20px}
+  .pplayer__nav--prev{left:8px}
+  .pplayer__nav--next{right:8px}
+  .pplayer__count{bottom:8px}
+  .foot__bar{grid-template-columns:1fr;justify-items:center;text-align:center;gap:22px}
+  .foot__links{justify-self:center;justify-content:center}
+  .film__btn{top:12px}
+  .film__btn--back{left:12px}
+  .film__btn--proj{right:12px}
+  .lbox{padding-inline:clamp(16px,6vw,112px)}
+  .lbox__nav{top:auto;bottom:20px;margin-top:0}
 }
-.contact__cta:hover{transform:translateY(-3px);background:var(--alright-orange);color:var(--dark)}
-.contact__rows{margin-top:clamp(40px,4vw,64px);display:flex;flex-direction:column;align-items:center;gap:14px}
-.contact__row{font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
-.contact__row a{color:var(--alright-orange-deep);transition:color .3s var(--ease-cine)}
-.contact__row a:hover{color:var(--alright-orange)}
-.contact__stickers{margin-top:32px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-
-/* ---------- Footer ---------- */
-.footer{padding:clamp(80px,9vw,140px) clamp(20px,4vw,72px) 56px;text-align:center;background:var(--dark);color:var(--bone)}
-.footer__lockup{display:flex;justify-content:center}
-.footer__lockup img{max-width:min(320px,55vw);height:auto}
-.footer__meta{margin-top:clamp(40px,5vw,72px);display:flex;flex-direction:column;align-items:center;gap:18px}
-.footer__row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9d978a}
-.footer__row span{display:inline-flex;align-items:center;gap:8px}
-.footer__row span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--alright-orange);display:inline-block}
-.footer__row a{color:#9d978a;transition:color .3s var(--ease-cine)}
-.footer__row a:hover{color:var(--alright-orange)}
-.footer__brand{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:10px}
-.footer__brand img{width:120px;height:auto}
-.footer__year{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7a7468}
-
-/* ---------- Reveal animations ---------- */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease-cine), transform .8s var(--ease-cine)}
-.reveal.is-visible{opacity:1;transform:none}
-/* Full-bleed sections must not translate — would create gaps between sections */
-.case.reveal,.manifesto.reveal{transform:none}
-
-/* ---------- Responsive ---------- */
-@media (max-width:1024px){
-  .col-3,.col-4{grid-column:span 6}
-  .col-5,.col-6,.col-7,.col-8,.col-9{grid-column:span 12}
-  .case,.manifesto{grid-template-columns:1fr;min-height:auto}
-  .case--flip .case__text,.manifesto--flip .manifesto__text{order:1}
-  .case--flip .case__media,.manifesto--flip .manifesto__media{order:2}
-  .case__media,.manifesto__media{min-height:60vh}
-  .case__text{padding:clamp(48px,7vw,80px) clamp(28px,5vw,56px)}
+@media (max-width:440px){
+  .pills{gap:0;padding:3px}
+  .pill{padding:6px 17px;font-size:10px;letter-spacing:.05em}
+  .pill[aria-current="page"]::before{left:2px}
+  .pill[aria-current="page"]::after{right:2px}
 }
-@media (max-width:768px){
-  :root{--pad-section:88px}
-  .col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-12{grid-column:span 12}
-  .nav__brand{margin-right:4px}
-  .nav__brand img{height:16px}
-  .nav{padding:6px 8px;max-width:calc(100vw - 16px)}
-  .hero{padding:96px 20px 80px}
-  .hero__title{font-size:clamp(56px,17vw,120px)}
-  .hero__sub{font-size:11px}
-  .hero__eyebrow{font-size:10.5px;text-align:right;max-width:200px}
-  .section-pad,.cases-banner,.stills{padding-left:20px;padding-right:20px}
-  .stills__grid{--row:150px}
-  .stills-modal__nav{top:auto;bottom:20px;transform:none}
-  .case__title{font-size:clamp(44px,11vw,84px)}
-  .case__media{min-height:54vh}
-  .case__text{padding:64px 24px;gap:18px}
-  .h-lg{font-size:clamp(36px,9vw,72px)}
-  .h-md{font-size:clamp(24px,7vw,40px)}
-  .h-mega{font-size:clamp(48px,14vw,96px) !important}
-  .body{font-size:16px;line-height:1.55}
-  .card{padding:24px}
-  .manifesto__text{padding:48px 24px}
-  .manifesto__media{min-height:54vh}
-  .contact__reprise{font-size:clamp(52px,16vw,120px)}
-  .bb-cta__hd{font-size:clamp(32px,9vw,64px)}
-  .footer{padding:64px 20px}
-  .footer__lockup img{max-width:90vw}
+@media (max-width:359px){
+  .pill{padding:6px 14px;font-size:9px;letter-spacing:.03em}
+  .pill[aria-current="page"]::before{left:1px}
+  .pill[aria-current="page"]::after{right:1px}
 }
-@media (max-width:480px){
-  :root{--pad-section:72px;--gap-card:14px}
-  .nav{top:8px;padding:5px 6px;gap:0}
-  .nav a.nav__link{padding:6px 9px;font-size:10px;letter-spacing:.08em}
-  .nav__brand{margin-right:4px}
-  .sticker{font-size:10px;padding:5px 9px}
-  .hero__title{font-size:clamp(48px,16vw,96px)}
-  .hero__eyebrow{font-size:10px}
-  .h-lg{font-size:clamp(32px,9vw,56px)}
-  .h-mega{font-size:clamp(40px,13vw,80px) !important}
-  .case__title{font-size:clamp(40px,12vw,72px)}
-  .contact__reprise{font-size:clamp(44px,15vw,96px)}
-  .bb-cta__button,.contact__cta{padding:16px 22px;font-size:16px}
-  .footer__row{flex-wrap:wrap;gap:8px;font-size:12px}
-}
-
-/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
-  .reveal{opacity:1;transform:none}
-  video[autoplay]{display:none !important}
-  .hero__video{display:none}
-  .hero{background:var(--dark) url('assets/work/web/fundo-em-play-poster.jpg') center/cover no-repeat}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
 }
 </style>
+<noscript><style>.view[data-view="home"]{display:block}.tile video{display:none}</style></noscript>
 </head>
 <body>
 
-<a class="skip" href="#main">Pular para o conteúdo</a>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- ===================== NAV ===================== -->
-<nav class="nav" id="nav" aria-label="Navegação principal">
-  <span class="nav__brand">
-    <img src="assets/logo/v3/Wordmark_Black.png?v=v3" alt="Alright" />
-  </span>
-  <div class="nav__links">
-    <a class="nav__link" href="#cases">Cases</a>
-    <a class="nav__link" href="#stills">Stills</a>
-    <a class="nav__link" href="#contato">Contato</a>
+<!-- ===================== BARRA SUPERIOR ===================== -->
+<header class="head">
+  <a class="logo" href="#home" aria-label="Alright — início"><img src="assets/logo/v3/Wordmark_White.png?v=v3" alt="Alright" width="526" height="159" /></a>
+  <nav class="pills menu mono" aria-label="Navegação principal">
+    <a class="pill" href="#projetos" data-nav="projetos">Projetos</a>
+    <a class="pill" href="#stills" data-nav="stills">Stills</a>
+    <a class="pill" href="#autorais" data-nav="autorais">Autorais</a>
+    <a class="pill" href="#contato" data-nav="contato">Contato</a>
+  </nav>
+</header>
+
+<main id="conteudo" tabindex="-1">
+
+<!-- ===================== INÍCIO ===================== -->
+<section class="view" data-view="home" data-title="Alright — A.I. Done Right · ((Look again.))" aria-labelledby="home-title">
+  <h1 id="home-title" class="sr" tabindex="-1" data-focus>Alright — A.I. Done Right</h1>
+<div class="mosaic mosaic--d">
+  <div class="mrow">
+    <div class="mcol" style="--g:0.6667">
+      <figure class="cell" style="--r:1.7778;--mo:0">
+        <button class="tile" type="button" data-film="puma-portugal" aria-label="PUMA — Portugal. Assistir">
+          <img src="assets/work/grid/puma-portugal-768.jpg" srcset="assets/work/grid/puma-portugal-768.jpg 768w, assets/work/grid/puma-portugal-1280.jpg 1280w, assets/work/grid/puma-portugal-1920.jpg 1920w" sizes="(max-width:899px) 100vw, 67vw" width="768" height="432" alt="" fetchpriority="high" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-1280.mp4" data-src-lg="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-1920.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>PUMA</b><span>Portugal</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.3333">
+      <figure class="cell" style="--r:1.7778;--mo:1">
+        <button class="tile" type="button" data-film="caixa-taekwondo" aria-label="Caixa — Taekwondo. Assistir">
+          <img src="assets/work/grid/caixa-taekwondo-768.jpg" srcset="assets/work/grid/caixa-taekwondo-768.jpg 768w, assets/work/grid/caixa-taekwondo-1280.jpg 1280w, assets/work/grid/caixa-taekwondo-1920.jpg 1920w" sizes="(max-width:899px) 100vw, 33vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-1280.mp4" data-src-lg="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-1920.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Caixa</b><span>Taekwondo</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:2">
+        <button class="tile" type="button" data-film="olympikus-corre5-full" aria-label="Olympikus — Corre 5. Assistir">
+          <img src="assets/work/grid/olympikus-corre5-full-768.jpg" srcset="assets/work/grid/olympikus-corre5-full-768.jpg 768w, assets/work/grid/olympikus-corre5-full-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 33vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/olympikus-corre5-full-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/olympikus-corre5-full-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Olympikus</b><span>Corre 5</span></figcaption>
+      </figure>
+    </div>
   </div>
-</nav>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.1938">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:5">
+        <button class="tile" type="button" data-film="chupa-chups-art-gallery" aria-label="Chupa Chups — Art Gallery. Assistir">
+          <img src="assets/work/grid/chupa-chups-art-gallery-720.jpg" srcset="assets/work/grid/chupa-chups-art-gallery-720.jpg 720w" sizes="(max-width:899px) 50vw, 20vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-art-gallery-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-art-gallery-720.mp4"></video>
 
-<main id="main">
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Art Gallery</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.3062">
+      <figure class="cell" style="--r:1.7778;--mo:3">
+        <button class="tile" type="button" data-film="mizuno-botafogo" aria-label="Mizuno x Botafogo — Lançamento da collab. Assistir">
+          <img src="assets/work/grid/mizuno-botafogo-768.jpg" srcset="assets/work/grid/mizuno-botafogo-768.jpg 768w, assets/work/grid/mizuno-botafogo-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 31vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mizuno-botafogo-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mizuno-botafogo-1280.mp4"></video>
 
-<!-- ===================== 1. HERO ===================== -->
-<section class="hero" aria-label="Hero">
-  <video class="hero__video" autoplay muted loop playsinline preload="metadata"
-    poster="assets/work/web/fundo-em-play-poster.jpg"
-    aria-hidden="true">
-    <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fundo-em-play.mp4" type="video/mp4" />
-  </video>
-  <div class="hero__scrim" aria-hidden="true"></div>
-  <div class="hero__inner">
-    <div class="hero__topbar">
-      <div class="hero__chips">
-        <span class="sticker sticker--ghost-bone rot-2">(( look again ))</span>
-        <span class="sticker sticker--ghost-bone rot1">(( a.i. first ))</span>
-      </div>
-      <span class="hero__eyebrow">A.I. first<br/>Production Company<br/>São Paulo / BR</span>
+        </button>
+        <figcaption class="cap"><b>Mizuno x Botafogo</b><span>Lançamento da collab</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:4">
+        <button class="tile" type="button" data-film="azul-outubro-rosa" aria-label="Azul — Outubro Rosa. Assistir">
+          <img src="assets/work/grid/azul-outubro-rosa-768.jpg" srcset="assets/work/grid/azul-outubro-rosa-768.jpg 768w, assets/work/grid/azul-outubro-rosa-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 31vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/azul-outubro-rosa-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/azul-outubro-rosa-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Azul</b><span>Outubro Rosa</span></figcaption>
+      </figure>
     </div>
-    <div class="hero__center">
-      <h1 class="hero__title hero__title--logo" aria-label="Alright">
-        <img src="assets/logo/v3/Logo_White.png?v=v3" alt="Alright — A.I. first Production Co." />
-      </h1>
-      <span class="hero__sub">A.I. First Production Company.</span>
+    <div class="mcol" style="--g:0.1938">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:6">
+        <button class="tile" type="button" data-film="chupa-chups-surreal-dream" aria-label="Chupa Chups — Surreal Dream. Assistir">
+          <img src="assets/work/grid/chupa-chups-surreal-dream-720.jpg" srcset="assets/work/grid/chupa-chups-surreal-dream-720.jpg 720w" sizes="(max-width:899px) 50vw, 20vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-dream-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-dream-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Surreal Dream</span></figcaption>
+      </figure>
     </div>
-    <div style="display:flex;justify-content:center">
-      <span class="hero__cue"><span class="dot" aria-hidden="true"></span> scroll · cases</span>
+    <div class="mcol" style="--g:0.3062">
+      <figure class="cell" style="--r:1.7778;--mo:7">
+        <button class="tile" type="button" data-film="enem-tv" aria-label="ENEM — TV. Assistir">
+          <img src="assets/work/grid/enem-tv-768.jpg" srcset="assets/work/grid/enem-tv-768.jpg 768w, assets/work/grid/enem-tv-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 31vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-tv-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-tv-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>ENEM</b><span>TV</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:8">
+        <button class="tile" type="button" data-film="brime-sexta-na-quarta" aria-label="Brime — Tem uma sexta na minha quarta. Assistir">
+          <img src="assets/work/grid/brime-sexta-na-quarta-768.jpg" srcset="assets/work/grid/brime-sexta-na-quarta-768.jpg 768w, assets/work/grid/brime-sexta-na-quarta-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 31vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/brime-sexta-na-quarta-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/brime-sexta-na-quarta-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Brime</b><span>Tem uma sexta na minha quarta</span></figcaption>
+      </figure>
     </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.2021">
+      <figure class="cell" style="--r:1.7778;--mo:9">
+        <button class="tile" type="button" data-film="fies" aria-label="FIES — Filme. Assistir">
+          <img src="assets/work/grid/fies-768.jpg" srcset="assets/work/grid/fies-768.jpg 768w, assets/work/grid/fies-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 20vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fies-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fies-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>FIES</b><span>Filme</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:10">
+        <button class="tile" type="button" data-film="mec-livros" aria-label="MEC Livros — Filme. Assistir">
+          <img src="assets/work/grid/mec-livros-768.jpg" srcset="assets/work/grid/mec-livros-768.jpg 768w, assets/work/grid/mec-livros-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 20vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mec-livros-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mec-livros-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>MEC Livros</b><span>Filme</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:11">
+        <button class="tile" type="button" data-film="bauducco-collab-fini" aria-label="Bauducco — Collab Fini. Assistir">
+          <img src="assets/work/grid/bauducco-collab-fini-768.jpg" srcset="assets/work/grid/bauducco-collab-fini-768.jpg 768w, assets/work/grid/bauducco-collab-fini-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 20vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+
+        </button>
+        <span class="live" data-film-live="bauducco-collab-fini" aria-hidden="true"></span>
+        <figcaption class="cap"><b>Bauducco</b><span>Collab Fini</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.6062">
+      <figure class="cell" style="--r:1.7778;--mo:12">
+        <button class="tile" type="button" data-film="enem-monstro" aria-label="ENEM — Pedro Sampaio. Assistir">
+          <img src="assets/work/grid/enem-monstro-768.jpg" srcset="assets/work/grid/enem-monstro-768.jpg 768w, assets/work/grid/enem-monstro-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 61vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-monstro-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-monstro-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>ENEM</b><span>Pedro Sampaio</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.1918">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:16">
+        <button class="tile" type="button" data-film="chupa-chups-surreal-unboxing" aria-label="Chupa Chups — Surreal Unboxing. Assistir">
+          <img src="assets/work/grid/chupa-chups-surreal-unboxing-720.jpg" srcset="assets/work/grid/chupa-chups-surreal-unboxing-720.jpg 720w" sizes="(max-width:899px) 50vw, 20vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-unboxing-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-unboxing-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Surreal Unboxing</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.5506">
+      <figure class="cell" style="--r:1.7778;--mo:13">
+        <button class="tile" type="button" data-film="negra-li-visual" aria-label="Negra Li — Lollapalooza. Assistir">
+          <img src="assets/work/grid/negra-li-visual-768.jpg" srcset="assets/work/grid/negra-li-visual-768.jpg 768w, assets/work/grid/negra-li-visual-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 55vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/negra-li-visual-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/negra-li-visual-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Negra Li</b><span>Lollapalooza</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.2753">
+      <figure class="cell" style="--r:1.7778;--mo:14">
+        <button class="tile" type="button" data-film="santa" aria-label="Santa — Filme. Assistir">
+          <img src="assets/work/grid/santa-768.jpg" srcset="assets/work/grid/santa-768.jpg 768w, assets/work/grid/santa-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 28vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/santa-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/santa-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Santa</b><span>Filme</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:15">
+        <button class="tile" type="button" data-film="hbo-max-paulistao" aria-label="HBO Max — Paulistão. Assistir">
+          <img src="assets/work/grid/hbo-max-paulistao-768.jpg" srcset="assets/work/grid/hbo-max-paulistao-768.jpg 768w, assets/work/grid/hbo-max-paulistao-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 28vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/hbo-max-paulistao-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/hbo-max-paulistao-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>HBO Max</b><span>Paulistão</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.1742">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:17">
+        <button class="tile" type="button" data-film="chupa-chups-forever-fun" aria-label="Chupa Chups — Forever Fun. Assistir">
+          <img src="assets/work/grid/chupa-chups-forever-fun-720.jpg" srcset="assets/work/grid/chupa-chups-forever-fun-720.jpg 720w" sizes="(max-width:899px) 50vw, 20vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-forever-fun-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-forever-fun-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Forever Fun</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+<div class="mosaic mosaic--t">
+  <div class="mrow">
+    <div class="mcol" style="--g:1.0000">
+      <figure class="cell" style="--r:1.7778;--mo:0">
+        <button class="tile" type="button" data-film="puma-portugal" aria-label="PUMA — Portugal. Assistir">
+          <img src="assets/work/grid/puma-portugal-768.jpg" srcset="assets/work/grid/puma-portugal-768.jpg 768w, assets/work/grid/puma-portugal-1280.jpg 1280w, assets/work/grid/puma-portugal-1920.jpg 1920w" sizes="(max-width:899px) 100vw, 100vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-1280.mp4" data-src-lg="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-1920.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>PUMA</b><span>Portugal</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.3875">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:5">
+        <button class="tile" type="button" data-film="chupa-chups-art-gallery" aria-label="Chupa Chups — Art Gallery. Assistir">
+          <img src="assets/work/grid/chupa-chups-art-gallery-720.jpg" srcset="assets/work/grid/chupa-chups-art-gallery-720.jpg 720w" sizes="(max-width:899px) 50vw, 39vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-art-gallery-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-art-gallery-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Art Gallery</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.6125">
+      <figure class="cell" style="--r:1.7778;--mo:1">
+        <button class="tile" type="button" data-film="caixa-taekwondo" aria-label="Caixa — Taekwondo. Assistir">
+          <img src="assets/work/grid/caixa-taekwondo-768.jpg" srcset="assets/work/grid/caixa-taekwondo-768.jpg 768w, assets/work/grid/caixa-taekwondo-1280.jpg 1280w, assets/work/grid/caixa-taekwondo-1920.jpg 1920w" sizes="(max-width:899px) 100vw, 61vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-1280.mp4" data-src-lg="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-1920.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Caixa</b><span>Taekwondo</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:2">
+        <button class="tile" type="button" data-film="olympikus-corre5-full" aria-label="Olympikus — Corre 5. Assistir">
+          <img src="assets/work/grid/olympikus-corre5-full-768.jpg" srcset="assets/work/grid/olympikus-corre5-full-768.jpg 768w, assets/work/grid/olympikus-corre5-full-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 61vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/olympikus-corre5-full-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/olympikus-corre5-full-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Olympikus</b><span>Corre 5</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.6125">
+      <figure class="cell" style="--r:1.7778;--mo:3">
+        <button class="tile" type="button" data-film="mizuno-botafogo" aria-label="Mizuno x Botafogo — Lançamento da collab. Assistir">
+          <img src="assets/work/grid/mizuno-botafogo-768.jpg" srcset="assets/work/grid/mizuno-botafogo-768.jpg 768w, assets/work/grid/mizuno-botafogo-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 61vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mizuno-botafogo-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mizuno-botafogo-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Mizuno x Botafogo</b><span>Lançamento da collab</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:4">
+        <button class="tile" type="button" data-film="azul-outubro-rosa" aria-label="Azul — Outubro Rosa. Assistir">
+          <img src="assets/work/grid/azul-outubro-rosa-768.jpg" srcset="assets/work/grid/azul-outubro-rosa-768.jpg 768w, assets/work/grid/azul-outubro-rosa-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 61vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/azul-outubro-rosa-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/azul-outubro-rosa-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Azul</b><span>Outubro Rosa</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.3875">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:6">
+        <button class="tile" type="button" data-film="chupa-chups-surreal-dream" aria-label="Chupa Chups — Surreal Dream. Assistir">
+          <img src="assets/work/grid/chupa-chups-surreal-dream-720.jpg" srcset="assets/work/grid/chupa-chups-surreal-dream-720.jpg 720w" sizes="(max-width:899px) 50vw, 39vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-dream-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-dream-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Surreal Dream</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.7597">
+      <figure class="cell" style="--r:1.7778;--mo:7">
+        <button class="tile" type="button" data-film="enem-monstro" aria-label="ENEM — Pedro Sampaio. Assistir">
+          <img src="assets/work/grid/enem-monstro-768.jpg" srcset="assets/work/grid/enem-monstro-768.jpg 768w, assets/work/grid/enem-monstro-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 76vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-monstro-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-monstro-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>ENEM</b><span>Pedro Sampaio</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.2403">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:14">
+        <button class="tile" type="button" data-film="chupa-chups-surreal-unboxing" aria-label="Chupa Chups — Surreal Unboxing. Assistir">
+          <img src="assets/work/grid/chupa-chups-surreal-unboxing-720.jpg" srcset="assets/work/grid/chupa-chups-surreal-unboxing-720.jpg 720w" sizes="(max-width:899px) 50vw, 24vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-unboxing-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-unboxing-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Surreal Unboxing</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.6000">
+      <figure class="cell" style="--r:1.7778;--mo:8">
+        <button class="tile" type="button" data-film="enem-tv" aria-label="ENEM — TV. Assistir">
+          <img src="assets/work/grid/enem-tv-768.jpg" srcset="assets/work/grid/enem-tv-768.jpg 768w, assets/work/grid/enem-tv-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 60vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-tv-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-tv-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>ENEM</b><span>TV</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:9">
+        <button class="tile" type="button" data-film="brime-sexta-na-quarta" aria-label="Brime — Tem uma sexta na minha quarta. Assistir">
+          <img src="assets/work/grid/brime-sexta-na-quarta-768.jpg" srcset="assets/work/grid/brime-sexta-na-quarta-768.jpg 768w, assets/work/grid/brime-sexta-na-quarta-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 60vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/brime-sexta-na-quarta-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/brime-sexta-na-quarta-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Brime</b><span>Tem uma sexta na minha quarta</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.4000">
+      <figure class="cell" style="--r:1.7778;--mo:10">
+        <button class="tile" type="button" data-film="fies" aria-label="FIES — Filme. Assistir">
+          <img src="assets/work/grid/fies-768.jpg" srcset="assets/work/grid/fies-768.jpg 768w, assets/work/grid/fies-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 40vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fies-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fies-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>FIES</b><span>Filme</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:11">
+        <button class="tile" type="button" data-film="mec-livros" aria-label="MEC Livros — Filme. Assistir">
+          <img src="assets/work/grid/mec-livros-768.jpg" srcset="assets/work/grid/mec-livros-768.jpg 768w, assets/work/grid/mec-livros-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 40vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mec-livros-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mec-livros-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>MEC Livros</b><span>Filme</span></figcaption>
+      </figure>
+      <figure class="cell" style="--r:1.7778;--mo:12">
+        <button class="tile" type="button" data-film="bauducco-collab-fini" aria-label="Bauducco — Collab Fini. Assistir">
+          <img src="assets/work/grid/bauducco-collab-fini-768.jpg" srcset="assets/work/grid/bauducco-collab-fini-768.jpg 768w, assets/work/grid/bauducco-collab-fini-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 40vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+
+        </button>
+        <span class="live" data-film-live="bauducco-collab-fini" aria-hidden="true"></span>
+        <figcaption class="cap"><b>Bauducco</b><span>Collab Fini</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.7597">
+      <figure class="cell" style="--r:1.7778;--mo:13">
+        <button class="tile" type="button" data-film="negra-li-visual" aria-label="Negra Li — Lollapalooza. Assistir">
+          <img src="assets/work/grid/negra-li-visual-768.jpg" srcset="assets/work/grid/negra-li-visual-768.jpg 768w, assets/work/grid/negra-li-visual-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 76vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/negra-li-visual-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/negra-li-visual-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Negra Li</b><span>Lollapalooza</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.2403">
+      <figure class="cell cell--v" style="--r:0.5624;--mo:15">
+        <button class="tile" type="button" data-film="chupa-chups-forever-fun" aria-label="Chupa Chups — Forever Fun. Assistir">
+          <img src="assets/work/grid/chupa-chups-forever-fun-720.jpg" srcset="assets/work/grid/chupa-chups-forever-fun-720.jpg 720w" sizes="(max-width:899px) 50vw, 24vw" width="720" height="1280" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-forever-fun-720.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-forever-fun-720.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Chupa Chups</b><span>Forever Fun</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:0.5000">
+      <figure class="cell" style="--r:1.7778;--mo:16">
+        <button class="tile" type="button" data-film="santa" aria-label="Santa — Filme. Assistir">
+          <img src="assets/work/grid/santa-768.jpg" srcset="assets/work/grid/santa-768.jpg 768w, assets/work/grid/santa-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 50vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/santa-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/santa-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>Santa</b><span>Filme</span></figcaption>
+      </figure>
+    </div>
+    <div class="mcol" style="--g:0.5000">
+      <figure class="cell" style="--r:1.7778;--mo:17">
+        <button class="tile" type="button" data-film="hbo-max-paulistao" aria-label="HBO Max — Paulistão. Assistir">
+          <img src="assets/work/grid/hbo-max-paulistao-768.jpg" srcset="assets/work/grid/hbo-max-paulistao-768.jpg 768w, assets/work/grid/hbo-max-paulistao-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 50vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/hbo-max-paulistao-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/hbo-max-paulistao-1280.mp4"></video>
+
+        </button>
+        <figcaption class="cap"><b>HBO Max</b><span>Paulistão</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===================== PROJETOS ===================== -->
+<section class="view" data-view="projetos" data-title="Projetos — Alright" aria-labelledby="projetos-title">
+  <div class="wrap">
+    <a class="back" href="#home">← Início</a>
+    <h1 id="projetos-title" class="sr" tabindex="-1" data-focus>Projetos</h1>
+    <span class="label" style="margin-top:30px" aria-hidden="true">Projetos · Trabalhos selecionados</span>
+    <ul class="plist">
+      <li><a href="#projeto=caixa"><span class="plist__n">01</span><span class="plist__c">Caixa</span><span class="plist__t">Taekwondo · Ginástica · Tênis de mesa</span><span class="plist__k">03 filmes</span></a></li>
+      <li><a href="#projeto=puma"><span class="plist__n">02</span><span class="plist__c">PUMA</span><span class="plist__t">Portugal</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=olympikus"><span class="plist__n">03</span><span class="plist__c">Olympikus</span><span class="plist__t">Corre 5</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=chupa-chups"><span class="plist__n">04</span><span class="plist__c">Chupa Chups</span><span class="plist__t">Forever Fun</span><span class="plist__k">04 filmes</span></a></li>
+      <li><a href="#projeto=mizuno"><span class="plist__n">05</span><span class="plist__c">Mizuno x Botafogo</span><span class="plist__t">Lançamento da collab</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=azul"><span class="plist__n">06</span><span class="plist__c">Azul</span><span class="plist__t">Outubro Rosa</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=enem"><span class="plist__n">07</span><span class="plist__c">ENEM</span><span class="plist__t">TV e digital</span><span class="plist__k">03 filmes</span></a></li>
+      <li><a href="#projeto=fies"><span class="plist__n">08</span><span class="plist__c">FIES</span><span class="plist__t">Filme</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=mec-livros"><span class="plist__n">09</span><span class="plist__c">MEC Livros</span><span class="plist__t">Filme</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=brime"><span class="plist__n">10</span><span class="plist__c">Brime</span><span class="plist__t">Tem uma sexta na minha quarta</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=negra-li"><span class="plist__n">11</span><span class="plist__c">Negra Li</span><span class="plist__t">Lollapalooza 2026</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=santa"><span class="plist__n">12</span><span class="plist__c">Santa</span><span class="plist__t">Filme</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=hbo-max"><span class="plist__n">13</span><span class="plist__c">HBO Max</span><span class="plist__t">Paulistão</span><span class="plist__k">01 filme</span></a></li>
+      <li><a href="#projeto=bauducco"><span class="plist__n">14</span><span class="plist__c">Bauducco</span><span class="plist__t">Collab Fini</span><span class="plist__k">01 filme</span></a></li>
+    </ul>
   </div>
 </section>
 
-<a id="cases"></a>
-
-<!-- ===================== CASE 01 · PUMA · PORTUGAL ===================== -->
-<article class="case bg-mist reveal" aria-labelledby="case-puma">
-  <div class="case__text">
-    <h3 id="case-puma" class="case__title">PUMA<br/>Portugal.</h3>
-    <p class="case__copy">Lançamento da nova camisa da seleção de Portugal.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1191599038" data-vimeo-title="PUMA Portugal" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/puma-portugal-poster.jpg"
-      aria-label="PUMA Portugal">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/puma-portugal.mp4?v=full" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 02 · CHUPA CHUPS · SURREALISM SERIES ===================== -->
-<article class="case case--flip bg-orange reveal" aria-labelledby="case-chupa">
-  <div class="case__text">
-    <h3 id="case-chupa" class="case__title">Chupa Chups.<br/>Forever Fun.</h3>
-    <p class="case__copy">Série de vídeos. VFX.</p>
-  </div>
-  <div class="case__media">
-    <div class="series-grid" aria-label="Chupa Chups · série">
-      <div data-vimeo-id="1191600944" data-vimeo-title="Chupa Chups · Art Gallery" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/chupa-chups-art-gallery-poster.jpg"
-          aria-label="Chupa Chups · Art Gallery">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-art-gallery.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1191600943" data-vimeo-title="Chupa Chups · Surreal Dream" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/chupa-chups-surreal-dream-poster.jpg"
-          aria-label="Chupa Chups · Surreal Dream">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-dream.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1191600942" data-vimeo-title="Chupa Chups · Surreal Unboxing" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/chupa-chups-surreal-unboxing-poster.jpg"
-          aria-label="Chupa Chups · Surreal Unboxing">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-surreal-unboxing.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1191599456" data-vimeo-title="Chupa Chups · Forever Fun" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/chupa-chups-forever-fun-poster.jpg"
-          aria-label="Chupa Chups · Forever Fun">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/chupa-chups-forever-fun.mp4" type="video/mp4" />
-        </video>
-      </div>
+<!-- ===================== PROJETO · CAIXA ===================== -->
+<section class="view" data-view="projeto" data-slug="caixa" data-films="caixa-taekwondo,caixa-ginastica,caixa-tenis-de-mesa" data-title="Caixa — Alright" aria-labelledby="p-caixa">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/caixa-taekwondo-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Caixa — Taekwondo"></button>
+      <button class="pplayer__nav pplayer__nav--prev" type="button" aria-label="Filme anterior">‹</button>
+      <button class="pplayer__nav pplayer__nav--next" type="button" aria-label="Próximo filme">›</button>
+      <span class="pplayer__count mono" aria-live="polite"></span>
     </div>
-  </div>
-</article>
-
-<!-- ===================== CASE 03 · OLYMPIKUS ===================== -->
-<article class="case bg-bone reveal" aria-labelledby="case-olympikus">
-  <div class="case__text">
-    <h3 id="case-olympikus" class="case__title case__title--fit" style="--fit:7.5vw">Olympikus.<br/>Corre 5.</h3>
-    <p class="case__copy">Lançamento do novo modelo Corre 5.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1192635125" data-vimeo-title="Olympikus · Corre 5" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/olympikus-corre5-full-poster.jpg"
-      aria-label="Olympikus Corre 5">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/olympikus-corre5-full.mp4?v=16x9" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 04 · MIZUNO · BOTAFOGO ===================== -->
-<article class="case case--flip bg-dark reveal" aria-labelledby="case-mizuno">
-  <div class="case__text">
-    <h3 id="case-mizuno" class="case__title">Mizuno x<br/>Botafogo.</h3>
-    <p class="case__copy">Lançamento da Collab com o Botafogo F.R.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1191597286" data-vimeo-title="Mizuno x Botafogo" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/mizuno-botafogo-poster.jpg"
-      aria-label="Mizuno x Botafogo">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mizuno-botafogo.mp4?v=landscape" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 05 · AZUL · OUTUBRO ROSA ===================== -->
-<article class="case bg-bone reveal" aria-labelledby="case-azul">
-  <div class="case__text">
-    <h3 id="case-azul" class="case__title">Azul.<br/>Outubro Rosa.</h3>
-    <p class="case__copy">Filme para a campanha Outubro Rosa.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1239992137" data-vimeo-title="Azul · Outubro Rosa" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/azul-outubro-rosa-poster.jpg"
-      aria-label="Azul · Outubro Rosa">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/azul-outubro-rosa.mp4" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 06 · ENEM ===================== -->
-<article class="case case--flip bg-dark reveal" aria-labelledby="case-enem">
-  <div class="case__text">
-    <h3 id="case-enem" class="case__title">ENEM.</h3>
-    <p class="case__copy">Campanha para TV e digital.</p>
-  </div>
-  <div class="case__media">
-    <div class="series-grid series-grid--v-2" aria-label="ENEM · campanha">
-      <div data-vimeo-id="1239991906" data-vimeo-title="ENEM · Digital" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/enem-digital-poster.jpg"
-          aria-label="ENEM · Digital">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/enem-digital.mp4" type="video/mp4" />
-        </video>
+    <div class="dhead">
+      <div>
+        <h1 id="p-caixa" class="ptitle" tabindex="-1" data-focus>Caixa.</h1>
+        <p class="psub">Taekwondo · Ginástica · Tênis de mesa</p>
       </div>
-      <div data-vimeo-id="1239991895" data-vimeo-title="ENEM · TV" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/enem-tv-poster.jpg"
-          aria-label="ENEM · TV">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/enem-tv.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239991836" data-vimeo-title="ENEM · Monstro" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/enem-monstro-poster.jpg"
-          aria-label="ENEM · Monstro">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/enem-monstro.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <p class="pcopy">Série de filmes: taekwondo, ginástica e tênis de mesa.</p>
     </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
-</article>
+</section>
 
-<!-- ===================== CASE 07 · FIES ===================== -->
-<article class="case bg-mist reveal" aria-labelledby="case-fies">
-  <div class="case__text">
-    <h3 id="case-fies" class="case__title">FIES.</h3>
-    <p class="case__copy">Filme para o FIES.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1239992136" data-vimeo-title="FIES" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/fies-poster.jpg"
-      aria-label="FIES">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fies.mp4" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 08 · MEC LIVROS ===================== -->
-<article class="case case--flip bg-bone reveal" aria-labelledby="case-mec-livros">
-  <div class="case__text">
-    <h3 id="case-mec-livros" class="case__title">MEC<br/>Livros.</h3>
-    <p class="case__copy">Filme para o MEC Livros.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1239991818" data-vimeo-title="MEC Livros" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/mec-livros-poster.jpg"
-      aria-label="MEC Livros">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/mec-livros.mp4" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 09 · CAIXA ===================== -->
-<article class="case bg-dark reveal" aria-labelledby="case-caixa">
-  <div class="case__text">
-    <h3 id="case-caixa" class="case__title">Caixa.</h3>
-    <p class="case__copy">Série de filmes: taekwondo, ginástica e tênis de mesa.</p>
-  </div>
-  <div class="case__media">
-    <div class="series-grid series-grid--1-2" aria-label="Caixa · série">
-      <div data-vimeo-id="1239992138" data-vimeo-title="Caixa · Taekwondo" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/caixa-taekwondo-poster.jpg"
-          aria-label="Caixa · Taekwondo">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/caixa-taekwondo.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239992223" data-vimeo-title="Caixa · Ginástica" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/caixa-ginastica-poster.jpg"
-          aria-label="Caixa · Ginástica">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/caixa-ginastica.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239992159" data-vimeo-title="Caixa · Tênis de mesa" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/caixa-tenis-de-mesa-poster.jpg"
-          aria-label="Caixa · Tênis de mesa">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/caixa-tenis-de-mesa.mp4" type="video/mp4" />
-        </video>
-      </div>
+<!-- ===================== PROJETO · PUMA ===================== -->
+<section class="view" data-view="projeto" data-slug="puma" data-films="puma-portugal" data-title="PUMA — Alright" aria-labelledby="p-puma">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/puma-portugal-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir PUMA — Portugal"></button>
     </div>
-  </div>
-</article>
-
-<!-- ===================== CASE 10 · BRIME ===================== -->
-<article class="case case--flip bg-bone reveal" aria-labelledby="case-brime">
-  <div class="case__text">
-    <h3 id="case-brime" class="case__title">Brime.<br/>Tem uma sexta<br/>na minha quarta.</h3>
-    <p class="case__copy">Clipe com Febem, Fllezus e Cesrv.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1192047832" data-vimeo-title="Brime · Tem uma sexta na minha quarta" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/brime-sexta-na-quarta-poster.jpg"
-      aria-label="Brime · Tem uma sexta na minha quarta">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/brime-sexta-na-quarta.mp4" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 11 · NEGRA LI ===================== -->
-<article class="case bg-dark reveal" aria-labelledby="case-negra-li">
-  <div class="case__text">
-    <h3 id="case-negra-li" class="case__title case__title--fit" style="--fit:6.4vw">Negra Li<br/>Lollapalooza.</h3>
-    <p class="case__copy">Série de visuais para comemoração de 20 anos de carreira no Lollapalooza 2026.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1192041713" data-vimeo-title="Negra Li · Lollapalooza" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/negra-li-visual-poster.jpg"
-      aria-label="Negra Li">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/negra-li-visual.mp4?v=corte" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 12 · BK · VISUALS ===================== -->
-<article class="case case--flip bg-mist reveal" aria-labelledby="case-bk">
-  <div class="case__text">
-    <h3 id="case-bk" class="case__title">BK.<br/>Visuals.</h3>
-    <p class="case__copy">Série de visuais produzidos para o show do BK.</p>
-  </div>
-  <div class="case__media" data-vimeo-id="1193297750" data-vimeo-title="BK · Visuals" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/bk-visuals-poster.jpg"
-      aria-label="BK Visuals">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/bk-visuals.mp4" type="video/mp4" />
-    </video>
-  </div>
-</article>
-
-<!-- ===================== CASE 13 · FRUITTELLA ===================== -->
-<article class="case bg-orange reveal" aria-labelledby="case-fruittella">
-  <div class="case__text">
-    <h3 id="case-fruittella" class="case__title">Fruittella.</h3>
-    <p class="case__copy">Série de vídeos verticais.</p>
-  </div>
-  <div class="case__media">
-    <div class="series-grid series-grid--3-2" aria-label="Fruittella · série">
-      <div data-vimeo-id="1239992349" data-vimeo-title="Fruittella · Jenga" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/fruittella-jenga-poster.jpg"
-          aria-label="Fruittella · Jenga">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-jenga.mp4" type="video/mp4" />
-        </video>
+    <div class="dhead">
+      <div>
+        <h1 id="p-puma" class="ptitle" tabindex="-1" data-focus>PUMA.</h1>
+        <p class="psub">Portugal</p>
       </div>
-      <div data-vimeo-id="1239992320" data-vimeo-title="Fruittella · Melancia" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/fruittella-melancia-poster.jpg"
-          aria-label="Fruittella · Melancia">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-melancia.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239992240" data-vimeo-title="Fruittella · Boia" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/fruittella-boia-poster.jpg"
-          aria-label="Fruittella · Boia">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-boia.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239992285" data-vimeo-title="Fruittella · Cara a cara" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/fruittella-cara-a-cara-poster.jpg"
-          aria-label="Fruittella · Cara a cara">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-cara-a-cara.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239992291" data-vimeo-title="Fruittella · Feira" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/fruittella-feira-poster.jpg"
-          aria-label="Fruittella · Feira">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fruittella-feira.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <p class="pcopy">Lançamento da nova camisa da seleção de Portugal.</p>
     </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
-</article>
+</section>
 
-<!-- ===================== CASE 14 · SANTA · FILME + LENDAS ===================== -->
-<article class="case case--flip bg-bone reveal" aria-labelledby="case-santa">
-  <div class="case__text">
-    <h3 id="case-santa" class="case__title">Santa.</h3>
-    <p class="case__copy">Filme e série de animações.</p>
-  </div>
-  <div class="case__media">
-    <div class="series-grid series-grid--1-3-2" aria-label="Santa · filme e animações">
-      <div data-vimeo-id="1239991466" data-vimeo-title="Santa" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/santa-poster.jpg"
-          aria-label="Santa">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239991624" data-vimeo-title="Santa · Lenda 1" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/santa-lenda-1-poster.jpg"
-          aria-label="Santa · Lenda 1">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239991620" data-vimeo-title="Santa · Lenda 2" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/santa-lenda-2-poster.jpg"
-          aria-label="Santa · Lenda 2">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-2.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239991619" data-vimeo-title="Santa · Lenda 3" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/santa-lenda-3-poster.jpg"
-          aria-label="Santa · Lenda 3">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-3.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239991622" data-vimeo-title="Santa · Lenda 4" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/santa-lenda-4-poster.jpg"
-          aria-label="Santa · Lenda 4">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-4.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div data-vimeo-id="1239991722" data-vimeo-title="Santa · Lenda 5" role="button" tabindex="0">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="assets/work/web/santa-lenda-5-poster.jpg"
-          aria-label="Santa · Lenda 5">
-          <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/santa-lenda-5.mp4" type="video/mp4" />
-        </video>
-      </div>
+<!-- ===================== PROJETO · OLYMPIKUS ===================== -->
+<section class="view" data-view="projeto" data-slug="olympikus" data-films="olympikus-corre5-full" data-title="Olympikus — Alright" aria-labelledby="p-olympikus">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/olympikus-corre5-full-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Olympikus — Corre 5"></button>
     </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-olympikus" class="ptitle" tabindex="-1" data-focus>Olympikus.</h1>
+        <p class="psub">Corre 5</p>
+      </div>
+      <p class="pcopy">Lançamento do novo modelo Corre 5.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
-</article>
+</section>
 
-<!-- ===================== CASE 15 · HBO MAX · PAULISTÃO ===================== -->
-<article class="case bg-dark reveal" aria-labelledby="case-hbomax">
-  <div class="case__text">
-    <h3 id="case-hbomax" class="case__title">HBO Max.<br/>Paulistão.</h3>
-    <p class="case__copy">Comercial para HBO Max.</p>
+<!-- ===================== PROJETO · CHUPA CHUPS ===================== -->
+<section class="view" data-view="projeto" data-slug="chupa-chups" data-films="chupa-chups-art-gallery,chupa-chups-surreal-dream,chupa-chups-surreal-unboxing,chupa-chups-forever-fun" data-title="Chupa Chups — Alright" aria-labelledby="p-chupa-chups">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:0.5624">
+      <img src="assets/work/grid/chupa-chups-art-gallery-720.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Chupa Chups — Art Gallery"></button>
+      <button class="pplayer__nav pplayer__nav--prev" type="button" aria-label="Filme anterior">‹</button>
+      <button class="pplayer__nav pplayer__nav--next" type="button" aria-label="Próximo filme">›</button>
+      <span class="pplayer__count mono" aria-live="polite"></span>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-chupa-chups" class="ptitle" tabindex="-1" data-focus>Chupa Chups.</h1>
+        <p class="psub">Forever Fun</p>
+      </div>
+      <p class="pcopy">Série de vídeos. VFX.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
-  <div class="case__media" data-vimeo-id="1193297749" data-vimeo-title="HBO Max · Paulistão" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/hbo-max-paulistao-poster.jpg"
-      aria-label="HBO Max Paulistão">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/hbo-max-paulistao.mp4" type="video/mp4" />
-    </video>
-  </div>
-</article>
+</section>
 
-<!-- ===================== CASE 16 · INSTITUTO CALDEIRA ===================== -->
-<article class="case case--flip bg-bone reveal" aria-labelledby="case-caldeira">
-  <div class="case__text">
-    <h3 id="case-caldeira" class="case__title">Instituto<br/>Caldeira.</h3>
-    <p class="case__copy">Every entrepreneur should surf.</p>
+<!-- ===================== PROJETO · MIZUNO X BOTAFOGO ===================== -->
+<section class="view" data-view="projeto" data-slug="mizuno" data-films="mizuno-botafogo" data-title="Mizuno x Botafogo — Alright" aria-labelledby="p-mizuno">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/mizuno-botafogo-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Mizuno x Botafogo — Lançamento da collab"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-mizuno" class="ptitle" tabindex="-1" data-focus>Mizuno x Botafogo.</h1>
+        <p class="psub">Lançamento da collab</p>
+      </div>
+      <p class="pcopy">Lançamento da Collab com o Botafogo F.R.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
-  <div class="case__media" data-vimeo-id="1193297752" data-vimeo-title="Instituto Caldeira" role="button" tabindex="0">
-    <video autoplay muted loop playsinline preload="metadata"
-      poster="assets/work/web/instituto-caldeira-poster.jpg"
-      aria-label="Instituto Caldeira">
-      <source src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/instituto-caldeira.mp4" type="video/mp4" />
-    </video>
+</section>
+
+<!-- ===================== PROJETO · AZUL ===================== -->
+<section class="view" data-view="projeto" data-slug="azul" data-films="azul-outubro-rosa" data-title="Azul — Alright" aria-labelledby="p-azul">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/azul-outubro-rosa-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Azul — Outubro Rosa"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-azul" class="ptitle" tabindex="-1" data-focus>Azul.</h1>
+        <p class="psub">Outubro Rosa</p>
+      </div>
+      <p class="pcopy">Filme para a campanha Outubro Rosa.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
-</article>
+</section>
 
-<!-- ===================== STILLS · SÓ IMAGEM, POR CLIENTE ===================== -->
-<a id="stills"></a>
-<section class="stills bg-dark" aria-labelledby="stills-title">
-  <div class="stills__head reveal">
-    <span class="eyebrow">Fotografia · Key visuals</span>
-    <h2 id="stills-title" class="stills__title">Stills.</h2>
+<!-- ===================== PROJETO · ENEM ===================== -->
+<section class="view" data-view="projeto" data-slug="enem" data-films="enem-tv,enem-digital,enem-monstro" data-title="ENEM — Alright" aria-labelledby="p-enem">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/enem-tv-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir ENEM — TV"></button>
+      <button class="pplayer__nav pplayer__nav--prev" type="button" aria-label="Filme anterior">‹</button>
+      <button class="pplayer__nav pplayer__nav--next" type="button" aria-label="Próximo filme">›</button>
+      <span class="pplayer__count mono" aria-live="polite"></span>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-enem" class="ptitle" tabindex="-1" data-focus>ENEM.</h1>
+        <p class="psub">TV e digital</p>
+      </div>
+      <p class="pcopy">Campanha para TV e digital.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
   </div>
+</section>
 
+<!-- ===================== PROJETO · FIES ===================== -->
+<section class="view" data-view="projeto" data-slug="fies" data-films="fies" data-title="FIES — Alright" aria-labelledby="p-fies">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/fies-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir FIES — Filme"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-fies" class="ptitle" tabindex="-1" data-focus>FIES.</h1>
+        <p class="psub">Filme</p>
+      </div>
+      <p class="pcopy">Filme para o FIES.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
 
-  <div class="stills__group" aria-labelledby="stills-vivo">
-    <div class="stills__client reveal">
-      <h3 id="stills-vivo" class="stills__name">Vivo.</h3>
-      <span class="stills__count">12 imagens</span>
+<!-- ===================== PROJETO · MEC LIVROS ===================== -->
+<section class="view" data-view="projeto" data-slug="mec-livros" data-films="mec-livros" data-title="MEC Livros — Alright" aria-labelledby="p-mec-livros">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/mec-livros-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir MEC Livros — Filme"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-mec-livros" class="ptitle" tabindex="-1" data-focus>MEC Livros.</h1>
+        <p class="psub">Filme</p>
+      </div>
+      <p class="pcopy">Filme para o MEC Livros.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
+
+<!-- ===================== PROJETO · BRIME ===================== -->
+<section class="view" data-view="projeto" data-slug="brime" data-films="brime-sexta-na-quarta" data-title="Brime — Alright" aria-labelledby="p-brime">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/brime-sexta-na-quarta-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Brime — Tem uma sexta na minha quarta"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-brime" class="ptitle" tabindex="-1" data-focus>Brime.</h1>
+        <p class="psub">Tem uma sexta na minha quarta</p>
+      </div>
+      <p class="pcopy">Clipe com Febem, Fllezus e Cesrv.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
+
+<!-- ===================== PROJETO · NEGRA LI ===================== -->
+<section class="view" data-view="projeto" data-slug="negra-li" data-films="negra-li-visual" data-title="Negra Li — Alright" aria-labelledby="p-negra-li">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/negra-li-visual-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Negra Li — Lollapalooza"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-negra-li" class="ptitle" tabindex="-1" data-focus>Negra Li.</h1>
+        <p class="psub">Lollapalooza 2026</p>
+      </div>
+      <p class="pcopy">Série de visuais para comemoração de 20 anos de carreira no Lollapalooza 2026.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
+
+<!-- ===================== PROJETO · SANTA ===================== -->
+<section class="view" data-view="projeto" data-slug="santa" data-films="santa" data-title="Santa — Alright" aria-labelledby="p-santa">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/santa-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Santa — Filme"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-santa" class="ptitle" tabindex="-1" data-focus>Santa.</h1>
+        <p class="psub">Filme</p>
+      </div>
+      <p class="pcopy">Filme para a Santa.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
+
+<!-- ===================== PROJETO · HBO MAX ===================== -->
+<section class="view" data-view="projeto" data-slug="hbo-max" data-films="hbo-max-paulistao" data-title="HBO Max — Alright" aria-labelledby="p-hbo-max">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/hbo-max-paulistao-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir HBO Max — Paulistão"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-hbo-max" class="ptitle" tabindex="-1" data-focus>HBO Max.</h1>
+        <p class="psub">Paulistão</p>
+      </div>
+      <p class="pcopy">Comercial para HBO Max.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
+
+<!-- ===================== PROJETO · BAUDUCCO ===================== -->
+<section class="view" data-view="projeto" data-slug="bauducco" data-films="bauducco-collab-fini" data-title="Bauducco — Alright" aria-labelledby="p-bauducco">
+  <div class="wrap">
+    <a class="back" href="#projetos">← Projetos</a>
+    <div class="pplayer" style="--r:1.7778">
+      <img src="assets/work/grid/bauducco-collab-fini-1280.jpg" alt="" loading="lazy" decoding="async" />
+      <video class="loop" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <span class="live" aria-hidden="true"></span>
+      <button class="pplayer__open" type="button" aria-label="Assistir Bauducco — Collab Fini"></button>
+    </div>
+    <div class="dhead">
+      <div>
+        <h1 id="p-bauducco" class="ptitle" tabindex="-1" data-focus>Bauducco.</h1>
+        <p class="psub">Collab Fini</p>
+      </div>
+      <p class="pcopy">Filme da collab Bauducco e Fini.</p>
+    </div>
+    <a class="pall" href="#projetos">← Todos os projetos</a>
+  </div>
+</section>
+
+<!-- ===================== STILLS ===================== -->
+<section class="view" data-view="stills" data-title="Stills — Alright" aria-labelledby="stills-title">
+  <div class="vhead">
+    <h1 id="stills-title" class="vtitle" tabindex="-1" data-focus>Stills.</h1>
+    <span class="label">Fotografia · Key visuals</span>
+  </div>
+  <div class="stills">
+  <div class="stills__group" role="group" aria-labelledby="ps-vivo">
+    <div class="stills__client">
+      <h2 id="ps-vivo" class="stills__name">Vivo.</h2>
+      <span class="stills__count mono">12 imagens</span>
     </div>
     <div class="stills__grid">
-      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-01-1800.jpg" aria-label="Vivo · imagem 1 de 12">
-        <img src="assets/work/web/stills/vivo-01-900.jpg" srcset="assets/work/web/stills/vivo-01-900.jpg 900w, assets/work/web/stills/vivo-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 01" />
+      <button class="still" type="button" style="--r:0.8050" data-full="assets/work/web/stills/vivo-01-1800.jpg" aria-label="Vivo · imagem 1 de 12">
+        <img src="assets/work/web/stills/vivo-01-900.jpg" srcset="assets/work/web/stills/vivo-01-900.jpg 900w, assets/work/web/stills/vivo-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 01" />
       </button>
       <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-02-1800.jpg" aria-label="Vivo · imagem 2 de 12">
-        <img src="assets/work/web/stills/vivo-02-900.jpg" srcset="assets/work/web/stills/vivo-02-900.jpg 900w, assets/work/web/stills/vivo-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 02" />
+        <img src="assets/work/web/stills/vivo-02-900.jpg" srcset="assets/work/web/stills/vivo-02-900.jpg 900w, assets/work/web/stills/vivo-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 02" />
       </button>
       <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-03-1800.jpg" aria-label="Vivo · imagem 3 de 12">
-        <img src="assets/work/web/stills/vivo-03-900.jpg" srcset="assets/work/web/stills/vivo-03-900.jpg 900w, assets/work/web/stills/vivo-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 03" />
+        <img src="assets/work/web/stills/vivo-03-900.jpg" srcset="assets/work/web/stills/vivo-03-900.jpg 900w, assets/work/web/stills/vivo-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 03" />
       </button>
-      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-04-1800.jpg" aria-label="Vivo · imagem 4 de 12">
-        <img src="assets/work/web/stills/vivo-04-900.jpg" srcset="assets/work/web/stills/vivo-04-900.jpg 900w, assets/work/web/stills/vivo-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 04" />
+      <button class="still" type="button" style="--r:0.8050" data-full="assets/work/web/stills/vivo-04-1800.jpg" aria-label="Vivo · imagem 4 de 12">
+        <img src="assets/work/web/stills/vivo-04-900.jpg" srcset="assets/work/web/stills/vivo-04-900.jpg 900w, assets/work/web/stills/vivo-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 04" />
       </button>
-      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-05-1800.jpg" aria-label="Vivo · imagem 5 de 12">
-        <img src="assets/work/web/stills/vivo-05-900.jpg" srcset="assets/work/web/stills/vivo-05-900.jpg 900w, assets/work/web/stills/vivo-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 05" />
+      <button class="still" type="button" style="--r:0.8050" data-full="assets/work/web/stills/vivo-05-1800.jpg" aria-label="Vivo · imagem 5 de 12">
+        <img src="assets/work/web/stills/vivo-05-900.jpg" srcset="assets/work/web/stills/vivo-05-900.jpg 900w, assets/work/web/stills/vivo-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 05" />
       </button>
-      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-06-1800.jpg" aria-label="Vivo · imagem 6 de 12">
-        <img src="assets/work/web/stills/vivo-06-900.jpg" srcset="assets/work/web/stills/vivo-06-900.jpg 900w, assets/work/web/stills/vivo-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 06" />
+      <button class="still" type="button" style="--r:0.8050" data-full="assets/work/web/stills/vivo-06-1800.jpg" aria-label="Vivo · imagem 6 de 12">
+        <img src="assets/work/web/stills/vivo-06-900.jpg" srcset="assets/work/web/stills/vivo-06-900.jpg 900w, assets/work/web/stills/vivo-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 06" />
       </button>
       <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-07-1800.jpg" aria-label="Vivo · imagem 7 de 12">
-        <img src="assets/work/web/stills/vivo-07-900.jpg" srcset="assets/work/web/stills/vivo-07-900.jpg 900w, assets/work/web/stills/vivo-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 07" />
+        <img src="assets/work/web/stills/vivo-07-900.jpg" srcset="assets/work/web/stills/vivo-07-900.jpg 900w, assets/work/web/stills/vivo-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 07" />
       </button>
-      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-08-1800.jpg" aria-label="Vivo · imagem 8 de 12">
-        <img src="assets/work/web/stills/vivo-08-900.jpg" srcset="assets/work/web/stills/vivo-08-900.jpg 900w, assets/work/web/stills/vivo-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 08" />
+      <button class="still" type="button" style="--r:0.8050" data-full="assets/work/web/stills/vivo-08-1800.jpg" aria-label="Vivo · imagem 8 de 12">
+        <img src="assets/work/web/stills/vivo-08-900.jpg" srcset="assets/work/web/stills/vivo-08-900.jpg 900w, assets/work/web/stills/vivo-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 08" />
       </button>
-      <button class="still" type="button" style="--r:0.805" data-full="assets/work/web/stills/vivo-09-1800.jpg" aria-label="Vivo · imagem 9 de 12">
-        <img src="assets/work/web/stills/vivo-09-900.jpg" srcset="assets/work/web/stills/vivo-09-900.jpg 900w, assets/work/web/stills/vivo-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 09" />
+      <button class="still" type="button" style="--r:0.8050" data-full="assets/work/web/stills/vivo-09-1800.jpg" aria-label="Vivo · imagem 9 de 12">
+        <img src="assets/work/web/stills/vivo-09-900.jpg" srcset="assets/work/web/stills/vivo-09-900.jpg 900w, assets/work/web/stills/vivo-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1449" height="1800" loading="lazy" decoding="async" alt="Vivo · still 09" />
       </button>
       <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-10-1800.jpg" aria-label="Vivo · imagem 10 de 12">
-        <img src="assets/work/web/stills/vivo-10-900.jpg" srcset="assets/work/web/stills/vivo-10-900.jpg 900w, assets/work/web/stills/vivo-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 10" />
+        <img src="assets/work/web/stills/vivo-10-900.jpg" srcset="assets/work/web/stills/vivo-10-900.jpg 900w, assets/work/web/stills/vivo-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 10" />
       </button>
       <button class="still" type="button" style="--r:0.8061" data-full="assets/work/web/stills/vivo-11-1800.jpg" aria-label="Vivo · imagem 11 de 12">
-        <img src="assets/work/web/stills/vivo-11-900.jpg" srcset="assets/work/web/stills/vivo-11-900.jpg 900w, assets/work/web/stills/vivo-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 11" />
+        <img src="assets/work/web/stills/vivo-11-900.jpg" srcset="assets/work/web/stills/vivo-11-900.jpg 900w, assets/work/web/stills/vivo-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1451" height="1800" loading="lazy" decoding="async" alt="Vivo · still 11" />
       </button>
       <button class="still" type="button" style="--r:1.4888" data-full="assets/work/web/stills/vivo-12-1800.jpg" aria-label="Vivo · imagem 12 de 12">
-        <img src="assets/work/web/stills/vivo-12-900.jpg" srcset="assets/work/web/stills/vivo-12-900.jpg 900w, assets/work/web/stills/vivo-12-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1209" loading="lazy" decoding="async" alt="Vivo · still 12" />
+        <img src="assets/work/web/stills/vivo-12-900.jpg" srcset="assets/work/web/stills/vivo-12-900.jpg 900w, assets/work/web/stills/vivo-12-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1800" height="1209" loading="lazy" decoding="async" alt="Vivo · still 12" />
       </button>
     </div>
   </div>
-
-  <div class="stills__group" aria-labelledby="stills-seda">
-    <div class="stills__client reveal">
-      <h3 id="stills-seda" class="stills__name">Seda.</h3>
-      <span class="stills__count">11 imagens</span>
+  <div class="stills__group" role="group" aria-labelledby="ps-seda">
+    <div class="stills__client">
+      <h2 id="ps-seda" class="stills__name">Seda.</h2>
+      <span class="stills__count mono">11 imagens</span>
     </div>
     <div class="stills__grid">
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-01-1800.jpg" aria-label="Seda · imagem 1 de 11">
-        <img src="assets/work/web/stills/seda-01-900.jpg" srcset="assets/work/web/stills/seda-01-900.jpg 900w, assets/work/web/stills/seda-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 01" />
+        <img src="assets/work/web/stills/seda-01-900.jpg" srcset="assets/work/web/stills/seda-01-900.jpg 900w, assets/work/web/stills/seda-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 01" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-02-1800.jpg" aria-label="Seda · imagem 2 de 11">
-        <img src="assets/work/web/stills/seda-02-900.jpg" srcset="assets/work/web/stills/seda-02-900.jpg 900w, assets/work/web/stills/seda-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 02" />
+        <img src="assets/work/web/stills/seda-02-900.jpg" srcset="assets/work/web/stills/seda-02-900.jpg 900w, assets/work/web/stills/seda-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 02" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-03-1800.jpg" aria-label="Seda · imagem 3 de 11">
-        <img src="assets/work/web/stills/seda-03-900.jpg" srcset="assets/work/web/stills/seda-03-900.jpg 900w, assets/work/web/stills/seda-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 03" />
+        <img src="assets/work/web/stills/seda-03-900.jpg" srcset="assets/work/web/stills/seda-03-900.jpg 900w, assets/work/web/stills/seda-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 03" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-04-1800.jpg" aria-label="Seda · imagem 4 de 11">
-        <img src="assets/work/web/stills/seda-04-900.jpg" srcset="assets/work/web/stills/seda-04-900.jpg 900w, assets/work/web/stills/seda-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 04" />
+        <img src="assets/work/web/stills/seda-04-900.jpg" srcset="assets/work/web/stills/seda-04-900.jpg 900w, assets/work/web/stills/seda-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 04" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-05-1800.jpg" aria-label="Seda · imagem 5 de 11">
-        <img src="assets/work/web/stills/seda-05-900.jpg" srcset="assets/work/web/stills/seda-05-900.jpg 900w, assets/work/web/stills/seda-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 05" />
+        <img src="assets/work/web/stills/seda-05-900.jpg" srcset="assets/work/web/stills/seda-05-900.jpg 900w, assets/work/web/stills/seda-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 05" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-06-1800.jpg" aria-label="Seda · imagem 6 de 11">
-        <img src="assets/work/web/stills/seda-06-900.jpg" srcset="assets/work/web/stills/seda-06-900.jpg 900w, assets/work/web/stills/seda-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 06" />
+        <img src="assets/work/web/stills/seda-06-900.jpg" srcset="assets/work/web/stills/seda-06-900.jpg 900w, assets/work/web/stills/seda-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 06" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-07-1800.jpg" aria-label="Seda · imagem 7 de 11">
-        <img src="assets/work/web/stills/seda-07-900.jpg" srcset="assets/work/web/stills/seda-07-900.jpg 900w, assets/work/web/stills/seda-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 07" />
+        <img src="assets/work/web/stills/seda-07-900.jpg" srcset="assets/work/web/stills/seda-07-900.jpg 900w, assets/work/web/stills/seda-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 07" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-08-1800.jpg" aria-label="Seda · imagem 8 de 11">
-        <img src="assets/work/web/stills/seda-08-900.jpg" srcset="assets/work/web/stills/seda-08-900.jpg 900w, assets/work/web/stills/seda-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 08" />
+        <img src="assets/work/web/stills/seda-08-900.jpg" srcset="assets/work/web/stills/seda-08-900.jpg 900w, assets/work/web/stills/seda-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 08" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-09-1800.jpg" aria-label="Seda · imagem 9 de 11">
-        <img src="assets/work/web/stills/seda-09-900.jpg" srcset="assets/work/web/stills/seda-09-900.jpg 900w, assets/work/web/stills/seda-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 09" />
+        <img src="assets/work/web/stills/seda-09-900.jpg" srcset="assets/work/web/stills/seda-09-900.jpg 900w, assets/work/web/stills/seda-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 09" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-10-1800.jpg" aria-label="Seda · imagem 10 de 11">
-        <img src="assets/work/web/stills/seda-10-900.jpg" srcset="assets/work/web/stills/seda-10-900.jpg 900w, assets/work/web/stills/seda-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 10" />
+        <img src="assets/work/web/stills/seda-10-900.jpg" srcset="assets/work/web/stills/seda-10-900.jpg 900w, assets/work/web/stills/seda-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 10" />
       </button>
       <button class="still" type="button" style="--r:0.8056" data-full="assets/work/web/stills/seda-11-1800.jpg" aria-label="Seda · imagem 11 de 11">
-        <img src="assets/work/web/stills/seda-11-900.jpg" srcset="assets/work/web/stills/seda-11-900.jpg 900w, assets/work/web/stills/seda-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 11" />
+        <img src="assets/work/web/stills/seda-11-900.jpg" srcset="assets/work/web/stills/seda-11-900.jpg 900w, assets/work/web/stills/seda-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1450" height="1800" loading="lazy" decoding="async" alt="Seda · still 11" />
       </button>
     </div>
   </div>
-
-  <div class="stills__group" aria-labelledby="stills-santa">
-    <div class="stills__client reveal">
-      <h3 id="stills-santa" class="stills__name">Santa.</h3>
-      <span class="stills__count">09 imagens</span>
+  <div class="stills__group" role="group" aria-labelledby="ps-ca">
+    <div class="stills__client">
+      <h2 id="ps-ca" class="stills__name">C&amp;A.</h2>
+      <span class="stills__count mono">12 imagens</span>
     </div>
     <div class="stills__grid">
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-01-1800.jpg" aria-label="Santa · imagem 1 de 9">
-        <img src="assets/work/web/stills/santa-01-900.jpg" srcset="assets/work/web/stills/santa-01-900.jpg 900w, assets/work/web/stills/santa-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 01" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-02-1800.jpg" aria-label="Santa · imagem 2 de 9">
-        <img src="assets/work/web/stills/santa-02-900.jpg" srcset="assets/work/web/stills/santa-02-900.jpg 900w, assets/work/web/stills/santa-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 02" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-03-1800.jpg" aria-label="Santa · imagem 3 de 9">
-        <img src="assets/work/web/stills/santa-03-900.jpg" srcset="assets/work/web/stills/santa-03-900.jpg 900w, assets/work/web/stills/santa-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 03" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-04-1800.jpg" aria-label="Santa · imagem 4 de 9">
-        <img src="assets/work/web/stills/santa-04-900.jpg" srcset="assets/work/web/stills/santa-04-900.jpg 900w, assets/work/web/stills/santa-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 04" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-05-1800.jpg" aria-label="Santa · imagem 5 de 9">
-        <img src="assets/work/web/stills/santa-05-900.jpg" srcset="assets/work/web/stills/santa-05-900.jpg 900w, assets/work/web/stills/santa-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 05" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-06-1800.jpg" aria-label="Santa · imagem 6 de 9">
-        <img src="assets/work/web/stills/santa-06-900.jpg" srcset="assets/work/web/stills/santa-06-900.jpg 900w, assets/work/web/stills/santa-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 06" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-07-1800.jpg" aria-label="Santa · imagem 7 de 9">
-        <img src="assets/work/web/stills/santa-07-900.jpg" srcset="assets/work/web/stills/santa-07-900.jpg 900w, assets/work/web/stills/santa-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 07" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-08-1800.jpg" aria-label="Santa · imagem 8 de 9">
-        <img src="assets/work/web/stills/santa-08-900.jpg" srcset="assets/work/web/stills/santa-08-900.jpg 900w, assets/work/web/stills/santa-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 08" />
-      </button>
-      <button class="still" type="button" style="--r:1.7857" data-full="assets/work/web/stills/santa-09-1800.jpg" aria-label="Santa · imagem 9 de 9">
-        <img src="assets/work/web/stills/santa-09-900.jpg" srcset="assets/work/web/stills/santa-09-900.jpg 900w, assets/work/web/stills/santa-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1008" loading="lazy" decoding="async" alt="Santa · still 09" />
-      </button>
-    </div>
-  </div>
-
-  <div class="stills__group" aria-labelledby="stills-ca">
-    <div class="stills__client reveal">
-      <h3 id="stills-ca" class="stills__name">C&amp;A.</h3>
-      <span class="stills__count">12 imagens</span>
-    </div>
-    <div class="stills__grid">
-      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-01-1800.jpg" aria-label="C&amp;A · imagem 1 de 12">
-        <img src="assets/work/web/stills/ca-01-900.jpg" srcset="assets/work/web/stills/ca-01-900.jpg 900w, assets/work/web/stills/ca-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 01" />
+      <button class="still" type="button" style="--r:1.0000" data-full="assets/work/web/stills/ca-01-1800.jpg" aria-label="C&amp;A · imagem 1 de 12">
+        <img src="assets/work/web/stills/ca-01-900.jpg" srcset="assets/work/web/stills/ca-01-900.jpg 900w, assets/work/web/stills/ca-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 01" />
       </button>
       <button class="still" type="button" style="--r:0.6672" data-full="assets/work/web/stills/ca-02-1800.jpg" aria-label="C&amp;A · imagem 2 de 12">
-        <img src="assets/work/web/stills/ca-02-900.jpg" srcset="assets/work/web/stills/ca-02-900.jpg 900w, assets/work/web/stills/ca-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 02" />
+        <img src="assets/work/web/stills/ca-02-900.jpg" srcset="assets/work/web/stills/ca-02-900.jpg 900w, assets/work/web/stills/ca-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 02" />
       </button>
       <button class="still" type="button" style="--r:0.6672" data-full="assets/work/web/stills/ca-03-1800.jpg" aria-label="C&amp;A · imagem 3 de 12">
-        <img src="assets/work/web/stills/ca-03-900.jpg" srcset="assets/work/web/stills/ca-03-900.jpg 900w, assets/work/web/stills/ca-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 03" />
+        <img src="assets/work/web/stills/ca-03-900.jpg" srcset="assets/work/web/stills/ca-03-900.jpg 900w, assets/work/web/stills/ca-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 03" />
       </button>
-      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-04-1800.jpg" aria-label="C&amp;A · imagem 4 de 12">
-        <img src="assets/work/web/stills/ca-04-900.jpg" srcset="assets/work/web/stills/ca-04-900.jpg 900w, assets/work/web/stills/ca-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 04" />
+      <button class="still" type="button" style="--r:1.0000" data-full="assets/work/web/stills/ca-04-1800.jpg" aria-label="C&amp;A · imagem 4 de 12">
+        <img src="assets/work/web/stills/ca-04-900.jpg" srcset="assets/work/web/stills/ca-04-900.jpg 900w, assets/work/web/stills/ca-04-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 04" />
       </button>
       <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/ca-05-1800.jpg" aria-label="C&amp;A · imagem 5 de 12">
-        <img src="assets/work/web/stills/ca-05-900.jpg" srcset="assets/work/web/stills/ca-05-900.jpg 900w, assets/work/web/stills/ca-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 05" />
+        <img src="assets/work/web/stills/ca-05-900.jpg" srcset="assets/work/web/stills/ca-05-900.jpg 900w, assets/work/web/stills/ca-05-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 05" />
       </button>
       <button class="still" type="button" style="--r:0.6672" data-full="assets/work/web/stills/ca-06-1800.jpg" aria-label="C&amp;A · imagem 6 de 12">
-        <img src="assets/work/web/stills/ca-06-900.jpg" srcset="assets/work/web/stills/ca-06-900.jpg 900w, assets/work/web/stills/ca-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 06" />
+        <img src="assets/work/web/stills/ca-06-900.jpg" srcset="assets/work/web/stills/ca-06-900.jpg 900w, assets/work/web/stills/ca-06-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1201" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 06" />
       </button>
-      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-07-1800.jpg" aria-label="C&amp;A · imagem 7 de 12">
-        <img src="assets/work/web/stills/ca-07-900.jpg" srcset="assets/work/web/stills/ca-07-900.jpg 900w, assets/work/web/stills/ca-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 07" />
+      <button class="still" type="button" style="--r:1.0000" data-full="assets/work/web/stills/ca-07-1800.jpg" aria-label="C&amp;A · imagem 7 de 12">
+        <img src="assets/work/web/stills/ca-07-900.jpg" srcset="assets/work/web/stills/ca-07-900.jpg 900w, assets/work/web/stills/ca-07-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 07" />
       </button>
       <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/ca-08-1800.jpg" aria-label="C&amp;A · imagem 8 de 12">
-        <img src="assets/work/web/stills/ca-08-900.jpg" srcset="assets/work/web/stills/ca-08-900.jpg 900w, assets/work/web/stills/ca-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 08" />
+        <img src="assets/work/web/stills/ca-08-900.jpg" srcset="assets/work/web/stills/ca-08-900.jpg 900w, assets/work/web/stills/ca-08-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 08" />
       </button>
       <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/ca-09-1800.jpg" aria-label="C&amp;A · imagem 9 de 12">
-        <img src="assets/work/web/stills/ca-09-900.jpg" srcset="assets/work/web/stills/ca-09-900.jpg 900w, assets/work/web/stills/ca-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 09" />
+        <img src="assets/work/web/stills/ca-09-900.jpg" srcset="assets/work/web/stills/ca-09-900.jpg 900w, assets/work/web/stills/ca-09-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1208" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 09" />
       </button>
       <button class="still" type="button" style="--r:0.6878" data-full="assets/work/web/stills/ca-10-1800.jpg" aria-label="C&amp;A · imagem 10 de 12">
-        <img src="assets/work/web/stills/ca-10-900.jpg" srcset="assets/work/web/stills/ca-10-900.jpg 900w, assets/work/web/stills/ca-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1238" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 10" />
+        <img src="assets/work/web/stills/ca-10-900.jpg" srcset="assets/work/web/stills/ca-10-900.jpg 900w, assets/work/web/stills/ca-10-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1238" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 10" />
       </button>
-      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-11-1800.jpg" aria-label="C&amp;A · imagem 11 de 12">
-        <img src="assets/work/web/stills/ca-11-900.jpg" srcset="assets/work/web/stills/ca-11-900.jpg 900w, assets/work/web/stills/ca-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 11" />
+      <button class="still" type="button" style="--r:1.0000" data-full="assets/work/web/stills/ca-11-1800.jpg" aria-label="C&amp;A · imagem 11 de 12">
+        <img src="assets/work/web/stills/ca-11-900.jpg" srcset="assets/work/web/stills/ca-11-900.jpg 900w, assets/work/web/stills/ca-11-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 11" />
       </button>
-      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/ca-12-1800.jpg" aria-label="C&amp;A · imagem 12 de 12">
-        <img src="assets/work/web/stills/ca-12-900.jpg" srcset="assets/work/web/stills/ca-12-900.jpg 900w, assets/work/web/stills/ca-12-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 12" />
+      <button class="still" type="button" style="--r:1.0000" data-full="assets/work/web/stills/ca-12-1800.jpg" aria-label="C&amp;A · imagem 12 de 12">
+        <img src="assets/work/web/stills/ca-12-900.jpg" srcset="assets/work/web/stills/ca-12-900.jpg 900w, assets/work/web/stills/ca-12-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 30vw" width="1800" height="1800" loading="lazy" decoding="async" alt="C&amp;A · still 12" />
       </button>
     </div>
   </div>
+  </div>
+</section>
 
-  <div class="stills__group" aria-labelledby="stills-batavo">
-    <div class="stills__client reveal">
-      <h3 id="stills-batavo" class="stills__name">Batavo.</h3>
-      <span class="stills__count">03 imagens</span>
-    </div>
-    <div class="stills__grid">
-      <button class="still" type="button" style="--r:1.0" data-full="assets/work/web/stills/batavo-01-1800.jpg" aria-label="Batavo · imagem 1 de 3">
-        <img src="assets/work/web/stills/batavo-01-900.jpg" srcset="assets/work/web/stills/batavo-01-900.jpg 900w, assets/work/web/stills/batavo-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1800" loading="lazy" decoding="async" alt="Batavo · still 01" />
-      </button>
-      <button class="still" type="button" style="--r:1.7769" data-full="assets/work/web/stills/batavo-02-1800.jpg" aria-label="Batavo · imagem 2 de 3">
-        <img src="assets/work/web/stills/batavo-02-900.jpg" srcset="assets/work/web/stills/batavo-02-900.jpg 900w, assets/work/web/stills/batavo-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1013" loading="lazy" decoding="async" alt="Batavo · still 02" />
-      </button>
-      <button class="still" type="button" style="--r:1.7769" data-full="assets/work/web/stills/batavo-03-1800.jpg" aria-label="Batavo · imagem 3 de 3">
-        <img src="assets/work/web/stills/batavo-03-900.jpg" srcset="assets/work/web/stills/batavo-03-900.jpg 900w, assets/work/web/stills/batavo-03-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1800" height="1013" loading="lazy" decoding="async" alt="Batavo · still 03" />
-      </button>
+<!-- ===================== AUTORAIS ===================== -->
+<section class="view autorais" data-view="autorais" data-title="Autorais — Alright" aria-labelledby="autorais-title">
+  <div class="wrap">
+    <div class="lead">
+      <div>
+        <h1 id="autorais-title" class="ptitle" tabindex="-1" data-focus>Autorais.</h1>
+        <p class="lead__sub">Projetos autorais · Em produção</p>
+      </div>
+      <p class="canon">Cada filme é um filme.</p>
     </div>
   </div>
+<div class="mosaic">
+  <div class="mrow">
+    <div class="mcol" style="--g:1.0000">
+      <figure class="cell" style="--r:1.7778;--mo:0">
+        <button class="tile" type="button" data-film="fundo-em-play" aria-label="Alright — Filme autoral. Assistir">
+          <img src="assets/work/grid/fundo-em-play-768.jpg" srcset="assets/work/grid/fundo-em-play-768.jpg 768w, assets/work/grid/fundo-em-play-1280.jpg 1280w, assets/work/grid/fundo-em-play-1920.jpg 1920w" sizes="(max-width:899px) 100vw, 100vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+          <video class="loop" muted loop playsinline preload="none" aria-hidden="true" data-src-sm="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fundo-em-play-768.mp4" data-src="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fundo-em-play-1280.mp4" data-src-lg="https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fundo-em-play-1920.mp4"></video>
 
-  <div class="stills__group" aria-labelledby="stills-dove">
-    <div class="stills__client reveal">
-      <h3 id="stills-dove" class="stills__name">Dove.</h3>
-      <span class="stills__count">02 imagens</span>
-    </div>
-    <div class="stills__grid">
-      <button class="still" type="button" style="--r:0.6667" data-full="assets/work/web/stills/dove-01-1800.jpg" aria-label="Dove · imagem 1 de 2">
-        <img src="assets/work/web/stills/dove-01-900.jpg" srcset="assets/work/web/stills/dove-01-900.jpg 900w, assets/work/web/stills/dove-01-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1200" height="1800" loading="lazy" decoding="async" alt="Dove · still 01" />
-      </button>
-      <button class="still" type="button" style="--r:0.6711" data-full="assets/work/web/stills/dove-02-1800.jpg" aria-label="Dove · imagem 2 de 2">
-        <img src="assets/work/web/stills/dove-02-900.jpg" srcset="assets/work/web/stills/dove-02-900.jpg 900w, assets/work/web/stills/dove-02-1800.jpg 1800w" sizes="(max-width:768px) 60vw, 35vw" width="1208" height="1800" loading="lazy" decoding="async" alt="Dove · still 02" />
-      </button>
+        </button>
+        <figcaption class="cap"><b>Alright</b><span>Filme autoral</span></figcaption>
+      </figure>
     </div>
   </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:1.0000">
+      <figure class="cell" style="--r:1.7778;--mo:1">
+        <button class="tile" type="button" data-film="meet-thelonious" aria-label="Alright — Meet Thelonious. Assistir">
+          <img src="assets/work/grid/meet-thelonious-768.jpg" srcset="assets/work/grid/meet-thelonious-768.jpg 768w, assets/work/grid/meet-thelonious-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 100vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+
+        </button>
+        <span class="live" data-film-live="meet-thelonious" aria-hidden="true"></span>
+        <figcaption class="cap"><b>Alright</b><span>Meet Thelonious</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:1.0000">
+      <figure class="cell" style="--r:1.7778;--mo:2">
+        <button class="tile" type="button" data-film="last-meal" aria-label="Alright — Last meal in the end of the world. Assistir">
+          <img src="assets/work/grid/last-meal-768.jpg" srcset="assets/work/grid/last-meal-768.jpg 768w, assets/work/grid/last-meal-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 100vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+
+        </button>
+        <span class="live" data-film-live="last-meal" aria-hidden="true"></span>
+        <figcaption class="cap"><b>Alright</b><span>Last meal in the end of the world</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mrow">
+    <div class="mcol" style="--g:1.0000">
+      <figure class="cell" style="--r:1.7778;--mo:3">
+        <button class="tile" type="button" data-film="rio-2077" aria-label="Alright — Rio 2077. Assistir">
+          <img src="assets/work/grid/rio-2077-768.jpg" srcset="assets/work/grid/rio-2077-768.jpg 768w, assets/work/grid/rio-2077-1280.jpg 1280w" sizes="(max-width:899px) 100vw, 100vw" width="768" height="432" alt="" loading="lazy" decoding="async" />
+
+        </button>
+        <span class="live" data-film-live="rio-2077" aria-hidden="true"></span>
+        <figcaption class="cap"><b>Alright</b><span>Rio 2077</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- ===================== CONTATO ===================== -->
-<section id="contato" class="contact" aria-labelledby="contato-title">
-  <span class="eyebrow reveal" style="display:block;margin-bottom:18px">05 — Falar com a gente</span>
-  <h2 id="contato-title" class="contact__reprise reveal"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></h2>
-  <a class="contact__cta reveal" href="mailto:albergaria@wearealright.cc?subject=Alright%20%C2%B7%20Hello" aria-label="Enviar email para a Alright">
-    <span>Falar com a Alright</span>
-    <span class="arrow" style="font-family:var(--font-mono);font-weight:400">→</span>
-  </a>
-  <div class="contact__rows">
-    <div class="contact__row reveal"><a href="mailto:albergaria@wearealright.cc">albergaria@wearealright.cc</a></div>
-    <div class="contact__row reveal"><a href="https://wa.me/5511923538110" aria-label="Clique WhatsApp Alright">+55 11 92353-8110</a> <span class="mono-caps" style="font-size:11px;color:var(--slate-warm);margin-left:6px">· <a href="https://wa.me/5511923538110">Clique WhatsApp</a></span></div>
-    <div class="contact__row reveal"><a href="https://instagram.com/wearealright.cc">@wearealright.cc</a></div>
-  </div>
-  <div class="contact__stickers reveal">
-    <span class="sticker sticker--mist rot-2">(( são paulo ))</span>
-    <span class="sticker rot2">(( a.i. first ))</span>
-    <span class="sticker sticker--ghost-dark rot-1">(( cinema-grade ))</span>
+<section class="view" data-view="contato" data-title="Contato — Alright" aria-labelledby="contato-title">
+  <div class="wrap">
+    <div class="lead">
+      <div>
+        <h1 id="contato-title" class="ptitle" tabindex="-1" data-focus>Alright.</h1>
+        <p class="lead__sub">A.I. Done Right · São Paulo / BR</p>
+      </div>
+      <div class="lead__aside">
+        <span class="mono">Fale com a gente</span>
+        <a href="mailto:albergaria@wearealright.cc?subject=Alright%20%C2%B7%20Hello">albergaria@wearealright.cc</a>
+        <a href="https://wa.me/5511923538110">+55 11 92353-8110 · WhatsApp</a>
+        <a href="https://instagram.com/wearealright.cc">@wearealright.cc</a>
+      </div>
+    </div>
+    <p class="reprise"><span class="paren">((</span>Look&nbsp;again.<span class="paren">))</span></p>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer" aria-labelledby="footer-title">
-  <span id="footer-title" style="position:absolute;left:-9999px">((We Are Alright))</span>
-  <div class="footer__lockup reveal">
-    <img src="assets/logo/v3/Logo_White.png?v=v3" alt="((We Are Alright))" />
-  </div>
-
-  <div class="footer__meta">
-    <div class="footer__row reveal">
-      <span>© 2026 · <a href="https://wearealright.cc">wearealright.cc</a></span>
-      <span>Alright · São Paulo · BR</span>
-      <span><a href="brand-book.html">Brand Book</a></span>
-    </div>
-  </div>
-
-  <div class="footer__brand reveal">
-    <img src="assets/logo/v3/Wordmark_White.png?v=v3" alt="Alright" />
-    <span class="footer__year">((We Are Alright)) · 2026</span>
-  </div>
-</footer>
-
 </main>
 
-<!-- ===================== VIMEO LIGHTBOX ===================== -->
-<div id="vimeoModal" class="vimeo-modal" aria-hidden="true" role="dialog" aria-label="Player de vídeo Vimeo">
-  <button class="vimeo-modal__close" type="button" aria-label="Fechar player">×</button>
-  <div class="vimeo-modal__inner">
-    <div class="vimeo-modal__frame" id="vimeoFrame"></div>
+<!-- ===================== RODAPÉ ===================== -->
+<footer class="foot">
+  <div class="foot__bar">
+    <p class="foot__about">Alright · A.I. Done Right. São Paulo, Brasil.</p>
+    <div class="foot__mid">
+      <a class="foot__logo" href="#home" aria-label="Alright — início"><img src="assets/logo/v3/Logo_White.png?v=v3" alt="Alright" width="299" height="350" loading="lazy" /></a>
+      <nav class="pills mono" aria-label="Navegação do rodapé">
+    <a class="pill" href="#projetos" data-nav="projetos">Projetos</a>
+    <a class="pill" href="#stills" data-nav="stills">Stills</a>
+    <a class="pill" href="#autorais" data-nav="autorais">Autorais</a>
+    <a class="pill" href="#contato" data-nav="contato">Contato</a>
+      </nav>
+    </div>
+    <div class="foot__links mono">
+      <a href="mailto:albergaria@wearealright.cc">E-mail</a>
+      <a href="https://wa.me/5511923538110">WhatsApp</a>
+      <a href="https://instagram.com/wearealright.cc">Instagram</a>
+      <a href="brand-book.html">Brand Book</a>
+      <button type="button" class="js-pause">Pausar vídeos</button>
+    </div>
   </div>
+  <p class="foot__sign mono"><span class="paren">((</span>We Are Alright<span class="paren">))</span> · 2026</p>
+</footer>
+
+<!-- ===================== JANELA DO FILME ===================== -->
+<div class="film" id="film" role="dialog" aria-modal="true" aria-labelledby="filmMeta" aria-hidden="true">
+  <button class="film__btn film__btn--back mono" type="button">← Voltar</button>
+  <a class="film__btn film__btn--proj mono" href="#projetos" hidden>Projeto →</a>
+  <div class="film__frame" id="filmFrame"></div>
+  <p class="film__meta mono" id="filmMeta"></p>
 </div>
 
-<!-- ===================== STILLS LIGHTBOX ===================== -->
-<div id="stillsModal" class="stills-modal" aria-hidden="true" role="dialog" aria-label="Visualizador de imagens">
-  <button class="vimeo-modal__close" type="button" aria-label="Fechar imagem">×</button>
-  <button class="stills-modal__nav stills-modal__nav--prev" type="button" aria-label="Imagem anterior">←</button>
-  <figure class="stills-modal__figure">
-    <img id="stillsImg" alt="" />
-    <figcaption id="stillsCaption" class="stills-modal__caption"></figcaption>
+<!-- ===================== AMPLIAÇÃO DAS FOTOS ===================== -->
+<div class="lbox" id="lbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagens" aria-hidden="true">
+  <button class="film__btn film__btn--back mono" type="button">← Voltar</button>
+  <button class="lbox__nav lbox__nav--prev" type="button" aria-label="Imagem anterior">←</button>
+  <figure>
+    <img id="lboxImg" alt="" />
+    <figcaption id="lboxCap" class="mono"></figcaption>
   </figure>
-  <button class="stills-modal__nav stills-modal__nav--next" type="button" aria-label="Próxima imagem">→</button>
+  <button class="lbox__nav lbox__nav--next" type="button" aria-label="Próxima imagem">→</button>
 </div>
+
+<img class="pcursor" id="pcursor" src="assets/logo/v3/symbol/Symbol_White.png?v=v3" alt="" aria-hidden="true" width="402" height="333" />
 
 <script>
+var FILMS = {"caixa-taekwondo":{"c":"Caixa","t":"Taekwondo","r":1.7778,"p":"caixa","v":"1239992138","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-1280.mp4","lg":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-taekwondo-1920.mp4","poster":"assets/work/grid/caixa-taekwondo-1280.jpg"},"caixa-ginastica":{"c":"Caixa","t":"Ginástica","r":1.7778,"p":"caixa","v":"1239992223","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-ginastica-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-ginastica-1280.mp4","poster":"assets/work/grid/caixa-ginastica-1280.jpg"},"caixa-tenis-de-mesa":{"c":"Caixa","t":"Tênis de mesa","r":1.7778,"p":"caixa","v":"1239992159","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-tenis-de-mesa-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/caixa-tenis-de-mesa-1280.mp4","poster":"assets/work/grid/caixa-tenis-de-mesa-1280.jpg"},"puma-portugal":{"c":"PUMA","t":"Portugal","r":1.7778,"p":"puma","v":"1191599038","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-1280.mp4","lg":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/puma-portugal-1920.mp4","poster":"assets/work/grid/puma-portugal-1280.jpg"},"olympikus-corre5-full":{"c":"Olympikus","t":"Corre 5","r":1.7778,"p":"olympikus","v":"1192635125","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/olympikus-corre5-full-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/olympikus-corre5-full-1280.mp4","poster":"assets/work/grid/olympikus-corre5-full-1280.jpg"},"chupa-chups-art-gallery":{"c":"Chupa Chups","t":"Art Gallery","r":0.5624,"p":"chupa-chups","v":"1191600944","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-art-gallery-720.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-art-gallery-720.mp4","poster":"assets/work/grid/chupa-chups-art-gallery-720.jpg"},"chupa-chups-surreal-dream":{"c":"Chupa Chups","t":"Surreal Dream","r":0.5624,"p":"chupa-chups","v":"1191600943","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-dream-720.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-dream-720.mp4","poster":"assets/work/grid/chupa-chups-surreal-dream-720.jpg"},"chupa-chups-surreal-unboxing":{"c":"Chupa Chups","t":"Surreal Unboxing","r":0.5624,"p":"chupa-chups","v":"1191600942","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-unboxing-720.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-surreal-unboxing-720.mp4","poster":"assets/work/grid/chupa-chups-surreal-unboxing-720.jpg"},"chupa-chups-forever-fun":{"c":"Chupa Chups","t":"Forever Fun","r":0.5624,"p":"chupa-chups","v":"1191599456","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-forever-fun-720.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/chupa-chups-forever-fun-720.mp4","poster":"assets/work/grid/chupa-chups-forever-fun-720.jpg"},"mizuno-botafogo":{"c":"Mizuno x Botafogo","t":"Lançamento da collab","r":1.7778,"p":"mizuno","v":"1191597286","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mizuno-botafogo-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mizuno-botafogo-1280.mp4","poster":"assets/work/grid/mizuno-botafogo-1280.jpg"},"azul-outubro-rosa":{"c":"Azul","t":"Outubro Rosa","r":1.7778,"p":"azul","v":"1239992137","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/azul-outubro-rosa-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/azul-outubro-rosa-1280.mp4","poster":"assets/work/grid/azul-outubro-rosa-1280.jpg"},"enem-tv":{"c":"ENEM","t":"TV","r":1.7778,"p":"enem","v":"1239991895","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-tv-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-tv-1280.mp4","poster":"assets/work/grid/enem-tv-1280.jpg"},"enem-digital":{"c":"ENEM","t":"Digital","r":0.5625,"p":"enem","v":"1239991906","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-digital-720.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-digital-720.mp4","poster":"assets/work/grid/enem-digital-720.jpg"},"enem-monstro":{"c":"ENEM","t":"Pedro Sampaio","r":1.7778,"p":"enem","v":"1239991836","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-monstro-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/enem-monstro-1280.mp4","poster":"assets/work/grid/enem-monstro-1280.jpg"},"fies":{"c":"FIES","t":"Filme","r":1.7778,"p":"fies","v":"1239992136","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fies-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fies-1280.mp4","poster":"assets/work/grid/fies-1280.jpg"},"mec-livros":{"c":"MEC Livros","t":"Filme","r":1.7778,"p":"mec-livros","v":"1239991818","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mec-livros-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/mec-livros-1280.mp4","poster":"assets/work/grid/mec-livros-1280.jpg"},"brime-sexta-na-quarta":{"c":"Brime","t":"Tem uma sexta na minha quarta","r":1.7778,"p":"brime","v":"1192047832","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/brime-sexta-na-quarta-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/brime-sexta-na-quarta-1280.mp4","poster":"assets/work/grid/brime-sexta-na-quarta-1280.jpg"},"negra-li-visual":{"c":"Negra Li","t":"Lollapalooza","r":1.7778,"p":"negra-li","v":"1192041713","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/negra-li-visual-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/negra-li-visual-1280.mp4","poster":"assets/work/grid/negra-li-visual-1280.jpg"},"santa":{"c":"Santa","t":"Filme","r":1.7778,"p":"santa","v":"1239991466","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/santa-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/santa-1280.mp4","poster":"assets/work/grid/santa-1280.jpg"},"hbo-max-paulistao":{"c":"HBO Max","t":"Paulistão","r":1.7778,"p":"hbo-max","v":"1193297749","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/hbo-max-paulistao-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/hbo-max-paulistao-1280.mp4","poster":"assets/work/grid/hbo-max-paulistao-1280.jpg"},"fundo-em-play":{"c":"Alright","t":"Filme autoral","r":1.7778,"p":null,"src":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/fundo-em-play.mp4","sm":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fundo-em-play-768.mp4","md":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fundo-em-play-1280.mp4","lg":"https://pub-cbe2e8273b054c8bb52e5dec0dc1e3a7.r2.dev/teaser/fundo-em-play-1920.mp4","poster":"assets/work/grid/fundo-em-play-1280.jpg"},"bauducco-collab-fini":{"c":"Bauducco","t":"Collab Fini","r":1.7778,"p":"bauducco","v":"1224099579","h":"c49b179571","poster":"assets/work/grid/bauducco-collab-fini-1280.jpg"},"meet-thelonious":{"c":"Alright","t":"Meet Thelonious","r":1.7778,"p":null,"yt":"6y6lzSlFG6s","poster":"assets/work/grid/meet-thelonious-1280.jpg"},"last-meal":{"c":"Alright","t":"Last meal in the end of the world","r":1.7778,"p":null,"v":"1225950735","h":"46e64bd4ca","poster":"assets/work/grid/last-meal-1280.jpg"},"rio-2077":{"c":"Alright","t":"Rio 2077","r":1.7778,"p":null,"v":"1243021343","poster":"assets/work/grid/rio-2077-1280.jpg"}};
+</script>
+<script>
 (function(){
-  var nav = document.getElementById('nav');
-  var onScroll = function(){
-    if (window.scrollY > 24) nav.classList.add('is-scrolled');
-    else nav.classList.remove('is-scrolled');
-  };
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  'use strict';
+  var mqFlow = window.matchMedia('(max-width:599px)');
+  var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var saved = null;
+  try { saved = localStorage.getItem('alright-paused'); } catch (e) {}
+  var paused = saved === null ? mqReduce.matches : saved === '1';
+  var filmOpen = false, lboxOpen = false;
 
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
-    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
-    return;
-  }
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
-    return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        var el = entry.target;
-        var siblings = Array.prototype.slice.call(el.parentNode.children).filter(function(n){ return n.classList && n.classList.contains('reveal'); });
-        var idx = siblings.indexOf(el);
-        var delay = Math.min(Math.max(idx,0), 6) * 80;
-        setTimeout(function(){ el.classList.add('is-visible'); }, delay);
-        io.unobserve(el);
-      }
+  /* ---------- Mosaico: encaixe exato pela proporção de cada vídeo ---------- */
+  function layoutMosaics(){
+    document.querySelectorAll('.mosaic').forEach(function(m){
+      if (mqFlow.matches) { m.classList.remove('is-laid'); m.querySelectorAll('.mcol').forEach(function(c){ c.style.width = ''; }); return; }
+      if (!m.offsetWidth) return;
+      m.querySelectorAll('.mrow').forEach(function(row){
+        var cols = Array.prototype.slice.call(row.children);
+        var W = row.clientWidth, g = parseFloat(getComputedStyle(row).columnGap) || 8;
+        var sumInv = 0, sumN = 0;
+        var data = cols.map(function(c){
+          var cells = Array.prototype.slice.call(c.children);
+          var S = cells.reduce(function(a, x){ return a + 1 / parseFloat(x.style.getPropertyValue('--r')); }, 0);
+          sumInv += 1 / S; sumN += (cells.length - 1) / S;
+          return { c: c, S: S, n: cells.length };
+        });
+        var H = (W - (cols.length - 1) * g + g * sumN) / sumInv;
+        data.forEach(function(d){ d.c.style.width = ((H - (d.n - 1) * g) / d.S) + 'px'; });
+      });
+      m.classList.add('is-laid');
     });
-  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  }
 
-  // Force-play videos: some browsers refuse autoplay until JS calls .play()
-  var videos = document.querySelectorAll('video[autoplay]');
-  videos.forEach(function(v){
-    v.muted = true;
-    v.setAttribute('muted','');
-    v.playsInline = true;
-    var p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(function(){ /* autoplay blocked; will retry on intersection */ });
-  });
-
-  // Pause off-screen, resume when visible — saves bandwidth + bypasses some autoplay blockers
-  if ('IntersectionObserver' in window) {
-    var vio = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        var v = entry.target;
-        if (entry.isIntersecting) {
-          var p = v.play();
-          if (p && typeof p.catch === 'function') p.catch(function(){});
-        } else {
-          v.pause();
+  /* ---------- Stills: linhas balanceadas que fecham na largura (nenhuma foto órfã, nada cortado) ---------- */
+  function layoutStills(){
+    document.querySelectorAll('.stills__grid').forEach(function(grid){
+      var W = grid.clientWidth; if (!W) return;
+      var items = Array.prototype.slice.call(grid.children);
+      var g = parseFloat(getComputedStyle(grid).columnGap) || 8;
+      var T = W < 600 ? 150 : Math.min(300, Math.max(170, window.innerWidth * 0.19));
+      var r = items.map(function(el){ return parseFloat(el.style.getPropertyValue('--r')); });
+      var n = r.length, best = [0], cut = [0];
+      for (var j = 1; j <= n; j++) {
+        best[j] = Infinity;
+        for (var i = j - 1, sum = 0; i >= 0; i--) {
+          sum += r[i];
+          var h = (W - (j - i - 1) * g) / sum;
+          if (h < T * 0.45 && j - i > 1) break;
+          var cost = best[i] + Math.pow(Math.log(h / T), 2) * 100 + (h > T * 1.7 ? 1000 : 0);
+          if (cost < best[j]) { best[j] = cost; cut[j] = i; }
+        }
+      }
+      var rows = [];
+      for (var e = n; e > 0; e = cut[e]) rows.unshift([cut[e], e]);
+      rows.forEach(function(rw){
+        var s = 0, k;
+        for (k = rw[0]; k < rw[1]; k++) s += r[k];
+        var free = W - (rw[1] - rw[0] - 1) * g, h = free / s, used = 0;
+        for (k = rw[0]; k < rw[1]; k++) {
+          var w = k === rw[1] - 1 ? free - used - 0.01 : Math.floor(r[k] * h * 100) / 100;
+          used += w;
+          items[k].style.width = w + 'px';
         }
       });
-    }, {threshold:0.1});
-    videos.forEach(function(v){ vio.observe(v); });
-  }
-})();
-
-// Vimeo lightbox
-(function(){
-  var modal = document.getElementById('vimeoModal');
-  if (!modal) return;
-  var frame = document.getElementById('vimeoFrame');
-  var closeBtn = modal.querySelector('.vimeo-modal__close');
-  var lastFocus = null;
-
-  function openVimeo(id, title){
-    var iframe = document.createElement('iframe');
-    iframe.src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
-    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.title = title || 'Vimeo player';
-    return iframe;
-  }
-  function openVideo(src, title){
-    var v = document.createElement('video');
-    v.src = src;
-    v.controls = true;
-    v.autoplay = true;
-    v.playsInline = true;
-    v.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000';
-    v.title = title || '';
-    return v;
-  }
-  function open(el){
-    lastFocus = document.activeElement;
-    var id = el.getAttribute('data-vimeo-id');
-    var src = el.getAttribute('data-video-src');
-    var title = el.getAttribute('data-vimeo-title') || el.getAttribute('data-video-title') || '';
-    var node;
-    if (id) node = openVimeo(id, title);
-    else if (src) node = openVideo(src, title);
-    else return;
-    frame.innerHTML = '';
-    frame.appendChild(node);
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  }
-  function close(){
-    modal.setAttribute('aria-hidden', 'true');
-    frame.innerHTML = '';
-    document.body.style.overflow = '';
-    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-  }
-
-  closeBtn.addEventListener('click', close);
-  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') close();
-  });
-
-  // Wire all clickable videos (Vimeo ID or direct video src)
-  document.querySelectorAll('[data-vimeo-id],[data-video-src]').forEach(function(el){
-    el.addEventListener('click', function(){ open(el); });
-    el.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el); }
+      grid.classList.add('is-laid');
     });
-  });
-})();
-
-// Stills lightbox — navega dentro do grupo do cliente
-(function(){
-  var modal = document.getElementById('stillsModal');
-  if (!modal) return;
-  var img = document.getElementById('stillsImg');
-  var caption = document.getElementById('stillsCaption');
-  var closeBtn = modal.querySelector('.vimeo-modal__close');
-  var group = [], index = 0, lastFocus = null, touchX = null;
-
-  function show(i){
-    index = (i + group.length) % group.length;
-    var btn = group[index];
-    img.src = btn.getAttribute('data-full');
-    img.alt = btn.querySelector('img').alt;
-    caption.textContent = btn.getAttribute('aria-label');
   }
-  function open(btn){
-    lastFocus = btn;
-    group = Array.prototype.slice.call(btn.closest('.stills__grid').querySelectorAll('.still'));
-    show(group.indexOf(btn));
-    modal.setAttribute('aria-hidden', 'false');
+  var raf = 0;
+  function relayout(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(function(){ layoutMosaics(); layoutStills(); }); }
+  window.addEventListener('resize', relayout);
+
+  /* ---------- Trechos leves: carregam perto da tela, tocam só quando visíveis ---------- */
+  function pickSrc(v){
+    var sm = v.dataset.srcSm || v.dataset.src, md = v.dataset.src || v.dataset.srcSm;
+    if (mqFlow.matches) return sm;
+    var css = v.parentNode.getBoundingClientRect().width;
+    if (!css) return md;
+    var px = css * (window.devicePixelRatio || 1);
+    if (px <= 800) return sm;
+    if (v.dataset.srcLg && px > 1500) return v.dataset.srcLg;
+    return md;
+  }
+  function attach(v){ if (!v.getAttribute('src')) { var s = pickSrc(v); if (s) v.src = s; } }
+  function detach(v){ if (v.getAttribute('src')) { v.pause(); v.removeAttribute('src'); v.load(); v.classList.remove('is-playing'); } }
+  function sync(v){
+    var active = v.closest('.view.is-active');
+    if (v._vis && active && !paused && !filmOpen && !lboxOpen) { attach(v); var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    else if (!v.paused) v.pause();
+  }
+  function liveUrl(f){
+    if (f.v) return 'https://player.vimeo.com/video/' + f.v + '?' + (f.h ? 'h=' + f.h + '&' : '') + 'background=1&autoplay=1&loop=1&muted=1&autopause=0&dnt=1';
+    return 'https://www.youtube-nocookie.com/embed/' + f.yt + '?autoplay=1&mute=1&loop=1&playlist=' + f.yt + '&controls=0&disablekb=1&fs=0&rel=0&iv_load_policy=3&playsinline=1';
+  }
+  function syncLive(h){
+    var want = h._vis && h.dataset.filmLive && h.closest('.view.is-active') && !paused && !filmOpen && !lboxOpen;
+    var fr = h.querySelector('iframe');
+    if (want && !fr) {
+      fr = document.createElement('iframe');
+      fr.src = liveUrl(FILMS[h.dataset.filmLive]);
+      fr.title = ''; fr.tabIndex = -1;
+      fr.setAttribute('aria-hidden', 'true');
+      fr.setAttribute('allow', 'autoplay');
+      fr.addEventListener('load', function(){ var el = fr; setTimeout(function(){ el.classList.add('is-playing'); }, 900); });
+      h.appendChild(fr);
+    } else if (!want && fr) fr.remove();
+  }
+  function syncAll(){ document.querySelectorAll('video.loop').forEach(sync); document.querySelectorAll('.live').forEach(syncLive); }
+  var near = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) { if (!paused) attach(e.target); } else detach(e.target); });
+  }, { rootMargin: '700px 0px' });
+  var seen = new IntersectionObserver(function(es){
+    es.forEach(function(e){ e.target._vis = e.isIntersecting; if (e.target.tagName === 'VIDEO') sync(e.target); else syncLive(e.target); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('video.loop').forEach(function(v){
+    v.muted = true;
+    v.addEventListener('playing', function(){ v.classList.add('is-playing'); });
+    near.observe(v); seen.observe(v);
+  });
+  document.querySelectorAll('.live').forEach(function(h){ seen.observe(h); });
+
+  var pauseBtn = document.querySelector('.js-pause');
+  function setPaused(p, persist){
+    paused = p;
+    if (persist) { try { localStorage.setItem('alright-paused', p ? '1' : '0'); } catch (e) {} }
+    pauseBtn.textContent = p ? 'Tocar vídeos' : 'Pausar vídeos';
+    syncAll();
+  }
+  pauseBtn.addEventListener('click', function(){ setPaused(!paused, true); });
+  if (saved === null) {
+    var onReduce = function(e){ setPaused(e.matches, false); };
+    if (mqReduce.addEventListener) mqReduce.addEventListener('change', onReduce); else if (mqReduce.addListener) mqReduce.addListener(onReduce);
+  }
+  setPaused(paused, false);
+
+  /* ---------- Janelas por cima do site (filme e fotos): o resto fica inerte ---------- */
+  function setInert(on){
+    ['.skip', '.head', 'main', '.foot'].forEach(function(s){ var el = document.querySelector(s); if (el) el.inert = on; });
+  }
+
+  /* ---------- Telas ---------- */
+  var views = {};
+  document.querySelectorAll('.view').forEach(function(s){
+    views[s.dataset.view === 'projeto' ? 'projeto=' + s.dataset.slug : s.dataset.view] = s;
+  });
+  var ALIAS = { '': 'home', 'home': 'home', 'inicio': 'home', 'cases': 'home', 'projects': 'projetos', 'about': 'contato' };
+  var firstRoute = true;
+  function keyFromHash(){
+    var raw = location.hash.replace(/^#/, ''), h;
+    try { h = decodeURIComponent(raw); } catch (e) { h = raw; }
+    if (h === 'conteudo') return null;
+    var k = Object.prototype.hasOwnProperty.call(ALIAS, h) ? ALIAS[h] : h;
+    return views[k] ? k : 'home';
+  }
+  function show(k){
+    var next = views[k], cur = document.querySelector('.view.is-active');
+    if (cur !== next) {
+      if (cur) cur.classList.remove('is-active');
+      next.classList.add('is-active');
+      window.scrollTo(0, 0);
+    }
+    var nav = k.indexOf('projeto=') === 0 ? 'projetos' : k;
+    document.querySelectorAll('.pill').forEach(function(p){
+      if (p.dataset.nav === nav) p.setAttribute('aria-current', 'page'); else p.removeAttribute('aria-current');
+    });
+    document.title = next.dataset.title;
+    if (next.dataset.view === 'projeto') initPlayer(next);
+    layoutMosaics(); layoutStills();
+    if (!firstRoute) { var f = next.querySelector('[data-focus]'); if (f) f.focus({ preventScroll: true }); }
+    firstRoute = false;
+    syncAll();
+  }
+  function route(){
+    try { var k = keyFromHash(); if (k) show(k); else if (!document.querySelector('.view.is-active')) show('home'); }
+    catch (e) { show('home'); }
+  }
+  window.addEventListener('hashchange', function(){ if (filmOpen) closeFilm(true); if (lboxOpen) lCloseFn(true); route(); });
+  document.querySelector('.skip').addEventListener('click', function(e){
+    e.preventDefault();
+    var f = document.querySelector('.view.is-active [data-focus]') || document.getElementById('conteudo');
+    f.focus();
+  });
+
+  /* ---------- Janela do filme (tela cheia, dentro do site) ---------- */
+  var film = document.getElementById('film'), frame = document.getElementById('filmFrame'), meta = document.getElementById('filmMeta');
+  var backBtn = film.querySelector('.film__btn--back'), projBtn = film.querySelector('.film__btn--proj');
+  var lastFocus = null;
+  function openFilm(id, trigger){
+    var f = FILMS[id]; if (!f) return;
+    lastFocus = trigger || document.activeElement;
+    frame.style.setProperty('--r', f.r);
+    frame.innerHTML = '';
+    var el;
+    if (f.v || f.yt) {
+      el = document.createElement('iframe');
+      el.src = f.v ? 'https://player.vimeo.com/video/' + f.v + '?' + (f.h ? 'h=' + f.h + '&' : '') + 'autoplay=1&dnt=1&title=0&byline=0&portrait=0'
+                   : 'https://www.youtube-nocookie.com/embed/' + f.yt + '?autoplay=1&rel=0&playsinline=1';
+      el.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+      el.setAttribute('allowfullscreen', '');
+    } else {
+      el = document.createElement('video');
+      el.src = f.src; el.controls = true; el.autoplay = true; el.playsInline = true;
+    }
+    el.title = f.c + ' — ' + f.t;
+    frame.appendChild(el);
+    meta.textContent = f.c + ' — ' + f.t;
+    var onProject = location.hash === '#projeto=' + f.p;
+    if (f.p && !onProject) { projBtn.hidden = false; projBtn.setAttribute('href', '#projeto=' + f.p); } else projBtn.hidden = true;
+    film.classList.add('is-open'); film.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    filmOpen = true; setInert(true); syncAll();
+    history.pushState({ film: id }, '');
+    backBtn.focus();
   }
-  function close(){
-    modal.setAttribute('aria-hidden', 'true');
-    img.removeAttribute('src');
-    document.body.style.overflow = '';
-    if (lastFocus) lastFocus.focus();
+  function closeFilm(fromHistory){
+    if (!filmOpen) return;
+    film.classList.remove('is-open'); film.setAttribute('aria-hidden', 'true');
+    frame.innerHTML = ''; document.body.style.overflow = '';
+    filmOpen = false; setInert(false);
+    if (!fromHistory && history.state && history.state.film) history.back();
+    if (lastFocus && lastFocus.focus && lastFocus.isConnected) lastFocus.focus({ preventScroll: true });
+    syncAll();
+  }
+  backBtn.addEventListener('click', function(){ closeFilm(false); });
+  projBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    var target = projBtn.getAttribute('href');
+    closeFilm(true);
+    history.replaceState(null, '', target);
+    route();
+  });
+  window.addEventListener('popstate', function(){ if (filmOpen) closeFilm(true); if (lboxOpen) lCloseFn(true); });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('.tile[data-film]');
+    if (t) openFilm(t.dataset.film, t);
+  });
+
+  /* ---------- Página de projeto: player com vários filmes ---------- */
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function initPlayer(sec){
+    var box = sec.querySelector('.pplayer');
+    if (box._ready) return; box._ready = true;
+    var ids = sec.dataset.films.split(','), i = 0;
+    var img = box.querySelector('img'), v = box.querySelector('video'), cnt = box.querySelector('.pplayer__count');
+    var openBtn = box.querySelector('.pplayer__open'), sub = sec.querySelector('.psub'), live = box.querySelector('.live');
+    function set(n){
+      i = (n + ids.length) % ids.length;
+      var f = FILMS[ids[i]];
+      box.style.setProperty('--r', f.r);
+      img.src = f.poster;
+      detach(v);
+      v.dataset.src = f.md || ''; v.dataset.srcSm = f.sm || ''; v.dataset.srcLg = f.lg || '';
+      openBtn.setAttribute('aria-label', 'Assistir ' + f.c + ' — ' + f.t);
+      if (cnt) cnt.textContent = pad(i + 1) + ' / ' + pad(ids.length);
+      if (sub && ids.length > 1) sub.textContent = f.t;
+      var old = live.querySelector('iframe'); if (old) old.remove();
+      live.dataset.filmLive = f.md ? '' : ids[i];
+      sync(v); syncLive(live);
+    }
+    openBtn.addEventListener('click', function(){ openFilm(ids[i], openBtn); });
+    var prev = box.querySelector('.pplayer__nav--prev'), next = box.querySelector('.pplayer__nav--next');
+    if (prev) prev.addEventListener('click', function(){ set(i - 1); });
+    if (next) next.addEventListener('click', function(){ set(i + 1); });
+    set(0);
   }
 
-  document.querySelectorAll('.still').forEach(function(btn){
-    btn.addEventListener('click', function(){ open(btn); });
+  /* ---------- Projetos: o símbolo segue o mouse ---------- */
+  var cursor = document.getElementById('pcursor');
+  var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  function moveCursor(e){ cursor.style.left = (e.clientX + 46) + 'px'; cursor.style.top = (e.clientY + 30) + 'px'; }
+  document.querySelectorAll('.plist').forEach(function(list){
+    if (!fine) return;
+    list.addEventListener('mousemove', moveCursor);
+    list.addEventListener('mouseenter', function(e){ moveCursor(e); cursor.classList.add('is-on'); });
+    list.addEventListener('mouseleave', function(){ cursor.classList.remove('is-on'); });
   });
-  closeBtn.addEventListener('click', close);
-  modal.querySelector('.stills-modal__nav--prev').addEventListener('click', function(){ show(index - 1); });
-  modal.querySelector('.stills-modal__nav--next').addEventListener('click', function(){ show(index + 1); });
-  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
-  document.addEventListener('keydown', function(e){
-    if (modal.getAttribute('aria-hidden') !== 'false') return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowLeft') show(index - 1);
-    else if (e.key === 'ArrowRight') show(index + 1);
-  });
-  modal.addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, {passive:true});
-  modal.addEventListener('touchend', function(e){
+
+  /* ---------- Ampliação das fotos (navega dentro do cliente) ---------- */
+  var lbox = document.getElementById('lbox'), lImg = document.getElementById('lboxImg'), lCap = document.getElementById('lboxCap');
+  var lClose = lbox.querySelector('.film__btn--back'), group = [], idx = 0, lFocus = null, touchX = null;
+  function lShow(n){
+    idx = (n + group.length) % group.length;
+    var b = group[idx];
+    lImg.src = b.dataset.full; lImg.alt = b.querySelector('img').alt; lCap.textContent = b.getAttribute('aria-label');
+  }
+  function lOpen(b){
+    lFocus = b;
+    group = Array.prototype.slice.call(b.closest('.stills__grid').querySelectorAll('.still'));
+    lShow(group.indexOf(b));
+    lbox.classList.add('is-open'); lbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lboxOpen = true; setInert(true); syncAll();
+    history.pushState({ lbox: 1 }, '');
+    lClose.focus();
+  }
+  function lCloseFn(fromHistory){
+    if (!lboxOpen) return;
+    lbox.classList.remove('is-open'); lbox.setAttribute('aria-hidden', 'true');
+    lImg.removeAttribute('src'); document.body.style.overflow = '';
+    lboxOpen = false; setInert(false);
+    if (!fromHistory && history.state && history.state.lbox) history.back();
+    if (lFocus && lFocus.isConnected) lFocus.focus({ preventScroll: true });
+    syncAll();
+  }
+  document.querySelectorAll('.still').forEach(function(b){ b.addEventListener('click', function(){ lOpen(b); }); });
+  lClose.addEventListener('click', function(){ lCloseFn(false); });
+  lbox.querySelector('.lbox__nav--prev').addEventListener('click', function(){ lShow(idx - 1); });
+  lbox.querySelector('.lbox__nav--next').addEventListener('click', function(){ lShow(idx + 1); });
+  lbox.addEventListener('click', function(e){ if (e.target === lbox) lCloseFn(false); });
+  lbox.addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, { passive: true });
+  lbox.addEventListener('touchend', function(e){
     if (touchX === null) return;
     var dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 40) lShow(idx + (dx < 0 ? 1 : -1));
     touchX = null;
   });
+
+  document.addEventListener('keydown', function(e){
+    if (lboxOpen) {
+      if (e.key === 'Escape') lCloseFn(false);
+      else if (e.key === 'ArrowLeft') lShow(idx - 1);
+      else if (e.key === 'ArrowRight') lShow(idx + 1);
+    } else if (filmOpen && e.key === 'Escape') closeFilm(false);
+  });
+
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(relayout);
+    document.querySelectorAll('.mosaic, .stills__grid').forEach(function(m){ ro.observe(m); });
+  }
+  route();
 })();
 </script>
-
-<!-- (Shake reveal Brasa removido no rebrand v3 2026-05-26 — owner cravou
-     remoção do sistema Brasa completo. Shake handler dependia do
-     openFeel/feel-overlay que também foi removido.) -->
-
-<!-- (Feel Alright overlay + Brasa motion iframe removidos no rebrand
-     v3 2026-05-26 — owner cravou remoção do sistema Brasa completo.) -->
-
 </body>
 </html>
