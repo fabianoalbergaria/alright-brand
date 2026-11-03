@@ -37,6 +37,7 @@ export const FILMS = {
   'bauducco-collab-fini':         { client: 'Bauducco', title: 'Collab Fini', vimeo: '1224099579', vimeoHash: 'c49b179571', w: 1920, h: 1080, teaser: [], poster: [1280, 768] },
   'meet-thelonious':              { client: 'Alright', title: 'Meet Thelonious', youtube: '6y6lzSlFG6s', w: 1920, h: 1080, teaser: [], poster: [1280, 768] },
   'last-meal':                    { client: 'Alright', title: 'Last meal in the end of the world', vimeo: '1225950735', vimeoHash: '46e64bd4ca', w: 1920, h: 1080, teaser: [], poster: [1280, 768] },
+  'rio-2077':                     { client: 'Alright', title: 'Rio 2077', vimeo: '1243021343', w: 1920, h: 1080, teaser: [], poster: [1280, 768] },
 };
 
 // Aba PROJETOS: a lista, na ordem. `films` = filmes da página do projeto (o primeiro abre a página).
@@ -83,6 +84,7 @@ export const AUTORAIS = [
   [['fundo-em-play']],
   [['meet-thelonious']],
   [['last-meal']],
+  [['rio-2077']],
 ];
 
 // Stills: grupos de fotos (assets/work/web/stills/<foto>-900.jpg e -1800.jpg). [foto, largura, altura]
